@@ -1,0 +1,947 @@
+Using pre-set license
+Built from '2022.3/staging' branch; Version is '2022.3.6f1 (b9e6e7e9fa2d) revision 12183271'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 11  (10.0.22000) 64bit CoreSingleLanguage' Language: 'en' Physical Memory: 16163 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+C:\Application\Unity\2022.3.6f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker6
+-projectPath
+C:/Application/Unity/project/DoAnTotNghiep
+-logFile
+Logs/AssetImportWorker6.log
+-srvPort
+51601
+Successfully changed project path to: C:/Application/Unity/project/DoAnTotNghiep
+C:/Application/Unity/project/DoAnTotNghiep
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [13252] Host "[IP] 192.168.50.189 [Port] 0 [Flags] 2 [Guid] 439757447 [EditorId] 439757447 [Version] 1048832 [Id] WindowsEditor(7,Tuche-295) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+
+Player connection [13252] Host "[IP] 192.168.50.189 [Port] 0 [Flags] 2 [Guid] 439757447 [EditorId] 439757447 [Version] 1048832 [Id] WindowsEditor(7,Tuche-295) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+
+Refreshing native plugins compatible for Editor in 4.36 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2022.3.6f1 (b9e6e7e9fa2d)
+[Subsystems] Discovering subsystems at path C:/Application/Unity/2022.3.6f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Application/Unity/project/DoAnTotNghiep/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 3060 Laptop GPU (ID=0x2520)
+    Vendor:   NVIDIA
+    VRAM:     6010 MB
+    Driver:   31.0.15.4601
+Initialize mono
+Mono path[0] = 'C:/Application/Unity/2022.3.6f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Application/Unity/2022.3.6f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Application/Unity/2022.3.6f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56604
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Application/Unity/2022.3.6f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.003498 seconds.
+- Loaded All Assemblies, in  0.254 seconds
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.208 seconds
+Domain Reload Profiling: 461ms
+	BeginReloadAssembly (61ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (28ms)
+	RebuildNativeTypeToScriptingClass (9ms)
+	initialDomainReloadingComplete (43ms)
+	LoadAllAssembliesAndSetupDomain (112ms)
+		LoadAssemblies (60ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (108ms)
+			TypeCache.Refresh (108ms)
+				TypeCache.ScanAssembly (98ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (208ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (159ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (7ms)
+			SetLoadedEditorAssemblies (6ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (1ms)
+			ProcessInitializeOnLoadAttributes (109ms)
+			ProcessInitializeOnLoadMethodAttributes (35ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+========================================================================
+Worker process is ready to serve import requests
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\Application\Unity\project\DoAnTotNghiep\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\Application\Unity\project\DoAnTotNghiep\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+- Loaded All Assemblies, in  0.581 seconds
+Refreshing native plugins compatible for Editor in 1.80 ms, found 3 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.385 seconds
+Domain Reload Profiling: 965ms
+	BeginReloadAssembly (99ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (4ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (18ms)
+	RebuildCommonClasses (25ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (31ms)
+	LoadAllAssembliesAndSetupDomain (416ms)
+		LoadAssemblies (197ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (263ms)
+			TypeCache.Refresh (247ms)
+				TypeCache.ScanAssembly (237ms)
+			ScanForSourceGeneratedMonoScriptInfo (13ms)
+			ResolveRequiredComponents (3ms)
+	FinalizeReload (386ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (272ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (4ms)
+			SetLoadedEditorAssemblies (4ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (46ms)
+			ProcessInitializeOnLoadAttributes (200ms)
+			ProcessInitializeOnLoadMethodAttributes (14ms)
+			AfterProcessingInitializeOnLoad (4ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (5ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
+Refreshing native plugins compatible for Editor in 1.71 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3203 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 34 unused Assets / (56.6 KB). Loaded Objects now: 3674.
+Memory consumption went from 128.6 MB to 128.5 MB.
+Total: 2.622800 ms (FindLiveObjects: 0.216500 ms CreateObjectMapping: 0.096600 ms MarkObjects: 2.193600 ms  DeleteObjects: 0.115400 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 21351.560683 seconds.
+  path: Assets/Polygonal Fantasy Pack/FBX/Male/Beard 02.FBX
+  artifactKey: Guid(5a92d3466e497da41b772b01024a4bc5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/FBX/Male/Beard 02.FBX using Guid(5a92d3466e497da41b772b01024a4bc5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '43e11b861d427e2934976fd6df7c88db') in 0.109300 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Polygonal Fantasy Pack/FBX/Male/Brow 02.FBX
+  artifactKey: Guid(ef6ea33e83f41bf429f90278e1b66b4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/FBX/Male/Brow 02.FBX using Guid(ef6ea33e83f41bf429f90278e1b66b4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3fa6d3fcaa333b2672aeb97beb4d44f2') in 0.014146 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000025 seconds.
+  path: Assets/Polygonal Fantasy Pack/FBX/Male/Bracer 01.FBX
+  artifactKey: Guid(3b5110ce8a357954eadf95636b1f7b3b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/FBX/Male/Bracer 01.FBX using Guid(3b5110ce8a357954eadf95636b1f7b3b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0941b936425f24860c2a2f9a9fbef21d') in 0.012423 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Polygonal Fantasy Pack/FBX/Male/Beard 10.FBX
+  artifactKey: Guid(04b2593c0c898044c8bed4dac122c996) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/FBX/Male/Beard 10.FBX using Guid(04b2593c0c898044c8bed4dac122c996) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8fc667fa9b199578d7579267e4031346') in 0.015508 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Polygonal Fantasy Pack/FBX/Male/Bracer 08.FBX
+  artifactKey: Guid(060d8c6e2cf4b0d4796fa23a1bb681a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/FBX/Male/Bracer 08.FBX using Guid(060d8c6e2cf4b0d4796fa23a1bb681a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '385061ac1cd99f00f3850cc3f0d11036') in 0.015164 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.000020 seconds.
+  path: Assets/Polygonal Fantasy Pack/FBX/Male/Beard 08.FBX
+  artifactKey: Guid(6e3d769fadb8393448644da4c004cf8c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/FBX/Male/Beard 08.FBX using Guid(6e3d769fadb8393448644da4c004cf8c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd8ff8e00c29094e04a0971740c7b3641') in 0.012907 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 14.799241 seconds.
+  path: Assets/Polygonal Fantasy Pack/FBX/Weapons/Axe 01.fbx
+  artifactKey: Guid(407cf86cc0afc76488c404e656e136a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/FBX/Weapons/Axe 01.fbx using Guid(407cf86cc0afc76488c404e656e136a5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0ad2de403566cd5091300166afbbed21') in 0.014451 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.005377 seconds.
+  path: Assets/Polygonal Fantasy Pack/FBX/Weapons/Basket 01.FBX
+  artifactKey: Guid(b2345934747d7fa4bb137109b045c33a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/FBX/Weapons/Basket 01.FBX using Guid(b2345934747d7fa4bb137109b045c33a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '679557bec033bbfd5368cde8d3863ce7') in 0.013447 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.004381 seconds.
+  path: Assets/Polygonal Fantasy Pack/FBX/Weapons/Bow 03.FBX
+  artifactKey: Guid(15bc19b4d6f497c4db6f2c8bf04712cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/FBX/Weapons/Bow 03.FBX using Guid(15bc19b4d6f497c4db6f2c8bf04712cb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '832a7170f2b6f4f4c2b999508311c0da') in 0.013937 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.004922 seconds.
+  path: Assets/Polygonal Fantasy Pack/FBX/Weapons/Dagger 02.FBX
+  artifactKey: Guid(65b24519b81d4884cb06c7e85f233844) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/FBX/Weapons/Dagger 02.FBX using Guid(65b24519b81d4884cb06c7e85f233844) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c84b7b3bdd9bfacc20f32c61224b376f') in 0.012783 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.001845 seconds.
+  path: Assets/Polygonal Fantasy Pack/FBX/Weapons/Hammer 02.fbx
+  artifactKey: Guid(4d6aa21be3c6fe246a9ccfa904c3c406) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/FBX/Weapons/Hammer 02.fbx using Guid(4d6aa21be3c6fe246a9ccfa904c3c406) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2bbc129b7adb3e8388215b24aac58779') in 0.015089 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.008386 seconds.
+  path: Assets/Polygonal Fantasy Pack/FBX/Weapons/Pick Axe 01.FBX
+  artifactKey: Guid(cc17e8c3be75dc9458e589b8355216a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/FBX/Weapons/Pick Axe 01.FBX using Guid(cc17e8c3be75dc9458e589b8355216a0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '927837b5d81435102b86933e6f3893ff') in 0.059551 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 1.566281 seconds.
+  path: Assets/Polygonal Fantasy Pack/FBX/Weapons/Quiver 02.FBX
+  artifactKey: Guid(1820126a30403ea41817ff5c4fc45bfb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/FBX/Weapons/Quiver 02.FBX using Guid(1820126a30403ea41817ff5c4fc45bfb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '57f06b2daf48c5add20a0687c6e418a1') in 0.011947 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.080868 seconds.
+  path: Assets/Polygonal Fantasy Pack/FBX/Weapons/Rake 01.FBX
+  artifactKey: Guid(88f09bcfb43e054418f1f69bfdc760da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/FBX/Weapons/Rake 01.FBX using Guid(88f09bcfb43e054418f1f69bfdc760da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'acb018e83d1fc681c31dd5f97f25627c') in 0.013629 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.048413 seconds.
+  path: Assets/Polygonal Fantasy Pack/FBX/Weapons/Shield 01.FBX
+  artifactKey: Guid(5d8114ea46745d6459bd132dc4429d77) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/FBX/Weapons/Shield 01.FBX using Guid(5d8114ea46745d6459bd132dc4429d77) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cec66a2be440eb13abda1424eb59d24a') in 0.013007 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.340716 seconds.
+  path: Assets/Polygonal Fantasy Pack/FBX/Weapons/Shield 03.fbx
+  artifactKey: Guid(b697b3cdf1455334a9f18c707acea8d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/FBX/Weapons/Shield 03.fbx using Guid(b697b3cdf1455334a9f18c707acea8d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '54ec4174a961084b8a505eb2922326d1') in 0.012673 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.004125 seconds.
+  path: Assets/Polygonal Fantasy Pack/FBX/Weapons/Shield 05.fbx
+  artifactKey: Guid(b29531ca2d1fc3e4383a4d623c33b07a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/FBX/Weapons/Shield 05.fbx using Guid(b29531ca2d1fc3e4383a4d623c33b07a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '23a0f890109fa63cf7806e177c5beae4') in 0.011963 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.038566 seconds.
+  path: Assets/Polygonal Fantasy Pack/FBX/Weapons/Spade 01.FBX
+  artifactKey: Guid(46890ce7569945749994efdfe8945755) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/FBX/Weapons/Spade 01.FBX using Guid(46890ce7569945749994efdfe8945755) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '91e2de115716423c004ecf72cce11d52') in 0.012857 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.685710 seconds.
+  path: Assets/Polygonal Fantasy Pack/FBX/Weapons/Staff 02.fbx
+  artifactKey: Guid(351b0119531610644b0341111c31534c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/FBX/Weapons/Staff 02.fbx using Guid(351b0119531610644b0341111c31534c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '30d14f7ee33cf2d804a08ec0386ee155') in 0.011690 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.089701 seconds.
+  path: Assets/Polygonal Fantasy Pack/FBX/Weapons/Staff 04.fbx
+  artifactKey: Guid(63e3ab13924ef574b89972364a4d8008) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/FBX/Weapons/Staff 04.fbx using Guid(63e3ab13924ef574b89972364a4d8008) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7227cb610709ca59247468f8db9dc77e') in 0.011893 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.033654 seconds.
+  path: Assets/Polygonal Fantasy Pack/FBX/Weapons/Sword 01.FBX
+  artifactKey: Guid(ea20ee8c2d88b944ea9e13253a274be4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/FBX/Weapons/Sword 01.FBX using Guid(ea20ee8c2d88b944ea9e13253a274be4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b27c4b1fa90979f35e29339d08a25916') in 0.012295 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.604786 seconds.
+  path: Assets/Polygonal Fantasy Pack/FBX/Weapons/Sword 03.fbx
+  artifactKey: Guid(722755ae235323d4bb0af1cced9d37a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/FBX/Weapons/Sword 03.fbx using Guid(722755ae235323d4bb0af1cced9d37a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0a40865d22ed4c0c9c07ece657a1cc02') in 0.018705 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.042182 seconds.
+  path: Assets/Polygonal Fantasy Pack/FBX/Weapons/Sword 05.fbx
+  artifactKey: Guid(829e4aa6b69269640b2d3d8ea1a64c49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/FBX/Weapons/Sword 05.fbx using Guid(829e4aa6b69269640b2d3d8ea1a64c49) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6178b70245494c5bb51f1eaaf770998a') in 0.014354 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.028621 seconds.
+  path: Assets/Polygonal Fantasy Pack/FBX/Weapons/Wand 02.FBX
+  artifactKey: Guid(1ea581167752e2e439232ebb338c9a71) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/FBX/Weapons/Wand 02.FBX using Guid(1ea581167752e2e439232ebb338c9a71) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ab74c61fd4e0ad1c0821818c2db37f59') in 0.015691 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 0.395157 seconds.
+  path: Assets/Polygonal Fantasy Pack/FBX/Weapons/Wand 04.FBX
+  artifactKey: Guid(203e801dc7a2ad140a1d2f389867d1c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/FBX/Weapons/Wand 04.FBX using Guid(203e801dc7a2ad140a1d2f389867d1c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4e362a713555e5ade77a64b63f9cc995') in 0.012629 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 7
+========================================================================
+Received Import Request.
+  Time since last request: 122.313697 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/02 Change Costume Color/Light Skin/LS Green Sliver.mat
+  artifactKey: Guid(7e1bd95f62988a3489e8747a5d9fdeb9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/02 Change Costume Color/Light Skin/LS Green Sliver.mat using Guid(7e1bd95f62988a3489e8747a5d9fdeb9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd96ca601ec177791e1f9f81c24705ca1') in 0.034269 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/02 Change Costume Color/Light Skin/LS Purple Gold.mat
+  artifactKey: Guid(f5c782a2612bf674eaaef88ea9759e4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/02 Change Costume Color/Light Skin/LS Purple Gold.mat using Guid(f5c782a2612bf674eaaef88ea9759e4d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd264b1f2bfdc824ab3b1c8255dbfa680') in 0.039653 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/02 Change Costume Color/Light Skin/LS White Gold.mat
+  artifactKey: Guid(9d1e52b9b271bf3479a29297b4766815) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/02 Change Costume Color/Light Skin/LS White Gold.mat using Guid(9d1e52b9b271bf3479a29297b4766815) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b87f8c57b2f85e6f4530681da62fe38f') in 0.024501 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000017 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/02 Change Costume Color/Light Skin/LS Red Sliver.mat
+  artifactKey: Guid(1cd0abe791ee06840ac4ea62f53bff8c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/02 Change Costume Color/Light Skin/LS Red Sliver.mat using Guid(1cd0abe791ee06840ac4ea62f53bff8c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bb585ddcbd6565e3c4109a7d07de2afc') in 0.029608 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/02 Change Costume Color/Light Skin/LS Purple Sliver.mat
+  artifactKey: Guid(67aa4a0784fe68d4cbf9179bb17dd183) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/02 Change Costume Color/Light Skin/LS Purple Sliver.mat using Guid(67aa4a0784fe68d4cbf9179bb17dd183) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0cb1aa7183c3841b3c08ee190d882b64') in 0.017827 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 3
+========================================================================
+Received Import Request.
+  Time since last request: 59.886427 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 01 Brown Gold.prefab
+  artifactKey: Guid(c5984f2e48be28947948a3675986e91c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 01 Brown Gold.prefab using Guid(c5984f2e48be28947948a3675986e91c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f3ec61ac9d7d2f8ce522c96469ec47e7') in 0.016371 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 01 Green Silver.prefab
+  artifactKey: Guid(680011968d9592a4b95659ab5f95c863) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 01 Green Silver.prefab using Guid(680011968d9592a4b95659ab5f95c863) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3d47c7afbd1a1f76c99e1665e21499d8') in 0.012145 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 01 Purple Gold.prefab
+  artifactKey: Guid(33dc47dc33186b94b85c90767c48c365) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 01 Purple Gold.prefab using Guid(33dc47dc33186b94b85c90767c48c365) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '42f09bdcdc341d47bafd8928fd32d34f') in 0.010708 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 01 Grey Silver.prefab
+  artifactKey: Guid(c9ec4ad44fec4e8459ebee14c6eaeabc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 01 Grey Silver.prefab using Guid(c9ec4ad44fec4e8459ebee14c6eaeabc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cc4eb33e447b54fe431ef8531dd91ffc') in 0.011638 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 01 White Silver.prefab
+  artifactKey: Guid(35f7a20eecd36da4a889250c29113ac8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 01 White Silver.prefab using Guid(35f7a20eecd36da4a889250c29113ac8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '04dc1a301192d620e9748d5ebdd3acd0') in 0.012099 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000015 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 02 Brown Gold.prefab
+  artifactKey: Guid(c0ccbbca37838a34b8395ab0b2f21145) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 02 Brown Gold.prefab using Guid(c0ccbbca37838a34b8395ab0b2f21145) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '382dc09746d49ff0276fb57797df0e56') in 0.010605 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 02 Green Gold.prefab
+  artifactKey: Guid(7dbe71ff49ff7864b93a54b1322bf9f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 02 Green Gold.prefab using Guid(7dbe71ff49ff7864b93a54b1322bf9f4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0df28e995f0b4d6e1b96dafb0b2a6e6d') in 0.014874 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000023 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 01 White Gold.prefab
+  artifactKey: Guid(0db87d42951b56e46bffc284d8dc0e42) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 01 White Gold.prefab using Guid(0db87d42951b56e46bffc284d8dc0e42) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '26b3687be7ee2fb18904c20ec59f1b5c') in 0.011685 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 02 White Gold.prefab
+  artifactKey: Guid(e45a19bb87715a640a191e133d70ec35) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 02 White Gold.prefab using Guid(e45a19bb87715a640a191e133d70ec35) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd0cb1598b96caac629dd8899f237eca0') in 0.011103 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 03 Blue Silver.prefab
+  artifactKey: Guid(e713cc00fd1cd5946bd7215e498fc71d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 03 Blue Silver.prefab using Guid(e713cc00fd1cd5946bd7215e498fc71d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '099a8c317a7e89523f629f7ec3992c13') in 0.014864 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 03 Brown Gold.prefab
+  artifactKey: Guid(dfe97c7adf24e29459f14e6174ce9283) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 03 Brown Gold.prefab using Guid(dfe97c7adf24e29459f14e6174ce9283) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '51bd49793617b9009e99b3b73429e3b7') in 0.057288 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000018 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 02 Blue Silver.prefab
+  artifactKey: Guid(c5c984309169c43499acd7ce1a94332d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 02 Blue Silver.prefab using Guid(c5c984309169c43499acd7ce1a94332d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd2661302edafcf6024297a83ee4d717a') in 0.011889 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 1.022209 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 03 Purple Gold.prefab
+  artifactKey: Guid(101363129ff48af499412439d684656e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 03 Purple Gold.prefab using Guid(101363129ff48af499412439d684656e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c497a889b558c0972bf5609c9ef31c27') in 0.011268 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.041378 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 03 Red Silver.prefab
+  artifactKey: Guid(d515442e06790704f996d89d9876b4c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 03 Red Silver.prefab using Guid(d515442e06790704f996d89d9876b4c6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bf92cfd742c93ed6a349fa1441d521ed') in 0.010301 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.034024 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 04 Blue Gold.prefab
+  artifactKey: Guid(6ee795c878cb301479be7a9d6c366bf8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 04 Blue Gold.prefab using Guid(6ee795c878cb301479be7a9d6c366bf8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b33321c36f8ac1cd38c81fd5750f0267') in 0.010880 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.255528 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 04 Brown Silver.prefab
+  artifactKey: Guid(968e05bf691610f4ea4e9758280df0e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 04 Brown Silver.prefab using Guid(968e05bf691610f4ea4e9758280df0e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5a0b713814f863513b69a0b957f3b212') in 0.009806 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.006131 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 04 Grey Gold.prefab
+  artifactKey: Guid(b160823955cc52e48987872c81f2f497) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 04 Grey Gold.prefab using Guid(b160823955cc52e48987872c81f2f497) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8186a6f2128c141256a25c825d7e5dae') in 0.009135 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.037659 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 04 Purple Silver.prefab
+  artifactKey: Guid(679dcce590fbfd249a0667b9eaee6aaa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 04 Purple Silver.prefab using Guid(679dcce590fbfd249a0667b9eaee6aaa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '513707e6aa86a97b3d6517ed9e48f760') in 0.011022 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.212933 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 04 White Gold.prefab
+  artifactKey: Guid(f2213a6620b9bfe42adeec098d13cb7f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 04 White Gold.prefab using Guid(f2213a6620b9bfe42adeec098d13cb7f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8613f6e0a03537f51a9d5fd14d80e491') in 0.011045 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.030389 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 05 Blue Silver.prefab
+  artifactKey: Guid(1f40939b5dad927429ffc562e1ce1dc0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 05 Blue Silver.prefab using Guid(1f40939b5dad927429ffc562e1ce1dc0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '294221342ab768a628ab19214ca27178') in 0.010106 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.017312 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 05 Green Gold.prefab
+  artifactKey: Guid(d0afcceab38ecb04894124208d698ea1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 05 Green Gold.prefab using Guid(d0afcceab38ecb04894124208d698ea1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7bcd2d226142e09b1afc2fed51c73c66') in 0.010624 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\Application\Unity\project\DoAnTotNghiep\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\Application\Unity\project\DoAnTotNghiep\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+- Loaded All Assemblies, in  0.651 seconds
+Refreshing native plugins compatible for Editor in 1.75 ms, found 3 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.678 seconds
+Domain Reload Profiling: 1327ms
+	BeginReloadAssembly (133ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (4ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (43ms)
+	RebuildCommonClasses (33ms)
+	RebuildNativeTypeToScriptingClass (11ms)
+	initialDomainReloadingComplete (29ms)
+	LoadAllAssembliesAndSetupDomain (442ms)
+		LoadAssemblies (228ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (268ms)
+			TypeCache.Refresh (259ms)
+				TypeCache.ScanAssembly (248ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (10ms)
+	FinalizeReload (678ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (316ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (4ms)
+			SetLoadedEditorAssemblies (4ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (58ms)
+			ProcessInitializeOnLoadAttributes (224ms)
+			ProcessInitializeOnLoadMethodAttributes (20ms)
+			AfterProcessingInitializeOnLoad (6ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (7ms)
+Refreshing native plugins compatible for Editor in 2.28 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3181 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 24 unused Assets / (29.7 KB). Loaded Objects now: 3722.
+Memory consumption went from 128.3 MB to 128.3 MB.
+Total: 2.881900 ms (FindLiveObjects: 0.273100 ms CreateObjectMapping: 0.126500 ms MarkObjects: 2.428400 ms  DeleteObjects: 0.052600 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 201.983965 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 05 Grey Gold.prefab
+  artifactKey: Guid(422e69fcd1484224ebf43fa12b608a9c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 05 Grey Gold.prefab using Guid(422e69fcd1484224ebf43fa12b608a9c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '780ae8bc6fdd5a64c5bd82613691e0a2') in 0.075004 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.131502 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 05 Purple Silver.prefab
+  artifactKey: Guid(4e9aece537dae544caf0c24fbe9ca2d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 05 Purple Silver.prefab using Guid(4e9aece537dae544caf0c24fbe9ca2d0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '66c86953e6d83e606fe5f2433fe2f43e') in 0.009613 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.001134 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 05 Red Silver.prefab
+  artifactKey: Guid(42879e8d753e75f4c9444f38fba90fc0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 05 Red Silver.prefab using Guid(42879e8d753e75f4c9444f38fba90fc0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fb8d3abc0f375ce44b115ba3d787cf16') in 0.008939 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000014 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 05 White Silver.prefab
+  artifactKey: Guid(a1094961235986348abf8ab0a0b39b5c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/05 Attach Weapons/Swords (+ R L Hand)/Sword 05 White Silver.prefab using Guid(a1094961235986348abf8ab0a0b39b5c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '28e89fa368ee6cc11e6434ef285450a0') in 0.010132 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\Application\Unity\project\DoAnTotNghiep\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\Application\Unity\project\DoAnTotNghiep\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+- Loaded All Assemblies, in  0.578 seconds
+Refreshing native plugins compatible for Editor in 1.78 ms, found 3 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.592 seconds
+Domain Reload Profiling: 1168ms
+	BeginReloadAssembly (117ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (4ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (36ms)
+	RebuildCommonClasses (38ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (26ms)
+	LoadAllAssembliesAndSetupDomain (385ms)
+		LoadAssemblies (190ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (241ms)
+			TypeCache.Refresh (232ms)
+				TypeCache.ScanAssembly (222ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (9ms)
+	FinalizeReload (592ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (267ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (4ms)
+			SetLoadedEditorAssemblies (4ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (51ms)
+			ProcessInitializeOnLoadAttributes (186ms)
+			ProcessInitializeOnLoadMethodAttributes (18ms)
+			AfterProcessingInitializeOnLoad (4ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+Refreshing native plugins compatible for Editor in 1.99 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3181 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 24 unused Assets / (29.8 KB). Loaded Objects now: 3725.
+Memory consumption went from 128.3 MB to 128.3 MB.
+Total: 2.604200 ms (FindLiveObjects: 0.245400 ms CreateObjectMapping: 0.120500 ms MarkObjects: 2.194000 ms  DeleteObjects: 0.043700 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\Application\Unity\project\DoAnTotNghiep\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\Application\Unity\project\DoAnTotNghiep\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+- Loaded All Assemblies, in  0.525 seconds
+Refreshing native plugins compatible for Editor in 2.01 ms, found 3 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.562 seconds
+Domain Reload Profiling: 1086ms
+	BeginReloadAssembly (109ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (4ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (31ms)
+	RebuildCommonClasses (25ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (21ms)
+	LoadAllAssembliesAndSetupDomain (361ms)
+		LoadAssemblies (190ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (213ms)
+			TypeCache.Refresh (210ms)
+				TypeCache.ScanAssembly (200ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (3ms)
+	FinalizeReload (563ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (257ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (4ms)
+			SetLoadedEditorAssemblies (4ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (55ms)
+			ProcessInitializeOnLoadAttributes (174ms)
+			ProcessInitializeOnLoadMethodAttributes (16ms)
+			AfterProcessingInitializeOnLoad (4ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (5ms)
+Refreshing native plugins compatible for Editor in 1.93 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3181 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 24 unused Assets / (29.8 KB). Loaded Objects now: 3728.
+Memory consumption went from 128.3 MB to 128.3 MB.
+Total: 2.861600 ms (FindLiveObjects: 0.277700 ms CreateObjectMapping: 0.126400 ms MarkObjects: 2.384800 ms  DeleteObjects: 0.071400 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 520.128368 seconds.
+  path: Assets/_Prefabs/weapon/Sword 02 Green Silver.prefab
+  artifactKey: Guid(c20f15aba5bee6b479b7ae71653606f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/_Prefabs/weapon/Sword 02 Green Silver.prefab using Guid(c20f15aba5bee6b479b7ae71653606f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4772d803f44a61dd281f5e38c497c6c4') in 0.083964 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 150.863735 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customized Character Examples/Female Archer 01.prefab
+  artifactKey: Guid(4f6acaa1f91dbcb40b7a027053e647e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customized Character Examples/Female Archer 01.prefab using Guid(4f6acaa1f91dbcb40b7a027053e647e5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '426c741191784d97174b7d3c1c4f3aff') in 0.113382 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 487
+========================================================================
+Received Import Request.
+  Time since last request: 0.000040 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customized Character Examples/Male Villager 04.prefab
+  artifactKey: Guid(3d4a771d8717cdc4482db9fb7caf4e1e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customized Character Examples/Male Villager 04.prefab using Guid(3d4a771d8717cdc4482db9fb7caf4e1e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '388a5832182a00b7915b3a74fd703938') in 0.071372 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 421
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customized Character Examples/Female Villager 01.prefab
+  artifactKey: Guid(c82b659da850ff949bec4eeaf7e7034c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customized Character Examples/Female Villager 01.prefab using Guid(c82b659da850ff949bec4eeaf7e7034c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '22bdfa5b6c10f7491a2cbfb5bed67266') in 0.068086 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 465
+========================================================================
+Received Import Request.
+  Time since last request: 0.000019 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customized Character Examples/Male Villager 03.prefab
+  artifactKey: Guid(409b86c716e589643a6309dbfb719d15) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customized Character Examples/Male Villager 03.prefab using Guid(409b86c716e589643a6309dbfb719d15) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eff9efd229028dffe2d7b9f4c15de935') in 0.081238 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 414
+========================================================================
+Received Import Request.
+  Time since last request: 0.000027 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customized Character Examples/Female Mage 01.prefab
+  artifactKey: Guid(a3ee10d62ec760b47b79a84fc48f2905) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customized Character Examples/Female Mage 01.prefab using Guid(a3ee10d62ec760b47b79a84fc48f2905) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fc22ac24680265e08cce3ca22fff31ba') in 0.076424 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 487
+========================================================================
+Received Import Request.
+  Time since last request: 0.000026 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customized Character Examples/Male Blacksmith 01.prefab
+  artifactKey: Guid(08f40d2c57f76704ba0e82bc15368e30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customized Character Examples/Male Blacksmith 01.prefab using Guid(08f40d2c57f76704ba0e82bc15368e30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e533ca690fb7ca49d50eddf6651be6fe') in 0.055452 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 448
+========================================================================
+Received Import Request.
+  Time since last request: 0.000042 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customized Character Examples/Female Rogue 01.prefab
+  artifactKey: Guid(432c924d34e3c1a4eadfcb45cebdd054) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customized Character Examples/Female Rogue 01.prefab using Guid(432c924d34e3c1a4eadfcb45cebdd054) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ff39bf370b7248df2eb313f42a8ebe2d') in 0.051443 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 474
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\Application\Unity\project\DoAnTotNghiep\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\Application\Unity\project\DoAnTotNghiep\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+- Loaded All Assemblies, in  0.692 seconds
+Refreshing native plugins compatible for Editor in 2.18 ms, found 3 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.735 seconds
+Domain Reload Profiling: 1426ms
+	BeginReloadAssembly (141ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (4ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (48ms)
+	RebuildCommonClasses (44ms)
+	RebuildNativeTypeToScriptingClass (16ms)
+	initialDomainReloadingComplete (33ms)
+	LoadAllAssembliesAndSetupDomain (456ms)
+		LoadAssemblies (237ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (276ms)
+			TypeCache.Refresh (272ms)
+				TypeCache.ScanAssembly (260ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (4ms)
+	FinalizeReload (735ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (335ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (6ms)
+			SetLoadedEditorAssemblies (5ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (63ms)
+			ProcessInitializeOnLoadAttributes (234ms)
+			ProcessInitializeOnLoadMethodAttributes (22ms)
+			AfterProcessingInitializeOnLoad (5ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (7ms)
+Refreshing native plugins compatible for Editor in 1.95 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3181 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 24 unused Assets / (29.8 KB). Loaded Objects now: 3732.
+Memory consumption went from 130.7 MB to 130.6 MB.
+Total: 2.646800 ms (FindLiveObjects: 0.234000 ms CreateObjectMapping: 0.084600 ms MarkObjects: 2.283500 ms  DeleteObjects: 0.044000 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+TcpMessagingSession - receive error: operation aborted. errorcode: 995, details: The I/O operation has been aborted because of either a thread exit or an application request.
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0

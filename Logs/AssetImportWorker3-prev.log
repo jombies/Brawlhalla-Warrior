@@ -15,7 +15,7 @@ C:/Application/Unity/project/DoAnTotNghiep
 -logFile
 Logs/AssetImportWorker3.log
 -srvPort
-59775
+65412
 Successfully changed project path to: C:/Application/Unity/project/DoAnTotNghiep
 C:/Application/Unity/project/DoAnTotNghiep
 [UnityMemory] Configuration Parameters - Can be set up in boot.config
@@ -49,11 +49,11 @@ C:/Application/Unity/project/DoAnTotNghiep
     "memorysetup-temp-allocator-size-cloud-worker=32768"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [20736] Host "[IP] 192.168.1.17 [Port] 0 [Flags] 2 [Guid] 4066010362 [EditorId] 4066010362 [Version] 1048832 [Id] WindowsEditor(7,Tuche-295) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [25992] Host "[IP] 192.168.1.14 [Port] 0 [Flags] 2 [Guid] 2554993650 [EditorId] 2554993650 [Version] 1048832 [Id] WindowsEditor(7,Tuche-295) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
 
-Player connection [20736] Host "[IP] 192.168.1.17 [Port] 0 [Flags] 2 [Guid] 4066010362 [EditorId] 4066010362 [Version] 1048832 [Id] WindowsEditor(7,Tuche-295) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [25992] Host "[IP] 192.168.1.14 [Port] 0 [Flags] 2 [Guid] 2554993650 [EditorId] 2554993650 [Version] 1048832 [Id] WindowsEditor(7,Tuche-295) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 
-Refreshing native plugins compatible for Editor in 6.81 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 7.84 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2022.3.6f1 (b9e6e7e9fa2d)
 [Subsystems] Discovering subsystems at path C:/Application/Unity/2022.3.6f1/Editor/Data/Resources/UnitySubsystems
@@ -69,44 +69,44 @@ Initialize mono
 Mono path[0] = 'C:/Application/Unity/2022.3.6f1/Editor/Data/Managed'
 Mono path[1] = 'C:/Application/Unity/2022.3.6f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
 Mono config path = 'C:/Application/Unity/2022.3.6f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56208
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56988
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: C:/Application/Unity/2022.3.6f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
-Registered in 0.004609 seconds.
-- Loaded All Assemblies, in  0.370 seconds
+Registered in 0.003893 seconds.
+- Loaded All Assemblies, in  0.271 seconds
 Native extension for WindowsStandalone target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.289 seconds
-Domain Reload Profiling: 658ms
-	BeginReloadAssembly (98ms)
+- Finished resetting the current domain, in  0.222 seconds
+Domain Reload Profiling: 492ms
+	BeginReloadAssembly (67ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (1ms)
-	RebuildCommonClasses (39ms)
-	RebuildNativeTypeToScriptingClass (13ms)
-	initialDomainReloadingComplete (62ms)
-	LoadAllAssembliesAndSetupDomain (157ms)
-		LoadAssemblies (96ms)
+	RebuildCommonClasses (29ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (48ms)
+	LoadAllAssembliesAndSetupDomain (116ms)
+		LoadAssemblies (65ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (152ms)
-			TypeCache.Refresh (151ms)
-				TypeCache.ScanAssembly (137ms)
+		AnalyzeDomain (112ms)
+			TypeCache.Refresh (111ms)
+				TypeCache.ScanAssembly (101ms)
 			ScanForSourceGeneratedMonoScriptInfo (0ms)
-			ResolveRequiredComponents (0ms)
-	FinalizeReload (289ms)
+			ResolveRequiredComponents (1ms)
+	FinalizeReload (222ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (225ms)
+		SetupLoadedEditorAssemblies (166ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (9ms)
-			SetLoadedEditorAssemblies (9ms)
+			InitializePlatformSupportModulesInManaged (7ms)
+			SetLoadedEditorAssemblies (7ms)
 			RefreshPlugins (0ms)
 			BeforeProcessingInitializeOnLoad (2ms)
-			ProcessInitializeOnLoadAttributes (144ms)
-			ProcessInitializeOnLoadMethodAttributes (61ms)
+			ProcessInitializeOnLoadAttributes (116ms)
+			ProcessInitializeOnLoadMethodAttributes (35ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -116,136 +116,178 @@ Worker process is ready to serve import requests
 Begin MonoManager ReloadAssembly
 Symbol file LoadedFromMemory doesn't match image C:\Application\Unity\project\DoAnTotNghiep\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
 Symbol file LoadedFromMemory doesn't match image C:\Application\Unity\project\DoAnTotNghiep\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
-- Loaded All Assemblies, in  0.842 seconds
-Refreshing native plugins compatible for Editor in 1.98 ms, found 3 plugins.
+- Loaded All Assemblies, in  0.622 seconds
+Refreshing native plugins compatible for Editor in 2.25 ms, found 3 plugins.
 Native extension for WindowsStandalone target not found
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  0.543 seconds
-Domain Reload Profiling: 1383ms
-	BeginReloadAssembly (166ms)
+- Finished resetting the current domain, in  0.410 seconds
+Domain Reload Profiling: 1031ms
+	BeginReloadAssembly (122ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (5ms)
+		DisableScriptedObjects (4ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (33ms)
-	RebuildCommonClasses (37ms)
-	RebuildNativeTypeToScriptingClass (13ms)
-	initialDomainReloadingComplete (59ms)
-	LoadAllAssembliesAndSetupDomain (565ms)
-		LoadAssemblies (320ms)
+		CreateAndSetChildDomain (22ms)
+	RebuildCommonClasses (30ms)
+	RebuildNativeTypeToScriptingClass (10ms)
+	initialDomainReloadingComplete (36ms)
+	LoadAllAssembliesAndSetupDomain (421ms)
+		LoadAssemblies (214ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (324ms)
-			TypeCache.Refresh (305ms)
-				TypeCache.ScanAssembly (288ms)
-			ScanForSourceGeneratedMonoScriptInfo (16ms)
+		AnalyzeDomain (253ms)
+			TypeCache.Refresh (238ms)
+				TypeCache.ScanAssembly (228ms)
+			ScanForSourceGeneratedMonoScriptInfo (12ms)
 			ResolveRequiredComponents (3ms)
-	FinalizeReload (543ms)
+	FinalizeReload (411ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (386ms)
+		SetupLoadedEditorAssemblies (291ms)
 			LogAssemblyErrors (0ms)
 			InitializePlatformSupportModulesInManaged (5ms)
 			SetLoadedEditorAssemblies (5ms)
 			RefreshPlugins (0ms)
-			BeforeProcessingInitializeOnLoad (62ms)
-			ProcessInitializeOnLoadAttributes (287ms)
-			ProcessInitializeOnLoadMethodAttributes (20ms)
-			AfterProcessingInitializeOnLoad (7ms)
+			BeforeProcessingInitializeOnLoad (49ms)
+			ProcessInitializeOnLoadAttributes (214ms)
+			ProcessInitializeOnLoadMethodAttributes (15ms)
+			AfterProcessingInitializeOnLoad (4ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (6ms)
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.05 seconds
-Refreshing native plugins compatible for Editor in 4.55 ms, found 3 plugins.
+		AwakeInstancesAfterBackupRestoration (5ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
+Refreshing native plugins compatible for Editor in 1.95 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 3113 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 31 unused Assets / (56.4 KB). Loaded Objects now: 3581.
-Memory consumption went from 122.1 MB to 122.0 MB.
-Total: 7.245100 ms (FindLiveObjects: 0.468100 ms CreateObjectMapping: 0.247200 ms MarkObjects: 6.304700 ms  DeleteObjects: 0.223900 ms)
+Unloading 3117 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 31 unused Assets / (56.5 KB). Loaded Objects now: 3587.
+Memory consumption went from 122.7 MB to 122.6 MB.
+Total: 3.398400 ms (FindLiveObjects: 0.227800 ms CreateObjectMapping: 0.108700 ms MarkObjects: 2.945800 ms  DeleteObjects: 0.115200 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
   custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
   custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
   custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
   custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 3271.203015 seconds.
-  path: Assets/SwordShield/DieRecover_SwordShield.fbx
-  artifactKey: Guid(ab7eceb1f93daa441ba19376aa9d202a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/SwordShield/DieRecover_SwordShield.fbx using Guid(ab7eceb1f93daa441ba19376aa9d202a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7f72d99415d89ecf2c21bbdacc3eca85') in 0.217165 seconds
+  Time since last request: 3028.624999 seconds.
+  path: Assets/Pick Up items pack/Materials/Boxes_unknown_silver.png
+  artifactKey: Guid(20f599fb1e41bcd4192cfd4652ba6930) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pick Up items pack/Materials/Boxes_unknown_silver.png using Guid(20f599fb1e41bcd4192cfd4652ba6930) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6b52bdd74213217baf1cb102c8e16fcd') in 0.064719 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 161
+Number of asset objects unloaded after import = 2
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000030 seconds.
-  path: Assets/SwordShield/Combo01_SwordShield.fbx
-  artifactKey: Guid(997f29e6d83e40441819abcdf569bb75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/SwordShield/Combo01_SwordShield.fbx using Guid(997f29e6d83e40441819abcdf569bb75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8c171429204d07e3b04d4e7ae0f65735') in 0.080932 seconds
+  Time since last request: 0.000019 seconds.
+  path: Assets/Pick Up items pack/Materials/Coins_silver.png
+  artifactKey: Guid(1b4b79ab248956d428fb59d3a4e7e21a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pick Up items pack/Materials/Coins_silver.png using Guid(1b4b79ab248956d428fb59d3a4e7e21a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4507e94fe85d5ec804d3a3a2c76ce400') in 0.015603 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 161
+Number of asset objects unloaded after import = 2
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000025 seconds.
-  path: Assets/SwordShield/Defend_SwordShield.fbx
-  artifactKey: Guid(30b6fba22de583f4caad846b74a08924) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/SwordShield/Defend_SwordShield.fbx using Guid(30b6fba22de583f4caad846b74a08924) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c51b87817fc998fa60b095492088e905') in 0.083926 seconds
+  Time since last request: 0.000021 seconds.
+  path: Assets/Pick Up items pack/Materials/Coin_gem_silver.png
+  artifactKey: Guid(ff25c092f6312824fbd8ba9388c41af9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pick Up items pack/Materials/Coin_gem_silver.png using Guid(ff25c092f6312824fbd8ba9388c41af9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8b0d87d11add107282dee755903e54e0') in 0.011868 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 161
+Number of asset objects unloaded after import = 2
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000101 seconds.
-  path: Assets/SwordShield/JumpEnd_SwordShield.fbx
-  artifactKey: Guid(fa6b744fe61fbb4418c320edb825cc15) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/SwordShield/JumpEnd_SwordShield.fbx using Guid(fa6b744fe61fbb4418c320edb825cc15) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f174622931064207b90dd241089fed6c') in 0.080393 seconds
+  Time since last request: 0.000015 seconds.
+  path: Assets/Pick Up items pack/Materials/Glare.png
+  artifactKey: Guid(d1c7e514745bdf547a779b5d12ba364d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pick Up items pack/Materials/Glare.png using Guid(d1c7e514745bdf547a779b5d12ba364d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a88239d2c13322dc60e1612d70879a1d') in 0.011026 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 161
+Number of asset objects unloaded after import = 2
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000025 seconds.
-  path: Assets/SwordShield/JumpStart_SwordShield.fbx
-  artifactKey: Guid(d14e20c1fb3843e4b9daf75b6cfbbecd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/SwordShield/JumpStart_SwordShield.fbx using Guid(d14e20c1fb3843e4b9daf75b6cfbbecd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f8989293588065ecf77aefb06a0798df') in 0.079348 seconds
+  Time since last request: 0.000014 seconds.
+  path: Assets/Pick Up items pack/Materials/Chest_Gold.png
+  artifactKey: Guid(c82c03122179b284c9bbe4ea0eb0132d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pick Up items pack/Materials/Chest_Gold.png using Guid(c82c03122179b284c9bbe4ea0eb0132d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '89fc1b23b9564dfd12ef5d2c08c627bc') in 0.015031 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 161
+Number of asset objects unloaded after import = 2
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000024 seconds.
-  path: Assets/SwordShield/WalkLeft_SwordShield.fbx
-  artifactKey: Guid(ce25bf104c1219247ab69efb496c4755) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/SwordShield/WalkLeft_SwordShield.fbx using Guid(ce25bf104c1219247ab69efb496c4755) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd4ac6acebf044c2340b7f514770632fb') in 0.079807 seconds
+  Time since last request: 0.000016 seconds.
+  path: Assets/Pick Up items pack/Materials/Potion.png
+  artifactKey: Guid(20c147be930e7464d9974a35d7f9d44d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pick Up items pack/Materials/Potion.png using Guid(20c147be930e7464d9974a35d7f9d44d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c7de9983f692e10f00bcc46db131a16f') in 0.012357 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 161
+Number of asset objects unloaded after import = 2
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/SwordShield/Victory_SwordShield.fbx
-  artifactKey: Guid(7f6f4762cd03b574eb7e0051dc516670) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/SwordShield/Victory_SwordShield.fbx using Guid(7f6f4762cd03b574eb7e0051dc516670) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b66b0af9996398933969c4b468fb2bd2') in 0.074718 seconds
+  Time since last request: 0.000015 seconds.
+  path: Assets/Pick Up items pack/Materials/Chest_coins_gems.png
+  artifactKey: Guid(a844a9fd16ea11d408b7f67d546acc52) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pick Up items pack/Materials/Chest_coins_gems.png using Guid(a844a9fd16ea11d408b7f67d546acc52) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '271ad2a34412d1a3296a1c79b75eb579') in 0.012540 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 161
+Number of asset objects unloaded after import = 2
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000017 seconds.
-  path: Assets/SwordShield/Combo02_SwordShield.fbx
-  artifactKey: Guid(01ab921b262eb73469713ce3d30cec68) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/SwordShield/Combo02_SwordShield.fbx using Guid(01ab921b262eb73469713ce3d30cec68) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '29bdc15ef8f1c7584e9f939c345af767') in 0.075037 seconds
+  Time since last request: 0.000016 seconds.
+  path: Assets/Pick Up items pack/Materials/D_3_3.png
+  artifactKey: Guid(bdda65b79893b3247ab0478693a5b61a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pick Up items pack/Materials/D_3_3.png using Guid(bdda65b79893b3247ab0478693a5b61a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '84e4a378fc365d33218d6d936b8eb213') in 0.014731 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 161
+Number of asset objects unloaded after import = 2
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000024 seconds.
-  path: Assets/SwordShield/WalkBack_SwordShield.fbx
-  artifactKey: Guid(7a0c8efa0c02f234abf70d6456940913) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/SwordShield/WalkBack_SwordShield.fbx using Guid(7a0c8efa0c02f234abf70d6456940913) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c7d1b70b5548baf7d9a806828ee8249c') in 0.074408 seconds
+  Time since last request: 0.000016 seconds.
+  path: Assets/Pick Up items pack/Materials/Lightning.png
+  artifactKey: Guid(a52b457e019837642984268809db995b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pick Up items pack/Materials/Lightning.png using Guid(a52b457e019837642984268809db995b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dca4327d6d074eab0c8dcf9e8fd419af') in 0.012509 seconds
 Number of updated asset objects reloaded before import = 0
-Number of asset objects unloaded after import = 161
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000016 seconds.
+  path: Assets/Pick Up items pack/Materials/D_3_1.png
+  artifactKey: Guid(2bfab5d3350a6df4ea759f88cd317b9c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pick Up items pack/Materials/D_3_1.png using Guid(2bfab5d3350a6df4ea759f88cd317b9c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3d8a156ea934daa082de5eeaf764184a') in 0.017231 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000021 seconds.
+  path: Assets/Pick Up items pack/Materials/D_5_4.png
+  artifactKey: Guid(ac2829accf633ff4bb48548f00a02e0e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pick Up items pack/Materials/D_5_4.png using Guid(ac2829accf633ff4bb48548f00a02e0e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8abc72bcd034f3dec2d5552f2e6d839a') in 0.014988 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000029 seconds.
+  path: Assets/Pick Up items pack/Materials/D_5_3.png
+  artifactKey: Guid(c0e61710ee1598740817caa97516962d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pick Up items pack/Materials/D_5_3.png using Guid(c0e61710ee1598740817caa97516962d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4661932b0a58392929e63c13e9fde7c6') in 0.016862 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 21.020139 seconds.
+  path: Assets/Pick Up items pack/Materials/Stars_4.png
+  artifactKey: Guid(2b9c2141122fad040a01fb4a68199531) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pick Up items pack/Materials/Stars_4.png using Guid(2b9c2141122fad040a01fb4a68199531) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '28b67d266736fa730d9147193c1ae194') in 0.024705 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time since last request: 0.000121 seconds.
+  path: Assets/Pick Up items pack/Materials/Tile_grass.png
+  artifactKey: Guid(243953bb5a8fbb94cb1d9ab2a7a78e82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Pick Up items pack/Materials/Tile_grass.png using Guid(243953bb5a8fbb94cb1d9ab2a7a78e82) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0a86c783bf68c3ea7ef6b7ceffb62ed2') in 0.030929 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
 Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
 TcpMessagingSession - receive error: operation aborted. errorcode: 995, details: The I/O operation has been aborted because of either a thread exit or an application request.
 AssetImportWorker is now disconnected from the server

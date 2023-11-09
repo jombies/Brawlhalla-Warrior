@@ -3,37 +3,27 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    float radius = 2.0f;
-
-    bool isFoscus = false;
-    Transform Player;
-
-    private void Update()
+    float radiusOrigin = 1.8f;
+    SphereCollider spCollider;
+    private void Awake()
     {
-        if (isFoscus)
+        spCollider = GetComponent<SphereCollider>();
+        radiusOrigin = spCollider.radius;
+    }
+    void Setradius(float radius)
+    {
+        spCollider.radius = radius;
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "coin")
         {
-            float distance = Vector3.Distance(Player.transform.position, transform.position);
-            if (distance <= radius)
-            {
-                Debug.Log("da tuong tac");
-            }
+            Inventory.Instance.coinCollected(other.gameObject);
         }
-    }
+        if (other.gameObject.tag == "Health" || other.gameObject.tag == "Weapon" || other.gameObject.tag == "Head")
+        {
+            other.gameObject.GetComponent<ItemPickup>().pickUp();
+        }
 
-    public void OnFusused(Transform playerTransform)
-    {
-        isFoscus = true;
-        Player = playerTransform;
-    }
-    public void Ondesfocused(Transform playerTransform)
-    {
-        isFoscus = false;
-        Player = null;
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, radius);
     }
 }

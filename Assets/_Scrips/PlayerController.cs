@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public Interactable focus;
     public CharacterController controller;
     float speedMax = 5;
     float speedRotation = 540;
@@ -38,5 +37,7 @@ public class PlayerController : MonoBehaviour
         }
         gravity.y -= gra * Time.deltaTime;
         controller.Move(gravity * Time.deltaTime);
+
     }
+
 }

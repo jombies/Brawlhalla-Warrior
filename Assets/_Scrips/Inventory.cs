@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
@@ -14,7 +13,7 @@ public class Inventory : MonoBehaviour
     }
     #endregion
 
-    List<Item> items = new List<Item>();
+    public List<Item> items = new List<Item>();
     public int Coin { get; private set; }
     [SerializeField] TextMeshProUGUI textCoin;
     int space = 20;
@@ -47,5 +46,6 @@ public class Inventory : MonoBehaviour
         items.Remove(item);
         if (onItemChangedCallBack != null)
             onItemChangedCallBack.Invoke();
+
     }
 }

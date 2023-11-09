@@ -1,0 +1,687 @@
+Using pre-set license
+Built from '2022.3/staging' branch; Version is '2022.3.6f1 (b9e6e7e9fa2d) revision 12183271'; Using compiler version '192829333'; Build Type 'Release'
+OS: 'Windows 11  (10.0.22000) 64bit CoreSingleLanguage' Language: 'en' Physical Memory: 16163 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 1
+
+COMMAND LINE ARGUMENTS:
+C:\Application\Unity\2022.3.6f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker12
+-projectPath
+C:/Application/Unity/project/DoAnTotNghiep
+-logFile
+Logs/AssetImportWorker12.log
+-srvPort
+51601
+Successfully changed project path to: C:/Application/Unity/project/DoAnTotNghiep
+C:/Application/Unity/project/DoAnTotNghiep
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gfx=262144"
+Player connection [24992] Host "[IP] 192.168.50.189 [Port] 0 [Flags] 2 [Guid] 2817572450 [EditorId] 2817572450 [Version] 1048832 [Id] WindowsEditor(7,Tuche-295) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+
+Player connection [24992] Host "[IP] 192.168.50.189 [Port] 0 [Flags] 2 [Guid] 2817572450 [EditorId] 2817572450 [Version] 1048832 [Id] WindowsEditor(7,Tuche-295) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+
+Refreshing native plugins compatible for Editor in 5.70 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2022.3.6f1 (b9e6e7e9fa2d)
+[Subsystems] Discovering subsystems at path C:/Application/Unity/2022.3.6f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Application/Unity/project/DoAnTotNghiep/Assets
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 3060 Laptop GPU (ID=0x2520)
+    Vendor:   NVIDIA
+    VRAM:     6010 MB
+    Driver:   31.0.15.4601
+Initialize mono
+Mono path[0] = 'C:/Application/Unity/2022.3.6f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Application/Unity/2022.3.6f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Application/Unity/2022.3.6f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56228
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Application/Unity/2022.3.6f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.003622 seconds.
+- Loaded All Assemblies, in  0.262 seconds
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.208 seconds
+Domain Reload Profiling: 469ms
+	BeginReloadAssembly (62ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (0ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (1ms)
+	RebuildCommonClasses (29ms)
+	RebuildNativeTypeToScriptingClass (8ms)
+	initialDomainReloadingComplete (44ms)
+	LoadAllAssembliesAndSetupDomain (117ms)
+		LoadAssemblies (61ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (114ms)
+			TypeCache.Refresh (113ms)
+				TypeCache.ScanAssembly (104ms)
+			ScanForSourceGeneratedMonoScriptInfo (0ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (208ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (158ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (6ms)
+			SetLoadedEditorAssemblies (6ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (2ms)
+			ProcessInitializeOnLoadAttributes (107ms)
+			ProcessInitializeOnLoadMethodAttributes (36ms)
+			AfterProcessingInitializeOnLoad (0ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (0ms)
+========================================================================
+Worker process is ready to serve import requests
+Begin MonoManager ReloadAssembly
+Symbol file LoadedFromMemory doesn't match image C:\Application\Unity\project\DoAnTotNghiep\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll
+Symbol file LoadedFromMemory doesn't match image C:\Application\Unity\project\DoAnTotNghiep\Library\PackageCache\com.unity.visualscripting@1.8.0\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll
+- Loaded All Assemblies, in  0.541 seconds
+Refreshing native plugins compatible for Editor in 1.89 ms, found 3 plugins.
+Native extension for WindowsStandalone target not found
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.406 seconds
+Domain Reload Profiling: 946ms
+	BeginReloadAssembly (92ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (4ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (18ms)
+	RebuildCommonClasses (27ms)
+	RebuildNativeTypeToScriptingClass (9ms)
+	initialDomainReloadingComplete (31ms)
+	LoadAllAssembliesAndSetupDomain (380ms)
+		LoadAssemblies (187ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (234ms)
+			TypeCache.Refresh (219ms)
+				TypeCache.ScanAssembly (209ms)
+			ScanForSourceGeneratedMonoScriptInfo (12ms)
+			ResolveRequiredComponents (3ms)
+	FinalizeReload (407ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (284ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (4ms)
+			SetLoadedEditorAssemblies (4ms)
+			RefreshPlugins (0ms)
+			BeforeProcessingInitializeOnLoad (46ms)
+			ProcessInitializeOnLoadAttributes (208ms)
+			ProcessInitializeOnLoadMethodAttributes (17ms)
+			AfterProcessingInitializeOnLoad (4ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (5ms)
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
+Refreshing native plugins compatible for Editor in 1.70 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3203 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 34 unused Assets / (56.6 KB). Loaded Objects now: 3674.
+Memory consumption went from 128.6 MB to 128.5 MB.
+Total: 3.148700 ms (FindLiveObjects: 0.206100 ms CreateObjectMapping: 0.068200 ms MarkObjects: 2.766600 ms  DeleteObjects: 0.107000 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-codec-MediaFoundation-h265: 746d11721c4dcdbdad8f713fa42b33f4 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:CustomObjectIndexerAttribute: 756ad292c208cfabdd7b50bc23989ffe -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:SearchIndexIgnoredProperties: e643bd26f0fe6173181afceb89e7c659 -> 
+  custom:AudioImporter_EditorPlatform: d09bf68614088b80899f8185d706f6e7 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 22995.324805 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Bags (+ Back)/Bag 01 Brown.prefab
+  artifactKey: Guid(c19d6d2f9b19743428e7534420c53ab7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Bags (+ Back)/Bag 01 Brown.prefab using Guid(c19d6d2f9b19743428e7534420c53ab7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '37b2980662ce8395259cbf0589813e71') in 0.100878 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 6.119652 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Baskets (+ Back)/Basket 01 Brown.prefab
+  artifactKey: Guid(4b53f98b0e648954c8e2c811f6a54a94) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Baskets (+ Back)/Basket 01 Brown.prefab using Guid(4b53f98b0e648954c8e2c811f6a54a94) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '48b48e0169c3564471e971476aa7d9cd') in 0.016275 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.004862 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Baskets (+ Back)/Basket 01 Red.prefab
+  artifactKey: Guid(3879634500f7cdb4cac2ca5b502dbfd2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Baskets (+ Back)/Basket 01 Red.prefab using Guid(3879634500f7cdb4cac2ca5b502dbfd2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fb2419cea69a3e53dbae58b918d690d5') in 0.030403 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 1.926857 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Female Bracers (+ R L Wrist)/Bracer 01 Blue Silver.prefab
+  artifactKey: Guid(81629a19cff5cf240beaebbe1a26c72c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Female Bracers (+ R L Wrist)/Bracer 01 Blue Silver.prefab using Guid(81629a19cff5cf240beaebbe1a26c72c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9ef647936580a478846744b9a4599c2b') in 0.010391 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.004339 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Female Bracers (+ R L Wrist)/Bracer 01 Green Silver.prefab
+  artifactKey: Guid(f1937eb9290dc4044a2bdc1198a0bb77) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Female Bracers (+ R L Wrist)/Bracer 01 Green Silver.prefab using Guid(f1937eb9290dc4044a2bdc1198a0bb77) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'df7b9fe381614879641c3c090153848b') in 0.009947 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000844 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Female Bracers (+ R L Wrist)/Bracer 01 Purple Gold.prefab
+  artifactKey: Guid(8837db6f7d8e0d2429762ee077f37d9b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Female Bracers (+ R L Wrist)/Bracer 01 Purple Gold.prefab using Guid(8837db6f7d8e0d2429762ee077f37d9b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5e4f7cbeb9d0071259bc756d4c5d1330') in 0.009262 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.002136 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Female Bracers (+ R L Wrist)/Bracer 01 Red Silver.prefab
+  artifactKey: Guid(45f1c032baf49a74ea0eb807e35dbbc8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Female Bracers (+ R L Wrist)/Bracer 01 Red Silver.prefab using Guid(45f1c032baf49a74ea0eb807e35dbbc8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c42ce13d0e29e6f22f7d9ff6dadf4b45') in 0.009910 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000770 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Female Bracers (+ R L Wrist)/Bracer 02 Gold.prefab
+  artifactKey: Guid(189097f1363a1644991b06ec13cb0ebb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Female Bracers (+ R L Wrist)/Bracer 02 Gold.prefab using Guid(189097f1363a1644991b06ec13cb0ebb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '216a3cd67ad26ebf7d0783c09d179055') in 0.014204 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000352 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Female Bracers (+ R L Wrist)/Bracer 03 Brown Gold.prefab
+  artifactKey: Guid(da39f310144c8b747ab5d79d1b77af0b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Female Bracers (+ R L Wrist)/Bracer 03 Brown Gold.prefab using Guid(da39f310144c8b747ab5d79d1b77af0b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '21de7c20fea6c4ba0721545bf832db27') in 0.009766 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.001672 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Female Bracers (+ R L Wrist)/Bracer 03 Green Silver.prefab
+  artifactKey: Guid(53889149efa145045ad47adee39a0216) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Female Bracers (+ R L Wrist)/Bracer 03 Green Silver.prefab using Guid(53889149efa145045ad47adee39a0216) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ac857370ec685a67036b3dbe784d579e') in 0.009026 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.001955 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Female Bracers (+ R L Wrist)/Bracer 03 Purple Gold.prefab
+  artifactKey: Guid(6a03b40a1c81f7f4981d347d7995029e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Female Bracers (+ R L Wrist)/Bracer 03 Purple Gold.prefab using Guid(6a03b40a1c81f7f4981d347d7995029e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '95ccdae077f5e1dc553d8a7845ab16c1') in 0.009282 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.001581 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Female Bracers (+ R L Wrist)/Bracer 03 Red Silver.prefab
+  artifactKey: Guid(7471e622c7b36794092495081e52615e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Female Bracers (+ R L Wrist)/Bracer 03 Red Silver.prefab using Guid(7471e622c7b36794092495081e52615e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7f587476f5e350b1e3a78b4eb22db455') in 0.009083 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.001656 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Female Bracers (+ R L Wrist)/Bracer 04 Blue Gold.prefab
+  artifactKey: Guid(ee125b97c8ea7ef4f8b42debec323f83) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Female Bracers (+ R L Wrist)/Bracer 04 Blue Gold.prefab using Guid(ee125b97c8ea7ef4f8b42debec323f83) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd0427b7392a31a6a7eccb9d5f36a1083') in 0.009142 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.001768 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Female Bracers (+ R L Wrist)/Bracer 04 Brown Silver.prefab
+  artifactKey: Guid(792f63b2bce8e204ea4ed738165e150a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Female Bracers (+ R L Wrist)/Bracer 04 Brown Silver.prefab using Guid(792f63b2bce8e204ea4ed738165e150a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd3e14a3d8029c6f56adc3dd484a82a34') in 0.010255 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 2.258429 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 01 Blue Silver.prefab
+  artifactKey: Guid(232b8b3ddb80f1c46bf131dad9abad46) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 01 Blue Silver.prefab using Guid(232b8b3ddb80f1c46bf131dad9abad46) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '35605b6776b6ee7bf486bbb7373696b3') in 0.013186 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.002084 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 01 Green Silver.prefab
+  artifactKey: Guid(e1d7ff13afd876149b0e82f0d691ba7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 01 Green Silver.prefab using Guid(e1d7ff13afd876149b0e82f0d691ba7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2a8666096cc647b5ef90127f1a917104') in 0.009380 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.005387 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 01 Purple Silver.prefab
+  artifactKey: Guid(a0a9ae437ccbd254eaa834425d2aa563) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 01 Purple Silver.prefab using Guid(a0a9ae437ccbd254eaa834425d2aa563) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd9c17810a7e0210efeb4b09a037d503a') in 0.009637 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000893 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 01 White Gold.prefab
+  artifactKey: Guid(3c1fdacf8d1f5c143b5ea894fdfc8ac4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 01 White Gold.prefab using Guid(3c1fdacf8d1f5c143b5ea894fdfc8ac4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3a60ccb7c436551c229083847bed9401') in 0.009329 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.001465 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 02 Blue Silver.prefab
+  artifactKey: Guid(014b164379fddcf41935c9fd3ae64cba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 02 Blue Silver.prefab using Guid(014b164379fddcf41935c9fd3ae64cba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c6426dc9e76dff5437f610fff5e5503c') in 0.010994 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000097 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 02 Green Gold.prefab
+  artifactKey: Guid(7c3eae7f0ccbb9c4a811b0ccf1866c5a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 02 Green Gold.prefab using Guid(7c3eae7f0ccbb9c4a811b0ccf1866c5a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '500afb403b6791feff064b1fc5a5e918') in 0.010344 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.001577 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 02 Grey Silver.prefab
+  artifactKey: Guid(6e5b51f79000fd54a90cd126631cdbf9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 02 Grey Silver.prefab using Guid(6e5b51f79000fd54a90cd126631cdbf9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9ead0e0858acf95e55cf55cdfc3c402d') in 0.009146 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.001713 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 02 Red Gold.prefab
+  artifactKey: Guid(cb7a03dbd41ae0f4b81b01033664e981) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 02 Red Gold.prefab using Guid(cb7a03dbd41ae0f4b81b01033664e981) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cf3033a1278355e91e8bf8ff75f3bce4') in 0.009990 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.001220 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 02 White Silver.prefab
+  artifactKey: Guid(cbd31d86c0e40444d849f3799f0ada2b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 02 White Silver.prefab using Guid(cbd31d86c0e40444d849f3799f0ada2b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8a415cbc67edc5690f960b5331aaccfb') in 0.009551 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000935 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 03 Brown Gold.prefab
+  artifactKey: Guid(4076af51108352f49bee064a8f774307) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 03 Brown Gold.prefab using Guid(4076af51108352f49bee064a8f774307) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fd83eb5c694271a7fc8ac99761434b47') in 0.010253 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.000994 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 03 Green Silver.prefab
+  artifactKey: Guid(f57792fe2b7925841a13c83c48cbe243) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 03 Green Silver.prefab using Guid(f57792fe2b7925841a13c83c48cbe243) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '99d48db69545806d2cf70e229ad00af6') in 0.009975 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 1.447864 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 03 Grey Silver.prefab
+  artifactKey: Guid(89f01f4a20214d04f81554a7a2c6dccd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 03 Grey Silver.prefab using Guid(89f01f4a20214d04f81554a7a2c6dccd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c4cc473c19aa035ea16ff79533d5dedd') in 0.014932 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.184990 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 03 Red Gold.prefab
+  artifactKey: Guid(8ee98577fc9bfd443960f6e5148b06e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 03 Red Gold.prefab using Guid(8ee98577fc9bfd443960f6e5148b06e7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ab5cdf894357319fa2e75c79d27a1585') in 0.016057 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.318309 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 03 White Silver.prefab
+  artifactKey: Guid(79e4232ad665e2f4595f0eb9d9eaa838) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 03 White Silver.prefab using Guid(79e4232ad665e2f4595f0eb9d9eaa838) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7b838cf922d9f5430c39243ad7325322') in 0.011605 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.039851 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 04 Green .prefab
+  artifactKey: Guid(a2dc46c71ab368e4a826873ad3297221) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 04 Green .prefab using Guid(a2dc46c71ab368e4a826873ad3297221) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9738fa2838cb690f7d9711a79b6f3536') in 0.013998 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.013456 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 04 Red .prefab
+  artifactKey: Guid(77aaca32d5c4878479b8b4cbb41443e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 04 Red .prefab using Guid(77aaca32d5c4878479b8b4cbb41443e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '838480481a18029b9a696a87e7a94925') in 0.014394 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.222838 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 05 Blue Silver.prefab
+  artifactKey: Guid(9f984423b44e97a4fa7e82b9b7e1d0df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 05 Blue Silver.prefab using Guid(9f984423b44e97a4fa7e82b9b7e1d0df) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '52af5619a30fb3d383f7c7b7f8add604') in 0.019721 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.002784 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 05 Green Silver.prefab
+  artifactKey: Guid(0c45ff63562a4e54baa5e6a025748a51) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 05 Green Silver.prefab using Guid(0c45ff63562a4e54baa5e6a025748a51) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fcb0d9a5d4a30e26494d42f1ef041060') in 0.012432 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.043951 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 05 Grey Silver.prefab
+  artifactKey: Guid(a90def7faa1508242b12bfffb80595fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 05 Grey Silver.prefab using Guid(a90def7faa1508242b12bfffb80595fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '494787f936e58a0802dd76806980005d') in 0.009855 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.205362 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 05 Red Gold.prefab
+  artifactKey: Guid(a6142957ed396fc4e81ccdd2f73da445) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 05 Red Gold.prefab using Guid(a6142957ed396fc4e81ccdd2f73da445) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c010612fdfd27a9e4d063b2bc8206a61') in 0.011585 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.034751 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 05 White Silver.prefab
+  artifactKey: Guid(cd0c11e6b0c631247b16d55abe35d715) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 05 White Silver.prefab using Guid(cd0c11e6b0c631247b16d55abe35d715) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6b2c8bbd4cdd53c323fef9335677966a') in 0.008845 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.018364 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 06 Brown Gold.prefab
+  artifactKey: Guid(64a69323e58cd5841a1ef92a8aa4a34f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 06 Brown Gold.prefab using Guid(64a69323e58cd5841a1ef92a8aa4a34f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '443e759aa8d98a363a8be6c482d16ad6') in 0.011809 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.214659 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 06 Green Silver.prefab
+  artifactKey: Guid(7b19b80931a0662479bbbc0c8043c9f9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 06 Green Silver.prefab using Guid(7b19b80931a0662479bbbc0c8043c9f9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '833c75725e86d896edccfacf91dac723') in 0.012202 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.031726 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 06 Purple Gold.prefab
+  artifactKey: Guid(c80619e0e1417294ca9ea7a85525720a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 06 Purple Gold.prefab using Guid(c80619e0e1417294ca9ea7a85525720a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f7b98f102d73b77dffd3f677ac19da55') in 0.009964 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.017937 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 06 Red Silver.prefab
+  artifactKey: Guid(fb5de4bd252255c4e97ecc4d10f93150) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 06 Red Silver.prefab using Guid(fb5de4bd252255c4e97ecc4d10f93150) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1c52cad030b97efef352bb1f65137220') in 0.009550 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.212119 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 07 Gold.prefab
+  artifactKey: Guid(abcbf085bcfbbbd4499bbd0503429532) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 07 Gold.prefab using Guid(abcbf085bcfbbbd4499bbd0503429532) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bf891b75606e4eb564950ba6c1000f0e') in 0.015118 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.001621 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 08 Blue Silver.prefab
+  artifactKey: Guid(d3fa77ebc6135a74699bf54b9de10da6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 08 Blue Silver.prefab using Guid(d3fa77ebc6135a74699bf54b9de10da6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4cffe650e97dc801cad9f89d17b21755') in 0.010236 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.029972 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 08 Green Gold.prefab
+  artifactKey: Guid(f213e44510d878448b239b9869fcc468) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 08 Green Gold.prefab using Guid(f213e44510d878448b239b9869fcc468) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6c8d5c8ddb32efeb8d144e0594af8e94') in 0.009493 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.018507 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 08 Grey Silver.prefab
+  artifactKey: Guid(3ef0e2c5d8af16b49886162424e87c84) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 08 Grey Silver.prefab using Guid(3ef0e2c5d8af16b49886162424e87c84) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '27fb11c0d713a2fa944691862612d0b8') in 0.009524 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.214107 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 08 Red Gold.prefab
+  artifactKey: Guid(f7a9e922ba4084b438bcbb1f8776b7cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 08 Red Gold.prefab using Guid(f7a9e922ba4084b438bcbb1f8776b7cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '59e6c319fc79a94112794d9703d8d2c1') in 0.011306 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.004947 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 08 White Silver.prefab
+  artifactKey: Guid(6c3155606ea2ba54eb71ff594029a4d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 08 White Silver.prefab using Guid(6c3155606ea2ba54eb71ff594029a4d2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '90b941cdcb9888f749ac589c4f15d8dc') in 0.009960 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.236568 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 09 Brown Gold.prefab
+  artifactKey: Guid(a87fc149b69c9db41a89e09f86495654) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 09 Brown Gold.prefab using Guid(a87fc149b69c9db41a89e09f86495654) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8971d46addd8700e2911d642bb3a88d0') in 0.036080 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.040089 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 09 Green Silver.prefab
+  artifactKey: Guid(967d7961b4fa7c8489dd95cee59c8cec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 09 Green Silver.prefab using Guid(967d7961b4fa7c8489dd95cee59c8cec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4c3800d11e266dbbfbab9b2191b02a31') in 0.013524 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.194211 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 09 Purple Gold.prefab
+  artifactKey: Guid(8c057ef5efb05314abbcf2ebc16bb1dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 09 Purple Gold.prefab using Guid(8c057ef5efb05314abbcf2ebc16bb1dd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c913eaa995bf4cb2b47a8a50714ada74') in 0.011466 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.030533 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 09 Red Silver.prefab
+  artifactKey: Guid(0f58309546ad3434782b5dc0c2371b59) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 09 Red Silver.prefab using Guid(0f58309546ad3434782b5dc0c2371b59) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '530f02a9132c33ac7ba15d56b9caa34b') in 0.010197 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.019369 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 10 Blue Gold.prefab
+  artifactKey: Guid(a09a83efd8331024da9bf3903cbd2054) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 10 Blue Gold.prefab using Guid(a09a83efd8331024da9bf3903cbd2054) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4952204c2f2f4d5015c159059f4906a9') in 0.014117 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.215391 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 10 Brown Silver.prefab
+  artifactKey: Guid(28b3742358fa89e45b4f3853f1747add) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 10 Brown Silver.prefab using Guid(28b3742358fa89e45b4f3853f1747add) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1ea9bad7f0923000a35cb1bd5aa02d9c') in 0.011813 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.005161 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 10 Grey Gold.prefab
+  artifactKey: Guid(1fe9396d014da204f8a73c8509be4f75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 10 Grey Gold.prefab using Guid(1fe9396d014da204f8a73c8509be4f75) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'da64d4a3db8d80df402edfb9beaacb09') in 0.010322 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.028273 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 10 Purple Silver.prefab
+  artifactKey: Guid(d30a96ce507c5bc4aa45aa52ceb610c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 10 Purple Silver.prefab using Guid(d30a96ce507c5bc4aa45aa52ceb610c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6cf2e842a782f1ac61fa2b574c904ed4') in 0.009532 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.018976 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 10 White Gold.prefab
+  artifactKey: Guid(ad702b424426a874db7eea0a59aefdc6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 10 White Gold.prefab using Guid(ad702b424426a874db7eea0a59aefdc6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f44a97cf471a8cb00603a06e4dbd1057') in 0.009214 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.175696 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 11 Blue Silver.prefab
+  artifactKey: Guid(85ec9cfed05685a41b22d52bd8e0aad4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 11 Blue Silver.prefab using Guid(85ec9cfed05685a41b22d52bd8e0aad4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '07639ad680e4f5bd7a5b1482a51c63b9') in 0.010518 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.030203 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 11 Green Gold.prefab
+  artifactKey: Guid(666c0b31aa0871943a3fcf0bf3427cf2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 11 Green Gold.prefab using Guid(666c0b31aa0871943a3fcf0bf3427cf2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '985222c1ea36974b62d8f9c0285dd971') in 0.010365 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.001335 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 11 Grey Silver.prefab
+  artifactKey: Guid(8c907038665146e49b5d75bea2ec7325) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 11 Grey Silver.prefab using Guid(8c907038665146e49b5d75bea2ec7325) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ccaefabb6f64f8fce0372e285a6150ae') in 0.009666 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.018059 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 11 Red Gold.prefab
+  artifactKey: Guid(0b50ca1824ee2c549a1c4fceb629a4ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 11 Red Gold.prefab using Guid(0b50ca1824ee2c549a1c4fceb629a4ff) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '225146a0b6ee2fae27de3fa90886ec74') in 0.009667 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.162234 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 11 White Silver.prefab
+  artifactKey: Guid(f3bf446b3a8d1be4ca4aec8fe37732c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 11 White Silver.prefab using Guid(f3bf446b3a8d1be4ca4aec8fe37732c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2f6e46ab06da0b467b100b7044f72862') in 0.010927 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.030001 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 12 Brown Gold.prefab
+  artifactKey: Guid(504bb66fd10151947ade0e2700fda816) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 12 Brown Gold.prefab using Guid(504bb66fd10151947ade0e2700fda816) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a87531897409a15724ac7a6954791f67') in 0.008945 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.001672 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 12 Green Silver.prefab
+  artifactKey: Guid(c93a5050bea77ba4197fdc02aaa98833) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 12 Green Silver.prefab using Guid(c93a5050bea77ba4197fdc02aaa98833) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6d13231008de647cd2798f1df5493611') in 0.009587 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.019766 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 12 Purple Gold.prefab
+  artifactKey: Guid(651a8787b2be2ba4f85541162108e9fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 12 Purple Gold.prefab using Guid(651a8787b2be2ba4f85541162108e9fd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c54a0135c813d854bd99aa9a3d5b7263') in 0.012239 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time since last request: 0.150190 seconds.
+  path: Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 12 Red Silver.prefab
+  artifactKey: Guid(6eaad91129c8a0b4591550c5996ccb87) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Polygonal Fantasy Pack/Customize Character Here/04 Attach Body Accessories/Male Necklaces (+ Neck)/Necklace 12 Red Silver.prefab using Guid(6eaad91129c8a0b4591550c5996ccb87) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5008f7a1618720199512d2aa6504d3ea') in 0.010781 seconds
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+Editor requested this worker to shutdown with reason: Scaling down because of idle timeout
+TcpMessagingSession - receive error: operation aborted. errorcode: 995, details: The I/O operation has been aborted because of either a thread exit or an application request.
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0
