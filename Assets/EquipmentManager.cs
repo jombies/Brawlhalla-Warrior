@@ -1,15 +1,15 @@
-
 using UnityEngine;
 
 public class EquipmentManager : MonoBehaviour
 {
-    #region
+    #region Singleton
     public static EquipmentManager Instance;
     private void Awake()
     {
         Instance = this;
     }
     #endregion
+    public ChangeWeapon ChangeWeapon;
     Equipment[] currentEquipment;
     Inventory inventory;
     private void Start()
@@ -29,5 +29,8 @@ public class EquipmentManager : MonoBehaviour
             inventory.Add(oldItem);
         }
         currentEquipment[slotIndex] = newItem;
+
+        ChangeWeapon.GetnameWeapon(newItem.name);
     }
+
 }

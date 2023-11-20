@@ -3,6 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "new Equipment", menuName = "Inventory/Equipment")]
 public class Equipment : Item
 {
+
     public EquipmentSlot equipSlot;
     public int Defend;
     public int Damage;
@@ -12,6 +13,7 @@ public class Equipment : Item
         base.Use();
         EquipmentManager.Instance.Equip(this);
         RemoveItem();
+
     }
 }
 
