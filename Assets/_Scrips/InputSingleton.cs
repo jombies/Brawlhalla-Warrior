@@ -5,7 +5,6 @@ public class InputSingleton : MonoBehaviour
 {
     [SerializeField] private static InputSingleton mInstance;
     public static InputSingleton Instance { get => mInstance; }
-
     protected float sHorizon; public float Horizon { get => sHorizon; }
     protected float sVertical; public float Vertical { get => sVertical; }
 
