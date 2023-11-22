@@ -11,7 +11,6 @@ public class Item : ScriptableObject
     {
         // use item
         // someting happen
-
         Debug.Log("Used: " + name);
     }
     public void RemoveItem()

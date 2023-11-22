@@ -15,6 +15,9 @@ public class EquipmentManager : MonoBehaviour
 
     Equipment[] currentEquipment;
     Inventory inventory;
+
+    public delegate void OnEquipchanged(Equipment newItem, Equipment oldItem);
+    public OnEquipchanged onEquipchanged;
     private void Start()
     {
         inventory = Inventory.Instance;
@@ -31,13 +34,25 @@ public class EquipmentManager : MonoBehaviour
             oldItem = currentEquipment[slotIndex];
             inventory.Add(oldItem);
         }
+        if (onEquipchanged != null)
+        {
+            onEquipchanged.Invoke(newItem, oldItem);
+        }
+
         currentEquipment[slotIndex] = newItem;
-        //change helmet
-        if (slotIndex == 0) ChangeHelmet.changeHelmet(newItem.name);
-        //armor
-        if (slotIndex == 1) ChangeArmor.changeArmor(newItem.name);
-        //change weapon
-        ChangeWeapon.changeWeapon(newItem.name);
+        switch (slotIndex)
+        {
+            case 0:
+                ChangeHelmet.changeHelmet(newItem.name);
+                break;
+            case 1:
+                ChangeArmor.changeArmor(newItem.name);
+                break;
+            case 2:
+                ChangeWeapon.changeWeapon(newItem.name);
+                break;
+            default: Debug.Log("Nothing use"); break;
+        }
     }
 
 }

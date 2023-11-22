@@ -13,7 +13,6 @@ public class Equipment : Item
         base.Use();
         EquipmentManager.Instance.Equip(this);
         RemoveItem();
-
     }
 }
 
