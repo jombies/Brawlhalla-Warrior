@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.AI;
 
 public class CharacterAmintor : MonoBehaviour
 {
@@ -11,6 +10,11 @@ public class CharacterAmintor : MonoBehaviour
     }
     private void Update()
     {
+        movingAnimte();
+    }
+
+    void movingAnimte()
+    {
         Vector3 direction = new Vector3(InputSingleton.Instance.Horizon, 0, InputSingleton.Instance.Vertical).normalized;
         float ac = Mathf.Clamp01(direction.magnitude) / 2;
 
@@ -18,6 +22,8 @@ public class CharacterAmintor : MonoBehaviour
         {
             ac += ac;
         }
-        animator.SetFloat("Velocity", ac, 0.05f, Time.deltaTime);
+        animator.SetFloat("Velocity", ac, 0.1f, Time.deltaTime);
+
+        if (Input.GetKey(KeyCode.F)) animator.Play("attacking1");
     }
 }

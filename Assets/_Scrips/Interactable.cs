@@ -3,13 +3,8 @@ using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    float radiusOrigin = 1.8f;
-    SphereCollider spCollider;
-    private void Awake()
-    {
-        spCollider = GetComponent<SphereCollider>();
-        radiusOrigin = spCollider.radius;
-    }
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "coin")

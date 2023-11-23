@@ -27,7 +27,6 @@ public class PlayerController : MonoBehaviour
             {
                 speed = speedMax;
             }
-            //Debug.Log("s = " + speed);
             controller.Move(direction * speed * Time.deltaTime);
         }
         if (direction != Vector3.zero)
@@ -35,6 +34,7 @@ public class PlayerController : MonoBehaviour
             Quaternion toRotarion = Quaternion.LookRotation(direction, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotarion, speedRotation * Time.deltaTime);
         }
+        if (gravity.y < 0) gravity.y = -9.8f;
         gravity.y -= gra * Time.deltaTime;
         controller.Move(gravity * Time.deltaTime);
 
