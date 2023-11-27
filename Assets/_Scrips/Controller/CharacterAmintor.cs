@@ -3,6 +3,9 @@ using UnityEngine;
 public class CharacterAmintor : MonoBehaviour
 {
     Animator animator;
+    public bool IsAttacking;
+    public float timeSinceAttack;
+    public int currentAttack;
 
     private void Start()
     {
@@ -10,7 +13,13 @@ public class CharacterAmintor : MonoBehaviour
     }
     private void Update()
     {
+        timeSinceAttack += Time.deltaTime;
         movingAnimte();
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Attack();
+        }
     }
 
     void movingAnimte()
@@ -23,7 +32,26 @@ public class CharacterAmintor : MonoBehaviour
             ac += ac;
         }
         animator.SetFloat("Velocity", ac, 0.1f, Time.deltaTime);
+    }
+    void Attack()
+    {
+        if (timeSinceAttack > 0.8f)
+        {
+            currentAttack++;
+            IsAttacking = true;
 
-        if (Input.GetKey(KeyCode.F)) animator.Play("attacking1");
+            //reset attack
+            if (currentAttack > 3) currentAttack = 1;
+            if (timeSinceAttack > 1) timeSinceAttack = 1;
+            //play animte
+            animator.SetTrigger("Attack" + currentAttack);
+            timeSinceAttack = 0;
+        }
+
+
+    }
+    void NonAttack()
+    {
+        IsAttacking = false;
     }
 }

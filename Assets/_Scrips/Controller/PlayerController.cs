@@ -4,6 +4,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public CharacterController controller;
+    public CharacterAmintor amintor;
+
     float speedMax = 5;
     float speedRotation = 540;
     float gra = 8f;
@@ -11,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
+        amintor = GetComponentInChildren<CharacterAmintor>();
     }
     private void Update()
     {
@@ -20,7 +23,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 direction = InputSingleton.Instance.direction;
         float speed = 2;
-
+        if (amintor.IsAttacking) return;
         if (direction.magnitude > 0.1f)
         {
             if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))

@@ -557,12 +557,12 @@ ModelImporter:
     - name: RigLCalf
       parentName: RigLThigh
       position: {x: -0.304364, y: 0.0000069999996, z: 0}
-      rotation: {x: 0.0060940175, y: -0.0012681257, z: 0.34197965, w: 0.9396867}
+      rotation: {x: 0.006094018, y: -0.0012681258, z: 0.34197968, w: 0.9396868}
       scale: {x: 1, y: 1, z: 1}
     - name: RigLFoot
       parentName: RigLCalf
-      position: {x: -0.285855, y: 0, z: 0}
-      rotation: {x: -0.014054898, y: 0.011783827, z: -0.35726997, w: 0.933821}
+      position: {x: -0.28586763, y: 0.0000150203705, z: -0.0000066175126}
+      rotation: {x: -0.013554911, y: 0.008470987, z: -0.3391284, w: 0.9406043}
       scale: {x: 1, y: 1, z: 1}
     - name: RigLToe11
       parentName: RigLFoot
@@ -586,8 +586,8 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: RigRFoot
       parentName: RigRCalf
-      position: {x: -0.285855, y: 0, z: 0}
-      rotation: {x: -0.021101873, y: 0.04337127, z: -0.53428656, w: 0.84392625}
+      position: {x: -0.2858879, y: 0.000020698179, z: -0.0000051977113}
+      rotation: {x: -0.0030079219, y: 0.02705191, z: -0.18148099, w: 0.98301774}
       scale: {x: 1, y: 1, z: 1}
     - name: RigRToe11
       parentName: RigRFoot
@@ -622,7 +622,7 @@ ModelImporter:
     - name: RigLCollarbone
       parentName: RigRibcage
       position: {x: 0.035217, y: -0.034121998, z: 0.096694}
-      rotation: {x: -0.042376455, y: 0.80263597, z: -0.05338609, w: 0.5925621}
+      rotation: {x: -0.04237645, y: 0.80263585, z: -0.05338608, w: 0.592562}
       scale: {x: 1, y: 1, z: 1}
     - name: RigLUpperarm
       parentName: RigLCollarbone
@@ -642,7 +642,7 @@ ModelImporter:
     - name: RigLFinger11
       parentName: RigLPalm
       position: {x: -0.038543, y: 0.000059, z: 0.045806997}
-      rotation: {x: 0.013636103, y: 0.09843411, z: 0.05669888, w: 0.9934334}
+      rotation: {x: 0.013636104, y: 0.09843412, z: 0.056698885, w: 0.9934335}
       scale: {x: 1, y: 1, z: 1}
     - name: RigLFinger12
       parentName: RigLFinger11
@@ -662,7 +662,7 @@ ModelImporter:
     - name: RigLFinger21
       parentName: RigLPalm
       position: {x: -0.148156, y: -0.000957, z: 0.058147}
-      rotation: {x: -0.1349687, y: 0.37324739, z: -0.11964467, w: 0.9100302}
+      rotation: {x: -0.13496871, y: 0.3732474, z: -0.11964468, w: 0.91003025}
       scale: {x: 1, y: 1, z: 1}
     - name: RigLFinger22
       parentName: RigLFinger21
@@ -707,7 +707,7 @@ ModelImporter:
     - name: RigLFinger42
       parentName: RigLFinger41
       position: {x: -0.040746, y: 0, z: 0}
-      rotation: {x: 0.043948658, y: 0.00008179614, z: 0.0016852911, w: 0.99903244}
+      rotation: {x: 0.043948654, y: 0.00008179614, z: 0.0016852908, w: 0.99903244}
       scale: {x: 1, y: 1, z: 1}
     - name: RigLFinger43
       parentName: RigLFinger42
@@ -739,15 +739,30 @@ ModelImporter:
       position: {x: -0.01922, y: 0, z: 0}
       rotation: {x: -0.00042784735, y: -0.39258307, z: 0.91830295, w: -0.050971244}
       scale: {x: 1, y: 1, z: 1}
+    - name: RigNeck
+      parentName: RigRibcage
+      position: {x: 0.0058719995, y: -0.033655, z: 0}
+      rotation: {x: -0.0014608462, y: 0.0034601009, z: -0.03879791, w: 0.99924004}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigHead
+      parentName: RigNeck
+      position: {x: -0.159362, y: 0, z: 0}
+      rotation: {x: -0.0014607596, y: 0.0034602012, z: 0.038793337, w: 0.9992402}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigHeadBone001
+      parentName: RigHead
+      position: {x: -0.383952, y: 0.102714, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
     - name: RigRCollarbone
       parentName: RigRibcage
       position: {x: 0.035217, y: -0.034121998, z: -0.096694}
-      rotation: {x: -0.009461131, y: 0.8094673, z: 0.013445864, w: -0.5869347}
+      rotation: {x: -0.009461132, y: 0.8094674, z: 0.013445865, w: -0.58693475}
       scale: {x: 1, y: 1, z: 1}
     - name: RigRUpperarm
       parentName: RigRCollarbone
       position: {x: -0.203703, y: 0, z: 0}
-      rotation: {x: 0.07121066, y: 0.13956892, z: 0.029872064, w: 0.9871966}
+      rotation: {x: 0.07121067, y: 0.13956892, z: 0.029872065, w: 0.9871966}
       scale: {x: 1, y: 1, z: 1}
     - name: RigRForearm
       parentName: RigRUpperarm
@@ -757,7 +772,7 @@ ModelImporter:
     - name: RigRPalm
       parentName: RigRForearm
       position: {x: -0.31729, y: -0.000002, z: 0}
-      rotation: {x: 0.51498836, y: -0.111213766, z: -0.16752622, w: 0.8332787}
+      rotation: {x: 0.5149884, y: -0.11121377, z: -0.16752623, w: 0.8332788}
       scale: {x: 1, y: 1, z: 1}
     - name: RigRFinger11
       parentName: RigRPalm
@@ -767,7 +782,7 @@ ModelImporter:
     - name: RigRFinger12
       parentName: RigRFinger11
       position: {x: -0.047876, y: 0, z: 0}
-      rotation: {x: 0.17144029, y: 0.031017967, z: 0.016539464, w: 0.98456717}
+      rotation: {x: 0.1714403, y: 0.031017968, z: 0.016539466, w: 0.9845672}
       scale: {x: 1, y: 1, z: 1}
     - name: RigRFinger13
       parentName: RigRFinger12
@@ -781,8 +796,8 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: RigRFinger21
       parentName: RigRPalm
-      position: {x: -0.148155, y: -0.000957, z: -0.058144998}
-      rotation: {x: 0.19137992, y: -0.3682086, z: -0.117489964, w: 0.90221524}
+      position: {x: -0.14824837, y: -0.000942193, z: -0.058092024}
+      rotation: {x: 0.23614104, y: -0.204409, z: 0.113199, w: 0.94320756}
       scale: {x: 1, y: 1, z: 1}
     - name: RigRFinger22
       parentName: RigRFinger21
@@ -802,7 +817,7 @@ ModelImporter:
     - name: RigRFinger31
       parentName: RigRPalm
       position: {x: -0.144153, y: 0.000027999999, z: -0.017058}
-      rotation: {x: 0.113187276, y: -0.031495426, z: 0.06584524, w: 0.990889}
+      rotation: {x: 0.11318728, y: -0.031495426, z: 0.06584525, w: 0.990889}
       scale: {x: 1, y: 1, z: 1}
     - name: RigRFinger32
       parentName: RigRFinger31
@@ -822,7 +837,7 @@ ModelImporter:
     - name: RigRFinger41
       parentName: RigRPalm
       position: {x: -0.16097699, y: -0.0000069999996, z: 0.020576}
-      rotation: {x: 0.09248193, y: -0.032502227, z: 0.06703782, w: 0.99292326}
+      rotation: {x: 0.09248194, y: -0.03250223, z: 0.06703783, w: 0.9929233}
       scale: {x: 1, y: 1, z: 1}
     - name: RigRFinger42
       parentName: RigRFinger41
@@ -858,21 +873,6 @@ ModelImporter:
       parentName: RigRFinger53
       position: {x: -0.01922, y: 0, z: 0}
       rotation: {x: 0.00043025345, y: 0.3925832, z: 0.9183029, w: -0.05097227}
-      scale: {x: 1, y: 1, z: 1}
-    - name: RigNeck
-      parentName: RigRibcage
-      position: {x: 0.0058719995, y: -0.033655, z: 0}
-      rotation: {x: -0.0014608462, y: 0.0034601009, z: -0.03879791, w: 0.99924004}
-      scale: {x: 1, y: 1, z: 1}
-    - name: RigHead
-      parentName: RigNeck
-      position: {x: -0.159362, y: 0, z: 0}
-      rotation: {x: -0.0014607596, y: 0.0034602012, z: 0.038793337, w: 0.9992402}
-      scale: {x: 1, y: 1, z: 1}
-    - name: RigHeadBone001
-      parentName: RigHead
-      position: {x: -0.383952, y: 0.102714, z: 0}
-      rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     armTwist: 0.5
     foreArmTwist: 0.5

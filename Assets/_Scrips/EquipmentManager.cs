@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class EquipmentManager : MonoBehaviour
 {
@@ -23,6 +24,13 @@ public class EquipmentManager : MonoBehaviour
         inventory = Inventory.Instance;
         int numSlot = System.Enum.GetNames(typeof(EquipmentSlot)).Length;
         currentEquipment = new Equipment[numSlot];
+        loadEquip();
+    }
+    void loadEquip()
+    {
+        ChangeWeapon = FindAnyObjectByType<ChangeWeapon>();
+        ChangeArmor = FindAnyObjectByType<ChangeArmor>();
+        ChangeHelmet = FindAnyObjectByType<ChangeHelmet>();
     }
     public void Equip(Equipment newItem)
     {
