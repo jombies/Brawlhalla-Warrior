@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections.Generic;
+using InfinityCode.UltimateEditorEnhancer.JSON;
 using InfinityCode.UltimateEditorEnhancer.Windows;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -13,8 +14,8 @@ namespace InfinityCode.UltimateEditorEnhancer.InspectorTools
 {
     public class EmptyInspector: InspectorInjector
     {
-        private const string ELEMENT_NAME = "EmptyInspector";
-        private const string SEARCHFIELD_NAME = "UEEEmptyInspectorSearchField";
+        private const string ElementName = "EmptyInspector";
+        private const string SearchFieldName = "UEEEmptyInspectorSearchField";
 
         private static EmptyInspector instance;
         private static VisualElement visualElement;
@@ -41,7 +42,8 @@ namespace InfinityCode.UltimateEditorEnhancer.InspectorTools
         {
             VisualElement el = new VisualElement();
             el.style.borderBottomWidth = el.style.borderTopWidth = el.style.borderLeftWidth = el.style.borderRightWidth = 1;
-            el.style.borderBottomColor = el.style.borderTopColor = el.style.borderLeftColor = el.style.borderRightColor = Color.gray;
+            el.style.borderBottomColor = el.style.borderTopColor = el.style.borderLeftColor = el.style.borderRightColor = 
+                Styles.isProSkin? new Color(.33f, .33f, .33f) : new Color(.66f, .66f, .66f); 
             el.style.marginLeft = 3;
             el.style.marginRight = 5;
             parent.Add(el);
@@ -60,7 +62,7 @@ namespace InfinityCode.UltimateEditorEnhancer.InspectorTools
         private void DrawFilterTextField()
         {
             GUILayout.BeginHorizontal();
-            GUI.SetNextControlName(SEARCHFIELD_NAME);
+            GUI.SetNextControlName(SearchFieldName);
             EditorGUI.BeginChangeCheck();
             filterText = GUILayoutUtils.ToolbarSearchField(filterText);
             if (EditorGUI.EndChangeCheck()) UpdateFilteredItems();
@@ -93,7 +95,7 @@ namespace InfinityCode.UltimateEditorEnhancer.InspectorTools
             for (int i = 0; i < groups.Count; i++)
             {
                 Group g = groups[i];
-                if (!g.enabled || g.Count == 0) continue;
+                if (!g.enabled || g.count == 0) continue;
 
                 CreateLabel(parent, g.title);
                 VisualElement container = CreateContainer(parent);
@@ -114,43 +116,94 @@ namespace InfinityCode.UltimateEditorEnhancer.InspectorTools
 
             Updater.CheckNewVersionAvailable();
 
-            if (Updater.hasNewVersion)
-            {
-                ToolbarButton updateAvailable = new ToolbarButton(Updater.OpenWindow);
-                updateAvailable.text = "A new version of Ultimate Editor Enhancer is available.\nClick to open the built-in update system.";
-                updateAvailable.tooltip = "Update Available.\nClick to open the built-in update system.";
-                updateAvailable.style.backgroundColor = (Color) new Color32(255, 0, 0, 128);
-                updateAvailable.style.unityTextAlign = TextAnchor.MiddleCenter;
-                updateAvailable.style.color = Color.white;
-                updateAvailable.style.left = 0;
-                updateAvailable.style.paddingTop = updateAvailable.style.paddingBottom = 5;
-                updateAvailable.style.borderLeftWidth = updateAvailable.style.borderRightWidth = 0;
-                topContent.Add(updateAvailable);
-            }
+            if (Updater.hasNewVersion && Prefs.emptyInspectorShowUpdates) InitUpdateAvailableContent(topContent);
 
-            Label helpbox = new Label("Nothing selected");
-            helpbox.style.backgroundColor = Color.gray;
-            helpbox.style.height = 30;
-            helpbox.style.unityTextAlign = TextAnchor.MiddleCenter;
+            Label helpbox = new Label("Nothing selected")
+            {
+                style =
+                {
+                    backgroundColor = Color.gray,
+                    height = 30,
+                    unityTextAlign = TextAnchor.MiddleCenter
+                }
+            };
             topContent.Add(helpbox);
 
-            IMGUIContainer search = new IMGUIContainer(DrawFilterTextField);
-            search.style.marginTop = 5;
-            search.style.marginLeft = 5;
-            search.style.marginRight = 5;
+            IMGUIContainer search = new IMGUIContainer(DrawFilterTextField)
+            {
+                style =
+                {
+                    marginTop = 5,
+                    marginLeft = 5,
+                    marginRight = 5
+                }
+            };
+            
             parent.Add(search);
+        }
+
+        private static void InitUpdateAvailableContent(VisualElement topContent)
+        {
+            ToolbarButton updateAvailable = new ToolbarButton(Updater.OpenWindow)
+            {
+                style =
+                {
+                    backgroundColor = (Color)new Color32(173, 216, 230, 128),
+                    borderLeftWidth = 0,
+                    borderRightWidth = 0,
+                    left = 0,
+                    flexDirection = FlexDirection.Row
+                }
+            };
+
+            const string text = "A new version of Ultimate Editor Enhancer is available.\nClick to open the built-in update system.";
+            Label textContainer = new Label
+            {
+                text = text.Replace('\n', ' '),
+                tooltip = text,
+                style =
+                {
+                    unityTextAlign = TextAnchor.MiddleLeft,
+                    color = Color.white,
+                    left = 0,
+                    paddingTop = updateAvailable.style.paddingBottom = 5,
+                    paddingLeft = 10,
+                    borderLeftWidth = 0,
+                    borderRightWidth = 0,
+                    whiteSpace = WhiteSpace.Normal,
+                    flexShrink = 1
+                }
+            };
+
+            VisualElement imageContainer = new VisualElement
+            {
+                style =
+                {
+                    width = 20,
+                    height = 20,
+                    marginLeft = 5,
+                    marginRight = 5,
+                    backgroundImage = Icons.updateAvailable2 as Texture2D,
+                    alignSelf = Align.Center
+                }
+            };
+
+            updateAvailable.Add(imageContainer);
+            updateAvailable.Add(textContainer);
+
+            topContent.Add(updateAvailable);
         }
 
         protected override bool OnInject(EditorWindow wnd, VisualElement mainContainer, VisualElement editorsList)
         {
-            if (editorsList.parent[0].name == ELEMENT_NAME) editorsList.parent.RemoveAt(0);
+            if (editorsList.parent[0].name == ElementName) editorsList.parent.RemoveAt(0);
             if (!Prefs.emptyInspector || ReferenceManager.emptyInspectorItems.Count == 0) return false;
             if (editorsList.childCount != 0 || float.IsNaN(editorsList.layout.width)) return false;
 
             if (visualElement == null)
             {
                 visualElement = new VisualElement();
-                visualElement.name = ELEMENT_NAME;
+                visualElement.name = ElementName;
                 InitItems(visualElement);
             }
             editorsList.parent.Insert(0, visualElement);
@@ -170,6 +223,37 @@ namespace InfinityCode.UltimateEditorEnhancer.InspectorTools
                     instance.InitItems(visualElement);
                 }
                 else visualElement = null;
+            }
+        }
+
+        private static void UpdateElementVisibility(int i, string pattern)
+        {
+            VisualElement el = visualElement[i];
+
+            bool hasVisible = false;
+            VisualElement container = el;
+            for (int j = 0; j < container.childCount; j++)
+            {
+                ToolbarButton b = container[j] as ToolbarButton;
+                bool visible = SearchableItem.Match(pattern, b.text);
+                if (visible)
+                {
+                    b.style.display = DisplayStyle.Flex;
+                    hasVisible = true;
+                }
+                else b.style.display = DisplayStyle.None;
+            }
+
+            if (hasVisible)
+            {
+                visualElement[i - 1].style.display = DisplayStyle.Flex;
+                el.style.display = DisplayStyle.Flex;
+            }
+
+            else
+            {
+                visualElement[i - 1].style.display = DisplayStyle.None;
+                el.style.display = DisplayStyle.None;
             }
         }
 
@@ -196,33 +280,7 @@ namespace InfinityCode.UltimateEditorEnhancer.InspectorTools
 
             for (int i = 3; i < visualElement.childCount; i += 2)
             {
-                VisualElement el = visualElement[i];
-
-                bool hasVisible = false;
-                VisualElement container = el as VisualElement;
-                for (int j = 0; j < container.childCount; j++)
-                {
-                    ToolbarButton b = container[j] as ToolbarButton;
-                    bool visible = SearchableItem.GetAccuracy(pattern, b.text) > 0;
-                    if (visible)
-                    {
-                        b.style.display = DisplayStyle.Flex;
-                        hasVisible = true;
-                    }
-                    else b.style.display = DisplayStyle.None;
-                }
-
-                if (hasVisible)
-                {
-                    visualElement[i - 1].style.display = DisplayStyle.Flex;
-                    el.style.display = DisplayStyle.Flex;
-                }
-
-                else
-                {
-                    visualElement[i - 1].style.display = DisplayStyle.None;
-                    el.style.display = DisplayStyle.None;
-                }
+                UpdateElementVisibility(i, pattern);
             }
         }
 
@@ -233,9 +291,17 @@ namespace InfinityCode.UltimateEditorEnhancer.InspectorTools
             public bool enabled = true;
             public List<Item> items;
 
-            public int Count
+            public int count
             {
                 get => items.Count;
+            }
+
+            public JsonObject json
+            {
+                get
+                {
+                    return Json.Serialize(this) as JsonObject;
+                }
             }
 
             public Group()

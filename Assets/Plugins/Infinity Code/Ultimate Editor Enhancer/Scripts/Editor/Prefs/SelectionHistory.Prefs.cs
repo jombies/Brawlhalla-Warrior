@@ -36,7 +36,7 @@ namespace InfinityCode.UltimateEditorEnhancer
 
             public override float order
             {
-                get { return Order.selectionHistory; }
+                get { return Order.SelectionHistory; }
             }
 
             public override void Draw()
@@ -48,18 +48,18 @@ namespace InfinityCode.UltimateEditorEnhancer
 
                 EditorGUILayout.BeginHorizontal();
                 GUILayout.Space(17);
-                GUILayout.Label("Set Prev Selection", GUILayout.Width(modifierLabelWidth - 15));
+                GUILayout.Label("Set Prev Selection", GUILayout.Width(ModifierLabelWidth - 15));
                 selectionHistoryPrevKeyCode = (KeyCode)EditorGUILayout.EnumPopup(selectionHistoryPrevKeyCode, GUILayout.ExpandWidth(false));
                 EditorGUILayout.EndHorizontal();
 
                 EditorGUILayout.BeginHorizontal();
                 GUILayout.Space(17);
-                GUILayout.Label("Set Next Selection", GUILayout.Width(modifierLabelWidth - 15));
+                GUILayout.Label("Set Next Selection", GUILayout.Width(ModifierLabelWidth - 15));
                 selectionHistoryNextKeyCode = (KeyCode)EditorGUILayout.EnumPopup(selectionHistoryNextKeyCode, GUILayout.ExpandWidth(false));
                 EditorGUILayout.EndHorizontal();
 
                 EditorGUILayout.BeginHorizontal();
-                EditorGUILayout.LabelField("Modifiers", GUILayout.Width(modifierLabelWidth + 15));
+                EditorGUILayout.LabelField("Modifiers", GUILayout.Width(ModifierLabelWidth + 15));
                 selectionHistoryModifiers = DrawModifiers(selectionHistoryModifiers);
                 EditorGUILayout.EndHorizontal();
 

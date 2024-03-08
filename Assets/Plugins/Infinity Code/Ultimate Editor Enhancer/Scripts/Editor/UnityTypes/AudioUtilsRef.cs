@@ -90,8 +90,11 @@ namespace InfinityCode.UltimateEditorEnhancer.UnityTypes
 
         public static bool IsClipPlaying(AudioClip clip)
         {
-            
+#if UNITY_2020_2_OR_NEWER
+            return (bool)isClipPlayingMethod.Invoke(null, Array.Empty<object>());
+#else
             return (bool)isClipPlayingMethod.Invoke(null, new object[] {clip});
+#endif
         }
 
         public static void PlayClip(AudioClip clip, int startSample = 0, bool loop = false)
@@ -106,7 +109,11 @@ namespace InfinityCode.UltimateEditorEnhancer.UnityTypes
 
         public static void StopClip(AudioClip clip)
         {
+#if UNITY_2020_2_OR_NEWER
+            stopClipMethod.Invoke(null, Array.Empty<object>());
+#else 
             stopClipMethod.Invoke(null, new object[] {clip});
+#endif
         }
     }
 }

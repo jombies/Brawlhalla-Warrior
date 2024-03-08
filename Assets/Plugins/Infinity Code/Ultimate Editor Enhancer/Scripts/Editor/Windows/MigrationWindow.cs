@@ -110,14 +110,27 @@ To properly upgrade uContext to Ultimate Editor Enhancer, follow these steps:", 
             EditorGUILayout.LabelField($"{step}. Open Player Settings and remove {symbolStr} define symbols");
             if (GUILayout.Button("Remove Symbol(s)"))
             {
-                string symbols = PlayerSettings.GetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup);
-                if (!string.IsNullOrEmpty(symbols))
+                BuildTargetGroup g = EditorUserBuildSettings.selectedBuildTargetGroup;
+            
+#if UNITY_2023_1_OR_NEWER
+                UnityEditor.Build.NamedBuildTarget buildTarget = UnityEditor.Build.NamedBuildTarget.FromBuildTargetGroup(g);
+                string currentDefinitions = PlayerSettings.GetScriptingDefineSymbols(buildTarget);
+#else
+                string currentDefinitions = PlayerSettings.GetScriptingDefineSymbolsForGroup(g);
+#endif
+                
+                if (!string.IsNullOrEmpty(currentDefinitions))
                 {
-                    List<string> keys = symbols.Split(';').ToList();
+                    List<string> keys = currentDefinitions.Split(';').ToList();
                     keys.Remove("UCONTEXT");
                     keys.Remove("UCONTEXT_PRO");
 
-                    PlayerSettings.SetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup, string.Join(";", keys));
+                    currentDefinitions = string.Join(";", keys);
+#if UNITY_2023_1_OR_NEWER
+                    PlayerSettings.SetScriptingDefineSymbols(buildTarget, currentDefinitions);
+#else
+                    PlayerSettings.SetScriptingDefineSymbolsForGroup(g, currentDefinitions);
+#endif
                 }
             }
 
@@ -129,7 +142,7 @@ To properly upgrade uContext to Ultimate Editor Enhancer, follow these steps:", 
             if (oldType == null) return;
 
             MonoScript script = MissedScriptEditor.scripts.FirstOrDefault(s => s.GetClass() == newType);
-            Object[] objects = FindObjectsOfType(oldType, true);
+            Object[] objects = ObjectHelper.FindObjectsOfType(oldType, true);
             foreach (Object obj in objects)
             {
                 SerializedObject so = new SerializedObject(obj);
@@ -154,7 +167,7 @@ To properly upgrade uContext to Ultimate Editor Enhancer, follow these steps:", 
             Type sceneReferencesType = assembly.GetType("InfinityCode.uContext.SceneReferences");
             if (sceneReferencesType != null)
             {
-                Object[] sceneReferences = FindObjectsOfType(sceneReferencesType, true);
+                Object[] sceneReferences = ObjectHelper.FindObjectsOfType(sceneReferencesType, true);
 
                 foreach (Object sr in sceneReferences)
                 {

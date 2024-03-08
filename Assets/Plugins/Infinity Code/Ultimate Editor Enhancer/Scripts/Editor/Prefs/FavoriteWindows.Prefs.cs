@@ -20,7 +20,6 @@ namespace InfinityCode.UltimateEditorEnhancer
         {
             private ReorderableList reorderableList;
             private bool waitWindowChanged;
-            private Vector2 scrollPositon;
 
             public static JsonArray json
             {

@@ -17,7 +17,9 @@ namespace InfinityCode.UltimateEditorEnhancer
         public static bool _improveCurveEditor = true;
         public static bool _searchInEnumFields = true;
         public static bool _unsafeFeatures = true;
-        public static int searchInEnumFieldsMinValues = 6;
+        public static bool longTextFieldsInVisualScripting = false;
+        public static int searchInEnumFieldsMinValues = 10;
+        public static bool _treeControllerCollapse = true;
 
         private static int hasUnsafeBlock = -1; // -1 - unknown, 0 - no block, 1 - has block
 
@@ -45,6 +47,11 @@ namespace InfinityCode.UltimateEditorEnhancer
         {
             get => _searchInEnumFields && unsafeFeatures;
         }
+        
+        public static bool treeControllerCollapse
+        {
+            get => _treeControllerCollapse && unsafeFeatures;
+        }
 
         public static bool unsafeFeatures
         {
@@ -58,7 +65,7 @@ namespace InfinityCode.UltimateEditorEnhancer
             }
         }
 
-        public class UnsafeManager: StandalonePrefManager<UnsafeManager>
+        public class UnsafeManager: StandalonePrefManager<UnsafeManager>, IStateablePref
         {
             public override IEnumerable<string> keywords
             {
@@ -70,7 +77,8 @@ namespace InfinityCode.UltimateEditorEnhancer
                         "Change Number Fields Value By Arrows",
                         "Hierarchy Type Filter",
                         "Improve Curve Editor",
-                        "Search In Enum Fields"
+                        "Search In Enum Fields",
+                        "Tree Controller Collapse"
                     };
                 }
             }
@@ -88,17 +96,18 @@ namespace InfinityCode.UltimateEditorEnhancer
 
                 _unsafeFeatures = EditorGUILayout.ToggleLeft("Unsafe Features", _unsafeFeatures);
 
-                if (EditorGUI.EndChangeCheck())
-                {
-                    EnumPopupInterceptor.Refresh();
-                    HierarchyToolbarInterceptor.Refresh();
-                    NumberFieldInterceptor.Refresh();
-                }
+                if (EditorGUI.EndChangeCheck()) RefreshFeatures();
 
                 EditorGUI.BeginDisabledGroup(!_unsafeFeatures);
 
-                DrawToggleField("Change Number Fields Value By Arrows", ref _changeNumberFieldValueByArrow, NumberFieldInterceptor.Refresh);
+                DrawToggleField("Change Number Fields Value By Arrows And Mouse Wheel", ref _changeNumberFieldValueByArrow, NumberFieldInterceptor.Refresh);
+                
                 _expandLongTextFields = EditorGUILayout.ToggleLeft("Expand Long Text Fields", _expandLongTextFields);
+                EditorGUI.indentLevel++;
+                longTextFieldsInVisualScripting = EditorGUILayout.ToggleLeft("Long Text Fields In Visual Scripting", longTextFieldsInVisualScripting);
+                EditorGUI.indentLevel--;
+
+
                 DrawToggleField("Hierarchy Type Filter", ref _hierarchyTypeFilter, HierarchyToolbarInterceptor.Refresh);
                 _improveCurveEditor = EditorGUILayout.ToggleLeft("Improve Curve Editor", _improveCurveEditor);
                 DrawToggleField("Search In Enum Fields", ref _searchInEnumFields, EnumPopupInterceptor.Refresh);
@@ -111,6 +120,26 @@ namespace InfinityCode.UltimateEditorEnhancer
                 }
 
                 EditorGUI.EndDisabledGroup();
+                
+                DrawToggleField("Tree Controller Collapse", ref _treeControllerCollapse, TreeViewControllerUserInputChangedExpandedState.Refresh);
+            }
+
+            public string GetMenuName()
+            {
+                return "Unsafe";
+            }
+
+            private static void RefreshFeatures()
+            {
+                EnumPopupInterceptor.Refresh();
+                HierarchyToolbarInterceptor.Refresh();
+                NumberFieldInterceptor.Refresh();
+            }
+
+            public void SetState(bool state)
+            {
+                _unsafeFeatures = state;
+                RefreshFeatures();
             }
         }
     }

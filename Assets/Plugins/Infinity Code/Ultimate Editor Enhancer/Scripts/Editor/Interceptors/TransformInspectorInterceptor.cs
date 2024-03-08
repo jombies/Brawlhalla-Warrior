@@ -10,7 +10,8 @@ namespace InfinityCode.UltimateEditorEnhancer.Interceptors
 {
     public class TransformInspectorInterceptor: StatedInterceptor<TransformInspectorInterceptor>
     {
-        public static Func<Editor, bool> DrawInspector3D;
+        public static Func<Editor, bool> OnInspector3DPrefix;
+        public static Action<Editor> OnInspector3DPostfix;
 
         protected override MethodInfo originalMethod
         {
@@ -23,11 +24,17 @@ namespace InfinityCode.UltimateEditorEnhancer.Interceptors
         }
 
         protected override string prefixMethodName { get => nameof(Inspector3DPrefix); }
+        protected override string postfixMethodName { get => nameof(Inspector3DPostfix); }
 
         private static bool Inspector3DPrefix(Editor __instance)
         {
-            if (DrawInspector3D != null) return DrawInspector3D(__instance);
+            if (OnInspector3DPrefix != null) return OnInspector3DPrefix(__instance);
             return true;
+        }
+        
+        private static void Inspector3DPostfix(Editor __instance)
+        {
+            if (OnInspector3DPostfix != null) OnInspector3DPostfix(__instance);
         }
     }
 }

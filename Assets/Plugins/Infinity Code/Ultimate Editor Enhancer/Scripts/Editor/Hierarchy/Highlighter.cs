@@ -36,7 +36,7 @@ namespace InfinityCode.UltimateEditorEnhancer.HierarchyTools
 
         static Highlighter()
         {
-            HierarchyItemDrawer.Register("Highlighter2", DrawHierarchyItem, HierarchyToolOrder.HIGHLIGHTER);
+            HierarchyItemDrawer.Register("Highlighter2", DrawHierarchyItem, HierarchyToolOrder.Highlighter);
         }
 
         private static void DrawHierarchyItem(HierarchyItem item)

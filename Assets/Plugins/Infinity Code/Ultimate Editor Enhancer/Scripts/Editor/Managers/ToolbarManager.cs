@@ -13,11 +13,11 @@ namespace InfinityCode.UltimateEditorEnhancer
     [InitializeOnLoad]
     public static class ToolbarManager
     {
-        private const float space = 10;
-        private const float largeSpace = 20;
-        private const float buttonWidth = 32;
-        private const float dropdownWidth = 80;
-        private const float playPauseStopWidth = 140;
+        private const float Space = 10;
+        private const float LargeSpace = 20;
+        private const float ButtonWidth = 32;
+        private const float DropdownWidth = 80;
+        private const float PlayPauseStopWidth = 140;
 
         private static int toolCount;
         private static GUIStyle style;
@@ -129,8 +129,8 @@ namespace InfinityCode.UltimateEditorEnhancer
             if (leftToolbarCount == 0) return;
 
             Rect rect = new Rect(0, 0, screenWidth, Screen.height);
-            rect.xMin += space * 2 + buttonWidth * toolCount + largeSpace + 128;
-            rect.xMax = playButtonsPosition - space;
+            rect.xMin += Space * 2 + ButtonWidth * toolCount + LargeSpace + 128;
+            rect.xMax = playButtonsPosition - Space;
             rect.y = 4;
             rect.height = 24;
 
@@ -143,6 +143,7 @@ namespace InfinityCode.UltimateEditorEnhancer
 
         private static void DrawLeftToolbarItems()
         {
+            if (!Prefs.toolbar) return;
             GUILayout.BeginHorizontal();
             GUILayout.FlexibleSpace();
             for (int i = 0; i < leftToolbarCount; i++)
@@ -165,8 +166,8 @@ namespace InfinityCode.UltimateEditorEnhancer
             if (rightToolbarCount == 0) return;
 
             Rect rightRect = new Rect(0, 0, screenWidth, Screen.height);
-            rightRect.xMin = playButtonsPosition + style.fixedWidth * 3 + space;
-            rightRect.xMax = screenWidth - space * 5 - dropdownWidth * 3 - largeSpace - buttonWidth - 78;
+            rightRect.xMin = playButtonsPosition + style.fixedWidth * 3 + Space;
+            rightRect.xMax = screenWidth - Space * 5 - DropdownWidth * 3 - LargeSpace - ButtonWidth - 78;
             rightRect.y = 4;
             rightRect.height = 24;
 
@@ -179,6 +180,7 @@ namespace InfinityCode.UltimateEditorEnhancer
 
         private static void DrawRightToolbarItems()
         {
+            if (!Prefs.toolbar) return;
             GUILayout.BeginHorizontal();
 
             for (int i = 0; i < rightToolbarCount; i++)
@@ -198,10 +200,11 @@ namespace InfinityCode.UltimateEditorEnhancer
 
         private static void OnGUI()
         {
+            if (!Prefs.toolbar) return;
             if (style == null) style = new GUIStyle("CommandLeft");
 
             float screenWidth = EditorGUIUtility.currentViewWidth;
-            float playButtonsPosition = Mathf.RoundToInt((screenWidth - playPauseStopWidth) / 2);
+            float playButtonsPosition = Mathf.RoundToInt((screenWidth - PlayPauseStopWidth) / 2);
 
             DrawLeftToolbar(screenWidth, playButtonsPosition);
             DrawRightToolbar(screenWidth, playButtonsPosition);

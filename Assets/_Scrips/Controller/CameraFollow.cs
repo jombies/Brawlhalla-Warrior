@@ -2,11 +2,16 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public Transform target;
-    public float speed = 5.0f;
-    public Vector3 offet = new Vector3(8, 14, -8);
+    [SerializeField] Transform _target;
+    public float Speed = 5.0f;
+    public Vector3 Offet = new(8, 14, -8);
+
+    private void Start()
+    {
+        _target = PlayerReferences.Instance.Player.transform;
+    }
     private void Update()
     {
-        transform.position = target.transform.position + offet;
+        transform.position = _target.transform.position + Offet;
     }
 }

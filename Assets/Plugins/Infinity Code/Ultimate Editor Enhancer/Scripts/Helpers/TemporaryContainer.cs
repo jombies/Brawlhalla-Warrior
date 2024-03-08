@@ -9,19 +9,24 @@ namespace InfinityCode.UltimateEditorEnhancer
     {
         private void Awake()
         {
+#if !UNITY_EDITOR
             Destroy(gameObject);
+#endif
         }
 
         public static GameObject GetContainer()
         {
-            TemporaryContainer temporaryContainer = FindObjectOfType<TemporaryContainer>();
+            TemporaryContainer temporaryContainer = ObjectHelper.FindObjectOfType<TemporaryContainer>();
             if (temporaryContainer == null)
             {
                 GameObject go = new GameObject("Temporary Container");
                 go.tag = "EditorOnly";
                 temporaryContainer = go.AddComponent<TemporaryContainer>();
 #if UNITY_EDITOR
-                UnityEditor.Undo.RegisterCreatedObjectUndo(go, "Create Temporary Container");
+                if (!UnityEditor.EditorApplication.isPlaying)
+                {
+                    UnityEditor.Undo.RegisterCreatedObjectUndo(go, "Create Temporary Container");
+                }
 #endif
             }
             return temporaryContainer.gameObject;

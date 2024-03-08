@@ -28,7 +28,7 @@ namespace InfinityCode.UltimateEditorEnhancer
 
             public override float order
             {
-                get { return Order.addScriptingDefineSymbols; }
+                get { return Order.AddScriptingDefineSymbols; }
             }
 
             public override void Draw()

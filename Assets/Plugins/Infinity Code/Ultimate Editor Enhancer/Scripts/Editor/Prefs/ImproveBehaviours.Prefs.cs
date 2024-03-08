@@ -35,7 +35,7 @@ namespace InfinityCode.UltimateEditorEnhancer
 
             public override float order
             {
-                get { return Order.improveBehaviors; }
+                get { return Order.ImproveBehaviors; }
             }
 
             public override void Draw()

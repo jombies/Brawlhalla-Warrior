@@ -11,7 +11,8 @@ namespace InfinityCode.UltimateEditorEnhancer.Behaviors
     [InitializeOnLoad]
     public static class Group
     {
-        public const string COLLECTION_TAG = "Collection";
+        public const string CollectionTag = "Collection";
+        private const int DialogHeight = 105;
 
         private static string defaultName = "Group";
         private static GameObject[] _targets;
@@ -19,7 +20,6 @@ namespace InfinityCode.UltimateEditorEnhancer.Behaviors
         private static bool createCollection = false;
         private static int align = 0;
         private static Transform parent;
-        private const int DIALOG_HEIGHT = 105;
 
         private static GUIContent[] singleAlign = 
         {
@@ -50,7 +50,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Behaviors
         public static GameObject Create()
         {
             GameObject go = new GameObject("Collection");
-            GameObjectUtils.SetCustomTag(go, COLLECTION_TAG);
+            GameObjectUtils.SetCustomTag(go, CollectionTag);
             GameObject active = Selection.activeGameObject;
             if (active != null)
             {
@@ -127,7 +127,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Behaviors
             dialog.OnClose += OnDialogClose;
             dialog.OnDrawExtra += OnDialogExtra;
             dialog.OnDrawLeftButtons += OnDrawLeftButtons;
-            dialog.minSize = new Vector2(dialog.minSize.x, DIALOG_HEIGHT);
+            dialog.minSize = new Vector2(dialog.minSize.x, DialogHeight);
         }
 
         private static void OnClosePopups(EventManager.EventBinding binding)
@@ -148,7 +148,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Behaviors
             GameObject go = new GameObject(name);
             if (createCollection)
             {
-                GameObjectUtils.SetCustomTag(go, COLLECTION_TAG);
+                GameObjectUtils.SetCustomTag(go, CollectionTag);
                 go.AddComponent<FlattenCollection>();
             }
             Undo.RegisterCreatedObjectUndo(go, go.name);

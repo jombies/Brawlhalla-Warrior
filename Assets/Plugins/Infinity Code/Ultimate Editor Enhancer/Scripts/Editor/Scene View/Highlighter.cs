@@ -24,8 +24,8 @@ namespace InfinityCode.UltimateEditorEnhancer.SceneTools
 
         static Highlighter()
         {
-            SceneViewManager.AddListener(OnSceneGUI, SceneViewOrder.normal, true);
-            HierarchyItemDrawer.Register("Highlighter", DrawHierarchyItem, HierarchyToolOrder.HIGHLIGHTER);
+            SceneViewManager.AddListener(OnSceneGUI, SceneViewOrder.Normal, true);
+            HierarchyItemDrawer.Register("Highlighter", DrawHierarchyItem, HierarchyToolOrder.Highlighter);
             EditorApplication.modifierKeysChanged += RepaintAllHierarchies;
             EditorApplication.update += EditorUpdate;
             viewDict = new Dictionary<SceneView, SceneViewOutline>();

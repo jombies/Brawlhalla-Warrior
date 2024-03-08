@@ -2,39 +2,43 @@ using UnityEngine;
 
 public class CharacterStat : MonoBehaviour
 {
-    public int maxHealth = 100;
+    [SerializeField] int MaxHealth = 100;
     public int currentHealth { get; private set; }
+    [SerializeField]
+    protected HealthBar heathBar;
 
-    public Stat damage;
-    public Stat armor;
+    public Stat Damage;
+    public Stat Armor;
     //bool check;
-    private void Awake()
+    void Awake()
     {
-        currentHealth = maxHealth;
+        currentHealth = MaxHealth;
+        heathBar.SetMaxHeathBar(MaxHealth);
     }
-
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            TakeDamege(10);
-        }
+
     }
-    public void TakeDamege(int dmg)
+    public void TakeDamage(int dmg)
     {
-        dmg -= armor.GetValue();
-        Debug.Log("dame:" + dmg);
+        dmg -= Armor.GetValue();
+        Debug.Log("dame: " + dmg);
         dmg = Mathf.Clamp(dmg, 0, int.MaxValue);
 
         currentHealth -= dmg;
         Debug.Log(transform.name + " takes " + dmg + " damage");
-
-        if (currentHealth < 0)
+        heathBar.SetHealth(currentHealth);
+        if (currentHealth <= 0)
         {
             Die();
         }
     }
-
+    public void Healing(int value)
+    {
+        currentHealth += value;
+        currentHealth = Mathf.Clamp(currentHealth, 0, MaxHealth);
+        heathBar.SetHealth(currentHealth);
+    }
     public virtual void Die()
     {
         //die someway

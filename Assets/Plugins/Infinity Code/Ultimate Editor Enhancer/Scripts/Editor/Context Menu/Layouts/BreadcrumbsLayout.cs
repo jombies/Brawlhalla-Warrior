@@ -22,7 +22,6 @@ namespace InfinityCode.UltimateEditorEnhancer.EditorMenus.Layouts
         private bool hasChilds;
         private bool hasNeighbors;
         private bool isMultiple;
-        private string newName;
         private GameObject[] targets;
 
         public override bool isActive
@@ -105,35 +104,21 @@ namespace InfinityCode.UltimateEditorEnhancer.EditorMenus.Layouts
             if (!hasParents) return;
             if (!GUILayout.Button(upButtonContent, Styles.transparentButton, GUILayout.Width(12))) return;
 
-            if (Prefs.breadcrumbsParentUp && Event.current.modifiers == Prefs.breadcrumbsParentUpModifiers)
+            Event e = Event.current;
+            if (Prefs.breadcrumbsParentUp && e.modifiers == Prefs.breadcrumbsParentUpModifiers && e.button == 0)
             {
-                Selection.activeGameObject = Selection.activeGameObject.transform.parent.gameObject;
+                Selection.objects = targets.Select(t => t.transform.parent != null ? t.transform.parent.gameObject : t.transform.gameObject).ToArray();
                 SceneViewManager.OnNextGUI += EditorMenu.ShowInLastPosition;
                 return;
             }
 
-            if (!Prefs.breadcrumbsParentShowAll || Event.current.modifiers != Prefs.breadcrumbsParentShowAllModifiers) return;
-
-            List<GameObject> items = new List<GameObject>();
-            GameObject g = Selection.activeGameObject;
-            while (g.transform.parent != null)
+            if (Prefs.breadcrumbsParentShowAll && !isMultiple)
             {
-                g = g.transform.parent.gameObject;
-                items.Insert(0, g);
-            }
-
-            GenericMenuEx menu = GenericMenuEx.Start();
-
-            foreach (GameObject item in items)
-            {
-                GameObject go = item;
-                menu.Add(go.name, false, () =>
+                if (e.modifiers == Prefs.breadcrumbsParentShowAllModifiers || e.button == 1)
                 {
-                    Selection.activeGameObject = go;
-                    SceneViewManager.OnNextGUI += EditorMenu.ShowInLastPosition;
-                });
+                    ShowParentList();
+                }
             }
-            menu.Show();
         }
 
         private void GetChildren(Transform t, GenericMenuEx menu, string prefix)
@@ -177,8 +162,21 @@ namespace InfinityCode.UltimateEditorEnhancer.EditorMenus.Layouts
             enabled = EditorGUILayout.Toggle(enabled);
             if (EditorGUI.EndChangeCheck())
             {
+                if (targets.Length == 1)
+                {
+                    Undo.RecordObject(targets[0], "Modified Property in " + targets[0].name);
+                }
+                else
+                {
+                    Undo.SetCurrentGroupName("Modified Property in Multiple GameObjects");
+                    int group = Undo.GetCurrentGroup();
+                    foreach (GameObject target in targets) Undo.RecordObject(target, "Modified Property in " + target.name);
+                    Undo.CollapseUndoOperations(group);
+                }
+
                 foreach (GameObject target in targets)
                 {
+                    
                     target.SetActive(enabled);
                     EditorUtility.SetDirty(target);
                 }
@@ -227,7 +225,7 @@ namespace InfinityCode.UltimateEditorEnhancer.EditorMenus.Layouts
 
             isMultiple = targets.Length > 1;
 
-            hasParents = Prefs.breadcrumbsParent && !isMultiple && targets[0].transform.parent != null;
+            hasParents = Prefs.breadcrumbsParent && targets.Any(t => t.transform.parent != null);
             hasChilds = Prefs.breadcrumbsChilds && !isMultiple && targets[0].transform.childCount > 0;
             hasNeighbors = false;
             if (Prefs.breadcrumbsNeighbors && !isMultiple)
@@ -269,7 +267,6 @@ namespace InfinityCode.UltimateEditorEnhancer.EditorMenus.Layouts
             int ox = 0;
             int oy = -20;
             rect.position = position - new Vector2(rect.width / 2, rect.height) + offset + new Vector2(ox, oy);
-            if (rect.x < 1) rect.x = 1;
 
 #if !UNITY_EDITOR_OSX
             int screenWidth = Screen.currentResolution.width;
@@ -289,6 +286,31 @@ namespace InfinityCode.UltimateEditorEnhancer.EditorMenus.Layouts
         public override void Show()
         {
             wnd = LayoutWindow.Show(this, rect);
+        }
+
+        private static void ShowParentList()
+        {
+            List<GameObject> items = new List<GameObject>();
+            GameObject g = Selection.activeGameObject;
+            while (g.transform.parent != null)
+            {
+                g = g.transform.parent.gameObject;
+                items.Insert(0, g);
+            }
+
+            GenericMenuEx menu = GenericMenuEx.Start();
+
+            foreach (GameObject item in items)
+            {
+                GameObject go = item;
+                menu.Add(go.name, false, () =>
+                {
+                    Selection.activeGameObject = go;
+                    SceneViewManager.OnNextGUI += EditorMenu.ShowInLastPosition;
+                });
+            }
+
+            menu.Show();
         }
     }
 }

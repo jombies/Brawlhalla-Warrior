@@ -16,8 +16,8 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
     [InitializeOnLoad]
     public partial class ViewGallery : EditorWindow
     {
-        private const int VERTICAL_MARGIN = 50;
-        private const int MAX_FLAT_HEIGHT = 150;
+        private const int VerticalMargin = 50;
+        private const int MaxFlatHeight = 150;
 
         public delegate void DrawCamerasDelegate(ViewGallery gallery, float rowHeight, float maxLabelWidth, ref int offsetY, ref int row);
 
@@ -30,8 +30,8 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
         private static GUIContent refreshContent;
         private static GUIContent settingsContent;
 
-        public CameraStateItem[] cameras;
-        private ViewStateItem[] views;
+        public static CameraStateItem[] cameras;
+        private static ViewStateItem[] views;
         private ViewItem[] filteredItems;
 
         public int countCols;
@@ -74,11 +74,11 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
         {
             Vector2 size = lastSize = position.size;
             size.x -= 20; // margin horizontal
-            size.y -= VERTICAL_MARGIN; // margin vertical + labels height
+            size.y -= VerticalMargin; // margin vertical + labels height
 
             if (filteredItems == null)
             {
-                if (size.y > MAX_FLAT_HEIGHT)
+                if (size.y > MaxFlatHeight)
                 {
                     size.y -= 70;
                     countCols = Mathf.Max(cameras.Length, views.Length);
@@ -186,6 +186,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
 
                 go.transform.SetParent(container.transform, true);
                 EditorMenu.Close();
+                RepaintAll();
             });
         }
 
@@ -416,10 +417,10 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
 
         private void InitItems(ArrayList sceneViews)
         {
-            cameras = FindObjectsOfType<Camera>().OrderBy(c => c.name).Select(c => new CameraStateItem(c)).ToArray();
+            cameras = ObjectHelper.FindObjectsOfType<Camera>().OrderBy(c => c.name).Select(c => new CameraStateItem(c)).ToArray();
             countTemporaryCameras = cameras.Count(c => c.camera.GetComponentInParent<TemporaryContainer>() != null);
 
-            ViewState[] viewStates = FindObjectsOfType<ViewState>().OrderBy(v => v.gameObject.name).ToArray();
+            ViewState[] viewStates = ObjectHelper.FindObjectsOfType<ViewState>().OrderBy(v => v.gameObject.name).ToArray();
 
             int sceneCount = sceneViews.Count;
             countAutoViews = 0;
@@ -447,7 +448,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
 
             if (Prefs.viewGalleryUIState)
             {
-                Canvas[] canvases = FindObjectsOfType<Canvas>().Where(c => c.renderMode == RenderMode.ScreenSpaceOverlay).ToArray();
+                Canvas[] canvases = ObjectHelper.FindObjectsOfType<Canvas>().Where(c => c.renderMode == RenderMode.ScreenSpaceOverlay).ToArray();
                 if (canvases.Length > 0)
                 {
                     Bounds bounds = new Bounds();
@@ -492,6 +493,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
         private void OnEnable()
         {
             isDirty = true;
+            if (!wantsMouseMove) wantsMouseMove = true;
 
             if (refreshContent == null) refreshContent = new GUIContent(EditorIconContents.refresh.image, "Refresh");
             if (settingsContent == null) settingsContent = new GUIContent(EditorIconContents.settings.image, "Settings");
@@ -520,18 +522,10 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
 
             if (filteredItems == null)
             {
-                if (position.height > VERTICAL_MARGIN + MAX_FLAT_HEIGHT) DrawAllItems();
+                if (position.height > VerticalMargin + MaxFlatHeight) DrawAllItems();
                 else DrawFlatItems();
             }
             else DrawFilteredItems();
-
-
-            GUI.changed = true;
-        }
-
-        private void OnHierarchyChange()
-        {
-            isDirty = true;
         }
 
         private static void OnInvoke()
@@ -549,10 +543,10 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
             return true;
         }
 
-        [MenuItem(WindowsHelper.MenuPath + "View Gallery", false, 102)]
+        [MenuItem(WindowsHelper.MenuPath + "View Gallery", false, MenuItemOrder.ViewGallery)]
         public static void OpenWindow()
         {
-            GetWindow<ViewGallery>(false, "View Gallery", true);
+            GetWindow<ViewGallery>(false, "View Gallery", true).wantsMouseMove = true;
         }
 
         private void RemoveAllTemporaryCameras()
@@ -639,7 +633,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
                 }
             }
 
-            Canvas[] canvases = FindObjectsOfType<Canvas>();
+            Canvas[] canvases = ObjectHelper.FindObjectsOfType<Canvas>();
             List<Canvas> modifiedCanvases = new List<Canvas>();
 
             try
@@ -759,6 +753,17 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
             }
         }
 
+        public static void RepaintAll()
+        {
+            isDirty = true;
+            ViewGallery[] galleries = UnityEngine.Resources.FindObjectsOfTypeAll<ViewGallery>();
+            Debug.Log(galleries.Length);
+            foreach (ViewGallery gallery in galleries)
+            {
+                gallery.Repaint();
+            }
+        }
+
         private static void RestoreViewState(object userdata)
         {
             ViewStateItem viewItem = userdata as ViewStateItem;
@@ -793,7 +798,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
 
             string pattern = SearchableItem.GetPattern(_filter);
 
-            filteredItems = cameras.Select(c => c as ViewItem).Concat(views).Where(i => i.UpdateAccuracy(pattern) > 0).OrderByDescending(i => i.accuracy).ToArray();
+            filteredItems = cameras.Select(c => c as ViewItem).Concat(views).Where(i => i.Match(pattern)).ToArray();
 
             CalcItemSize();
             RenderItems();

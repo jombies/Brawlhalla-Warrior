@@ -15,15 +15,15 @@ namespace InfinityCode.UltimateEditorEnhancer.Interceptors
     public abstract class Interceptor
     {
         protected static Harmony harmony;
-        private static int _isAppleM1;
+        private static int _isAppleM;
         protected MethodInfo patch;
 
-        private static bool isAppleM1
+        public static bool isAppleM
         {
             get
             {
-                if (_isAppleM1 == 0) _isAppleM1 = SystemInfo.processorType.Contains("Apple M1") ? 1 : -1;
-                return _isAppleM1 == 1;
+                if (_isAppleM == 0) _isAppleM = SystemInfo.processorType.Contains("Apple M") ? 1 : -1;
+                return _isAppleM == 1;
             }
         }
 
@@ -99,7 +99,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Interceptors
         protected virtual void Patch()
         {
             if (!Prefs.unsafeFeatures) return;
-            if (isAppleM1) return;
+            if (isAppleM) return;
 
             if (patch != null) return;
 

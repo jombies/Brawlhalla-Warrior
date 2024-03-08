@@ -29,6 +29,7 @@ namespace InfinityCode.UltimateEditorEnhancer
         private static GUIStyle _proRow;
         private static GUIStyle _selectedRow;
         private static Texture2D _selectedRowTexture;
+        private static GUIStyle _smallLabel;
         private static GUIStyle _toolbarSelectedButton;
         private static GUIStyle _tooltip;
         private static GUIStyle _transparentButton;
@@ -43,7 +44,8 @@ namespace InfinityCode.UltimateEditorEnhancer
                 if (_appToolbarButtonLeft == null)
                 {
                     _appToolbarButtonLeft = "AppToolbarButtonLeft";
-                    _appToolbarButtonLeft.fixedHeight = 22;
+                    _appToolbarButtonLeft.fixedHeight = 20;
+                    _appToolbarButtonLeft.margin = new RectOffset(0, 0, 0, 0);
                 }
                 return _appToolbarButtonLeft;
             }
@@ -132,7 +134,12 @@ namespace InfinityCode.UltimateEditorEnhancer
         {
             get
             {
-                if (_dropdown == null) _dropdown = "Dropdown";
+                if (_dropdown == null)
+                {
+                    _dropdown = "Dropdown";
+                    _dropdown.fixedHeight = 20;
+                    _dropdown.margin = new RectOffset(0, 0, 0, 0);
+                }
                 return _dropdown;
             }
         }
@@ -290,6 +297,22 @@ namespace InfinityCode.UltimateEditorEnhancer
                 if (_selectedRowTexture == null) _selectedRowTexture = Resources.CreateSinglePixelTexture(62, 125, 231, 255);
 
                 return _selectedRowTexture;
+            }
+        }
+
+        public static GUIStyle smallLabel
+        {
+            get
+            {
+                if (_smallLabel == null)
+                {
+                    _smallLabel = new GUIStyle(EditorStyles.label)
+                    {
+                        fontSize = 9
+                    };
+                }
+
+                return _smallLabel;
             }
         }
 

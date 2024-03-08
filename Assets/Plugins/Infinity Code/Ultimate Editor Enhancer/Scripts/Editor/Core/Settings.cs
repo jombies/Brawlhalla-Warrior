@@ -8,31 +8,48 @@ namespace InfinityCode.UltimateEditorEnhancer
     public static class Settings
     {
         // First level
-        private const string UEE_SETTINGS_PATH = "Project/Ultimate Editor Enhancer";
-        private const string CONTEXT_MENU_SETTINGS_PATH = UEE_SETTINGS_PATH + "/Context Menu";
-        private const string CREATE_BROWSER_SETTINGS_PATH = UEE_SETTINGS_PATH + "/Create Browser";
-        private const string FAVORITE_WINDOWS_SETTINGS_PATH = UEE_SETTINGS_PATH + "/Favorite Windows";
-        private const string GAMEOBJECT_SETTINGS_PATH = UEE_SETTINGS_PATH + "/GameObject";
-        private const string HIERARCHY_SETTINGS_PATH = UEE_SETTINGS_PATH + "/Hierarchy";
-        private const string INSPECTOR_SETTINGS_PATH = UEE_SETTINGS_PATH + "/Inspector";
-        private const string SCENEVIEW_SETTINGS_PATH = UEE_SETTINGS_PATH + "/Scene View";
-        private const string SEARCH_WINDOWS_SETTINGS_PATH = UEE_SETTINGS_PATH + "/Search";
-        private const string TOOLBAR_SETTINGS_PATH = UEE_SETTINGS_PATH + "/Toolbar";
-        private const string UNSAFE_SETTINGS_PATH = UEE_SETTINGS_PATH + "/Unsafe";
-        private const string VIEWS_SETTINGS_PATH = UEE_SETTINGS_PATH + "/Views";
+        private const string UEESettingsPath = "Project/Ultimate Editor Enhancer";
+        private const string ContextMenuSettingsPath = UEESettingsPath + "/Context Menu";
+        private const string CreateBrowserSettingsPath = UEESettingsPath + "/Create Browser";
+        private const string GameObjectSettingsPath = UEESettingsPath + "/GameObject";
+        private const string HierarchySettingsPath = UEESettingsPath + "/Hierarchy";
+        private const string InspectorSettingsPath = UEESettingsPath + "/Inspector";
+        private const string ProjectSettingsPath = UEESettingsPath + "/Project";
+        private const string SceneViewSettingsPath = UEESettingsPath + "/Scene View";
+        private const string SearchWindowsSettingsPath = UEESettingsPath + "/Search";
+        private const string ToolbarSettingsPath = UEESettingsPath + "/Toolbar";
+        private const string UnsafeSettingsPath = UEESettingsPath + "/Unsafe";
+        private const string ViewsSettingsPath = UEESettingsPath + "/Views";
+        private const string WindowsSettingsPath = UEESettingsPath + "/Windows";
 
         // Second level
-        private const string EMPTY_INSPECTOR_SETTINGS_PATH = INSPECTOR_SETTINGS_PATH + "/Empty Inspector";
-        private const string HEADERS_SETTINGS_PATH = HIERARCHY_SETTINGS_PATH + "/Headers";
-        private const string HIGHLIGHT_SETTINGS_PATH = SCENEVIEW_SETTINGS_PATH + "/Highlight";
-        private const string NAVIGATION_SETTINGS_PATH = SCENEVIEW_SETTINGS_PATH + "/Navigation";
-        private const string QUICK_ACCESS_SETTINGS_PATH = SCENEVIEW_SETTINGS_PATH + "/Quick Access Bar";
-        private const string WAILA_SETTINGS_PATH = SCENEVIEW_SETTINGS_PATH + "/WAILA";
+        private const string EmptyInspectorSettingsPath = InspectorSettingsPath + "/Empty Inspector";
+        private const string BackgroundsSettingsPath = HierarchySettingsPath + "/Backgrounds";
+        private const string FavoriteWindowsSettingsPath = WindowsSettingsPath + "/Favorite Windows";
+        private const string HeadersSettingsPath = HierarchySettingsPath + "/Headers";
+        private const string HighlightSettingsPath = SceneViewSettingsPath + "/Highlight";
+        private const string MiniLayoutsSettingsPath = WindowsSettingsPath + "/Mini Layouts";
+        private const string NavigationSettingsPath = SceneViewSettingsPath + "/Navigation";
+        private const string QuickAccessSettingsPath = SceneViewSettingsPath + "/Quick Access Bar";
+        private const string ProjectFolderIconsSettingsPath = ProjectSettingsPath + "/Folder Icons";
+        private const string WailaSettingsPath = SceneViewSettingsPath + "/WAILA";
+
+        [SettingsProvider]
+        public static SettingsProvider GetBackgroundsSettingsProvider()
+        {
+            SettingsProvider provider = new SettingsProvider(BackgroundsSettingsPath, SettingsScope.Project)
+            {
+                label = "Backgrounds",
+                guiHandler = Prefs.BackgroundManager.DrawWithToolbar,
+                keywords = Prefs.BackgroundManager.GetKeywords()
+            };
+            return provider;
+        }
 
         [SettingsProvider]
         public static SettingsProvider GetContextMenuSettingsProvider()
         {
-            SettingsProvider provider = new SettingsProvider(CONTEXT_MENU_SETTINGS_PATH, SettingsScope.Project)
+            SettingsProvider provider = new SettingsProvider(ContextMenuSettingsPath, SettingsScope.Project)
             {
                 label = "Context Menu",
                 guiHandler = Prefs.ContextMenuManager.DrawWithToolbar,
@@ -44,7 +61,7 @@ namespace InfinityCode.UltimateEditorEnhancer
         [SettingsProvider]
         public static SettingsProvider GetCreateBrowserSettingsProvider()
         {
-            SettingsProvider provider = new SettingsProvider(CREATE_BROWSER_SETTINGS_PATH, SettingsScope.Project)
+            SettingsProvider provider = new SettingsProvider(CreateBrowserSettingsPath, SettingsScope.Project)
             {
                 label = "Create Browser",
                 guiHandler = Prefs.CreateBrowserManager.DrawWithToolbar,
@@ -56,7 +73,7 @@ namespace InfinityCode.UltimateEditorEnhancer
         [SettingsProvider]
         public static SettingsProvider GetEmptyInspectorSettingsProvider()
         {
-            SettingsProvider provider = new SettingsProvider(EMPTY_INSPECTOR_SETTINGS_PATH, SettingsScope.Project)
+            SettingsProvider provider = new SettingsProvider(EmptyInspectorSettingsPath, SettingsScope.Project)
             {
                 label = "Empty Inspector",
                 guiHandler = Prefs.EmptyInspectorManager.DrawWithToolbar,
@@ -68,7 +85,7 @@ namespace InfinityCode.UltimateEditorEnhancer
         [SettingsProvider]
         public static SettingsProvider GetFavoriteWindowsSettingsProvider()
         {
-            SettingsProvider provider = new SettingsProvider(FAVORITE_WINDOWS_SETTINGS_PATH, SettingsScope.Project)
+            SettingsProvider provider = new SettingsProvider(FavoriteWindowsSettingsPath, SettingsScope.Project)
             {
                 label = "Favorite Windows",
                 guiHandler = Prefs.FavoriteWindowsManager.DrawWithToolbar,
@@ -80,7 +97,7 @@ namespace InfinityCode.UltimateEditorEnhancer
         [SettingsProvider]
         public static SettingsProvider GetGameObjectSettingsProvider()
         {
-            SettingsProvider provider = new SettingsProvider(GAMEOBJECT_SETTINGS_PATH, SettingsScope.Project)
+            SettingsProvider provider = new SettingsProvider(GameObjectSettingsPath, SettingsScope.Project)
             {
                 label = "GameObjects",
                 guiHandler = Prefs.GameObjectManager.DrawWithToolbar,
@@ -92,7 +109,7 @@ namespace InfinityCode.UltimateEditorEnhancer
         [SettingsProvider]
         public static SettingsProvider GetHeadersSettingsProvider()
         {
-            SettingsProvider provider = new SettingsProvider(HEADERS_SETTINGS_PATH, SettingsScope.Project)
+            SettingsProvider provider = new SettingsProvider(HeadersSettingsPath, SettingsScope.Project)
             {
                 label = "Headers",
                 guiHandler = Prefs.HeadersManager.DrawWithToolbar,
@@ -104,7 +121,7 @@ namespace InfinityCode.UltimateEditorEnhancer
         [SettingsProvider]
         public static SettingsProvider GetHierarchySettingsProvider()
         {
-            SettingsProvider provider = new SettingsProvider(HIERARCHY_SETTINGS_PATH, SettingsScope.Project)
+            SettingsProvider provider = new SettingsProvider(HierarchySettingsPath, SettingsScope.Project)
             {
                 label = "Hierarchy",
                 guiHandler = Prefs.HierarchyManager.DrawWithToolbar,
@@ -116,7 +133,7 @@ namespace InfinityCode.UltimateEditorEnhancer
         [SettingsProvider]
         public static SettingsProvider GetHighlightSettingsProvider()
         {
-            SettingsProvider provider = new SettingsProvider(HIGHLIGHT_SETTINGS_PATH, SettingsScope.Project)
+            SettingsProvider provider = new SettingsProvider(HighlightSettingsPath, SettingsScope.Project)
             {
                 label = "Highlighter",
                 guiHandler = Prefs.HighlightManager.DrawWithToolbar,
@@ -128,7 +145,7 @@ namespace InfinityCode.UltimateEditorEnhancer
         [SettingsProvider]
         public static SettingsProvider GetInspectorSettingsProvider()
         {
-            SettingsProvider provider = new SettingsProvider(INSPECTOR_SETTINGS_PATH, SettingsScope.Project)
+            SettingsProvider provider = new SettingsProvider(InspectorSettingsPath, SettingsScope.Project)
             {
                 label = "Inspector",
                 guiHandler = Prefs.InspectorManager.DrawWithToolbar,
@@ -136,11 +153,23 @@ namespace InfinityCode.UltimateEditorEnhancer
             };
             return provider;
         }
+        
+        [SettingsProvider]
+        public static SettingsProvider GetMiniLayoutsSettingsProvider()
+        {
+            SettingsProvider provider = new SettingsProvider(MiniLayoutsSettingsPath, SettingsScope.Project)
+            {
+                label = "Mini Layouts",
+                guiHandler = Prefs.MiniLayoutsManager.DrawWithToolbar,
+                keywords = Prefs.MiniLayoutsManager.GetKeywords()
+            };
+            return provider;
+        }
 
         [SettingsProvider]
         public static SettingsProvider GetNavigationSettingsProvider()
         {
-            SettingsProvider provider = new SettingsProvider(NAVIGATION_SETTINGS_PATH, SettingsScope.Project)
+            SettingsProvider provider = new SettingsProvider(NavigationSettingsPath, SettingsScope.Project)
             {
                 label = "Navigation",
                 guiHandler = Prefs.NavigationManager.DrawWithToolbar,
@@ -152,7 +181,7 @@ namespace InfinityCode.UltimateEditorEnhancer
         [SettingsProvider]
         public static SettingsProvider GetQuickAccessSettingsProvider()
         {
-            SettingsProvider provider = new SettingsProvider(QUICK_ACCESS_SETTINGS_PATH, SettingsScope.Project)
+            SettingsProvider provider = new SettingsProvider(QuickAccessSettingsPath, SettingsScope.Project)
             {
                 label = "Quick Access Bar",
                 guiHandler = Prefs.QuickAccessBarManager.DrawWithToolbar,
@@ -162,9 +191,33 @@ namespace InfinityCode.UltimateEditorEnhancer
         }
 
         [SettingsProvider]
+        public static SettingsProvider GetProjectSettingsProvider()
+        {
+            SettingsProvider provider = new SettingsProvider(ProjectSettingsPath, SettingsScope.Project)
+            {
+                label = "Project",
+                guiHandler = Prefs.ProjectManager.DrawWithToolbar,
+                keywords = Prefs.ProjectManager.GetKeywords()
+            };
+            return provider;
+        }
+
+        [SettingsProvider]
+        public static SettingsProvider GetProjectFolderIconsSettingsProvider()
+        {
+            SettingsProvider provider = new SettingsProvider(ProjectFolderIconsSettingsPath, SettingsScope.Project)
+            {
+                label = "Folder Icons",
+                guiHandler = Prefs.ProjectFolderIconManager.DrawWithToolbar,
+                keywords = Prefs.ProjectFolderIconManager.GetKeywords()
+            };
+            return provider;
+        }
+
+        [SettingsProvider]
         public static SettingsProvider GetSearchSettingsProvider()
         {
-            SettingsProvider provider = new SettingsProvider(SEARCH_WINDOWS_SETTINGS_PATH, SettingsScope.Project)
+            SettingsProvider provider = new SettingsProvider(SearchWindowsSettingsPath, SettingsScope.Project)
             {
                 label = "Search",
                 guiHandler = Prefs.SearchManager.DrawWithToolbar,
@@ -176,7 +229,7 @@ namespace InfinityCode.UltimateEditorEnhancer
         [SettingsProvider]
         public static SettingsProvider GetSceneViewSettingsProvider()
         {
-            SettingsProvider provider = new SettingsProvider(SCENEVIEW_SETTINGS_PATH, SettingsScope.Project)
+            SettingsProvider provider = new SettingsProvider(SceneViewSettingsPath, SettingsScope.Project)
             {
                 label = "Scene View",
                 guiHandler = Prefs.SceneViewManager.DrawWithToolbar,
@@ -188,7 +241,7 @@ namespace InfinityCode.UltimateEditorEnhancer
         [SettingsProvider]
         public static SettingsProvider GetSettingsProvider()
         {
-            SettingsProvider provider = new SettingsProvider(UEE_SETTINGS_PATH, SettingsScope.Project)
+            SettingsProvider provider = new SettingsProvider(UEESettingsPath, SettingsScope.Project)
             {
                 label = "Ultimate Editor Enhancer",
                 guiHandler = Prefs.OnGUI,
@@ -200,7 +253,7 @@ namespace InfinityCode.UltimateEditorEnhancer
         [SettingsProvider]
         public static SettingsProvider GetToolbarSettingsProvider()
         {
-            SettingsProvider provider = new SettingsProvider(TOOLBAR_SETTINGS_PATH, SettingsScope.Project)
+            SettingsProvider provider = new SettingsProvider(ToolbarSettingsPath, SettingsScope.Project)
             {
                 label = "Toolbar",
                 guiHandler = Prefs.ToolbarManager.DrawWithToolbar,
@@ -212,7 +265,7 @@ namespace InfinityCode.UltimateEditorEnhancer
         [SettingsProvider]
         public static SettingsProvider GetViewsSettingsProvider()
         {
-            SettingsProvider provider = new SettingsProvider(VIEWS_SETTINGS_PATH, SettingsScope.Project)
+            SettingsProvider provider = new SettingsProvider(ViewsSettingsPath, SettingsScope.Project)
             {
                 label = "Views",
                 guiHandler = Prefs.ViewGalleryManager.DrawWithToolbar,
@@ -224,7 +277,7 @@ namespace InfinityCode.UltimateEditorEnhancer
         [SettingsProvider]
         public static SettingsProvider GetWailaSettingsProvider()
         {
-            SettingsProvider provider = new SettingsProvider(WAILA_SETTINGS_PATH, SettingsScope.Project)
+            SettingsProvider provider = new SettingsProvider(WailaSettingsPath, SettingsScope.Project)
             {
                 label = "WAILA",
                 guiHandler = Prefs.WailaManager.DrawWithToolbar,
@@ -236,7 +289,7 @@ namespace InfinityCode.UltimateEditorEnhancer
         [SettingsProvider]
         public static SettingsProvider GetUnsafeSettingsProvider()
         {
-            SettingsProvider provider = new SettingsProvider(UNSAFE_SETTINGS_PATH, SettingsScope.Project)
+            SettingsProvider provider = new SettingsProvider(UnsafeSettingsPath, SettingsScope.Project)
             {
                 label = "Unsafe",
                 guiHandler = Prefs.UnsafeManager.DrawWithToolbar,
@@ -247,38 +300,43 @@ namespace InfinityCode.UltimateEditorEnhancer
 
         public static void OpenEmptyInspectorSettings()
         {
-            SettingsService.OpenProjectSettings(EMPTY_INSPECTOR_SETTINGS_PATH);
+            SettingsService.OpenProjectSettings(EmptyInspectorSettingsPath);
         }
 
         public static void OpenFavoriteWindowsSettings()
         {
-            SettingsService.OpenProjectSettings(FAVORITE_WINDOWS_SETTINGS_PATH);
+            SettingsService.OpenProjectSettings(FavoriteWindowsSettingsPath);
+        }
+
+        public static void OpenMiniLayoutsSettings()
+        {
+            SettingsService.OpenProjectSettings(MiniLayoutsSettingsPath);
         }
 
         public static void OpenQuickAccessSettings()
         {
-            SettingsService.OpenProjectSettings(QUICK_ACCESS_SETTINGS_PATH);
+            SettingsService.OpenProjectSettings(QuickAccessSettingsPath);
         }
 
         public static void OpenSearchSettings()
         {
-            SettingsService.OpenProjectSettings(SEARCH_WINDOWS_SETTINGS_PATH);
+            SettingsService.OpenProjectSettings(SearchWindowsSettingsPath);
         }
 
-        [MenuItem(WindowsHelper.MenuPath + "Settings", false, 122)]
+        [MenuItem(WindowsHelper.MenuPath + "Settings", false, MenuItemOrder.Settings)]
         public static void OpenSettings()
         {
-            SettingsService.OpenProjectSettings(UEE_SETTINGS_PATH);
+            SettingsService.OpenProjectSettings(UEESettingsPath);
         }
 
         public static void OpenToolbarSettings()
         {
-            SettingsService.OpenProjectSettings(TOOLBAR_SETTINGS_PATH);
+            SettingsService.OpenProjectSettings(ToolbarSettingsPath);
         }
 
         public static void OpenViewsSettings()
         {
-            SettingsService.OpenProjectSettings(VIEWS_SETTINGS_PATH);
+            SettingsService.OpenProjectSettings(ViewsSettingsPath);
         }
     }
 }

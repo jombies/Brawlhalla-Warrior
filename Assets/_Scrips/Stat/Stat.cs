@@ -5,7 +5,7 @@ public class Stat
 {
     public int BaseValue;
 
-    private List<int> modifiers = new List<int>();
+    private List<int> _modifiers = new List<int>();
     public int GetValue()
     {
         return BaseValue;
@@ -15,7 +15,7 @@ public class Stat
     {
         if (value != 0)
         {
-            modifiers.Add(value);
+            _modifiers.Add(value);
         }
         //totalValue();
     }
@@ -23,14 +23,14 @@ public class Stat
     {
         if (value != 0)
         {
-            modifiers.Remove(value);
+            _modifiers.Remove(value);
         }
         //totalValue();
     }
-    public void totalValue()
+    public void TotalValue()
     {
         int newValue = 0;
-        foreach (int modifier in modifiers)
+        foreach (int modifier in _modifiers)
         {
             newValue += modifier;
         }

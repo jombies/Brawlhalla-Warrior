@@ -8,9 +8,10 @@ namespace InfinityCode.UltimateEditorEnhancer
 {
     public static partial class Prefs
     {
+        public static int autosaveDelay = 600;
+        public static bool autosaveToSeparateFile = false;
         public static bool saveScenesByTimer = true;
         public static bool saveScenesWhenEnteringPlaymode = true;
-        public static int autosaveDelay = 600;
 
         public class AutosaveManager : PrefManager
         {
@@ -21,7 +22,7 @@ namespace InfinityCode.UltimateEditorEnhancer
 
             public override float order
             {
-                get { return Order.autosave; }
+                get { return Order.Autosave; }
             }
 
             public override void Draw()
@@ -39,8 +40,15 @@ namespace InfinityCode.UltimateEditorEnhancer
 
                 EditorGUI.EndDisabledGroup();
 
+                autosaveToSeparateFile = EditorGUILayout.ToggleLeft("To Separate File (example: SCENE_NAME_autosave)", autosaveToSeparateFile);
 
                 EditorGUI.indentLevel--;
+            }
+            
+            public static void SetState(bool state)
+            {
+                saveScenesByTimer = state;
+                saveScenesWhenEnteringPlaymode = state;
             }
         }
     }

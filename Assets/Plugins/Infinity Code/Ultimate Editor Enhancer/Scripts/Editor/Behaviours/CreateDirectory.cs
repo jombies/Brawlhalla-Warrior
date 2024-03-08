@@ -27,6 +27,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Behaviors
 
         private static bool OnValidate()
         {
+            if (!Prefs.projectCreateFolderByShortcut) return false;
             if (Event.current.keyCode != KeyCode.F7) return false;
             if (Selection.objects.Length != 1) return false;
             return true;

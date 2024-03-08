@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class ItemPickup : MonoBehaviour
 {
-    public Item item;
-    public void pickUp()
+    public Item Item;
+    public void PickUp()
     {
-        Debug.Log("Ban vua nhan: " + item.name);
-        bool pickUp = Inventory.Instance.Add(item);
+        Debug.Log("Ban vua nhan: " + Item.name);
+        bool pickUp = Inventory.Instance.Add(Item);
         if (pickUp) Destroy(gameObject);
     }
 }

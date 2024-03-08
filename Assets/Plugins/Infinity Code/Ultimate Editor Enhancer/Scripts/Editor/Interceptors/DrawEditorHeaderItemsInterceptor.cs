@@ -3,6 +3,7 @@
 
 using System;
 using System.Collections;
+using System.Linq;
 using System.Reflection;
 using InfinityCode.UltimateEditorEnhancer.Attributes;
 using InfinityCode.UltimateEditorEnhancer.UnityTypes;
@@ -41,8 +42,12 @@ namespace InfinityCode.UltimateEditorEnhancer.Interceptors
 
             inited = true;
             var methods = TypeCache.GetMethodsWithAttribute<ComponentHeaderButtonAttribute>();
-            Type headerItemDelegate = Reflection.GetEditorType("EditorGUIUtility+HeaderItemDelegate"); 
-            foreach (MethodInfo method in methods) s_EditorHeaderItemsMethods.Add(Delegate.CreateDelegate(headerItemDelegate, method));
+            Type headerItemDelegate = Reflection.GetEditorType("EditorGUIUtility+HeaderItemDelegate");
+            
+            foreach (MethodInfo method in methods.OrderBy(m => m.GetCustomAttribute<ComponentHeaderButtonAttribute>().order))
+            {
+                s_EditorHeaderItemsMethods.Add(Delegate.CreateDelegate(headerItemDelegate, method));
+            }
 
             Reflection.SetStaticFieldValue(typeof(EditorGUIUtility), "s_EditorHeaderItemsMethods", s_EditorHeaderItemsMethods);
 

@@ -45,11 +45,11 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
                         int lastDot = _label.LastIndexOf(".", StringComparison.InvariantCulture);
                         if (lastDot != -1) _label = _label.Substring(0, lastDot);
 
-                        if (_label.Length > maxLabelLength)
+                        if (_label.Length > MaxLabelLength)
                         {
-                            int start = _label.IndexOf("/", _label.Length - maxLabelLength + 3, StringComparison.InvariantCulture);
+                            int start = _label.IndexOf("/", _label.Length - MaxLabelLength + 3, StringComparison.InvariantCulture);
                             if (start != -1) _label = "..." + _label.Substring(start);
-                            else _label = "..." + _label.Substring(_label.Length - maxLabelLength + 3);
+                            else _label = "..." + _label.Substring(_label.Length - MaxLabelLength + 3);
                         }
                     }
 

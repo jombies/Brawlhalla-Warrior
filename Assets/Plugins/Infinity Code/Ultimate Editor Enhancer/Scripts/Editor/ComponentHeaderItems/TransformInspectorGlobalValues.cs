@@ -37,11 +37,11 @@ namespace InfinityCode.UltimateEditorEnhancer.ComponentHeader
             enabled = false;
             target = null;
             inited = false;
-            TransformInspectorInterceptor.DrawInspector3D = null;
+            TransformInspectorInterceptor.OnInspector3DPrefix -= DrawInspector3D;
         }
 
-        [ComponentHeaderButton]
-        public static bool DrawHeaderButton(Rect rectangle, Object[] targets)
+        [ComponentHeaderButton(ComponentHeaderButtonOrder.TransformGlobalValues)]
+        public static bool DrawHeaderButton(Rect rect, Object[] targets)
         {
             if (targets.Length != 1)
             {
@@ -57,7 +57,7 @@ namespace InfinityCode.UltimateEditorEnhancer.ComponentHeader
             if (!inited) Init();
 
             EditorGUI.BeginChangeCheck();
-            enabled = GUI.Toggle(rectangle, enabled, content, enabled? activeStyle: style);
+            enabled = GUI.Toggle(rect, enabled, content, enabled? activeStyle: style);
             if (EditorGUI.EndChangeCheck())
             {
                 if (enabled) Enable(target as Transform);
@@ -210,7 +210,7 @@ namespace InfinityCode.UltimateEditorEnhancer.ComponentHeader
         {
             InitTarget(transform);
 
-            TransformInspectorInterceptor.DrawInspector3D += DrawInspector3D;
+            TransformInspectorInterceptor.OnInspector3DPrefix += DrawInspector3D;
             Selection.selectionChanged += Disable;
             Renderer[] renderers = target.GetComponentsInChildren<Renderer>();
             canUseSize = renderers.Length > 0;

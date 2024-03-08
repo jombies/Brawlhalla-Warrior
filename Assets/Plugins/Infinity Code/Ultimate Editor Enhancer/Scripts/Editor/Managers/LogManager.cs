@@ -13,11 +13,11 @@ namespace InfinityCode.UltimateEditorEnhancer
     [InitializeOnLoad]
     public static class LogManager
     {
-        private const double FREQUENCY = 1;
-        private const int ERROR_MODE = 16640;
-        private const int ERROR_MODE2 = 8405248;
-        private const int EXCEPTION_MODE = 4325632;
-        private const int EXCEPTION_MODE2 = 12714240;
+        private const double Frequency = 1;
+        private const int ErrorMode = 16640;
+        private const int ErrorMode2 = 8405248;
+        private const int ExceptionMode = 4325632;
+        private const int ExceptionMode2 = 12714240;
 
         private static Dictionary<int, List<Entry>> entries;
         private static double lastUpdatedTime;
@@ -56,7 +56,7 @@ namespace InfinityCode.UltimateEditorEnhancer
         {
             if (!Prefs.hierarchyErrorIcons) return;
 
-            if (EditorApplication.timeSinceStartup - lastUpdatedTime > FREQUENCY)
+            if (EditorApplication.timeSinceStartup - lastUpdatedTime > Frequency)
             {
                 if (!isDirty)
                 {
@@ -84,8 +84,8 @@ namespace InfinityCode.UltimateEditorEnhancer
                 {
                     LogEntriesRef.GetEntryInternal(i, nativeEntry);
                     int mode = LogEntryRef.GetMode(nativeEntry);
-                    if (mode != ERROR_MODE && mode != ERROR_MODE2 && 
-                        mode != EXCEPTION_MODE && mode != EXCEPTION_MODE2) continue;
+                    if (mode != ErrorMode && mode != ErrorMode2 && 
+                        mode != ExceptionMode && mode != ExceptionMode2) continue;
 
                     
                     int instanceID = LogEntryRef.GetInstanceID(nativeEntry);

@@ -18,6 +18,23 @@ namespace InfinityCode.UltimateEditorEnhancer
 
         public List<SceneBookmark> bookmarks = new List<SceneBookmark>();
         public List<HierarchyBackground> hierarchyBackgrounds = new List<HierarchyBackground>();
+        
+        [NonSerialized]
+        private HashSet<int> _bookmarkIDs;
+        
+        public HashSet<int> bookmarkIDs
+        {
+            get
+            {
+                if (_bookmarkIDs == null)
+                {
+                    IEnumerable<int> ids = bookmarks.Where(b => b.target != null).Select(b => b.target.GetInstanceID());
+                    _bookmarkIDs = new HashSet<int>(ids);
+                }
+
+                return _bookmarkIDs;
+            }
+        }
 
         public static SceneReferences Get(Scene scene, bool createIfMissed = true)
         {
@@ -87,9 +104,14 @@ namespace InfinityCode.UltimateEditorEnhancer
             return null;
         }
 
+        public void ResetIDs()
+        {
+            _bookmarkIDs = null;
+        }
+
         public static void UpdateInstances()
         {
-            instances = FindObjectsOfType<SceneReferences>().ToList();
+            instances = ObjectHelper.FindObjectsOfType<SceneReferences>().ToList();
             if (OnUpdateInstances != null) OnUpdateInstances();
         }
 

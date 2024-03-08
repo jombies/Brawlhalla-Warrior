@@ -39,10 +39,10 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
         public static LayoutWindow Show(MainLayoutItem item, Rect rect)
         {
             LayoutWindow wnd = CreateInstance<LayoutWindow>();
-            wnd.minSize = Vector2.zero;
             wnd.item = item;
-            wnd.position = rect;
             wnd.ShowPopup();
+            wnd.minSize = Vector2.zero;
+            WindowsHelper.SetRect(wnd, rect);
             wnd.Focus();
             return wnd;
         }

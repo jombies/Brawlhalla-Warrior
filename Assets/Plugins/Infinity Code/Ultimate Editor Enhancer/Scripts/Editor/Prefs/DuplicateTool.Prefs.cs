@@ -19,7 +19,7 @@ namespace InfinityCode.UltimateEditorEnhancer
 
             public override float order
             {
-                get { return Order.duplicateTool; }
+                get { return Order.DuplicateTool; }
             }
 
             public override void Draw()

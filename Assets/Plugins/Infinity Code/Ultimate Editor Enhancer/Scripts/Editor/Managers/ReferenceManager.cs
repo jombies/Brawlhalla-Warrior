@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.IO;
 using InfinityCode.UltimateEditorEnhancer.HierarchyTools;
 using InfinityCode.UltimateEditorEnhancer.InspectorTools;
+using InfinityCode.UltimateEditorEnhancer.PostHeader;
+using InfinityCode.UltimateEditorEnhancer.ProjectTools;
 using InfinityCode.UltimateEditorEnhancer.SceneTools;
 using InfinityCode.UltimateEditorEnhancer.Windows;
 using UnityEditor;
@@ -14,8 +16,12 @@ using UnityEngine;
 namespace InfinityCode.UltimateEditorEnhancer
 {
     [Serializable]
+    [PreferBinarySerialization]
     public class ReferenceManager : ScriptableObject
     {
+        [SerializeField]
+        private List<BackgroundRule> _backgroundRules = new List<BackgroundRule>();
+        
         [SerializeField]
         private List<ProjectBookmark> _bookmarks = new List<ProjectBookmark>();
 
@@ -32,7 +38,16 @@ namespace InfinityCode.UltimateEditorEnhancer
         private List<QuickAccessItem> _quickAccessItems = new List<QuickAccessItem>();
 
         [SerializeField]
+        private List<ProjectFolderRule> _projectFolderIcons = new List<ProjectFolderRule>();
+
+        [SerializeField]
         private List<SceneHistoryItem> _sceneHistory = new List<SceneHistoryItem>();
+
+        [SerializeField]
+        private List<NoteItem> _notes = new List<NoteItem>();
+        
+        [SerializeField]
+        private List<MiniLayout> _miniLayouts = new List<MiniLayout>();
 
         private static ReferenceManager _instance;
 
@@ -43,6 +58,11 @@ namespace InfinityCode.UltimateEditorEnhancer
                 if (_instance == null) Load();
                 return _instance;
             }
+        }
+        
+        public static List<BackgroundRule> backgroundRules
+        {
+            get { return instance._backgroundRules; }
         }
 
         public static List<ProjectBookmark> bookmarks
@@ -64,10 +84,25 @@ namespace InfinityCode.UltimateEditorEnhancer
         {
             get { return instance._headerRules; }
         }
+        
+        public static List<MiniLayout> miniLayouts
+        {
+            get { return instance._miniLayouts; }
+        }
+
+        public static List<NoteItem> notes
+        {
+            get { return instance._notes; }
+        }
 
         public static List<QuickAccessItem> quickAccessItems
         {
             get { return instance._quickAccessItems; }
+        }
+
+        public static List<ProjectFolderRule> projectFolderIcons
+        {
+            get { return instance._projectFolderIcons; }
         }
 
         public static List<SceneHistoryItem> sceneHistory
@@ -115,10 +150,16 @@ namespace InfinityCode.UltimateEditorEnhancer
 
         public static void ResetContent()
         {
+            backgroundRules.Clear();
             bookmarks.Clear();
+            emptyInspectorItems.Clear();
             favoriteWindows.Clear();
             headerRules.Clear();
+            miniLayouts.Clear();
+            projectFolderIcons.Clear();
             quickAccessItems.Clear();
+            RecordUpgrader.InitDefaultEmptyInspectorItems();
+            RecordUpgrader.InitDefaultQuickAccessItems();
             Save();
         }
 

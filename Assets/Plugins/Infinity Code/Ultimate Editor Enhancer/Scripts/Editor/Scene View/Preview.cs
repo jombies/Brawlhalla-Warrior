@@ -48,7 +48,7 @@ namespace InfinityCode.UltimateEditorEnhancer.SceneTools
             };
             binding.OnPress += StartPreview;
 
-            SceneViewManager.AddListener(OnSceneGUI, SceneViewOrder.quickPreview, true);
+            SceneViewManager.AddListener(OnSceneGUI, SceneViewOrder.QuickPreview, true);
         }
 
         private static void Dispose()
@@ -171,7 +171,7 @@ namespace InfinityCode.UltimateEditorEnhancer.SceneTools
             List<PreviewItem> tempItems = new List<PreviewItem>();
 
             Camera mainCamera = Camera.main;
-            Camera[] cameras = Object.FindObjectsOfType<Camera>();
+            Camera[] cameras = ObjectHelper.FindObjectsOfType<Camera>();
             activeIndex = 0;
             for (int i = 0; i < cameras.Length; i++)
             {
@@ -183,7 +183,7 @@ namespace InfinityCode.UltimateEditorEnhancer.SceneTools
                 tempItems.Add(new CameraItem(camera));
             }
 
-            ViewState[] states = Object.FindObjectsOfType<ViewState>();
+            ViewState[] states = ObjectHelper.FindObjectsOfType<ViewState>();
             for (int i = 0; i < states.Length; i++)
             {
                 ViewState state = states[i];
@@ -235,7 +235,7 @@ namespace InfinityCode.UltimateEditorEnhancer.SceneTools
             {
                 if (camera == null) return;
 
-                Canvas[] canvases = Object.FindObjectsOfType<Canvas>();
+                Canvas[] canvases = ObjectHelper.FindObjectsOfType<Canvas>();
                 List<Canvas> modifiedCanvases = new List<Canvas>();
 
                 try

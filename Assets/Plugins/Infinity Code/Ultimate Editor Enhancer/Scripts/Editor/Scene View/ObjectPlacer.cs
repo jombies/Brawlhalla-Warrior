@@ -2,6 +2,7 @@
 /*     https://infinity-code.com    */
 
 using System;
+using System.Text;
 using InfinityCode.UltimateEditorEnhancer.Windows;
 using UnityEditor;
 using UnityEngine;
@@ -32,10 +33,10 @@ namespace InfinityCode.UltimateEditorEnhancer.SceneTools
 
             string alternativeMessage = GetMessage(Prefs.createBrowserAlternativeTarget);
 
-            StaticStringBuilder.Clear();
-            StaticStringBuilder.Append($"Hold {rootKey} to create an object {alternativeMessage}.");
-            if (!in2DMode) StaticStringBuilder.Append("\nHold SHIFT to create an object without alignment.");
-            return StaticStringBuilder.GetString(true);
+            StringBuilder builder = StaticStringBuilder.Start();
+            builder.Append($"Hold {rootKey} to create an object {alternativeMessage}.");
+            if (!in2DMode) builder.Append("\nHold SHIFT to create an object without alignment.");
+            return builder.ToString();
         }
 
         private static string GetMessage(CreateBrowserTarget target)
@@ -94,7 +95,7 @@ namespace InfinityCode.UltimateEditorEnhancer.SceneTools
 
             if (go.GetComponent<Camera>() != null)
             {
-                if (Object.FindObjectsOfType<AudioListener>().Length > 1)
+                if (ObjectHelper.FindObjectsOfType<AudioListener>().Length > 1)
                 {
                     AudioListener audioListener = go.GetComponent<AudioListener>();
                     if (audioListener != null) Object.DestroyImmediate(audioListener);

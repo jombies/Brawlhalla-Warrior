@@ -133,7 +133,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
             Repaint();
         }
 
-        [MenuItem(WindowsHelper.MenuPath + "Editor Icon Browser", false, 102)]
+        [MenuItem(WindowsHelper.MenuPath + "Editor Icon Browser", false, MenuItemOrder.EditorIconBrowser)]
         public static EditorIconsBrowser OpenWindow()
         {
             return GetWindow<EditorIconsBrowser>("Editor Icon Browser");

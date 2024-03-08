@@ -25,7 +25,7 @@ namespace InfinityCode.UltimateEditorEnhancer
 
             public override float order
             {
-                get { return Order.sceneReferences; }
+                get { return Order.SceneReferences; }
             }
 
             public override void Draw()

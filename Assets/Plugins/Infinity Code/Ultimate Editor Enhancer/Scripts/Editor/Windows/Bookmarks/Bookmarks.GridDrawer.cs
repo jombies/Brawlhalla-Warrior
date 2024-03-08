@@ -11,7 +11,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
     public partial class Bookmarks
     {
         private const string GridSizePref = Prefs.Prefix + "Bookmarks.GridSize";
-        private const int gridMargin = 10;
+        private const int GridMargin = 10;
 
         private int minGridSize = 47;
         private int maxGridSize = 128;
@@ -31,7 +31,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
                 GUI.Box(new RectOffset(2, 2, 2, 2).Add(rect), GUIContent.none, selectedStyle);
             }
 
-            GUI.DrawTexture(new Rect(rect.x + gridMargin, rect.y, gridSize, gridSize), item.preview);
+            GUI.DrawTexture(new Rect(rect.x + GridMargin, rect.y, gridSize, gridSize), item.preview);
             GUIContent content = new GUIContent(item.title);
             GUIStyle style = new GUIStyle(EditorStyles.miniLabel);
             Vector2 size = style.CalcSize(content);
@@ -50,10 +50,10 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
 
             int countItems = gridItems.Count();
 
-            int countCols = Mathf.FloorToInt((position.width - 30) / (gridSize + gridMargin * 2));
+            int countCols = Mathf.FloorToInt((position.width - 30) / (gridSize + GridMargin * 2));
             int countRows = Mathf.CeilToInt(countItems / (float)countCols);
             int rowHeight = gridSize + 20;
-            int width = Mathf.Min(countCols, countItems) * (gridSize + gridMargin * 2);
+            int width = Mathf.Min(countCols, countItems) * (gridSize + GridMargin * 2);
             int height = countRows * (rowHeight);
 
             float marginLeft = (position.width - width) / 2;
@@ -66,7 +66,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
             {
                 int row = i / countCols;
                 int col = i % countCols;
-                Rect r = new Rect(col * (gridSize + gridMargin * 2) + marginLeft, row * rowHeight + rect.y, gridSize + gridMargin * 2, rowHeight);
+                Rect r = new Rect(col * (gridSize + GridMargin * 2) + marginLeft, row * rowHeight + rect.y, gridSize + GridMargin * 2, rowHeight);
                 if (!DrawCell(item, r)) removeItem = item;
                 i++;
             }

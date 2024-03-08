@@ -12,7 +12,6 @@ namespace InfinityCode.UltimateEditorEnhancer.UnityTypes
         private static Type _type;
         private static FieldInfo _activeTerrainInspectorField;
         private static FieldInfo _activeTerrainInspectorInstanceField;
-        private static PropertyInfo _selectedToolProp;
 
         public static Type type
         {
@@ -43,7 +42,6 @@ namespace InfinityCode.UltimateEditorEnhancer.UnityTypes
 
 #if UNITY_2020_2_OR_NEWER
         private static PropertyInfo _brushSizeProp;
-        
 
         private static PropertyInfo brushSizeProp
         {
@@ -66,6 +64,20 @@ namespace InfinityCode.UltimateEditorEnhancer.UnityTypes
         }
 #endif
 
+#if UNITY_2023_1_OR_NEWER
+        private static PropertyInfo _selectedCategoryProp;
+        
+        private static PropertyInfo selectedCategoryProp
+        {
+            get
+            {
+                if (_selectedCategoryProp == null) _selectedCategoryProp = type.GetProperty("selectedCategory", Reflection.InstanceLookup);
+                return _selectedCategoryProp;
+            }
+        }
+#else
+        private static PropertyInfo _selectedToolProp;
+
         private static PropertyInfo selectedToolProp
         {
             get
@@ -74,6 +86,7 @@ namespace InfinityCode.UltimateEditorEnhancer.UnityTypes
                 return _selectedToolProp;
             }
         }
+#endif
 
         public static Editor GetActiveTerrainInspectorInstance()
         {
@@ -92,7 +105,11 @@ namespace InfinityCode.UltimateEditorEnhancer.UnityTypes
 
         public static int GetSelectedTool(Editor editor)
         {
+#if UNITY_2023_1_OR_NEWER
+            return (int)selectedCategoryProp.GetValue(editor);
+#else
             return (int)selectedToolProp.GetValue(editor);
+#endif
         }
 
         public static void SetBrushSize(Editor editor, float size)

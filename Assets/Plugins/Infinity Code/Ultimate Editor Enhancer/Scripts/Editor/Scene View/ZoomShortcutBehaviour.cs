@@ -10,7 +10,7 @@ namespace InfinityCode.UltimateEditorEnhancer.SceneTools
     [InitializeOnLoad]
     public static class ZoomShortcutBehaviour
     {
-        private const int speed = 10;
+        private const int Speed = 10;
 
         static ZoomShortcutBehaviour()
         {
@@ -45,7 +45,7 @@ namespace InfinityCode.UltimateEditorEnhancer.SceneTools
             }
             else
             {
-                view.size = Mathf.Abs(view.size) * (float)(direction * speed * 0.0149999996647239 + 1.0);
+                view.size = Mathf.Abs(view.size) * (float)(direction * Speed * 0.0149999996647239 + 1.0);
             }
 
             Event.current.Use();

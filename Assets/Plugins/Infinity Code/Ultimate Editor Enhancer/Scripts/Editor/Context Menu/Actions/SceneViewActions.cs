@@ -48,13 +48,13 @@ namespace InfinityCode.UltimateEditorEnhancer.EditorMenus.Actions
             return camera;
         }
 
-        [MenuItem(WindowsHelper.MenuPath + "Cameras/Create Permanent", false, 101)]
+        [MenuItem(WindowsHelper.MenuPath + "Cameras/Create Permanent", false, MenuItemOrder.CameraCreatePermanent)]
         private static void CreatePermanentCameraFromSceneView()
         {
             CreateCameraFromSceneView();
         }
 
-        [MenuItem(WindowsHelper.MenuPath + "Cameras/Create Temporary", false, 101)]
+        [MenuItem(WindowsHelper.MenuPath + "Cameras/Create Temporary", false, MenuItemOrder.CameraCreateTemporary)]
         private static void CreateTemporaryCameraFromSceneView()
         {
             GameObject container = TemporaryContainer.GetContainer();
@@ -92,7 +92,7 @@ namespace InfinityCode.UltimateEditorEnhancer.EditorMenus.Actions
 
         private void DeleteAllViewStates()
         {
-            ViewState[] views = Object.FindObjectsOfType<ViewState>();
+            ViewState[] views = ObjectHelper.FindObjectsOfType<ViewState>();
             for (int i = 0; i < views.Length; i++) Object.DestroyImmediate(views[i].gameObject);
             EditorMenu.Close();
         }
@@ -122,7 +122,7 @@ namespace InfinityCode.UltimateEditorEnhancer.EditorMenus.Actions
 
         private void InitAlignViewToCameraMenu(GenericMenuEx menu)
         {
-            Camera[] cameras = Object.FindObjectsOfType<Camera>().OrderBy(c => c.name).ToArray();
+            Camera[] cameras = ObjectHelper.FindObjectsOfType<Camera>().OrderBy(c => c.name).ToArray();
             if (cameras.Length > 0)
             {
                 for (int i = 0; i < cameras.Length; i++)
@@ -140,7 +140,7 @@ namespace InfinityCode.UltimateEditorEnhancer.EditorMenus.Actions
 
             menu.Add("View States/Create For Selection", SelectionViewStates.AddToSelection);
 
-            ViewState[] views = Object.FindObjectsOfType<ViewState>().OrderBy(v => v.title).ToArray();
+            ViewState[] views = ObjectHelper.FindObjectsOfType<ViewState>().OrderBy(v => v.title).ToArray();
             if (views.Length > 0)
             {
                 for (int i = 0; i < views.Length; i++)
@@ -193,7 +193,7 @@ namespace InfinityCode.UltimateEditorEnhancer.EditorMenus.Actions
             EditorMenu.Close();
         }
 
-        [MenuItem(WindowsHelper.MenuPath + "View States/Create", false, 104)]
+        [MenuItem(WindowsHelper.MenuPath + "View States/Create", false, MenuItemOrder.ViewStatesCreate)]
         public static void SaveViewState()
         {
             GameObject container = TemporaryContainer.GetContainer();
@@ -231,6 +231,7 @@ namespace InfinityCode.UltimateEditorEnhancer.EditorMenus.Actions
 
                 go.transform.SetParent(container.transform, true);
                 EditorMenu.Close();
+                ViewGallery.RepaintAll();
             });
         }
     }

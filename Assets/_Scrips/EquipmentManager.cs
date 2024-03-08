@@ -10,57 +10,61 @@ public class EquipmentManager : MonoBehaviour
         Instance = this;
     }
     #endregion
-    [SerializeField] ChangeWeapon ChangeWeapon;
-    [SerializeField] ChangeHelmet ChangeHelmet;
-    [SerializeField] ChangeArmor ChangeArmor;
-
-    Equipment[] currentEquipment;
-    Inventory inventory;
+    [SerializeField] ChangeWeapon _changeWeapon;
+    [SerializeField] ChangeHelmet _changeHelmet;
+    [SerializeField] ChangeArmor _changeArmor;
+    Equipment[] _currentEquipment;
+    Inventory _inventory;
 
     public delegate void OnEquipchanged(Equipment newItem, Equipment oldItem);
     public OnEquipchanged onEquipchanged;
+
     private void Start()
     {
-        inventory = Inventory.Instance;
+        _inventory = Inventory.Instance;
         int numSlot = System.Enum.GetNames(typeof(EquipmentSlot)).Length;
-        currentEquipment = new Equipment[numSlot];
-        loadEquip();
+        _currentEquipment = new Equipment[numSlot];
+        //LoadEquip();
     }
-    void loadEquip()
-    {
-        ChangeWeapon = FindAnyObjectByType<ChangeWeapon>();
-        ChangeArmor = FindAnyObjectByType<ChangeArmor>();
-        ChangeHelmet = FindAnyObjectByType<ChangeHelmet>();
-    }
+    //void LoadEquip()
+    //{
+    //    _changeWeapon = FindAnyObjectByType<ChangeWeapon>();
+    //    _changeArmor = FindAnyObjectByType<ChangeArmor>();
+    //    _changeHelmet = FindAnyObjectByType<ChangeHelmet>();
+    //}
     public void Equip(Equipment newItem)
     {
-        int slotIndex = (int)newItem.equipSlot;
+        int slotIndex = (int)newItem.EquipSlot;
         Equipment oldItem = null;
 
-        if (currentEquipment[slotIndex] != null)
+        if (_currentEquipment[slotIndex] != null)
         {
-            oldItem = currentEquipment[slotIndex];
-            inventory.Add(oldItem);
+            oldItem = _currentEquipment[slotIndex];
+            _inventory.Add(oldItem);
         }
         if (onEquipchanged != null)
         {
             onEquipchanged.Invoke(newItem, oldItem);
         }
 
-        currentEquipment[slotIndex] = newItem;
+        _currentEquipment[slotIndex] = newItem;
         switch (slotIndex)
         {
             case 0:
-                ChangeHelmet.changeHelmet(newItem.name);
+                _changeHelmet.changeHelmet(newItem.name);
                 break;
             case 1:
-                ChangeArmor.changeArmor(newItem.name);
+                _changeArmor.changeArmor(newItem.name);
                 break;
             case 2:
-                ChangeWeapon.changeWeapon(newItem.name);
+                _changeWeapon.changeWeapon(newItem.name);
                 break;
             default: Debug.Log("Nothing use"); break;
         }
-    }
 
+    }
+    public void Suplly(SupllyEquipment s)
+    {
+        PlayerReferences.Instance.Player.GetComponent<PlayerStat>().Healing(s.HP);
+    }
 }

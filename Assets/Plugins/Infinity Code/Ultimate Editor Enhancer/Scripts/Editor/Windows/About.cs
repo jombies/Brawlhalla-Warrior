@@ -11,7 +11,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
     {
         private string years = DateTime.Now.Year.ToString();
 
-        [MenuItem(WindowsHelper.MenuPath + "About", false, 130)]
+        [MenuItem(WindowsHelper.MenuPath + "About", false, MenuItemOrder.About)]
         public static void OpenWindow()
         {
             About window = GetWindow<About>(true, "About", true);

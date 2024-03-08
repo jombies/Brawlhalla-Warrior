@@ -1,7 +1,8 @@
 ﻿/*           INFINITY CODE          */
 /*     https://infinity-code.com    */
 
-using System;
+using System.Diagnostics;
+using System.Reflection;
 using InfinityCode.UltimateEditorEnhancer.Interceptors;
 using InfinityCode.UltimateEditorEnhancer.Windows;
 using UnityEditor;
@@ -12,7 +13,7 @@ namespace InfinityCode.UltimateEditorEnhancer.InspectorTools
     [InitializeOnLoad]
     public static class LongTextEditor
     {
-        private const int buttonWidth = 20;
+        private const int ButtonWidth = 20;
 
         private static int targetID = int.MinValue;
         private static string restoreText;
@@ -33,8 +34,20 @@ namespace InfinityCode.UltimateEditorEnhancer.InspectorTools
             if (multiline || passwordfield || allowedletters != null) return;
             if (EditorStyles.textField.CalcSize(TempContent.Get(text)).x < position.width - 10) return;
 
+            if (Prefs.longTextFieldsInVisualScripting)
+            {
+                StackTrace stackTrace = new StackTrace();
+                for (int i = 3; i < stackTrace.FrameCount; i++)
+                {
+                    StackFrame frame = stackTrace.GetFrame(i);
+                    MethodBase method = frame.GetMethod();
+                    if (method == null) break;
+                    if (method.DeclaringType.AssemblyQualifiedName.StartsWith("Unity.VisualScripting.")) return;
+                }
+            }
+
             drawButton = true;
-            buttonRect = new Rect(position.xMax - buttonWidth, position.y, buttonWidth, position.height);
+            buttonRect = new Rect(position.xMax - ButtonWidth, position.y, ButtonWidth, position.height);
             position.width -= buttonRect.width + 2;
         }
 
@@ -56,7 +69,7 @@ namespace InfinityCode.UltimateEditorEnhancer.InspectorTools
             if (GUI.Button(buttonRect, TempContent.Get(Icons.upDown, "Expand Text Field")))
             {
                 targetID = id;
-                LongTextEditorWindow.OpenWindow(text, new Rect(position.x - 3, position.y - 2, position.width + buttonWidth + 5, position.height + 2)).OnClose += s => { restoreText = s; };
+                LongTextEditorWindow.OpenWindow(text, new Rect(position.x - 3, position.y - 2, position.width + ButtonWidth + 5, position.height + 2)).OnClose += s => { restoreText = s; };
             }
         }
     }

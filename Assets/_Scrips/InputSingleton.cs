@@ -1,18 +1,17 @@
-
 using UnityEngine;
 
 public class InputSingleton : MonoBehaviour
 {
-    [SerializeField] private static InputSingleton mInstance;
-    public static InputSingleton Instance { get => mInstance; }
-    protected float sHorizon; public float Horizon { get => sHorizon; }
-    protected float sVertical; public float Vertical { get => sVertical; }
+    [SerializeField] private static InputSingleton _mInstance;
+    public static InputSingleton instance { get => _mInstance; }
+    protected float SHorizon; public float horizon { get => SHorizon; }
+    protected float SVertical; public float vertical { get => SVertical; }
 
-    protected Vector3 _direction;
-    public Vector3 direction { get { return _direction; } }
+    protected Vector3 Direction;
+    public Vector3 direction { get { return Direction; } }
     private void Awake()
     {
-        mInstance = this;
+        _mInstance = this;
         DontDestroyOnLoad(this);
     }
     private void Update()
@@ -22,8 +21,8 @@ public class InputSingleton : MonoBehaviour
     }
     void Getdirection()
     {
-        sHorizon = Input.GetAxisRaw("Horizontal");
-        sVertical = Input.GetAxisRaw("Vertical");
+        SHorizon = Input.GetAxisRaw("Horizontal");
+        SVertical = Input.GetAxisRaw("Vertical");
     }
     void SetDirection()
     {
@@ -31,8 +30,8 @@ public class InputSingleton : MonoBehaviour
         Vector3 right = gameObject.transform.right; right.y = 0;
         forward = forward.normalized;
         right = right.normalized;
-        Vector3 verticalR = Vertical * forward;
-        Vector3 horizontalR = Horizon * right;
-        _direction = verticalR + horizontalR;
+        Vector3 verticalR = vertical * forward;
+        Vector3 horizontalR = horizon * right;
+        Direction = verticalR + horizontalR;
     }
 }

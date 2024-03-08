@@ -14,12 +14,13 @@ namespace InfinityCode.UltimateEditorEnhancer
     public static partial class Prefs
     {
         public static bool hierarchyBookmarks = true;
-        public static bool hierarchyRowBackground = true;
-        public static HierarchyRowBackgroundStyle hierarchyRowBackgroundStyle = HierarchyRowBackgroundStyle.gradient;
         public static bool hierarchyEnableGameObject = true;
+        public static bool hierarchyEnableMiddleClick = true;
         public static bool hierarchyErrorIcons = true;
         public static bool hierarchyIcons = true;
+        public static bool hierarchyIconsHideDefault = false;
         public static HierarchyIconsDisplayRule hierarchyIconsDisplayRule = HierarchyIconsDisplayRule.onHoverWithModifiers;
+        public static bool hierarchyNote = true;
         public static bool hierarchyOverrideMainIcon = true;
         public static bool hierarchySoloVisibility = true;
         public static float hierarchyMarginRight = 0;
@@ -33,23 +34,37 @@ namespace InfinityCode.UltimateEditorEnhancer
 #endif
         public static int hierarchyIconsMaxItems = 6;
 
-        public class HierarchyManager : StandalonePrefManager<HierarchyManager>, IHasShortcutPref
+        public class HierarchyManager : StandalonePrefManager<HierarchyManager>, IHasShortcutPref, IStateablePref
         {
-            private const string sectionLabel = "Show Components In Hierarchy";
+            private const string SectionLabel = "Show Components In Hierarchy";
 
             public override IEnumerable<string> keywords
             {
-                get { return new[] { "Hierarchy Icons", "Max Items", "Show error icon if GameObject has an error or exception" }; }
-            }
-
-            public override float order
-            {
-                get { return -46; }
+                get 
+                { 
+                    return new[] 
+                    { 
+                        "Hierarchy Icons", 
+                        "Max Items",
+                        "Show Error Icon When GameObject Has an Error or Exception",
+                        "Enable / Disable GameObject",
+                        "Filter by Type",
+                        "Icon Right Margin",
+                        "Note",
+                        "Show Bookmark Button",
+                        "Tree",
+                        "Solo Visibility",
+                        "Show Bookmark Button",
+                        "Show Best Component Icon Before Name",
+                        "Show Components In Hierarchy"
+                    };
+                }
             }
 
             public override void Draw()
             {
                 hierarchyEnableGameObject = EditorGUILayout.ToggleLeft("Enable / Disable GameObject", hierarchyEnableGameObject);
+                hierarchyEnableMiddleClick = EditorGUILayout.ToggleLeft("Enable / Disable By Middle Click", hierarchyEnableMiddleClick);
                 EditorGUI.BeginDisabledGroup(!unsafeFeatures);
                 EditorGUI.BeginChangeCheck();
                 _hierarchyTypeFilter = EditorGUILayout.ToggleLeft("Filter By Type", _hierarchyTypeFilter);
@@ -58,11 +73,11 @@ namespace InfinityCode.UltimateEditorEnhancer
 
                 hierarchyMarginRight = EditorGUILayout.FloatField("Icon Right Margin", hierarchyMarginRight);
 
-                DrawRowBackground();
                 DrawBestComponents();
                 DrawHierarchyIcons();
 
                 hierarchyBookmarks = EditorGUILayout.ToggleLeft("Show Bookmark Button", hierarchyBookmarks);
+                hierarchyNote = EditorGUILayout.ToggleLeft("Show Note", hierarchyNote);
                 hierarchyErrorIcons = EditorGUILayout.ToggleLeft("Show Error Icon When GameObject Has an Error or Exception", hierarchyErrorIcons);
                 hierarchySoloVisibility = EditorGUILayout.ToggleLeft("Solo Visibility", hierarchySoloVisibility);
                 hierarchyTree = EditorGUILayout.ToggleLeft("Tree", hierarchyTree);
@@ -75,21 +90,30 @@ namespace InfinityCode.UltimateEditorEnhancer
                 if (!EditorGUI.EndChangeCheck()) return;
 
                 Object[] windows = UnityEngine.Resources.FindObjectsOfTypeAll(SceneHierarchyWindowRef.type);
-                foreach (Object wnd in windows)
+                foreach (Object window in windows)
                 {
-                    EditorWindow window = wnd as EditorWindow;
-                    HierarchyHelper.SetDefaultIconsSize(window, hierarchyOverrideMainIcon ? 0 : 18);
-                    window.Repaint();
+                    EditorWindow wnd = window as EditorWindow;
+                    HierarchyHelper.SetDefaultIconsSize(wnd, hierarchyOverrideMainIcon ? 0 : 18);
+                    wnd.Repaint();
                 }
             }
 
             private static void DrawHierarchyIcons()
             {
-                hierarchyIcons = EditorGUILayout.ToggleLeft(sectionLabel, hierarchyIcons, EditorStyles.label);
+                hierarchyIcons = EditorGUILayout.ToggleLeft(SectionLabel, hierarchyIcons, EditorStyles.label);
 
                 EditorGUI.indentLevel++;
+                
+                EditorGUI.BeginChangeCheck();
+                hierarchyIconsHideDefault = EditorGUILayout.ToggleLeft("Hide Default Icons", hierarchyIconsHideDefault);
+                if (EditorGUI.EndChangeCheck())
+                {
+                    ComponentIconDrawer.ClearCache();
+                    EditorApplication.RepaintHierarchyWindow();
+                }
+                
                 EditorGUILayout.BeginHorizontal();
-                EditorGUILayout.LabelField("Modifiers", GUILayout.Width(labelWidth - 17));
+                EditorGUILayout.LabelField("Modifiers", GUILayout.Width(LabelWidth - 17));
                 hierarchyIconsModifiers = DrawModifiers(hierarchyIconsModifiers);
                 EditorGUILayout.EndHorizontal();
 
@@ -101,33 +125,43 @@ namespace InfinityCode.UltimateEditorEnhancer
                 EditorGUI.indentLevel--;
             }
 
-            private static void DrawRowBackground()
+            public string GetMenuName()
             {
-                hierarchyRowBackground = EditorGUILayout.ToggleLeft("Row Background", hierarchyRowBackground);
-
-                EditorGUI.indentLevel++;
-                EditorGUI.BeginDisabledGroup(!hierarchyRowBackground);
-
-                EditorGUI.BeginChangeCheck();
-                hierarchyRowBackgroundStyle = (HierarchyRowBackgroundStyle)EditorGUILayout.EnumPopup("Style", hierarchyRowBackgroundStyle);
-                if (EditorGUI.EndChangeCheck())
-                {
-                    BackgroundDrawer.backgroundTexture = null;
-                    EditorApplication.RepaintHierarchyWindow();
-                }
-
-                EditorGUI.EndDisabledGroup();
-                EditorGUI.indentLevel--;
+                return "Hierarchy";
             }
 
             public IEnumerable<Shortcut> GetShortcuts()
             {
-                if (!hierarchyIcons) return new Shortcut[0];
+                List<Shortcut> shortcuts = new List<Shortcut>();
 
-                return new[]
+                if (hierarchyIcons)
                 {
-                    new Shortcut("Show Component Icons", "Hierarchy", hierarchyIconsModifiers)
-                };
+                    shortcuts.Add(new Shortcut("Show Component Icons", "Hierarchy", hierarchyIconsModifiers));
+                }
+
+                if (hierarchyEnableMiddleClick)
+                {
+                    shortcuts.Add(new Shortcut("Toggle GameObject Enable", "Hierarchy", "MMB"));
+                }
+
+                return shortcuts;
+            }
+
+            public void SetState(bool state)
+            {
+                _hierarchyTypeFilter = state;
+                hierarchyBookmarks = state;
+                hierarchyEnableGameObject = state;
+                hierarchyEnableMiddleClick = state;
+                hierarchyErrorIcons = state;
+                hierarchyIcons = state;
+                hierarchyNote = state;
+                hierarchyOverrideMainIcon = state;
+                hierarchyRowBackground = state;
+                hierarchySoloVisibility = state;
+                hierarchyTree = state;
+
+                HeadersManager.SetState(state);
             }
         }
 

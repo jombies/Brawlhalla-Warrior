@@ -111,7 +111,6 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
 
             public void DrawPreview()
             {
-                if (!Prefs.createBrowserPreviewSelection) return;
                 if (previewPrefab != this && previewEditor != null)
                 {
                     DestroyImmediate(previewEditor);
@@ -123,7 +122,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
                     previewEditor = Editor.CreateEditor(AssetDatabase.LoadAssetAtPath<GameObject>(path));
                 }
 
-                if (previewEditor != null) previewEditor.OnInteractivePreviewGUI(GUILayoutUtility.GetRect(128, 128), Styles.grayRow);
+                if (previewEditor != null) previewEditor.OnInteractivePreviewGUI(GUILayoutUtility.GetRect(1, PreviewHeight), Styles.grayRow);
             }
 
             protected override void InitContent()

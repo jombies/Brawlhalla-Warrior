@@ -371,6 +371,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
 
         protected override bool ValidateCloseOnLossFocus()
         {
+            if (!base.ValidateCloseOnLossFocus()) return false;
             if (focusedWindow == null) return true;
 
             Type type = focusedWindow.GetType();

@@ -12,9 +12,9 @@ namespace InfinityCode.UltimateEditorEnhancer.SceneTools
         private static double lastShiftPressed;
 
 #if UNITY_EDITOR_OSX
-        private const EventModifiers MODIFIERS = EventModifiers.Command | EventModifiers.Shift;
+        private const EventModifiers Modifiers = EventModifiers.Command | EventModifiers.Shift;
 #else
-        private const EventModifiers MODIFIERS = EventModifiers.Control | EventModifiers.Shift;
+        private const EventModifiers Modifiers = EventModifiers.Control | EventModifiers.Shift;
 #endif
 
         static HighJumpToPoint()
@@ -27,7 +27,7 @@ namespace InfinityCode.UltimateEditorEnhancer.SceneTools
             if (!Prefs.highJumpToPoint || view.orthographic) return;
 
             Event e = Event.current;
-            bool isJump = e.type == EventType.MouseUp && e.button == 2 && e.modifiers == MODIFIERS;
+            bool isJump = e.type == EventType.MouseUp && e.button == 2 && e.modifiers == Modifiers;
 
             if (!isJump && Prefs.alternativeJumpShortcut && EditorWindow.mouseOverWindow is SceneView)
             {

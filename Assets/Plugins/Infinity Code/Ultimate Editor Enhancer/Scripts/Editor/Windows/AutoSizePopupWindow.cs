@@ -256,6 +256,9 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
 
         protected virtual bool ValidateCloseOnLossFocus()
         {
+#if UNITY_2023_2_OR_NEWER
+            if (focusedWindow != null && focusedWindow.GetType().Name == "ContextMenu") return false;
+#endif
             return true;
         }
     }

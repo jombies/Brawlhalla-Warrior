@@ -111,7 +111,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
             EditorGUILayout.EndScrollView();
         }
 
-        [MenuItem(WindowsHelper.MenuPath + "Shortcuts", false, 122)]
+        [MenuItem(WindowsHelper.MenuPath + "Shortcuts", false, MenuItemOrder.Shortcuts)]
         public static void OpenWindow()
         {
             GetWindow<Shortcuts>("Shortcuts");

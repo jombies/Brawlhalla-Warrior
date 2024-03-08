@@ -55,8 +55,8 @@ namespace InfinityCode.UltimateEditorEnhancer
 
                 EditorGUI.BeginDisabledGroup(!waila);
 
-                DrawFieldWithModifiers("Show Name Under Cursor", ref wailaShowNameUnderCursor, ref wailaShowNameUnderCursorModifiers, labelWidth + 40);
-                DrawFieldWithModifiers("Show All Names Under Cursor", ref wailaShowAllNamesUnderCursor, ref wailaShowAllNamesUnderCursorModifiers, labelWidth + 40);
+                DrawFieldWithModifiers("Show Name Under Cursor", ref wailaShowNameUnderCursor, ref wailaShowNameUnderCursorModifiers, LabelWidth + 40);
+                DrawFieldWithModifiers("Show All Names Under Cursor", ref wailaShowAllNamesUnderCursor, ref wailaShowAllNamesUnderCursorModifiers, LabelWidth + 40);
                 DrawFieldWithHotKey("Smart Selection", ref wailaSmartSelection, ref wailaSmartSelectionKeyCode, ref wailaSmartSelectionModifiers);
                 wailaSmartSelectionStyle = (SmartSelectionStyle)EditorGUILayout.EnumPopup("Smart Selection Style", wailaSmartSelectionStyle);
 
@@ -87,6 +87,11 @@ namespace InfinityCode.UltimateEditorEnhancer
                 }
 
                 return shortcuts;
+            }
+
+            public static void SetState(bool state)
+            {
+                waila = state;
             }
         }
     }

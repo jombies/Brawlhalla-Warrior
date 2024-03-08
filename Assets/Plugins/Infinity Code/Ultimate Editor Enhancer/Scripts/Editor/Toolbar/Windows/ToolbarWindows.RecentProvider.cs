@@ -7,10 +7,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Tools
     {
         public class RecentProvider : Provider
         {
-            public override float order
-            {
-                get { return 0; }
-            }
+            public override float order => 0;
 
             public override void GenerateMenu(GenericMenuEx menu, ref bool hasItems)
             {

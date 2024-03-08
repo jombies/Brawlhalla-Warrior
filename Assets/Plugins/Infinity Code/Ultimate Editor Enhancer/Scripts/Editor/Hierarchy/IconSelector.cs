@@ -12,7 +12,7 @@ namespace InfinityCode.UltimateEditorEnhancer.HierarchyTools
     {
         static IconSelector()
         {
-            HierarchyItemDrawer.Register("IconSelector", OnHierarchyGUI, HierarchyToolOrder.ICON_SELECTOR);
+            HierarchyItemDrawer.Register("IconSelector", OnHierarchyGUI, HierarchyToolOrder.IconSelector);
         }
 
         private static void OnHierarchyGUI(HierarchyItem item)

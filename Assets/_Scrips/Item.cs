@@ -1,20 +1,17 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]
-public class Item : ScriptableObject
+//[CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]
+public abstract class Item : ScriptableObject
 {
     public string Name = "new Item";
-    public Sprite icon = null;
+    public Sprite Icon = null;
     public bool DefaultItem = false;
 
-    public virtual void Use()
-    {
-        // use item
-        // someting happen
-        Debug.Log("Used: " + name);
-    }
+    public abstract void Use();
+
     public void RemoveItem()
     {
         Inventory.Instance.Remove(this);
     }
 }
+

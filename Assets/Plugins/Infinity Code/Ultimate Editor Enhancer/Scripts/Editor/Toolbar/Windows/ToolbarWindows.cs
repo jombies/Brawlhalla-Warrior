@@ -9,6 +9,7 @@ using InfinityCode.UltimateEditorEnhancer.Windows;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using PopupWindow = UnityEditor.PopupWindow;
 
 namespace InfinityCode.UltimateEditorEnhancer.Tools
 {
@@ -36,34 +37,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Tools
             Type focusedWindowType = EditorWindow.focusedWindow != null ? EditorWindow.focusedWindow.GetType() : null;
             if (lastWindowType == focusedWindowType && windows.Count != 0) return;
 
-            EditorWindow[] activeWindows = UnityEngine.Resources.FindObjectsOfTypeAll<EditorWindow>();
-            if (activeWindows.Length == 0) return;
-
-            tempWindows.Clear();
-
-            foreach (EditorWindow window in activeWindows)
-            {
-                if (window == null) continue;
-                if (window.maximized)
-                {
-                    lastFocusedWindowType = window.GetType();
-
-                    if (windows.Count == 0)
-                    {
-                        window.maximized = false;
-                        window.Repaint();
-                        CacheWindows();
-                        window.maximized = true;
-                        return;
-                    }
-
-                    lastWindowType = focusedWindowType;
-                    if (lastWindowType != null) lastFocusedWindowType = lastWindowType;
-
-                    return;
-                }
-                tempWindows.Add(window);
-            }
+            if (!IterateActiveWindows(focusedWindowType)) return;
 
             foreach (var pair in windows) pair.Value.used = false;
 
@@ -72,31 +46,14 @@ namespace InfinityCode.UltimateEditorEnhancer.Tools
                 int key = w.GetType().GetHashCode();
                 WindowRecord record;
                 if (windows.TryGetValue(key, out record)) record.used = true;
-                else
+                else if (!IgnoreWindow(w))
                 {
-                    Type type = w.GetType();
-                    if (type == typeof(LayoutWindow) || 
-                        type == typeof(PinAndClose) || 
-                        type == typeof(ComponentWindow) || 
-                        type == typeof(Search) || 
-                        type == typeof(CreateBrowser) || 
-                        type == typeof(InputDialog)) continue; 
                     record = new WindowRecord(w);
                     windows.Add(key, record);
                 }
             }
 
-            removeKeys.Clear();
-
-            foreach (var pair in windows)
-            {
-                if (pair.Value.used) continue;
-
-                removeKeys.Add(pair.Key);
-                recent.Insert(0, pair.Value);
-            }
-
-            while (recent.Count > Prefs.maxRecentWindows) recent.RemoveAt(recent.Count - 1);
+            UpdateRecentWindows();
 
             foreach (int key in removeKeys) windows.Remove(key);
 
@@ -189,12 +146,31 @@ namespace InfinityCode.UltimateEditorEnhancer.Tools
             lastFocusedWindowType = type;
         }
 
+        private static bool IgnoreWindow(EditorWindow window)
+        {
+            if (window is ComponentWindow) return true;
+            if (window is CreateBrowser) return true;
+            if (window is FlatSmartSelectionWindow) return true;
+            if (window is InputDialog) return true;
+            if (window is LayoutWindow) return true;
+            if (window is PinAndClose) return true;
+            if (window is PopupWindow) return true;
+            if (window is Search) return true;
+
+#if UNITY_2023_2_OR_NEWER
+            if (window.GetType().Name == "ContextMenu") return true;
+#endif
+            
+            return false;
+        }
+
         private static void InitProviders()
         {
             providers = new List<Provider>
             {
                 new OpenedProvider(),
                 new RecentProvider(),
+                new MiniLayouts(),
                 new FavoriteProvider()
             };
 
@@ -207,6 +183,41 @@ namespace InfinityCode.UltimateEditorEnhancer.Tools
             }
 
             providers = providers.OrderBy(p => p.order).ToList();
+        }
+
+        private static bool IterateActiveWindows(Type focusedWindowType)
+        {
+            EditorWindow[] activeWindows = UnityEngine.Resources.FindObjectsOfTypeAll<EditorWindow>();
+            if (activeWindows.Length == 0) return false;
+            
+            tempWindows.Clear();
+
+            foreach (EditorWindow window in activeWindows)
+            {
+                if (window == null) continue;
+                if (window.maximized)
+                {
+                    lastFocusedWindowType = window.GetType();
+
+                    if (windows.Count == 0)
+                    {
+                        window.maximized = false;
+                        window.Repaint();
+                        CacheWindows();
+                        window.maximized = true;
+                        return false;
+                    }
+
+                    lastWindowType = focusedWindowType;
+                    if (lastWindowType != null) lastFocusedWindowType = lastWindowType;
+
+                    return true;
+                }
+
+                tempWindows.Add(window);
+            }
+
+            return true;
         }
 
         public static void Reinit()
@@ -232,6 +243,21 @@ namespace InfinityCode.UltimateEditorEnhancer.Tools
 
             EditorWindow.GetWindow(record.type, false, record.title);
             recent.Remove(record);
+        }
+
+        private static void UpdateRecentWindows()
+        {
+            removeKeys.Clear();
+
+            foreach (var pair in windows)
+            {
+                if (pair.Value.used) continue;
+
+                removeKeys.Add(pair.Key);
+                recent.Insert(0, pair.Value);
+            }
+
+            while (recent.Count > Prefs.maxRecentWindows) recent.RemoveAt(recent.Count - 1);
         }
     }
 }

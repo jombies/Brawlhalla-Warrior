@@ -71,7 +71,7 @@ namespace InfinityCode.UltimateEditorEnhancer.EditorMenus.PopupWindows
                 EditorWindow wnd = Object.Instantiate(window);
                 wnd.Show();
                 Rect wRect = window.position;
-                wRect.yMin -= PinAndClose.HEIGHT;
+                wRect.yMin -= PinAndClose.Height;
                 wnd.position = wRect;
                 wnd.maxSize = new Vector2(4000f, 4000f);
                 wnd.minSize = new Vector2(100f, 100f);

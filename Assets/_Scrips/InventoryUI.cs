@@ -1,40 +1,41 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InventoryUI : MonoBehaviour
+public class InventoryUi : MonoBehaviour
 {
-    Inventory inventory;
-    public Transform itemParrent;
-    inventorySlot[] slots;
-    [SerializeField] Button ivenBtn;
-    [SerializeField] GameObject invetoryui;
+    Inventory _inventory;
+    InventorySlot[] _slots;
+    [SerializeField] Button _ivenBtn;
+    [SerializeField] GameObject _invetoryui;
+    [SerializeField] Transform ItemParrent;
+
     // Start is called before the first frame update
     void Start()
     {
-        inventory = Inventory.Instance;
-        inventory.onItemChangedCallBack += UpdateUI;
-        slots = itemParrent.GetComponentsInChildren<inventorySlot>();
-        invetoryui.SetActive(false);
-        ivenBtn.onClick.AddListener(() => invetoryui.SetActive(!invetoryui.activeSelf));
+        _inventory = Inventory.Instance;
+        _inventory.OnItemChangedCallBack += UpdateUi;
+        _slots = ItemParrent.GetComponentsInChildren<InventorySlot>();
+        _invetoryui.SetActive(false);
+        _ivenBtn.onClick.AddListener(() => _invetoryui.SetActive(!_invetoryui.activeSelf));
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            invetoryui.SetActive(!invetoryui.activeSelf);
+            _invetoryui.SetActive(!_invetoryui.activeSelf);
         }
     }
-    void UpdateUI()
+    void UpdateUi()
     {
         Debug.Log("Update UI");
-        for (int i = 0; i < slots.Length; i++)
+        for (int i = 0; i < _slots.Length; i++)
         {
-            if (i < inventory.items.Count)
+            if (i < _inventory.Items.Count)
             {
-                slots[i].AddItem(inventory.items[i]);
+                _slots[i].AddItem(_inventory.Items[i]);
             }
-            else slots[i].RemoveItem();
+            else _slots[i].RemoveItem();
         }
 
     }

@@ -11,9 +11,9 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
 {
     public class FlatSelectorWindow : EditorWindow
     {
-        private const string SEARCHFIELD_NAME = "UEEFlatSelectorSearchTextField";
-        private const int ITEM_HEIGHT = 16;
-        private const int EXTRA_HEIGHT = 28;
+        private const string SearchFieldName = "UEEFlatSelectorSearchTextField";
+        private const int ItemHeight = 16;
+        private const int ExtraHeight = 28;
 
         public Action<int> OnSelect;
 
@@ -37,14 +37,14 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
 
         private void DrawFilterTextField()
         {
-            GUI.SetNextControlName(SEARCHFIELD_NAME);
+            GUI.SetNextControlName(SearchFieldName);
             EditorGUI.BeginChangeCheck();
             filterText = GUILayoutUtils.ToolbarSearchField(filterText);
             if (EditorGUI.EndChangeCheck()) UpdateFilteredItems();
 
             if (resetSelection && Event.current.type == EventType.Repaint)
             {
-                GUI.FocusControl(SEARCHFIELD_NAME);
+                GUI.FocusControl(SearchFieldName);
                 resetSelection = false;
             }
         }
@@ -97,11 +97,15 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
                 }
             };
 
-            listView = new ListView(items, ITEM_HEIGHT, makeItem, bindItem);
+            listView = new ListView(items, ItemHeight, makeItem, bindItem);
             listView.selectionType = SelectionType.Single;
             listView.showAlternatingRowBackgrounds = AlternatingRowBackground.All;
 
+#if !UNITY_2022_2_OR_NEWER
             listView.onSelectionChange += objects =>
+#else
+            listView.selectionChanged += objects =>
+#endif
             {
                 if (ignoreItemSelect) return;
                 Event e = Event.current;
@@ -185,7 +189,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
             FlatSelectorWindow wnd = instance = CreateInstance<FlatSelectorWindow>();
             rect.y += rect.height;
             rect.width = width;
-            rect.height = Mathf.Min(Prefs.defaultWindowSize.y, contents.Length * ITEM_HEIGHT + EXTRA_HEIGHT);
+            rect.height = Mathf.Min(Prefs.defaultWindowSize.y, contents.Length * ItemHeight + ExtraHeight);
             rect.position = GUIUtility.GUIToScreenPoint(rect.position);
             wnd.minSize = Vector2.one;
             wnd.position = rect;
@@ -211,7 +215,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
 
                 for (int i = 0; i < contents.Length; i++)
                 {
-                    if (SearchableItem.GetAccuracy(pattern, contents[i].text) > 0)
+                    if (SearchableItem.Match(pattern, contents[i].text))
                     {
                         items.Add(i);
                     }
@@ -230,7 +234,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
             ignoreItemSelect = false;
 
             Rect rect = position;
-            rect.height = Mathf.Min(Prefs.defaultWindowSize.y, items.Count * ITEM_HEIGHT + EXTRA_HEIGHT);
+            rect.height = Mathf.Min(Prefs.defaultWindowSize.y, items.Count * ItemHeight + ExtraHeight);
             position = rect;
         }
     }

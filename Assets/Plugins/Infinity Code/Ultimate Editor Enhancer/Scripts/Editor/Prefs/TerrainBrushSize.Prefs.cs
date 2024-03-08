@@ -42,7 +42,7 @@ namespace InfinityCode.UltimateEditorEnhancer
                 EditorGUI.BeginDisabledGroup(!terrainBrushSize);
 
                 EditorGUILayout.BeginHorizontal();
-                EditorGUILayout.LabelField("Modifiers", GUILayout.Width(labelWidth));
+                EditorGUILayout.LabelField("Modifiers", GUILayout.Width(LabelWidth));
                 terrainBrushSizeModifiers = DrawModifiers(terrainBrushSizeModifiers);
                 EditorGUILayout.EndHorizontal();
 
@@ -62,6 +62,12 @@ namespace InfinityCode.UltimateEditorEnhancer
                     new Shortcut("Change size of Terrain Brush", "Scene View", terrainBrushSizeModifiers, "Mouse Wheel"),
                     new Shortcut("Fast Change size of Terrain Brush", "Scene View", terrainBrushSizeBoostModifiers, "Mouse Wheel"),
                 };
+            }
+
+            public static void SetState(bool state)
+            {
+                terrainBrushSize = state;
+                terrainBrushSizeBoost = state;
             }
         }
     }

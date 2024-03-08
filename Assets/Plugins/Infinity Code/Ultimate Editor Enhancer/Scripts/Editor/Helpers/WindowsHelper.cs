@@ -11,20 +11,35 @@ namespace InfinityCode.UltimateEditorEnhancer
 {
     public static class WindowsHelper
     {
-        public const string MenuPath = "Tools/Infinity Code/Ultimate Editor Enhancer/";
+        public const string MenuPath = "Tools/Ultimate Editor Enhancer/";
 
-        public static void ShowInspector()
+        public static Vector2 GetMousePositionOnFocusedWindow()
         {
-            Event e = Event.current;
-            Type windowType = InspectorWindowRef.type;
+            return GetMousePositionOnFocusedWindow(Event.current.mousePosition);
+        }
+        
+        public static Vector2 GetMousePositionOnFocusedWindow(Vector2 mousePosition)
+        {
+            if (EditorWindow.focusedWindow == null) return HandleUtility.GUIPointToScreenPixelCoordinate(mousePosition);
+            return mousePosition + EditorWindow.focusedWindow.position.position;
+        }
 
-            Vector2 size = Prefs.defaultWindowSize;
-            Rect rect = new Rect(GUIUtility.GUIToScreenPoint(e.mousePosition) - size / 2, Vector2.zero);
+        public static Rect GetRect(EditorWindow window)
+        {
+            Rect rect = window.position;
+            var parent = EditorWindowRef.GetParent(window);
+            Rect r = HostViewRef.GetPosition(parent);
+            rect.width = r.width;
+            rect.height = r.height;
+            return rect;
+        }
 
-            Rect windowRect = new Rect(rect.position, size);
-            EditorWindow window = ScriptableObject.CreateInstance(windowType) as EditorWindow;
-            window.Show();
-            window.position = windowRect;
+        public static bool IsFocusOnContextMenu()
+        {
+#if UNITY_2023_2_OR_NEWER
+            if (EditorWindow.focusedWindow != null && EditorWindow.focusedWindow.GetType().Name == "ContextMenu") return true;
+#endif
+            return false;
         }
 
         public static bool IsMaximized(EditorWindow window)
@@ -65,6 +80,35 @@ namespace InfinityCode.UltimateEditorEnhancer
             }
 
             Debug.unityLogger.logEnabled = logState;
+        }
+
+        public static void SetRect(EditorWindow window, Rect rect)
+        {
+            window.position = rect;
+            Rect r = window.position;
+            if (Math.Abs(r.width - rect.width) < 1 && Math.Abs(r.height - rect.height) < 1) return;
+
+            var parent = EditorWindowRef.GetParent(window);
+            r = HostViewRef.GetPosition(parent);
+            r.width = rect.width;
+            r.height = rect.height;
+
+            ViewRef.SetMinMaxSizes(parent, Vector2.zero, new Vector2(4000, 4000));
+            HostViewRef.SetPosition(parent, r);
+        }
+
+        public static void ShowInspector()
+        {
+            Event e = Event.current;
+            Type windowType = InspectorWindowRef.type;
+
+            Vector2 size = Prefs.defaultWindowSize;
+            Rect rect = new Rect(GUIUtility.GUIToScreenPoint(e.mousePosition) - size / 2, Vector2.zero);
+
+            Rect windowRect = new Rect(rect.position, size);
+            EditorWindow window = ScriptableObject.CreateInstance(windowType) as EditorWindow;
+            window.Show();
+            window.position = windowRect;
         }
 
         public static void ToggleMaximized(EditorWindow window)

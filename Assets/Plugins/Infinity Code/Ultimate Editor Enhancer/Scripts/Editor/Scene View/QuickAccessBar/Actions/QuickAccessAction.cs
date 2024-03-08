@@ -11,10 +11,18 @@ namespace InfinityCode.UltimateEditorEnhancer.SceneTools.QuickAccessActions
 
         public virtual void Draw()
         {
-            ButtonEvent buttonEvent = GUILayoutUtils.Button(content, QuickAccess.contentStyle, GUILayout.Width(QuickAccess.width), GUILayout.Height(QuickAccess.width));
+            string tooltip = content.tooltip;
+            GUIContent currentContent = TempContent.Get(content);
+            currentContent.tooltip = null;
+
+            ButtonEvent buttonEvent = GUILayoutUtils.Button(currentContent, QuickAccess.contentStyle, GUILayout.Width(QuickAccess.width), GUILayout.Height(QuickAccess.width));
             if (buttonEvent == ButtonEvent.click)
             {
                 OnClick();
+            }
+            else if (buttonEvent == ButtonEvent.hover)
+            {
+                QuickAccess.SetTooltip(tooltip, GUILayoutUtils.lastRect);
             }
         }
 

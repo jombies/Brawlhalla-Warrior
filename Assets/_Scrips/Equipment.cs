@@ -4,16 +4,16 @@ using UnityEngine;
 public class Equipment : Item
 {
 
-    public EquipmentSlot equipSlot;
+    public EquipmentSlot EquipSlot;
     public int Defend;
     public int Damage;
 
     public override void Use()
     {
-        base.Use();
         EquipmentManager.Instance.Equip(this);
+
         RemoveItem();
     }
 }
+public enum EquipmentSlot { Head, Armor, Weapon }
 
-public enum EquipmentSlot { Head, Armor, Weapon, health, key }

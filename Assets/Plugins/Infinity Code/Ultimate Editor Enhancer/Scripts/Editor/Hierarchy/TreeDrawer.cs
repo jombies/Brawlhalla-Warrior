@@ -1,6 +1,7 @@
 ﻿/*           INFINITY CODE          */
 /*     https://infinity-code.com    */
 
+using System.Linq;
 using InfinityCode.UltimateEditorEnhancer.Windows;
 using UnityEditor;
 using UnityEngine;
@@ -44,7 +45,7 @@ namespace InfinityCode.UltimateEditorEnhancer.HierarchyTools
 
         static TreeDrawer()
         {
-            HierarchyItemDrawer.Register("TreeDrawer", DrawTree, HierarchyToolOrder.TREE);
+            HierarchyItemDrawer.Register("TreeDrawer", DrawTree, HierarchyToolOrder.Tree);
         }
 
         private static void DrawTree(HierarchyItem item)
@@ -54,38 +55,71 @@ namespace InfinityCode.UltimateEditorEnhancer.HierarchyTools
             if (!string.IsNullOrEmpty(HierarchyItemDrawer.searchFilter)) return;
 
             Transform transform = item.gameObject.transform;
-            Transform parent = transform.parent;
-            if (parent == null) return;
-
+            
             Rect rect = item.rect;
 
             rect.width = 36;
             rect.x -= 32;
+            
+            Rect tooltipRect = rect;
+            Vector2 mousePosition = Event.current.mousePosition;
+
+            if (transform.childCount > 0)
+            {
+                tooltipRect.width -= 16;
+                Rect arrowRect = rect;
+                arrowRect.xMin += 16;
+                bool isArrowHovered = arrowRect.Contains(mousePosition);
+                int arrowId = GUIUtility.GetControlID(FocusType.Passive, arrowRect);
+                GUIStyle.none.Draw(arrowRect, TempContent.Get("", $"The number of children is {transform.childCount}"), arrowId, isArrowHovered);
+            }
+            
+            Transform parent = transform.parent;
+            if (parent == null) return;
 
             Vector4 borderWidths = new Vector4(transform.childCount > 0 ? 8 : 0, 0, 0, 0);
 
             Color color = GetColor(item, transform);
 
+            string tooltip = parent.gameObject.name;
+            int id = GUIUtility.GetControlID(FocusType.Passive, tooltipRect);
+            bool isHovered = tooltipRect.Contains(mousePosition);
+
             if (parent.childCount == 1 || transform.GetSiblingIndex() == parent.childCount - 1)
             {
-                if (endIcon != null) GUI.DrawTexture(rect, endIcon, ScaleMode.ScaleToFit, true, 0, color, borderWidths, Vector4.zero);
+                if (endIcon != null)
+                {
+                    GUIStyle.none.Draw(tooltipRect, TempContent.Get("", tooltip), id, isHovered); 
+                    GUI.DrawTexture(rect, endIcon, ScaleMode.ScaleToFit, true, 0, color, borderWidths, Vector4.zero);
+                }
             }
             else
             {
-                if (middleIcon != null) GUI.DrawTexture(rect, middleIcon, ScaleMode.ScaleToFit, true, 0, color, borderWidths, Vector4.zero);
+                if (middleIcon != null)
+                {
+                    GUIStyle.none.Draw(tooltipRect, TempContent.Get("", tooltip), id, isHovered);
+                    GUI.DrawTexture(rect, middleIcon, ScaleMode.ScaleToFit, true, 0, color, borderWidths, Vector4.zero);
+                }
             }
 
-            while (parent != null && parent.parent != null)
+            if (lineIcon != null)
             {
-                rect.x -= 14;
-
-                if (parent.GetSiblingIndex() < parent.parent.childCount - 1)
+                while (parent != null && parent.parent != null)
                 {
-                    color = GetColor(item, parent);
-                    if (lineIcon != null) GUI.DrawTexture(rect, lineIcon, ScaleMode.ScaleToFit, true, 0, color, borderWidths, Vector4.zero);
-                }
+                    rect.x -= 14;
+                    id = GUIUtility.GetControlID(FocusType.Passive, rect);
+                    isHovered = rect.Contains(mousePosition);
 
-                parent = parent.parent;
+                    if (parent.GetSiblingIndex() < parent.parent.childCount - 1)
+                    {
+                        color = GetColor(item, parent);
+
+                        GUI.DrawTexture(rect, lineIcon, ScaleMode.ScaleToFit, true, 0, color, borderWidths, Vector4.zero);
+                        GUIStyle.none.Draw(rect, TempContent.Get("", parent.parent.gameObject.name), id, isHovered);
+                    }
+
+                    parent = parent.parent;
+                }
             }
         }
 
@@ -147,6 +181,16 @@ namespace InfinityCode.UltimateEditorEnhancer.HierarchyTools
             return Color.gray;
         }
 
+        public static Color GetColor(HierarchyItem item, Transform parent)
+        {
+            SceneReferences r = SceneReferences.Get(item.gameObject.scene, false);
+
+            if (r == null) return GetBackground(parent.gameObject);
+            Color color = GetBackground(r, parent.gameObject);
+            if (parent != null && color == Color.gray) GetSelectionColor(parent, ref color);
+            return color;
+        }
+
         private static Color GetColorFromTexture(string textureName)
         {
             if (textureName[8] == 'n')
@@ -168,12 +212,21 @@ namespace InfinityCode.UltimateEditorEnhancer.HierarchyTools
             return Color.gray;
         }
 
-        public static Color GetColor(HierarchyItem item, Transform parent)
+        private static void GetSelectionColor(Transform parent, ref Color color)
         {
-            SceneReferences r = SceneReferences.Get(item.gameObject.scene, false);
+            GameObject[] gameObjects = Selection.gameObjects;
+            if (gameObjects == null || gameObjects.Length == 0) return;
+            
+            Transform t = parent.parent;
+            while (t != null)
+            {
+                if (gameObjects.Any(g => g.transform == t))
+                {
+                    color = new Color(0.172f, 0.364f, 0.529f);
+                }
 
-            if (r == null) return GetBackground(parent.gameObject);
-            return GetBackground(r, parent.gameObject);
+                t = t.parent;
+            }
         }
     }
 }

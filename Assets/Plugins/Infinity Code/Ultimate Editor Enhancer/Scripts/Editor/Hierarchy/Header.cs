@@ -2,6 +2,7 @@
 /*     https://infinity-code.com    */
 
 using System.Collections.Generic;
+using InfinityCode.UltimateEditorEnhancer.JSON;
 using UnityEditor;
 using UnityEngine;
 
@@ -12,7 +13,32 @@ namespace InfinityCode.UltimateEditorEnhancer.HierarchyTools
     {
         static Header()
         {
-            HierarchyItemDrawer.Register("Header", OnHierarchyItem, HierarchyToolOrder.HEADER);
+            HierarchyItemDrawer.Register("Header", OnHierarchyItem, HierarchyToolOrder.Header);
+        }
+
+        public static JsonArray json
+        {
+            get
+            {
+                JsonArray jArr = new JsonArray();
+                for (int i = 0; i < ReferenceManager.headerRules.Count; i++)
+                {
+                    jArr.Add(ReferenceManager.headerRules[i].json);
+                }
+
+                return jArr;
+            }
+            set
+            {
+                if (ReferenceManager.headerRules.Count > 0)
+                {
+                    if (!EditorUtility.DisplayDialog("Import Hierarchy Headers", "Hierarchy Headers already contain items", "Replace", "Ignore")) return;
+                }
+
+                List<HeaderRule> items = value.Deserialize<List<HeaderRule>>();
+                ReferenceManager.headerRules.Clear();
+                ReferenceManager.headerRules.AddRange(items);
+            }
         }
 
         [MenuItem("GameObject/Create Header", priority = 1)]

@@ -17,7 +17,7 @@ namespace InfinityCode.UltimateEditorEnhancer.SceneTools
 
         static SelectionSize()
         {
-            SceneViewManager.AddListener(OnSceneViewGUI, SceneViewOrder.normal, true);
+            SceneViewManager.AddListener(OnSceneViewGUI, SceneViewOrder.Normal, true);
         }
 
         private static void OnSceneViewGUI(SceneView sceneView)

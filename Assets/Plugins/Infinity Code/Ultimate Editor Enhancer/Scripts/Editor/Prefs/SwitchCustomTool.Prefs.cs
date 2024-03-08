@@ -9,6 +9,7 @@ namespace InfinityCode.UltimateEditorEnhancer
 {
     public static partial class Prefs
     {
+        public static bool switchCustomTool = true;
         public static KeyCode switchCustomToolKeyCode = KeyCode.U;
         public static EventModifiers switchCustomToolModifiers = EventModifiers.None;
 
@@ -27,17 +28,17 @@ namespace InfinityCode.UltimateEditorEnhancer
 
             public override void Draw()
             {
-                GUILayout.Label("Select Next Custom Tool");
+                switchCustomTool = EditorGUILayout.ToggleLeft("Select Next Custom Tool", switchCustomTool);
                 EditorGUI.indentLevel++;
 
                 float oldLabelWidth = EditorGUIUtility.labelWidth;
-                EditorGUIUtility.labelWidth = labelWidth + 5;
+                EditorGUIUtility.labelWidth = LabelWidth + 5;
                 switchCustomToolKeyCode = (KeyCode)EditorGUILayout.EnumPopup("Hot Key", switchCustomToolKeyCode, GUILayout.Width(420));
                 EditorGUIUtility.labelWidth = oldLabelWidth;
 
                 EditorGUILayout.BeginHorizontal();
                 GUILayout.Space(16);
-                GUILayout.Label("Modifiers", GUILayout.Width(modifierLabelWidth + 15));
+                GUILayout.Label("Modifiers", GUILayout.Width(ModifierLabelWidth + 15));
                 switchCustomToolModifiers = DrawModifiers(switchCustomToolModifiers, true);
                 EditorGUILayout.EndHorizontal();
 
@@ -51,6 +52,11 @@ namespace InfinityCode.UltimateEditorEnhancer
                     new Shortcut("Select Next Custom Tool", "Everywhere", switchCustomToolModifiers, switchCustomToolKeyCode)
                 };
                 return shortcuts;
+            }
+
+            public static void SetState(bool state)
+            {
+                switchCustomTool = state;
             }
         }
     }

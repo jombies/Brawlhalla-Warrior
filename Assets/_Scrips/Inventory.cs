@@ -13,39 +13,39 @@ public class Inventory : MonoBehaviour
     }
     #endregion
 
-    public List<Item> items = new List<Item>();
-    public int Coin { get; private set; }
-    [SerializeField] TextMeshProUGUI textCoin;
-    int space = 20;
+    public List<Item> Items = new List<Item>();
+    public int coin { get; private set; }
+    [SerializeField] TextMeshProUGUI _textCoin;
+    readonly int _space = 20;
 
     public delegate void OnItemChanged();
-    public OnItemChanged onItemChangedCallBack;
-    public void coinCollected(GameObject coin)
+    public OnItemChanged OnItemChangedCallBack;
+    public void CoinCollected(GameObject coin)
     {
-        Coin++;
+        this.coin++;
         Destroy(coin);
-        textCoin.text = Coin.ToString();
+        _textCoin.text = this.coin.ToString();
     }
     public bool Add(Item item)
     {
         if (!item.DefaultItem)
         {
-            if (items.Count >= space)
+            if (Items.Count >= _space)
             {
-                Debug.Log("Invetory is full");
+                Debug.Log("Inventory is full");
                 return false;
             }
-            items.Add(item);
-            if (onItemChangedCallBack != null)
-                onItemChangedCallBack.Invoke();
+            Items.Add(item);
+            if (OnItemChangedCallBack != null)
+                OnItemChangedCallBack.Invoke();
         }
         return true;
     }
     public void Remove(Item item)
     {
-        items.Remove(item);
-        if (onItemChangedCallBack != null)
-            onItemChangedCallBack.Invoke();
+        Items.Remove(item);
+        if (OnItemChangedCallBack != null)
+            OnItemChangedCallBack.Invoke();
 
     }
 }

@@ -15,7 +15,7 @@ namespace InfinityCode.UltimateEditorEnhancer.ComponentHeader
         private static bool inited;
         private static Vector3[] fourCorners;
 
-        [ComponentHeaderButton]
+        [ComponentHeaderButton (ComponentHeaderButtonOrder.BoxColliderDetectSize)]
         public static bool DrawHeaderButton(Rect rectangle, Object[] targets)
         {
             Object target = targets[0];

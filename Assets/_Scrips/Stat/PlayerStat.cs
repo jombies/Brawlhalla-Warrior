@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class PlayerStat : CharacterStat
 {
+    CharacterAnimation Animator;
     // Start is called before the first frame update
     void Start()
     {
+        Animator = GetComponentInChildren<CharacterAnimation>();
         EquipmentManager.Instance.onEquipchanged += OnEquipmentChanged;
     }
 
@@ -14,15 +12,21 @@ public class PlayerStat : CharacterStat
     {
         if (newitem != null)
         {
-            armor.AddModifier(newitem.Defend);
-            damage.AddModifier(newitem.Damage);
+            Armor.AddModifier(newitem.Defend);
+            Damage.AddModifier(newitem.Damage);
         }
         if (oldItem != null)
         {
-            armor.RemoveModifier(oldItem.Defend);
-            damage.RemoveModifier(oldItem.Damage);
+            Armor.RemoveModifier(oldItem.Defend);
+            Damage.RemoveModifier(oldItem.Damage);
         }
-        armor.totalValue();
-        damage.totalValue();
+        Armor.TotalValue();
+        Damage.TotalValue();
+    }
+
+    public override void Die()
+    {
+        base.Die();
+        Animator.GetDie();
     }
 }

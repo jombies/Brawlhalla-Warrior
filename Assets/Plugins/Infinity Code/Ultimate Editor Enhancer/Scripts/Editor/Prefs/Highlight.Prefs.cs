@@ -29,7 +29,7 @@ namespace InfinityCode.UltimateEditorEnhancer
         public class HighlightManager : StandalonePrefManager<HighlightManager>, IHasShortcutPref
         {
 
-            private const string highlightRowLabel = "Highlight Hierarchy Row";
+            private const string HighlightRowLabel = "Highlight Hierarchy Row";
 
             public override IEnumerable<string> keywords
             {
@@ -62,7 +62,7 @@ namespace InfinityCode.UltimateEditorEnhancer
                 
                 highlightOnWaila = EditorGUILayout.ToggleLeft("Highlight On Waila", highlightOnWaila);
                 DrawFieldWithModifiers("Highlight On Hierarchy", ref highlightOnHierarchy, ref highlightOnHierarchyModifiers);
-                highlightHierarchyRow = EditorGUILayout.ToggleLeft(highlightRowLabel, highlightHierarchyRow);
+                highlightHierarchyRow = EditorGUILayout.ToggleLeft(HighlightRowLabel, highlightHierarchyRow);
 
                 highlightNoRenderer = EditorGUILayout.ToggleLeft("Highlight Objects Without Renderer", highlightNoRenderer);
                 EditorGUI.BeginDisabledGroup(!highlightNoRenderer);
@@ -83,6 +83,14 @@ namespace InfinityCode.UltimateEditorEnhancer
                 {
                     new Shortcut("Highlight GameObject In Scene View", "Hierarchy", highlightOnHierarchyModifiers)
                 };
+            }
+
+            public static void SetState(bool state)
+            {
+                highlight = state;
+                highlightOnWaila = state;
+                highlightOnHierarchy = state;
+                highlightHierarchyRow = state;
             }
         }
     }

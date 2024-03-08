@@ -51,7 +51,10 @@ namespace InfinityCode.UltimateEditorEnhancer
 
             if (paths.Count > 0)
             {
-                int result = EditorUtility.DisplayDialogComplex("Scene(s) Have Been Modified", "Do you want to save the changes you made in the scenes:\n" + String.Join("\n", paths) + "\n\nYour changes will be lost if you don't save them.", "Save", "Don't Save", "Cancel");
+                string pathStr = String.Join("\n", paths);
+                if (pathStr.Length == 0) pathStr = "Untitled";
+                
+                int result = EditorUtility.DisplayDialogComplex("Scene(s) Have Been Modified", "Do you want to save the changes you made in the scenes:\n" + pathStr + "\n\nYour changes will be lost if you don't save them.", "Save", "Don't Save", "Cancel");
                 if (result == 2) return false;
 
                 if (result == 0)

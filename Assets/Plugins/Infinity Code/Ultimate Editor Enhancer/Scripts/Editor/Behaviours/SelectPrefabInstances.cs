@@ -10,13 +10,13 @@ namespace InfinityCode.UltimateEditorEnhancer.Behaviors
 {
     public static class SelectPrefabInstances
     {
-        private const string MENU_ITEM = "Edit/Select Prefab Instances";
+        private const string MenuItem = "Edit/Select Prefab Instances";
 
-        [MenuItem(MENU_ITEM, false, 85)]
+        [MenuItem(MenuItem, false, 85)]
         public static void Select()
         {
             List<string> prefabPaths = Selection.gameObjects.Where(g => g.scene.name != null && PrefabUtility.IsPartOfAnyPrefab(g)).Select(g => PrefabUtility.GetPrefabAssetPathOfNearestInstanceRoot(g)).Distinct().ToList();
-            GameObject[] allObjects = Object.FindObjectsOfType<GameObject>(true);
+            GameObject[] allObjects = ObjectHelper.FindObjectsOfType<GameObject>(true);
             List<GameObject> result = new List<GameObject>();
 
             foreach (GameObject go in allObjects)
@@ -29,7 +29,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Behaviors
             Selection.objects = result.ToArray();
         }
 
-        [MenuItem(MENU_ITEM, true, 85)]
+        [MenuItem(MenuItem, true, 85)]
         public static bool Validate()
         {
             return Selection.gameObjects.Any(g => g.scene.name != null && PrefabUtility.IsPartOfAnyPrefab(g));

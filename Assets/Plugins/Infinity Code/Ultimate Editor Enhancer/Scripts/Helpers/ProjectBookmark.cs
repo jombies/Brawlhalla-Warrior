@@ -27,6 +27,8 @@ namespace InfinityCode.UltimateEditorEnhancer
                 {
                     _path = UnityEditor.AssetDatabase.GetAssetPath(target);
                 }
+#else
+                _path = null;
 #endif
 
                 return _path;

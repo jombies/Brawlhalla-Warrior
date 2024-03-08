@@ -11,7 +11,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Behaviors
     [InitializeOnLoad]
     public static class SelectionHistory
     {
-        private const int MAX_RECORDS = 30;
+        private const int MaxRecords = 30;
 
         private static List<SelectionRecord> _records;
         private static int index = -1;
@@ -56,7 +56,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Behaviors
                 _records.RemoveAt(_records.Count - 1);
             }
 
-            while (_records.Count > MAX_RECORDS - 1)
+            while (_records.Count > MaxRecords - 1)
             {
                 _records.RemoveAt(_records.Count - 1);
             }

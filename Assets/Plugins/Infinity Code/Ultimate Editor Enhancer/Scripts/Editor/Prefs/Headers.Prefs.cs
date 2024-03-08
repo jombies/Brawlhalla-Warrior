@@ -2,7 +2,6 @@
 /*     https://infinity-code.com    */
 
 using UnityEditor;
-using UnityEngine;
 
 namespace InfinityCode.UltimateEditorEnhancer
 {
@@ -14,6 +13,7 @@ namespace InfinityCode.UltimateEditorEnhancer
         public class HeadersManager : StandalonePrefManager<HeadersManager>
         {
             private static SerializedObject so;
+            private SerializedProperty prop;
 
             public override void Draw()
             {
@@ -21,11 +21,18 @@ namespace InfinityCode.UltimateEditorEnhancer
                 EditorGUI.BeginDisabledGroup(!hierarchyHeaders);
 
                 if (so == null) so = new SerializedObject(ReferenceManager.instance);
-                SerializedProperty prop = so.FindProperty("_headerRules");
+                so.Update();
+
+                if (prop == null) prop = so.FindProperty("_headerRules");
                 EditorGUILayout.PropertyField(prop, true);
                 so.ApplyModifiedProperties();
 
                 EditorGUI.EndDisabledGroup();
+            }
+            
+            public static void SetState(bool state)
+            {
+                hierarchyHeaders = state;
             }
         }
     }

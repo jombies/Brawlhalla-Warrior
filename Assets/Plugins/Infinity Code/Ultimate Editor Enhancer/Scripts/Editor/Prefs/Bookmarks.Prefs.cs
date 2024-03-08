@@ -22,7 +22,7 @@ namespace InfinityCode.UltimateEditorEnhancer
 
             public override float order
             {
-                get { return Order.bookmarks; }
+                get { return Order.Bookmarks; }
             }
 
             public override void Draw()
@@ -38,6 +38,11 @@ namespace InfinityCode.UltimateEditorEnhancer
                 {
                     new Shortcut("Open Bookmarks", "Everywhere", bookmarksModifiers, bookmarksKeyCode),
                 };
+            }
+            
+            public static void SetState(bool state)
+            {
+                bookmarksHotKey = state;
             }
         }
     }

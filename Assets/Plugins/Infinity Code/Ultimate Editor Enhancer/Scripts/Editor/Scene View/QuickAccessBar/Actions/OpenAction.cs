@@ -2,6 +2,7 @@
 /*     https://infinity-code.com    */
 
 using System.Collections.Generic;
+using System.Text;
 using InfinityCode.UltimateEditorEnhancer.Attributes;
 using InfinityCode.UltimateEditorEnhancer.Behaviors;
 using InfinityCode.UltimateEditorEnhancer.Windows;
@@ -23,7 +24,7 @@ namespace InfinityCode.UltimateEditorEnhancer.SceneTools.QuickAccessActions
             {
                 if (_content == null)
                 {
-                    _content = new GUIContent(Icons.open, "Open (Left click - open.\nLeft click + shift or right click - open additively)");
+                    _content = new GUIContent(Icons.open, "Open\n(Left click - open.\nLeft click + shift or right click - open additively)");
                 }
 
                 return _content;
@@ -37,14 +38,17 @@ namespace InfinityCode.UltimateEditorEnhancer.SceneTools.QuickAccessActions
             GenericMenuEx menu = GenericMenuEx.Start();
 
             EditorBuildSettingsScene[] buildScenes = EditorBuildSettings.scenes;
-            StaticStringBuilder.Clear();
+            StringBuilder builder = StaticStringBuilder.Start();
             for (int i = 0; i < buildScenes.Length; i++)
             {
                 EditorBuildSettingsScene buildScene = buildScenes[i];
+                if (buildScene == null) continue;
                 SceneAsset scene = AssetDatabase.LoadAssetAtPath<SceneAsset>(buildScene.path);
+                if (scene == null) continue;
 
-                StaticStringBuilder.Append("Scenes in Build/").Append(scene.name);
-                menu.Add(StaticStringBuilder.GetString(true), () => OpenScene(buildScene.path, additive));
+                builder.Clear();
+                builder.Append("Scenes in Build/").Append(scene.name);
+                menu.Add(builder.ToString(), () => OpenScene(buildScene.path, additive));
             }
 
             if (menu.count > 0) menu.AddSeparator();

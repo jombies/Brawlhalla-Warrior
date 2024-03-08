@@ -8,15 +8,16 @@ namespace InfinityCode.UltimateEditorEnhancer
 {
     public static class Links
     {
-        public const string assetStore = "https://assetstore.unity.com/packages/tools/utilities/ultimate-editor-enhancer-141831";
-        public const string changelog = "https://infinity-code.com/products_update/get-changelog.php?asset=Ultimate%20Editor%20Enhancer&from=1.0";
-        public const string documentation = "https://infinity-code.com/documentation/ultimate-editor-enhancer.html";
-        public const string forum = "https://forum.infinity-code.com";
-        public const string homepage = "https://infinity-code.com/assets/ultimate-editor-enhancer";
-        public const string reviews = assetStore + "/reviews";
-        public const string support = "mailto:support@infinity-code.com?subject=Ultimate%20Editor%20Enhancer";
-        public const string youtube = "https://www.youtube.com/playlist?list=PL2QU1uhBMew_mR83EYhex5q3uZaMTwg1S";
-        private const string aid = "?aid=1100liByC";
+        public const string AssetStore = "https://assetstore.unity.com/packages/tools/utilities/ultimate-editor-enhancer-141831";
+        public const string Changelog = "https://infinity-code.com/products_update/get-changelog.php?asset=Ultimate%20Editor%20Enhancer&from=1.0";
+        public const string Discord = "https://discord.gg/2XRWwPgZK4";
+        public const string Documentation = "https://infinity-code.com/documentation/ultimate-editor-enhancer.html";
+        public const string Forum = "https://forum.infinity-code.com";
+        public const string Homepage = "https://infinity-code.com/assets/ultimate-editor-enhancer";
+        public const string Reviews = AssetStore + "/reviews";
+        public const string Support = "mailto:support@infinity-code.com?subject=Ultimate%20Editor%20Enhancer";
+        public const string Youtube = "https://www.youtube.com/playlist?list=PL2QU1uhBMew_mR83EYhex5q3uZaMTwg1S";
+        private const string Aid = "?aid=1100liByC";
 
         public static void Open(string url)
         {
@@ -25,15 +26,20 @@ namespace InfinityCode.UltimateEditorEnhancer
 
         public static void OpenAssetStore()
         {
-            Open(assetStore + aid);
+            Open(AssetStore + Aid);
         }
 
         public static void OpenChangelog()
         {
-            Open(changelog);
+            Open(Changelog);
         }
 
-        [MenuItem(WindowsHelper.MenuPath + "Documentation", false, 120)]
+        public static void OpenDiscord()
+        {
+            Open(Discord);
+        }
+
+        [MenuItem(WindowsHelper.MenuPath + "Documentation", false, MenuItemOrder.Documentation)]
         public static void OpenDocumentation()
         {
             OpenDocumentation(null);
@@ -41,19 +47,19 @@ namespace InfinityCode.UltimateEditorEnhancer
 
         public static void OpenDocumentation(string anchor)
         {
-            string url = documentation;
+            string url = Documentation;
             if (!string.IsNullOrEmpty(anchor)) url += "#" + anchor;
             Open(url);
         }
 
         public static void OpenForum()
         {
-            Open(forum);
+            Open(Forum);
         }
 
         public static void OpenHomepage()
         {
-            Open(homepage);
+            Open(Homepage);
         }
 
         public static void OpenLocalDocumentation()
@@ -64,17 +70,17 @@ namespace InfinityCode.UltimateEditorEnhancer
 
         public static void OpenReviews()
         {
-            Open(reviews + aid);
+            Open(Reviews + Aid);
         }
 
         public static void OpenSupport()
         {
-            Open(support);
+            Open(Support);
         }
 
         public static void OpenYouTube()
         {
-            Open(youtube);
+            Open(Youtube);
         }
     }
 }

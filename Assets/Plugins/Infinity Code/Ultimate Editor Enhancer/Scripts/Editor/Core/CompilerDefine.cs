@@ -8,7 +8,7 @@ namespace InfinityCode.UltimateEditorEnhancer
     [InitializeOnLoad]
     public static class CompilerDefine
     {
-        private const string key = "UEE";
+        private const string Key = "UEE";
 
         static CompilerDefine()
         {
@@ -20,18 +20,32 @@ namespace InfinityCode.UltimateEditorEnhancer
         {
             if (!Prefs.addScriptingDefineSymbols) return;
 
-            string symbols = PlayerSettings.GetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup);
-            if (!string.IsNullOrEmpty(symbols))
+            BuildTargetGroup g = EditorUserBuildSettings.selectedBuildTargetGroup;
+            
+#if UNITY_2023_1_OR_NEWER
+            UnityEditor.Build.NamedBuildTarget buildTarget = UnityEditor.Build.NamedBuildTarget.FromBuildTargetGroup(g);
+            string currentDefinitions = PlayerSettings.GetScriptingDefineSymbols(buildTarget);
+#else
+            string currentDefinitions = PlayerSettings.GetScriptingDefineSymbolsForGroup(g);
+#endif
+            
+            
+            if (!string.IsNullOrEmpty(currentDefinitions))
             {
-                string[] keys = symbols.Split(';');
+                string[] keys = currentDefinitions.Split(';');
                 for (int i = 0; i < keys.Length; i++)
                 {
-                    if (keys[i] == key) return;
+                    if (keys[i] == Key) return;
                 }
             }
 
-            symbols += ";" + key;
-            PlayerSettings.SetScriptingDefineSymbolsForGroup(EditorUserBuildSettings.selectedBuildTargetGroup, symbols);
+            currentDefinitions += ";" + Key;
+#if UNITY_2023_1_OR_NEWER
+            PlayerSettings.SetScriptingDefineSymbols(buildTarget, currentDefinitions);
+#else
+            PlayerSettings.SetScriptingDefineSymbolsForGroup(g, currentDefinitions);
+#endif
+
         }
     }
 }

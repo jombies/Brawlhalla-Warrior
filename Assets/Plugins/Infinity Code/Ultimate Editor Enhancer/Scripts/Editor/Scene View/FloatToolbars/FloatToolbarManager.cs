@@ -24,7 +24,7 @@ namespace InfinityCode.UltimateEditorEnhancer.SceneTools
         static FloatToolbarManager()
         {
             sizes = new Dictionary<int, Rect>();
-            SceneViewManager.AddListener(OnSceneViewGUI, SceneViewOrder.floatToolbar, true);
+            SceneViewManager.AddListener(OnSceneViewGUI, SceneViewOrder.FloatToolbar, true);
         }
 
         public static void Add(FloatToolbar toolbar)

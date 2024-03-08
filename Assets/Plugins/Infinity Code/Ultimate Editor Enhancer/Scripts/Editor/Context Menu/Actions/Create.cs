@@ -85,7 +85,7 @@ namespace InfinityCode.UltimateEditorEnhancer.EditorMenus.Actions
         {
             if (target == null) return;
             if (target.GetComponent<Camera>() == null) return;
-            if (Object.FindObjectsOfType<AudioListener>().Length <= 1) return;
+            if (ObjectHelper.FindObjectsOfType<AudioListener>().Length <= 1) return;
 
             AudioListener audioListener = target.GetComponent<AudioListener>();
             if (audioListener != null) Object.DestroyImmediate(audioListener);

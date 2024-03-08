@@ -3,9 +3,8 @@
 
 using System.Collections.Generic;
 using InfinityCode.UltimateEditorEnhancer.InspectorTools;
-using InfinityCode.UltimateEditorEnhancer.Windows;
+using InfinityCode.UltimateEditorEnhancer.JSON;
 using UnityEditor;
-using UnityEditorInternal;
 using UnityEngine;
 
 namespace InfinityCode.UltimateEditorEnhancer
@@ -13,6 +12,7 @@ namespace InfinityCode.UltimateEditorEnhancer
     public static partial class Prefs
     {
         public static bool emptyInspector = true;
+        public static bool emptyInspectorShowUpdates = true;
 
         public class EmptyInspectorManager : StandalonePrefManager<EmptyInspectorManager>
         {
@@ -27,6 +27,31 @@ namespace InfinityCode.UltimateEditorEnhancer
                     {
                         "Empty Inspector",
                     };
+                }
+            }
+
+            public static JsonArray json
+            {
+                get
+                {
+                    JsonArray jArr = new JsonArray();
+                    for (int i = 0; i < ReferenceManager.emptyInspectorItems.Count; i++)
+                    {
+                        jArr.Add(ReferenceManager.emptyInspectorItems[i].json);
+                    }
+
+                    return jArr;
+                }
+                set
+                {
+                    if (ReferenceManager.emptyInspectorItems.Count > 0)
+                    {
+                        if (!EditorUtility.DisplayDialog("Import Empty Inspector", "Empty Inspector already contain items", "Replace", "Ignore")) return;
+                    }
+
+                    List<EmptyInspector.Group> items = value.Deserialize<List<EmptyInspector.Group>>();
+                    ReferenceManager.emptyInspectorItems.Clear();
+                    ReferenceManager.emptyInspectorItems.AddRange(items);
                 }
             }
 
@@ -45,6 +70,14 @@ namespace InfinityCode.UltimateEditorEnhancer
                 }
 
                 emptyInspector = EditorGUILayout.ToggleLeft("Empty Inspector", emptyInspector);
+                emptyInspectorShowUpdates = EditorGUILayout.ToggleLeft("Show Updates", emptyInspectorShowUpdates);
+                
+                if (GUILayout.Button("Reimport Items From Window Menu", GUILayout.ExpandWidth(false)))
+                {
+                    RecordUpgrader.InitDefaultEmptyInspectorItems();
+                    EmptyInspector.ResetCachedItems();
+                    ReferenceManager.Save();
+                }
 
                 if (elementsProperty != null)
                 {
@@ -61,6 +94,11 @@ namespace InfinityCode.UltimateEditorEnhancer
 
 
                 EditorGUILayout.EndScrollView();
+            }
+
+            public static void SetState(bool state)
+            {
+                emptyInspector = state;
             }
         }
     }

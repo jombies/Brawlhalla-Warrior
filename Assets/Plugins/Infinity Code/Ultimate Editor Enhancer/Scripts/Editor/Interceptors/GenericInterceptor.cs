@@ -1,24 +1,4 @@
-/*           INFINITY CODE          */
-/*     https://infinity-code.com    */
-
-using System;
-
-namespace InfinityCode.UltimateEditorEnhancer.Interceptors
-{
-    public abstract class GenericInterceptor<T>: Interceptor where T : GenericInterceptor<T>
-    {
-        private static T _instance;
-
-        protected static T instance
-        {
-            get => _instance;
-        }
-
-        protected override void Init()
-        {
-            _instance = (T)this;
-
-            base.Init();
-        }
-    }
-}
+/*
+This script is moved to Interceptors/Base folder.
+TODO: Remove it in Ultimate Editor Enhancer v3.18 or v4.3
+*/

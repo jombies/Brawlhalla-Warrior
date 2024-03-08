@@ -16,7 +16,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
             {
                 get
                 {
-                    if (windowIcon == null) windowIcon = EditorIconContents.winBtnWinMax.image as Texture2D;
+                    if (windowIcon == null) windowIcon = Icons.winBtnWinMax as Texture2D;
                     return windowIcon;
                 }
             }
@@ -53,14 +53,6 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
             public override void Select(int state)
             {
                 EditorApplication.ExecuteMenuItem(tooltip);
-            }
-
-            public override float UpdateAccuracy(string pattern)
-            {
-                float v = base.UpdateAccuracy(pattern);
-                v *= 1.01f;
-                _accuracy = v;
-                return v;
             }
         }
     }

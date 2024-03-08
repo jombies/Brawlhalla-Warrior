@@ -1,6 +1,7 @@
 ﻿/*           INFINITY CODE          */
 /*     https://infinity-code.com    */
 
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -13,7 +14,21 @@ namespace InfinityCode.UltimateEditorEnhancer.HierarchyTools
 
         static BackgroundDrawer()
         {
-            HierarchyItemDrawer.Register("BackgroundDrawer", OnDrawItem, HierarchyToolOrder.BACKGROUND);
+            HierarchyItemDrawer.Register("BackgroundDrawer", OnDrawItem, HierarchyToolOrder.Background);
+        }
+
+        private static BackgroundRule GetBackgroundRule(GameObject gameObject)
+        {
+            List<BackgroundRule> rules = ReferenceManager.backgroundRules;
+            if (rules == null || rules.Count == 0) return null;
+            
+            for (int i = 0; i < rules.Count; i++)
+            {
+                BackgroundRule rule = rules[i];
+                if (rule.Validate(gameObject)) return rule;
+            }
+            
+            return null;
         }
 
         private static void InitTexture()
@@ -37,13 +52,25 @@ namespace InfinityCode.UltimateEditorEnhancer.HierarchyTools
             SceneReferences r = SceneReferences.Get(item.gameObject.scene, false);
             if (r == null) return;
 
+            Color? color = null;
             SceneReferences.HierarchyBackground background = r.GetBackground(item.gameObject);
-            if (background == null) return;
 
+            if (background != null)
+            {
+                color = background.color;
+            }
+            else
+            {
+                BackgroundRule rule = GetBackgroundRule(item.gameObject);
+                if (rule != null) color = rule.color;
+            }
+            
+            if (!color.HasValue) return;
+            
             if (backgroundTexture == null) InitTexture();
 
             Color guiColor = GUI.color;
-            GUI.color = background.color;
+            GUI.color = color.Value;
             Rect rect = item.rect;
             rect.xMin += 16;
             GUI.DrawTexture(rect, backgroundTexture, ScaleMode.StretchToFill);

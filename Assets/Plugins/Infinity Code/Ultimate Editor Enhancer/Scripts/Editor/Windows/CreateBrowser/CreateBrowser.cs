@@ -4,7 +4,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using InfinityCode.UltimateEditorEnhancer.UnityTypes;
 using UnityEditor;
 using UnityEngine;
 
@@ -12,6 +11,8 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
 {
     public partial class CreateBrowser: EditorWindow
     {
+        public const int PreviewHeight = 90;
+
         public Action<CreateBrowser> OnClose;
         public Action<string> OnSelectCreate;
         public Action<string> OnSelectPrefab;
@@ -26,6 +27,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
         private static Rect? scrollRect;
         private static Vector2 scrollPosition;
         private static double loadTimer;
+        private static Texture previewBackground;
 
         public string createLabel = "Create";
         public string prefabsLabel = "Prefabs";
@@ -197,7 +199,17 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
                 scrollRect = GUILayoutUtility.GetLastRect();
             }
 
-            if (currentPrefab != null) currentPrefab.DrawPreview();
+            if (Prefs.createBrowserPreviewSelection)
+            {
+                if (currentPrefab != null) currentPrefab.DrawPreview();
+                else
+                {
+                    GUILayoutUtility.GetRect(1, PreviewHeight);
+                    Rect rect = GUILayoutUtility.GetLastRect();
+                    if (previewBackground == null) previewBackground = Resources.CreateSinglePixelTexture(0.33f);
+                    GUI.DrawTexture(rect, previewBackground);
+                }
+            }
 
             if (!string.IsNullOrEmpty(helpMessage)) EditorGUILayout.HelpBox(helpMessage, MessageType.Info);
 
@@ -367,7 +379,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
 
             foreach (Provider provider in providers) provider.Filter(pattern, filterItems);
 
-            filterItems = filterItems.OrderByDescending(i => i.accuracy).Take(Prefs.createBrowserMaxFilterItems).ToList();
+            filterItems = filterItems.Take(Prefs.createBrowserMaxFilterItems).ToList();
 
             selectedIndex = filterItems.IndexOf(selectedItem);
             if (selectedIndex == -1)

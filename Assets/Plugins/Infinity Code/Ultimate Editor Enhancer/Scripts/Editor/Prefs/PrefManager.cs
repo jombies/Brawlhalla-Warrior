@@ -11,9 +11,9 @@ namespace InfinityCode.UltimateEditorEnhancer
     {
         public abstract class PrefManager
         {
-            public const int labelWidth = 210;
-            public const int modifierLabelWidth = labelWidth - 30;
-            public const int spaceBeforeModifiers = 35;
+            public const int LabelWidth = 210;
+            public const int ModifierLabelWidth = LabelWidth - 30;
+            public const int SpaceBeforeModifiers = 35;
 
             public virtual IEnumerable<string> keywords
             {
@@ -55,21 +55,21 @@ namespace InfinityCode.UltimateEditorEnhancer
                 return modifier;
             }
 
-            protected static void DrawFieldWithHotKey(string label, ref bool field, ref KeyCode hotKey, ref EventModifiers modifiers, GUIStyle labelStyle = null, int spaceBeforeLabels = spaceBeforeModifiers)
+            protected static void DrawFieldWithHotKey(string label, ref bool field, ref KeyCode hotKey, ref EventModifiers modifiers, GUIStyle labelStyle = null, int spaceBeforeLabels = SpaceBeforeModifiers)
             {
                 if (labelStyle == null) labelStyle = EditorStyles.label;
                 field = EditorGUILayout.ToggleLeft(label, field, labelStyle);
                 EditorGUI.BeginDisabledGroup(!field);
                 EditorGUILayout.BeginHorizontal();
                 GUILayout.Space(spaceBeforeLabels);
-                GUILayout.Label("Hot Key", GUILayout.Width(EditorGUI.indentLevel == 0? modifierLabelWidth: modifierLabelWidth - 15));
+                GUILayout.Label("Hot Key", GUILayout.Width(EditorGUI.indentLevel == 0? ModifierLabelWidth: ModifierLabelWidth - 15));
                 hotKey = (KeyCode)EditorGUILayout.EnumPopup(hotKey, GUILayout.ExpandWidth(false));
                 modifiers = DrawModifiers(modifiers);
                 EditorGUILayout.EndHorizontal();
                 EditorGUI.EndDisabledGroup();
             }
 
-            protected static void DrawFieldWithModifiers(string label, ref bool field, ref EventModifiers modifiers, int labelWidth = labelWidth)
+            protected static void DrawFieldWithModifiers(string label, ref bool field, ref EventModifiers modifiers, int labelWidth = LabelWidth)
             {
                 EditorGUILayout.BeginHorizontal();
                 field = EditorGUILayout.ToggleLeft(label, field, GUILayout.Width(labelWidth));

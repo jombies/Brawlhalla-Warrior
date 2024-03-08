@@ -16,13 +16,16 @@ namespace InfinityCode.UltimateEditorEnhancer.Editors
     {
         private static BindingFlags flags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly;
 
+        private static MonoScript[] _scripts;
+
         [NonSerialized]
         private List<ReplaceCandidate> candidates;
 
         [NonSerialized]
         private ReplaceCandidate bestCandidate;
 
-        private static MonoScript[] _scripts;
+        [NonSerialized]
+        private MonoScript newScript;
 
         public static MonoScript[] scripts
         {
@@ -47,7 +50,8 @@ namespace InfinityCode.UltimateEditorEnhancer.Editors
             {
                 Type type = script.GetClass();
                 if (type == null) continue;
-
+                if (!type.IsSubclassOf(typeof(Component))) continue;
+                
                 FieldInfo[] fields = GetFields(type).ToArray();
                 int match = 0;
                 int total = 0;
@@ -129,8 +133,8 @@ namespace InfinityCode.UltimateEditorEnhancer.Editors
 
             if (candidates.Count > 0)
             {
-                candidates = candidates.Where(c => c.similarity > 50).OrderByDescending(c => c.similarity).ToList();
-                bestCandidate = candidates.Count > 0 ? candidates[0] : null;
+                candidates = candidates.OrderByDescending(c => c.similarity).ToList();
+                bestCandidate = candidates[0];
             }
         }
 
@@ -163,12 +167,21 @@ namespace InfinityCode.UltimateEditorEnhancer.Editors
             }
             GUI.enabled = true;
 
+            EditorGUILayout.BeginHorizontal();
+            newScript = EditorGUILayout.ObjectField("Replace To", newScript, typeof(MonoScript), false) as MonoScript;
+            if (GUILayout.Button("Set", GUILayout.ExpandWidth(false)))
+            {
+                SetScript(newScript);
+                EditorUtility.SetDirty(target);
+            }
+            EditorGUILayout.EndHorizontal();
+
             if (bestCandidate != null)
             {
                 EditorGUILayout.HelpBox("Ultimate Editor Enhancer has determined that the best replacement candidate for this missing script is " + bestCandidate.script.name + ". Replace it?", MessageType.Warning);
                 if (GUILayout.Button("Use " + bestCandidate.script.name))
                 {
-                    SetScript(bestCandidate);
+                    SetScript(bestCandidate.script);
                 }
 
                 if (GUILayout.Button("Use Other"))
@@ -178,7 +191,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Editors
                     for (int i = 0; i < Mathf.Min(candidates.Count, 10); i++)
                     {
                         ReplaceCandidate candidate = candidates[i];
-                        menu.AddItem(new GUIContent(candidate.script.name + " [" + candidate.similarity + "%]"), false, () => SetScript(candidate));
+                        menu.AddItem(new GUIContent(candidate.script.name + " [" + candidate.similarity + "%]"), false, () => SetScript(candidate.script));
                     }
 
                     menu.ShowAsContext();
@@ -202,10 +215,10 @@ namespace InfinityCode.UltimateEditorEnhancer.Editors
             }
         }
 
-        private void SetScript(ReplaceCandidate candidate)
+        private void SetScript(MonoScript script)
         {
             SerializedProperty prop = serializedObject.FindProperty("m_Script");
-            prop.objectReferenceValue = candidate.script;
+            prop.objectReferenceValue = script;
             serializedObject.ApplyModifiedProperties();
             EditorUtility.SetDirty(target);
         }

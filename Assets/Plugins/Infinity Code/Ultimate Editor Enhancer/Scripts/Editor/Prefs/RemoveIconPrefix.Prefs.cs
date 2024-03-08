@@ -42,7 +42,7 @@ namespace InfinityCode.UltimateEditorEnhancer
 
             public override float order
             {
-                get { return Order.removeComponentIconPrefix; }
+                get { return Order.RemoveComponentIconPrefix; }
             }
 
             public override void Draw()

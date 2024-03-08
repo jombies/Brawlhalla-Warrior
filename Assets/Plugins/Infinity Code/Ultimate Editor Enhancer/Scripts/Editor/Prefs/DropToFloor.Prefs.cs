@@ -43,19 +43,19 @@ namespace InfinityCode.UltimateEditorEnhancer
                 EditorGUI.indentLevel++;
 
                 float oldLabelWidth = EditorGUIUtility.labelWidth;
-                EditorGUIUtility.labelWidth = labelWidth + 5;
+                EditorGUIUtility.labelWidth = LabelWidth + 5;
                 dropToFloorKeyCode = (KeyCode)EditorGUILayout.EnumPopup("Hot Key", dropToFloorKeyCode, GUILayout.Width(420));
                 EditorGUIUtility.labelWidth = oldLabelWidth;
 
                 EditorGUILayout.BeginHorizontal();
                 GUILayout.Space(16);
-                GUILayout.Label("Modifiers", GUILayout.Width(modifierLabelWidth + 15));
+                GUILayout.Label("Modifiers", GUILayout.Width(ModifierLabelWidth + 15));
                 dropToFloorModifiers = DrawModifiers(dropToFloorModifiers, true);
                 EditorGUILayout.EndHorizontal();
 
                 EditorGUILayout.BeginHorizontal();
                 GUILayout.Space(16);
-                GUILayout.Label("Advanced Modifiers", GUILayout.Width(modifierLabelWidth + 15));
+                GUILayout.Label("Advanced Modifiers", GUILayout.Width(ModifierLabelWidth + 15));
                 advancedDropToFloorModifiers = DrawModifiers(advancedDropToFloorModifiers, true);
                 EditorGUILayout.EndHorizontal();
 
@@ -78,6 +78,12 @@ namespace InfinityCode.UltimateEditorEnhancer
                 }
 
                 return shortcuts;
+            }
+
+            public static void SetState(bool state)
+            {
+                dropToFloor = state;
+                advancedDropToFloor = state;
             }
         }
     }

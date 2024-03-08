@@ -573,14 +573,14 @@ namespace TMPro.Examples
 
 
         // Draw Rectangles
-        void DrawRectangle(Vector3 BL, Vector3 TR, Color color)
+        void DrawRectangle(Vector3 BL, Vector3 tr, Color color)
         {
             Gizmos.color = color;
 
-            Gizmos.DrawLine(new Vector3(BL.x, BL.y, 0), new Vector3(BL.x, TR.y, 0));
-            Gizmos.DrawLine(new Vector3(BL.x, TR.y, 0), new Vector3(TR.x, TR.y, 0));
-            Gizmos.DrawLine(new Vector3(TR.x, TR.y, 0), new Vector3(TR.x, BL.y, 0));
-            Gizmos.DrawLine(new Vector3(TR.x, BL.y, 0), new Vector3(BL.x, BL.y, 0));
+            Gizmos.DrawLine(new Vector3(BL.x, BL.y, 0), new Vector3(BL.x, tr.y, 0));
+            Gizmos.DrawLine(new Vector3(BL.x, tr.y, 0), new Vector3(tr.x, tr.y, 0));
+            Gizmos.DrawLine(new Vector3(tr.x, tr.y, 0), new Vector3(tr.x, BL.y, 0));
+            Gizmos.DrawLine(new Vector3(tr.x, BL.y, 0), new Vector3(BL.x, BL.y, 0));
         }
 
         void DrawDottedRectangle(Vector3 bottomLeft, Vector3 topRight, Color color, float size = 5.0f)

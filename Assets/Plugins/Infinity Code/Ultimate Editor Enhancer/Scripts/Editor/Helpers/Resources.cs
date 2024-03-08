@@ -11,6 +11,8 @@ namespace InfinityCode.UltimateEditorEnhancer
     {
         private static string _assetFolder;
         private static string _iconsFolder;
+        private static string _localResourcesFolder;
+        private static string _scriptTemplatesFolder;
         private static string _settingsFolder;
 
         public static string assetFolder
@@ -42,6 +44,24 @@ namespace InfinityCode.UltimateEditorEnhancer
                 if (string.IsNullOrEmpty(_iconsFolder)) _iconsFolder = assetFolder + "Icons/";
 
                 return _iconsFolder;
+            }
+        }
+
+        public static string localResourcesFolder
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_localResourcesFolder)) _localResourcesFolder = assetFolder + "LocalResources/";
+                return _localResourcesFolder;
+            }
+        }
+
+        public static string scriptTemplatesFolder
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_scriptTemplatesFolder)) _scriptTemplatesFolder = assetFolder + "LocalResources/ScriptTemplates/";
+                return _scriptTemplatesFolder;
             }
         }
 

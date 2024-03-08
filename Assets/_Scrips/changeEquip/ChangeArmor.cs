@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class ChangeArmor : MonoBehaviour
 {
-    [SerializeField] GameObject curGameObject;
+    [SerializeField] GameObject _curGameObject;
     public void changeArmor(string name)
     {
-        if (name == string.Empty || curGameObject.CompareTag(name)) return;
-        GameObject NewObj = transform.Find(name).gameObject;
-        NewObj.SetActive(true);
-        curGameObject.SetActive(false);
-        curGameObject = NewObj;
+        if (name == string.Empty && _curGameObject.CompareTag(name)) return;
+        GameObject newObj = transform.Find(name).gameObject;
+        newObj.SetActive(true);
+        _curGameObject.SetActive(false);
+        _curGameObject = newObj;
     }
 }

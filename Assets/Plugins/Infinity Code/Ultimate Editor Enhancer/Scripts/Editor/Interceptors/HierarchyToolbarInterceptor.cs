@@ -51,13 +51,13 @@ namespace InfinityCode.UltimateEditorEnhancer.Interceptors
 
             if (mode != 1 && GUILayoutUtils.Button(filterByType, EditorStyles.toolbarButton) == ButtonEvent.click)
             {
-                Component[] components = Object.FindObjectsOfType<Component>();
+                Component[] components = ObjectHelper.FindObjectsOfType<Component>();
                 HashSet<string> types = new HashSet<string>();
                 for (int i = 0; i < components.Length; i++)
                 {
                     Type type = components[i].GetType();
                     string name = type.Name;
-                    if (!types.Contains(name)) types.Add(name);
+                    types.Add(name);
                 }
 
                 Rect lastRect = GUILayoutUtils.lastRect;

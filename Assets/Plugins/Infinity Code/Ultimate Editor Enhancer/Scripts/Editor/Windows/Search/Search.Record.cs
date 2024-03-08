@@ -13,8 +13,9 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
     {
         internal abstract class Record : SearchableItem
         {
+            internal const int MaxLabelLength = 65;
+            
             protected long lastClickTime;
-            internal const int maxLabelLength = 65;
             protected string _label;
             protected string[] search;
             protected string _tooltip;
@@ -118,12 +119,12 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
 
             protected virtual void InitLabel()
             {
-                if (tooltip.Length <= maxLabelLength) _label = tooltip;
+                if (tooltip.Length <= MaxLabelLength) _label = tooltip;
                 else
                 {
-                    int start = tooltip.IndexOf('/', tooltip.Length - maxLabelLength + 3);
+                    int start = tooltip.IndexOf('/', tooltip.Length - MaxLabelLength + 3);
                     if (start != -1) _label = "..." + tooltip.Substring(start);
-                    else _label = "..." + tooltip.Substring(tooltip.Length - maxLabelLength + 3);
+                    else _label = "..." + tooltip.Substring(tooltip.Length - MaxLabelLength + 3);
                 }
             }
 
@@ -162,12 +163,10 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
                 e.Use();
             }
 
-            public float Update(string pattern, string valueType)
+            public bool Update(string pattern, string valueType)
             {
-                _accuracy = 0;
-
-                if (!string.IsNullOrEmpty(valueType) && !Contains(type, valueType)) return 0;
-                return UpdateAccuracy(pattern);
+                if (!string.IsNullOrEmpty(valueType) && !Contains(type, valueType)) return false;
+                return Match(pattern);
             }
 
             public virtual void UpdateGameObjectName(GameObject go)

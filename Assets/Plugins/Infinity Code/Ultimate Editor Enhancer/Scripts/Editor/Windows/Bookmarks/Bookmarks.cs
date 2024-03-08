@@ -185,7 +185,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
             Rect rect = GUILayoutUtility.GetRect(maxWidth, maxWidth, 20, 20);
             rect.xMin = rect.xMax - 100;
             rect.x -= 3;
-            int id = FixedIDs.BOOKMARKS_GRID_SIZE;
+            int id = FixedIDs.BookmarksGridSize;
             gridSize = (int) GUI.Slider(rect, gridSize, 0, minGridSize, maxGridSize, GUI.skin.horizontalSlider, GUI.skin.horizontalSliderThumb, true, id);
             if (EditorGUI.EndChangeCheck())
             {
@@ -254,6 +254,8 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
                 foreach (ProjectBookmark item in projectItems)
                 {
                     string[] labels = AssetDatabase.GetLabels(item.target);
+                    if (labels == null) continue;
+                    
                     foreach (string label in labels)
                     {
                         if (!temp.Contains(label)) temp.Add(label);
@@ -265,6 +267,8 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
                     foreach (ProjectFolderBookmark.Item item in folder.items)
                     {
                         string[] labels = item.labels;
+                        if (labels == null) continue;
+                        
                         foreach (string label in labels)
                         {
                             if (!temp.Contains(label)) temp.Add(label);
@@ -356,6 +360,8 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
                         bool multiScene = sceneItems.Count > 1;
                         foreach (var pair in sceneItems)
                         {
+                            if (pair.Key == null) continue;
+                            
                             string label = multiScene? pair.Key.gameObject.scene.name: string.Empty;
                             if (gridSize > minGridSize) DrawGridItems(pair.Value, label);
                             else
@@ -456,27 +462,41 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
             selectedFolderItems = tempItems.ToList();
         }
 
-        private void InitPreview(BookmarkItem item)
+        private static void InitPreview(BookmarkItem item)
         {
-            if (item.isProjectItem && item.target is GameObject)
+            if (item.isProjectItem)
             {
-                bool isLoading = AssetPreview.IsLoadingAssetPreview(item.target.GetInstanceID());
-                if (isLoading)
+                if (item.target is GameObject)
                 {
-                    item.preview = EditorResources.prefabTexture;
+                    bool isLoading = AssetPreview.IsLoadingAssetPreview(item.target.GetInstanceID());
+                    if (isLoading)
+                    {
+                        item.preview = EditorResources.prefabTexture;
+                    }
+                    else
+                    {
+                        item.preview = AssetPreview.GetAssetPreview(item.target);
+                        if (item.preview == null) item.preview = AssetPreview.GetMiniThumbnail(item.target);
+                        item.previewLoaded = true;
+                    }
+                    
+                    return;
                 }
-                else
+
+                if (item.target is UnityEngine.Tilemaps.Tile)
                 {
-                    item.preview = AssetPreview.GetAssetPreview(item.target);
-                    if (item.preview == null) item.preview = AssetPreview.GetMiniThumbnail(item.target);
-                    item.previewLoaded = true;
+                    UnityEngine.Tilemaps.Tile tile = item.target as UnityEngine.Tilemaps.Tile;
+                    if (tile != null && tile.sprite != null)
+                    {
+                        item.preview = tile.sprite.texture;
+                        item.previewLoaded = true;
+                        return;
+                    }
                 }
             }
-            else
-            {
-                item.preview = AssetPreview.GetMiniThumbnail(item.target);
-                item.previewLoaded = true;
-            }
+
+            item.preview = AssetPreview.GetMiniThumbnail(item.target);
+            item.previewLoaded = true;
         }
 
         private static void InitProjectFolders()
@@ -541,7 +561,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
                 selectedStyle.fixedHeight = 0;
             }
 
-            if (removeItem != null) Remove(removeItem.target);
+            if (removeItem != null) Remove(removeItem);
 
             ProcessEvents();
             Toolbar();
@@ -558,7 +578,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
 
             if (removeItem != null)
             {
-                Remove(removeItem.target);
+                Remove(removeItem);
                 removeItem = null;
                 Save();
                 UpdateFilteredItems();
@@ -686,6 +706,28 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
                 instance.UpdateFilteredItems();
             }
         }
+        
+        private static void Remove(BookmarkItem item)
+        {
+            if (item == null) return;
+
+            if (item.target == null)
+            {
+                if (item.isProjectItem) projectItems.Remove(item as ProjectBookmark);
+                else
+                {
+                    List<SceneReferences> sceneReferencesList = SceneReferences.instances;
+                    foreach (SceneReferences sceneReferences in sceneReferencesList)
+                    {
+                        if (sceneReferences.bookmarks.Remove(item as SceneBookmark))
+                        {
+                            EditorUtility.SetDirty(sceneReferences);
+                        }
+                    }
+                }
+            }
+            else Remove(item.target);
+        }
 
         private static void RemoveLate(BookmarkItem item)
         {
@@ -774,7 +816,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
             PinAndClose.Show(wnd, rect, wnd.Close, () =>
             {
                 Rect wRect = wnd.position;
-                wRect.yMin -= PinAndClose.HEIGHT;
+                wRect.yMin -= PinAndClose.Height;
                 ShowWindow().position = wRect;
                 wnd.Close();
             }, "Bookmarks");
@@ -788,7 +830,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
             menu.Show();
         }
 
-        [MenuItem(WindowsHelper.MenuPath + "Bookmarks", false, 100)]
+        [MenuItem(WindowsHelper.MenuPath + "Bookmarks", false, MenuItemOrder.Bookmarks)]
         public static EditorWindow ShowWindow()
         {
             return ShowWindow(null);
@@ -871,14 +913,14 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
 
             if (string.IsNullOrEmpty(activeLabel))
             {
-                query = query.Where(i => i.Update(pattern, assetType) > 0);
+                query = query.Where(i => i.Update(pattern, assetType));
             }
             else
             {
-                query = query.Where(i => i.HasLabel(activeLabel) && i.Update(pattern, assetType) > 0);
+                query = query.Where(i => i.HasLabel(activeLabel) && i.Update(pattern, assetType));
             }
 
-            filteredItems = query.OrderByDescending(i => i.accuracy).ToList();
+            filteredItems = query.ToList();
         }
     }
 }

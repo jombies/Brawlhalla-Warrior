@@ -1,9 +1,12 @@
 ﻿/*           INFINITY CODE          */
 /*     https://infinity-code.com    */
 
+using System;
 using InfinityCode.UltimateEditorEnhancer.PropertyDrawers;
+using InfinityCode.UltimateEditorEnhancer.UnityTypes;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 using Object = UnityEngine.Object;
 
 namespace InfinityCode.UltimateEditorEnhancer.Behaviors
@@ -25,10 +28,11 @@ namespace InfinityCode.UltimateEditorEnhancer.Behaviors
             }
 
             DragAndDrop.AcceptDrag();
+            
+            SerializedProperty callsProp = property.FindPropertyRelative("m_PersistentCalls.m_Calls");
 
             foreach (Object obj in DragAndDrop.objectReferences)
             {
-                SerializedProperty callsProp = property.FindPropertyRelative("m_PersistentCalls.m_Calls");
                 callsProp.arraySize++;
 
                 GameObject target;
@@ -41,7 +45,45 @@ namespace InfinityCode.UltimateEditorEnhancer.Behaviors
                 last.FindPropertyRelative("m_CallState").enumValueIndex = 2;
             }
 
+            if (DragAndDrop.objectReferences.Length == 1)
+            {
+                Object target = DragAndDrop.objectReferences[0];
+                SerializedProperty last = callsProp.GetArrayElementAtIndex(callsProp.arraySize - 1);
+                SerializedProperty propertyRelative = last.FindPropertyRelative("m_MethodName");
+
+                Type[] genericTypeArguments = UnityEventBaseDrawer.currentFieldInfo.FieldType.GenericTypeArguments;
+
+                if (target is GameObject)
+                {
+                    UnityEventBase dummyEvent = UnityEventDrawerRef.GetDummyEvent(property);
+                    GenericMenu menu = UnityEventDrawerRef.BuildPopupList(target, dummyEvent, last);
+                    menu.ShowAsContext();
+                }
+                else if (target is Component)
+                {
+                    GenericMenu menu = new GenericMenu();
+                    menu.AddItem(
+                        new GUIContent("No Function"), 
+                        string.IsNullOrEmpty(propertyRelative.stringValue), 
+                        () =>
+                        {
+                            propertyRelative.stringValue = "";
+                            property.serializedObject.SetIsDifferentCacheDirty();
+                        });
+                    
+                    UnityEventDrawerRef.GeneratePopUpForType(
+                        menu, 
+                        target, 
+                        ObjectNames.NicifyVariableName(target.GetType().Name), 
+                        last, 
+                        genericTypeArguments);
+                    
+                    menu.ShowAsContext();
+                }
+            }
+            
             property.serializedObject.SetIsDifferentCacheDirty();
+            
             Event.current.Use();
         }
 

@@ -20,6 +20,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
         private Vector2 scrollPosition;
         private static bool inited;
         public static GUIStyle headerStyle;
+        private static Texture2D discordTexture;
         private static Texture2D docTexture;
         private static Texture2D gettingStartedTexture;
         private static Texture2D forumTexture;
@@ -113,6 +114,11 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
             {
                 Links.OpenSupport();
             }
+            
+            if (DrawButton(discordTexture, "Discord", "Join our Discord server"))
+            {
+                Links.OpenDiscord();
+            }
 
             if (DrawButton(forumTexture, "Forum", "Official forum of Ultimate Editor Enhancer"))
             {
@@ -165,6 +171,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
             gettingStartedTexture = Resources.Load<Texture2D>("Textures/Welcome/Getting Started.png");
             docTexture = Resources.Load<Texture2D>("Textures/Welcome/Docs.png");
             forumTexture = Resources.Load<Texture2D>("Textures/Welcome/Forum.png");
+            discordTexture = Resources.Load<Texture2D>("Textures/Welcome/Discord.png");
             proFeaturesTexture = Resources.Load<Texture2D>("Textures/Welcome/Pro Features.png");
             rateTexture = Resources.Load<Texture2D>("Textures/Welcome/Rate.png");
             settingsTexture = Resources.Load<Texture2D>("Textures/Welcome/Settings.png");
@@ -224,7 +231,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
             OpenWindow();
         }
 
-        [MenuItem(WindowsHelper.MenuPath + "Welcome", false, 120)]
+        [MenuItem(WindowsHelper.MenuPath + "Welcome", false, MenuItemOrder.Welcome)]
         public static void OpenWindow()
         {
             if (wnd != null) return;
@@ -234,7 +241,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
             wnd.Focus();
         }
 
-        [MenuItem(WindowsHelper.MenuPath + "Rate and Review", false, 125)]
+        [MenuItem(WindowsHelper.MenuPath + "Rate and Review", false, MenuItemOrder.RateAndReview)]
         public static void RateAndReview()
         {
             Links.OpenReviews();

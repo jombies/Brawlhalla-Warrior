@@ -13,7 +13,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
 {
     public class DistanceTool : EditorWindow
     {
-        public const int LINEHEIGHT = 24;
+        public const int LineHeight = 24;
         private const string DistanceStyleID = "sv_label_3";
         private const string IndexStyleID = "sv_label_1";
 
@@ -123,7 +123,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
 
             Rect r = new Rect(rect);
             r.y += 2;
-            r.height = LINEHEIGHT - 4;
+            r.height = LineHeight - 4;
 
             if (t.type == TargetType.transform)
             {
@@ -313,8 +313,8 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
         private float GetElementHeight(int index)
         {
             Target t = targets[index];
-            if (index == 0 && t.type == TargetType.point) return LINEHEIGHT;
-            return LINEHEIGHT * 2 - 4;
+            if (index == 0 && t.type == TargetType.point) return LineHeight;
+            return LineHeight * 2 - 4;
         }
 
         private void OnDestroy()
@@ -325,7 +325,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
 
         private void OnEnable()
         {
-            SceneViewManager.AddListener(OnSceneView, SceneViewOrder.normal, true);
+            SceneViewManager.AddListener(OnSceneView, SceneViewOrder.Normal, true);
         }
 
         private void OnGUI()
@@ -472,7 +472,7 @@ namespace InfinityCode.UltimateEditorEnhancer.Windows
             Handles.color = color;
         }
 
-        [MenuItem(WindowsHelper.MenuPath + "Distance Tool", false, 100)]
+        [MenuItem(WindowsHelper.MenuPath + "Distance Tool", false, MenuItemOrder.DistanceTool)]
         public static void OpenWindow()
         {
             GetWindow<DistanceTool>(false, "Distance Tool").autoRepaintOnSceneChange = true;

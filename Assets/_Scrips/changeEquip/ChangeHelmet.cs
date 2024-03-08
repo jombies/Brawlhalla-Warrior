@@ -1,14 +1,13 @@
 using UnityEngine;
-
 public class ChangeHelmet : MonoBehaviour
 {
-    [SerializeField] GameObject curGameObject;
+    [SerializeField] GameObject _curGameObject;
     public void changeHelmet(string name)
     {
-        if (name == string.Empty || curGameObject.CompareTag(name)) return;
+        if (name == string.Empty && _curGameObject.CompareTag(name)) return;
         GameObject newObj = transform.Find(name).gameObject;
         newObj.SetActive(true);
-        curGameObject.SetActive(false);
-        curGameObject = newObj;
+        _curGameObject.SetActive(false);
+        _curGameObject = newObj;
     }
 }

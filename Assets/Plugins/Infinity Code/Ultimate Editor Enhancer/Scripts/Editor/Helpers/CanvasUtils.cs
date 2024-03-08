@@ -1,6 +1,12 @@
 ﻿/*           INFINITY CODE          */
 /*     https://infinity-code.com    */
 
+using System;
+using System.Collections;
+using System.Linq;
+using System.Reflection;
+using InfinityCode.UltimateEditorEnhancer.Attributes;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -41,7 +47,7 @@ namespace InfinityCode.UltimateEditorEnhancer
         /// <returns></returns>
         public static Canvas GetCanvas()
         {
-            Canvas canvas = Object.FindObjectOfType<Canvas>();
+            Canvas canvas = ObjectHelper.FindObjectOfType<Canvas>();
             if (canvas == null)
             {
                 GameObject canvasGO = new GameObject("Canvas");
@@ -63,7 +69,7 @@ namespace InfinityCode.UltimateEditorEnhancer
         /// <returns></returns>
         public static EventSystem GetEventSystem()
         {
-            EventSystem eventSystem = Object.FindObjectOfType<EventSystem>();
+            EventSystem eventSystem = ObjectHelper.FindObjectOfType<EventSystem>();
             if (eventSystem == null)
             {
                 GameObject es = new GameObject("EventSystem");

@@ -4,7 +4,6 @@
 using System;
 using System.Collections.Generic;
 using InfinityCode.UltimateEditorEnhancer.Attributes;
-using InfinityCode.UltimateEditorEnhancer.Interceptors;
 using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
@@ -14,18 +13,51 @@ namespace InfinityCode.UltimateEditorEnhancer.ComponentHeader
     [InitializeOnLoad]
     public static class RuntimeSaveButton
     {
-        private const string FIELD_SEPARATOR = "~«§";
+        private const string FieldSeparator = "~«§";
         private static Dictionary<string, object> savedFields = new Dictionary<string, object>();
 
         static RuntimeSaveButton()
         {
             EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
-            PropertyHandlerInterceptor.OnAddMenuItems += OnAddMenuItems;
+            EditorApplication.contextualPropertyMenu += OnAddMenuItems;
         }
 
-        [ComponentHeaderButton]
+        [MenuItem("CONTEXT/Component/Save Component", false, 502)]
+        private static void ContextMenuAction(MenuCommand command)
+        {
+            SaveComponent(command.context as Component);
+        }
+
+        [MenuItem("CONTEXT/Component/Save Component", true)]
+        private static bool ContextMenuValidate(MenuCommand command)
+        {
+            return Validate(command.context);
+        }
+        
+        [MenuItem("CONTEXT/Component/Save Component On Exit Play Mode", false, 503)]
+        private static void ContextMenuSaveOnExit(MenuCommand command)
+        {
+            Component component = command.context as Component;
+            if (component == null) return;
+
+            SaveOnExitPlayMode wrapper = component.gameObject.GetComponent<SaveOnExitPlayMode>();
+            if (wrapper == null) wrapper = component.gameObject.AddComponent<SaveOnExitPlayMode>();
+            
+            if (!wrapper.saveComponents.Contains(component)) wrapper.saveComponents.Add(component);
+        }
+        
+        [MenuItem("CONTEXT/Component/Save Component On Exit Play Mode", true)]
+        private static bool ContextMenuSaveOnExitValidate(MenuCommand command)
+        {
+            return Validate(command.context);
+        }
+
+
+        [ComponentHeaderButton (ComponentHeaderButtonOrder.SaveButton)]
         public static bool Draw(Rect rectangle, Object[] targets)
         {
+            if (!Prefs.componentExtraHeaderButtons || !Prefs.saveComponentRuntime) return false;
+
             Object target = targets[0];
             if (!Validate(target)) return false;
 
@@ -34,24 +66,13 @@ namespace InfinityCode.UltimateEditorEnhancer.ComponentHeader
                 Component c = target as Component;
                 if (c == null) return true;
                 
-                SerializedObject so = new SerializedObject(target);
-                SerializedProperty p = so.GetIterator();
-                if (p.Next(true))
-                {
-                    do
-                    {
-                        savedFields[c.GetInstanceID() + FIELD_SEPARATOR + p.propertyPath] = SerializedPropertyHelper.GetBoxedValue(p.Copy());
-                    }
-                    while (p.NextVisible(true));
-                }
-
-                Debug.Log($"{c.gameObject.name}/{ObjectNames.NicifyVariableName(target.GetType().Name)} component state saved.");
+                SaveComponent(c);
             }
 
             return true;
         }
 
-        private static void OnAddMenuItems(SerializedProperty property, GenericMenu menu)
+        private static void OnAddMenuItems(GenericMenu menu, SerializedProperty property)
         {
             if (!EditorApplication.isPlaying) return;
 
@@ -66,7 +87,7 @@ namespace InfinityCode.UltimateEditorEnhancer.ComponentHeader
 
             menu.AddItem(TempContent.Get("Save Field Value"), false, () =>
             {
-                savedFields[instanceID + FIELD_SEPARATOR + path] = SerializedPropertyHelper.GetBoxedValue(prop);
+                savedFields[instanceID + FieldSeparator + path] = SerializedPropertyHelper.GetBoxedValue(prop);
             });
         }
 
@@ -80,6 +101,17 @@ namespace InfinityCode.UltimateEditorEnhancer.ComponentHeader
             {
                 RestoreSavedValues();
             }
+            else if (state == PlayModeStateChange.ExitingPlayMode)
+            {
+                SaveOnExitPlayMode[] wrappers = ObjectHelper.FindObjectsOfType<SaveOnExitPlayMode>();
+                foreach (SaveOnExitPlayMode wrapper in wrappers)
+                {
+                    foreach (Component component in wrapper.saveComponents)
+                    {
+                        if (component != null) SaveComponent(component, false);
+                    }
+                }
+            }
         }
 
         private static void RestoreSavedValues()
@@ -89,7 +121,7 @@ namespace InfinityCode.UltimateEditorEnhancer.ComponentHeader
 
             foreach (KeyValuePair<string, object> pair in savedFields)
             {
-                string[] parts = pair.Key.Split(new[]{FIELD_SEPARATOR}, StringSplitOptions.None);
+                string[] parts = pair.Key.Split(new[]{FieldSeparator}, StringSplitOptions.None);
                 int id;
                 if (!int.TryParse(parts[0], out id)) continue;
 
@@ -108,9 +140,24 @@ namespace InfinityCode.UltimateEditorEnhancer.ComponentHeader
             Undo.CollapseUndoOperations(@group);
         }
 
+        private static void SaveComponent(Component component, bool log = true)
+        {
+            if (component == null) return;
+            SerializedObject so = new SerializedObject(component);
+            SerializedProperty p = so.GetIterator();
+            if (p.Next(true))
+            {
+                do
+                {
+                    savedFields[component.GetInstanceID() + FieldSeparator + p.propertyPath] = SerializedPropertyHelper.GetBoxedValue(p.Copy());
+                } while (p.NextVisible(true));
+            }
+
+            if (log) Debug.Log($"{component.gameObject.name}/{ObjectNames.NicifyVariableName(component.GetType().Name)} component state saved.");
+        }
+
         private static bool Validate(Object target)
         {
-            if (!Prefs.componentExtraHeaderButtons || !Prefs.saveComponentRuntime) return false;
             if (!EditorApplication.isPlaying) return false;
             Component component = target as Component;
             if (component == null) return false;

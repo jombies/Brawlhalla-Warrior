@@ -272,7 +272,7 @@ namespace InfinityCode.UltimateEditorEnhancer.SceneTools
             if (scriptableObject == null) return;
 
             Rect rect = new Rect();
-            Vector2 pos = new Vector2(QuickAccess.invokeItemRect.xMax, QuickAccess.invokeItemRect.y + PinAndClose.HEIGHT + 40);
+            Vector2 pos = new Vector2(QuickAccess.invokeItemRect.xMax, QuickAccess.invokeItemRect.y + PinAndClose.Height + 40);
             rect.position = GUIUtility.GUIToScreenPoint(pos);
             rect.size = Prefs.defaultWindowSize;
             AutoSize autoSize = AutoSize.top;
@@ -280,7 +280,7 @@ namespace InfinityCode.UltimateEditorEnhancer.SceneTools
             if (rect.center.y > Screen.currentResolution.height / 2)
             {
                 autoSize = AutoSize.bottom;
-                rect.y -= rect.size.y - PinAndClose.HEIGHT + 8;
+                rect.y -= rect.size.y - PinAndClose.Height + 8;
             }
 
             ObjectWindow window = ObjectWindow.ShowPopup(new[] { scriptableObject }, rect);
@@ -351,7 +351,7 @@ namespace InfinityCode.UltimateEditorEnhancer.SceneTools
                 Debug.LogException(e);
             }
 
-            Vector2 pos = new Vector2(QuickAccess.invokeItemRect.xMax, QuickAccess.invokeItemRect.y + PinAndClose.HEIGHT + toolbarOffset);
+            Vector2 pos = new Vector2(QuickAccess.invokeItemRect.xMax, QuickAccess.invokeItemRect.y + PinAndClose.Height + toolbarOffset);
 #if !(!UNITY_2021_1_OR_NEWER || UNITY_2021_2_OR_NEWER)
             pos += SceneView.lastActiveSceneView.position.position;
 #endif
@@ -361,7 +361,7 @@ namespace InfinityCode.UltimateEditorEnhancer.SceneTools
 
             if (rect.center.y > Screen.currentResolution.height * 0.7f)
             {
-                rect.y -= rect.size.y - PinAndClose.HEIGHT + 8;
+                rect.y -= rect.size.y - PinAndClose.Height + 8;
             }
 
             if (alignWindowToBar) wnd.position = rect;
@@ -376,7 +376,7 @@ namespace InfinityCode.UltimateEditorEnhancer.SceneTools
                     EditorWindow nWnd = Object.Instantiate(wnd);
                     nWnd.Show();
                     Rect wRect = wnd.position;
-                    wRect.yMin -= PinAndClose.HEIGHT;
+                    wRect.yMin -= PinAndClose.Height;
                     nWnd.minSize = wnd.minSize;
                     nWnd.maxSize = wnd.maxSize;
                     nWnd.position = wRect;

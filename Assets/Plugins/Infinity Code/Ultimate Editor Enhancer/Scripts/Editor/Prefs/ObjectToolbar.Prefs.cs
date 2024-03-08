@@ -27,7 +27,7 @@ namespace InfinityCode.UltimateEditorEnhancer
 
             public override float order
             {
-                get { return Order.objectToolbar; }
+                get { return Order.ObjectToolbar; }
             }
 
             public override void Draw()
@@ -56,6 +56,11 @@ namespace InfinityCode.UltimateEditorEnhancer
 #endif
                     new Shortcut("Open Component In Object Toolbar", "Scene View", "ALT + {1-9}"),
                 };
+            }
+
+            public static void SetState(bool state)
+            {
+                objectToolbar = state;
             }
         }
     }

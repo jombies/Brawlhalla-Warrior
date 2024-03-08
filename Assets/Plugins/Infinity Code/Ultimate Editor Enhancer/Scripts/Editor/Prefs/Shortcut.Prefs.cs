@@ -25,6 +25,11 @@ namespace InfinityCode.UltimateEditorEnhancer
 
             }
 
+            public Shortcut(string action, string context, KeyCode keyCode) : this(action, context, ModifierToString(EventModifiers.None, keyCode))
+            {
+
+            }
+
             public Shortcut(string action, string context, EventModifiers modifiers, KeyCode keyCode) : this(action, context, ModifierToString(modifiers, keyCode))
             {
 
