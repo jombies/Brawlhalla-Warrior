@@ -34,7 +34,7 @@ namespace InfinityCode.UltimateEditorEnhancer.InspectorTools
             float current;
             if (!isPaused)
             {
-                current = (float) (EditorApplication.timeSinceStartup - startTime) % clip.length;
+                current = (float)(EditorApplication.timeSinceStartup - startTime) % clip.length;
                 frame = Mathf.RoundToInt(current * clip.frameRate);
             }
             else
