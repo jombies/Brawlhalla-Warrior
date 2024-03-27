@@ -15,10 +15,6 @@ public class CharacterStat : MonoBehaviour
         currentHealth = MaxHealth;
         heathBar.SetMaxHeathBar(MaxHealth);
     }
-    private void Update()
-    {
-
-    }
     public void TakeDamage(int dmg)
     {
         dmg -= Armor.GetValue();
