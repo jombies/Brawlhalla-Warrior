@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BossAttacking : MonoBehaviour
 {
@@ -14,6 +14,7 @@ public class BossAttacking : MonoBehaviour
     public Vector3 walkPoint;
     bool walkPointSet;
     public float walkPointRange;
+    public Vector3 direction; // Hướng của raycast
 
     //attack
     public float timeBetweenAttacks;
@@ -37,7 +38,21 @@ public class BossAttacking : MonoBehaviour
         //SeeFirstTime();
         if (controller.AlreadyFoundPlayer())
         {
-            Attacking();
+            if (PlayerInSight())
+            {
+                Attacking();
+            }
+        }
+    }
+
+    private void LateUpdate()
+    {
+        if (controller.AlreadyFoundPlayer())
+        {
+            if (!PlayerInSight() && !controller.IsAttack)
+            {
+                controller.FaceTarget();
+            }
         }
     }
     void Attacking()
@@ -62,6 +77,20 @@ public class BossAttacking : MonoBehaviour
     }
     bool PlayerInSight()
     {
-        return false;
+        Ray ray = new(transform.position, transform.parent.TransformDirection(Vector3.forward));
+        RaycastHit hit;
+        // Kiểm tra xem ray có va chạm với bất kỳ đối tượng nào không
+        if (Physics.Raycast(ray, out hit, 3, IsPlayer))
+        {
+            // Nếu ray va chạm với một đối tượng, vẽ đường từ điểm bắt đầu đến điểm va chạm
+            Debug.DrawLine(transform.position, hit.point, Color.red);
+            return true;
+        }
+        else
+        {
+            // Nếu ray không va chạm với bất kỳ đối tượng nào, vẽ đường từ điểm bắt đầu theo hướng đã cho
+            Debug.DrawRay(transform.position, transform.parent.TransformDirection(Vector3.forward) * 3, Color.green);
+            return false;
+        }
     }
 }

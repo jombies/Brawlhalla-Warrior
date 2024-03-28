@@ -12,6 +12,7 @@ public class EnemyShotting : MonoBehaviour
     CharacterAnimation PlayerAnimate;
     PlayerStat _playerStat;
     EnemyStats _enemyStats;
+    GameObject _canvas;
     //Damage pop up
     [SerializeField] GameObject PopUpDame;
     [SerializeField] TextMesh _textDamePopup;
@@ -39,6 +40,7 @@ public class EnemyShotting : MonoBehaviour
     void Start()
     {
         _target = PlayerReferences.Instance.Player.transform;
+        _canvas = transform.GetChild(0).gameObject;
         animator = GetComponent<Animator>();
         _enemyStats = GetComponent<EnemyStats>();
         _playerStat = _target.GetComponent<PlayerStat>();
@@ -52,6 +54,7 @@ public class EnemyShotting : MonoBehaviour
     {
         if (_enemyStats.currentHealth <= 0)
         {
+            _canvas.SetActive(false);
             BoxCollider.enabled = false;
             return;
         }
@@ -130,7 +133,7 @@ public class EnemyShotting : MonoBehaviour
     IEnumerator enumerator()
     {
         yield return new WaitForSeconds(1);
-        transform.position = Vector3.Lerp(transform.position, currPoint.position, 0.5f);
+        transform.position = Vector3.Lerp(transform.position, currPoint.position, 10 * Time.deltaTime);
 
     }
     void OnTriggerEnter(Collider other)

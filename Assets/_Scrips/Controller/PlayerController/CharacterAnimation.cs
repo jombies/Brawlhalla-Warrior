@@ -3,6 +3,7 @@ using UnityEngine;
 public class CharacterAnimation : MonoBehaviour
 {
     Animator _animator;
+    AutoAimForPlayer _aim;
     public bool IsAttacking;
     public float TimeSinceAttack;
     public int CurrentAttack;
@@ -10,6 +11,7 @@ public class CharacterAnimation : MonoBehaviour
     private void Start()
     {
         _animator = GetComponent<Animator>();
+        _aim = transform.parent.GetComponent<AutoAimForPlayer>();
     }
     private void Update()
     {
@@ -34,6 +36,7 @@ public class CharacterAnimation : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Mouse0) && TimeSinceAttack > .9f)
         {
+            _aim.AimAndAttack();
             CurrentAttack++;
             //reset attack
             if (CurrentAttack > 3) CurrentAttack = 1;

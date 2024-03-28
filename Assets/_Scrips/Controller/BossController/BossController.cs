@@ -21,7 +21,7 @@ public class BossController : MonoBehaviour
     public bool IsAttack;
     [SerializeField] CapsuleCollider _capsuleCollider;
 
-    void Awake()
+    void Start()
     {
         Animator = GetComponent<Animator>();
         _target = PlayerReferences.Instance.Player;

@@ -10,11 +10,11 @@ public class EnemyControler : MonoBehaviour
     CharacterAnimation PlayerAnimte;
     PlayerStat _playerStat;
     EnemyStats _enemyStats;
+    GameObject canvas;
     //Damage Pop up
     [SerializeField] GameObject PopUpDame;
     [SerializeField] TextMesh _textDamePopup;
     [SerializeField] CapsuleCollider _capsuleCollider;
-    [SerializeField] GameObject canvas;
     //layer
     public LayerMask IsPlayer, IsGround;
     readonly float ac;

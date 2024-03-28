@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
@@ -15,7 +15,7 @@ public class Inventory : MonoBehaviour
 
     public List<Item> Items = new List<Item>();
     public int coin { get; private set; }
-    [SerializeField] TextMeshProUGUI _textCoin;
+    [SerializeField] Text _textCoin;
     readonly int _space = 20;
 
     public delegate void OnItemChanged();

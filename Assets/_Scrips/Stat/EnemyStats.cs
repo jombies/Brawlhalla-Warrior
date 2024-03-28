@@ -24,7 +24,7 @@ public class EnemyStats : CharacterStat
     }
     IEnumerator WaitToDie(float s)
     {
-        Debug.Log($"{s}");
+        // Debug.Log($"{s}");
         yield return new WaitForSeconds(s);
         Destroy(gameObject);
     }

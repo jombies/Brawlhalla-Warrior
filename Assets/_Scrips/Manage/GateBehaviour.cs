@@ -19,13 +19,18 @@ public class GateBehaviour : MonoBehaviour
         }
 
     }
-    public void GateCollider(GameObject go)
+    public void GateClose(GameObject go)
     {
         go.GetComponent<BoxCollider>().isTrigger = false;
         go.transform.DOMoveY(-3, 1);
         bossMoving.PlayerOnGr = true;
     }
+    public void GateOpen(GameObject go)
+    {
+        go.GetComponent<BoxCollider>().enabled = false;
+        go.transform.DOMoveY(3, 1);
 
+    }
     private void Reset()
     {
         bossMoving = GameObject.FindGameObjectWithTag("BossEnemy").transform.GetChild(3).GetComponent<BossMoving>();

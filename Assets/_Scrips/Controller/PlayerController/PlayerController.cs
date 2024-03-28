@@ -3,12 +3,12 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
-    private PlayerStat PlayerStat;
-    private CharacterController Controller;
-    private CharacterAnimation Animater;
+    PlayerStat PlayerStat;
+    CharacterController Controller;
+    CharacterAnimation Animater;
 
     readonly float _speedMax = 5;
-    readonly float _speedRotation = 720;
+    readonly float _speedRotation = 360;
     readonly float _gra = 8f;
     Vector3 _gravity;
     private void Awake()
@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("GateWay"))
         {
-            other.transform.parent.GetComponent<GateBehaviour>().GateCollider(other.gameObject);
+            other.transform.parent.GetComponent<GateBehaviour>().GateClose(other.gameObject);
         }
     }
 }
