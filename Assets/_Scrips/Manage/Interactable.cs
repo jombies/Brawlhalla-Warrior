@@ -22,5 +22,6 @@ public class Interactable : MonoBehaviour
             PlayerReferences.Instance.Player.GetComponent<PlayerStat>().Healing(100);
             Destroy(other.gameObject);
         }
+
     }
 }

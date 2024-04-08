@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -8,8 +9,10 @@ public class PlayerController : MonoBehaviour
     CharacterAnimation Animater;
 
     readonly float _speedMax = 5;
-    readonly float _speedRotation = 360;
+    readonly float _speedRotation = 10;
     readonly float _gra = 8f;
+    float speed = 2.8f;
+    Vector3 direction;
     Vector3 _gravity;
     private void Awake()
     {
@@ -19,17 +22,16 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
+        direction = InputSingleton.instance.direction;
         Moving();
     }
     void Moving()
     {
-        Vector3 direction = InputSingleton.instance.direction;
-        float speed = 3;
         if (Animater.IsAttacking) return;
         if (direction != Vector3.zero)
         {
             Quaternion toRotation = Quaternion.LookRotation(direction, Vector3.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, _speedRotation * Time.deltaTime);
+            transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, _speedRotation * Time.deltaTime);
         }
         if (direction.magnitude > 0.1f)
         {
@@ -37,7 +39,9 @@ public class PlayerController : MonoBehaviour
             {
                 speed = _speedMax;
             }
-            Controller.Move(speed * Time.deltaTime * direction);
+            else speed = 2.8f;
+            Controller.Move(direction * Time.deltaTime * speed);
+
         }
         // gravity for charater
         if (_gravity.y < 0) _gravity.y = -9.8f;
@@ -69,5 +73,11 @@ public class PlayerController : MonoBehaviour
         {
             other.transform.parent.GetComponent<GateBehaviour>().GateClose(other.gameObject);
         }
+    }
+
+    IEnumerator delayMethod(float speed, Vector3 dir)
+    {
+        yield return new WaitForSeconds(3);
+        Controller.Move(speed * Time.deltaTime * dir);
     }
 }

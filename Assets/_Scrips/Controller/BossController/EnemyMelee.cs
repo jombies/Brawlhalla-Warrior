@@ -1,36 +1,29 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyShotting : MonoBehaviour
+[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(EnemyStats))]
+public class EnemyMelee : MonoBehaviour
 {
-    //Manager
-    Animator animator;
     Transform _target;
     NavMeshAgent _agent;
-    CharacterAnimation PlayerAnimate;
+    CharacterAnimation PlayerAnimte;
     PlayerStat _playerStat;
     EnemyStats _enemyStats;
-    GameObject _canvas;
-    //Damage pop up
+    GameObject canvas;
+    //Damage Pop up
     [SerializeField] GameObject PopUpDame;
     [SerializeField] TextMesh _textDamePopup;
+    [SerializeField] CapsuleCollider _capsuleCollider;
+    //layer
     public LayerMask IsPlayer, IsGround;
-    [SerializeField] GameObject BulletPrefab;
-    //patrol
-    bool UnderGround = true;
-    [SerializeField] BoxCollider BoxCollider;
-    int pointIndex;
-    float Pdistance;
-    public List<Transform> points;
-    [SerializeField] Transform currPoint;
-
+    //patrol    
+    public Vector3 walkPoint;
+    bool walkPointSet;
+    public float walkPointRange;
     //attack
     public float timeBetweenAttacks;
     bool alreadyAttacked;
-    int attackCount = 0;
-    [SerializeField] GameObject FirePoint;
 
     //State
     public float attackRange, sightRange;
@@ -39,79 +32,89 @@ public class EnemyShotting : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        canvas = transform.GetChild(0).gameObject;
         _target = PlayerReferences.Instance.Player.transform;
-        _canvas = transform.GetChild(0).gameObject;
-        animator = GetComponent<Animator>();
         _enemyStats = GetComponent<EnemyStats>();
+        _agent = GetComponent<NavMeshAgent>();
         _playerStat = _target.GetComponent<PlayerStat>();
-        PlayerAnimate = _target.transform.GetChild(0).GetComponent<CharacterAnimation>();
+        PlayerAnimte = _target.transform.GetChild(0).GetComponent<CharacterAnimation>();
     }
-    //private void LoadNav()
-    //{
-    //    GetComponent<NavMeshAgent>().stoppingDistance = 2.2f;
-    //}
     void Update()
     {
         if (_enemyStats.currentHealth <= 0)
         {
-            _canvas.SetActive(false);
-            BoxCollider.enabled = false;
+            canvas.SetActive(false);
+            _capsuleCollider.enabled = false;
             return;
         }
+
         playerInAttack = Physics.CheckSphere(transform.position, attackRange, IsPlayer);
         playerInSight = Physics.CheckSphere(transform.position, sightRange, IsPlayer);
 
         if (!playerInSight && !playerInAttack) PatrolPlayer();
         if (playerInSight && !playerInAttack) ChasePlayer();
         if (playerInSight && playerInAttack) Attack();
-    }
-    private void FixedUpdate()
-    {
-        nextMove();
+
     }
     void PatrolPlayer()
     {
+        if (!walkPointSet)
+        {
+            _enemyStats.Animator.SetBool("walking", false);
+            Invoke(nameof(SearchWalkPoint), 1);
+        }
+        if (walkPointSet)
+        {
+            _enemyStats.Animator.SetBool("walking", true);
+            _agent.SetDestination(walkPoint);
+        }
+        Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
-        UnderGround = true;
-        animator.Play("GroundDiveIn");
-        attackCount = 0;
+        //Walk point reached
+        if (distanceToWalkPoint.magnitude < 3f)
+            walkPointSet = false;
     }
     private void SearchWalkPoint()
     {
-        animator.Play("GroundDiveIn");
-        StartCoroutine(enumerator());
-        //  transform.position = Vector3.Lerp(transform.position, currPoint.position, 0.5f);
+        //Calculate random point in range
+        float randomZ = Random.Range(-walkPointRange, walkPointRange);
+        float randomX = Random.Range(-walkPointRange, walkPointRange);
 
+        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(walkPoint, out hit, 0.1f, 1 << NavMesh.GetAreaFromName("Walkable")))
+        {
+            walkPointSet = true;
+        }
+        CancelInvoke();
+        //if (Physics.Raycast(walkPoint, -transform.up, 2f, IsGround))
+        //    walkPointSet = true;
     }
     void ChasePlayer()
     {
         FaceTarget();
-        if (UnderGround)
-        {
-            animator.Play("GroundBreakThrough");
-            UnderGround = false;
-        }
+        _enemyStats.Animator.SetBool("walking", true);
+        _agent.SetDestination(_target.position);
     }
     void Attack()
     {
-        if (UnderGround) return;
         FaceTarget();
+        if (!_enemyStats.Animator.GetCurrentAnimatorStateInfo(0).IsName("attack"))
+        {
+            _enemyStats.Animator.SetBool("walking", false);
+            _agent.SetDestination(transform.position);
+            // animator.SetTrigger("attack");
+        }
+
         if (!alreadyAttacked)
         {
-            animator.SetTrigger("attack");
-            GameObject newBullet = Instantiate(BulletPrefab, FirePoint.transform.position, FirePoint.transform.rotation);
-            if (newBullet.TryGetComponent<BulletInit>(out var bltd))
-            {
-                bltd.InitDamage(_enemyStats.Damage.BaseValue);
-            }
+            _enemyStats.Animator.SetTrigger("attack");
+            //animator.SetBool("walking", false);
+
             alreadyAttacked = true;
-            attackCount++;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
-        if (attackCount == 6)
-        {
-            SearchWalkPoint();
-        }
+
     }
     void ResetAttack()
     {
@@ -123,30 +126,18 @@ public class EnemyShotting : MonoBehaviour
         Quaternion faceOff = Quaternion.LookRotation(new Vector3(fdir.x, 0, fdir.z));
         transform.rotation = Quaternion.Lerp(transform.rotation, faceOff, Time.deltaTime * 10f);
     }
-    void nextMove()
-    {
-        Pdistance = Vector3.Distance(transform.position, currPoint.position);
-        if (Pdistance <= 0) pointIndex++;
-        if (pointIndex >= points.Count) pointIndex = 0;
-        currPoint = points[pointIndex];
 
-    }
-    IEnumerator enumerator()
-    {
-        yield return new WaitForSeconds(1);
-        transform.position = Vector3.Lerp(transform.position, currPoint.position, 10 * Time.deltaTime);
-
-    }
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("weapon") && PlayerAnimate.IsAttacking)
+        if (other.CompareTag("weapon") && PlayerAnimte.IsAttacking)
         {
             _textDamePopup.text = (_playerStat.Damage.BaseValue * -1).ToString();
             Instantiate(PopUpDame, transform.position + new Vector3(0, 2.5f, 0), Quaternion.Euler(50, -45, 0));
             _enemyStats.TakeDamage(_playerStat.Damage.BaseValue);
-            Debug.Log("cai :" + other.name);
+            // Debug.Log("cai :" + other.name);
         }
     }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

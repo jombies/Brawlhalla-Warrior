@@ -106,7 +106,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2365555970897822819}
   - component: {fileID: 4404490526638143569}
-  - component: {fileID: 5271424916879048723}
   - component: {fileID: 2036672170585276709}
   - component: {fileID: 1445831151162146252}
   m_Layer: 0
@@ -155,36 +154,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5271424916879048723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1040284748016021401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 296d41bbfd960bc499b9fc19129c342f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PopUpDame: {fileID: 1777670533413786944, guid: 6499eb2b91667324b935d45f6b08cbab, type: 3}
-  _textDamePopup: {fileID: 5172696930340621978, guid: 6499eb2b91667324b935d45f6b08cbab, type: 3}
-  IsPlayer:
-    serializedVersion: 2
-    m_Bits: 256
-  IsGround:
-    serializedVersion: 2
-    m_Bits: 512
-  BulletPrefab: {fileID: 1658112780640456, guid: 5ae5c6fb282fd3c44bf0c2083393e142, type: 3}
-  BoxCollider: {fileID: 2235554067528314930}
-  points:
-  - {fileID: 0}
-  - {fileID: 0}
-  currPoint: {fileID: 0}
-  timeBetweenAttacks: 2
-  FirePoint: {fileID: 4052784747305758990}
-  attackRange: 7.8
-  sightRange: 8
 --- !u!114 &2036672170585276709
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -15,16 +15,19 @@ public class EnemyStats : CharacterStat
         base.Die();
         Debug.Log(this.gameObject.name + " Died");
         PlayDead();
-        StartCoroutine(WaitToDie(animator.runtimeAnimatorController.animationClips.Length));
     }
 
     void PlayDead()
     {
         animator.SetTrigger("Dead");
+        AnimatorStateInfo State = this.animator.GetCurrentAnimatorStateInfo(0);
+        float animationTime = State.normalizedTime * State.length;
+        Debug.Log(animationTime);
+        this.StartCoroutine(WaitToDie(animationTime + 1));
     }
     IEnumerator WaitToDie(float s)
     {
-        // Debug.Log($"{s}");
+        //Debug.Log($"{s}");
         yield return new WaitForSeconds(s);
         Destroy(gameObject);
     }

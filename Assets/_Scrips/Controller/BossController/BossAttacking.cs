@@ -2,10 +2,8 @@
 
 public class BossAttacking : MonoBehaviour
 {
-    BossController controller;
+    EnemyController controller;
     BossMoving moving;
-
-
     //layer
     public LayerMask IsPlayer, IsGround;
 
@@ -28,7 +26,7 @@ public class BossAttacking : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        controller = transform.parent.GetComponent<BossController>();
+        controller = transform.parent.GetComponent<EnemyController>();
         moving = GetComponent<BossMoving>();
     }
 
@@ -57,10 +55,6 @@ public class BossAttacking : MonoBehaviour
     }
     void Attacking()
     {
-        if (controller.IsAttack)
-        {
-            controller.Animator.SetBool("walking", false);
-        }
         if (!alreadyAttacked)
         {
             controller.Animator.SetTrigger("attack1");
@@ -75,6 +69,7 @@ public class BossAttacking : MonoBehaviour
     {
         alreadyAttacked = false;
     }
+    //Kiem tra player co o truoc mat ko
     bool PlayerInSight()
     {
         Ray ray = new(transform.position, transform.parent.TransformDirection(Vector3.forward));

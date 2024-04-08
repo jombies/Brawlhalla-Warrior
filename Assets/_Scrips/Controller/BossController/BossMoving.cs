@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BossMoving : MonoBehaviour
 {
-    BossController controller;
+    EnemyController controller;
 
     //react
     public bool isfirst = true;
@@ -12,13 +12,12 @@ public class BossMoving : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        controller = transform.parent.GetComponent<BossController>();
+        controller = transform.parent.GetComponent<EnemyController>();
     }
     void Update()
     {
         if (PlayerOnGr)
         {
-            controller.Animator.enabled = true;
             if (!controller.AlreadyFoundPlayer() && !controller.IsAttack)
             {
                 GetMoving();
@@ -28,8 +27,6 @@ public class BossMoving : MonoBehaviour
                 StopWalking();
             }
         }
-        else controller.Animator.enabled = false;
-
     }
     public void GetMoving()
     {
@@ -50,8 +47,6 @@ public class BossMoving : MonoBehaviour
             //return;
         }
     }
-
-
     IEnumerator FinishAnime()
     {
         yield return new WaitForSeconds(3);

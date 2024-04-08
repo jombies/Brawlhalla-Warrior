@@ -32,6 +32,6 @@ public class InputSingleton : MonoBehaviour
         right = right.normalized;
         Vector3 verticalR = vertical * forward;
         Vector3 horizontalR = horizon * right;
-        Direction = verticalR + horizontalR;
+        Direction = (verticalR + horizontalR).normalized;
     }
 }
