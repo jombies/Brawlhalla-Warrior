@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,26 +6,17 @@ using UnityEngine.AI;
 
 public class EnemyShotting : MonoBehaviour
 {
-    //Manager
-    Animator animator;
-    Transform _target;
-    NavMeshAgent _agent;
-    CharacterAnimation PlayerAnimate;
-    PlayerStat _playerStat;
-    EnemyStats _enemyStats;
-    GameObject _canvas;
+    EnemyController controller;
     //Damage pop up
-    [SerializeField] GameObject PopUpDame;
-    [SerializeField] TextMesh _textDamePopup;
     public LayerMask IsPlayer, IsGround;
     [SerializeField] GameObject BulletPrefab;
     //patrol
     bool UnderGround = true;
-    [SerializeField] BoxCollider BoxCollider;
     int pointIndex;
     float Pdistance;
+    [SerializeField] Transform pointHolder;
     public List<Transform> points;
-    [SerializeField] Transform currPoint;
+
 
     //attack
     public float timeBetweenAttacks;
@@ -39,25 +31,20 @@ public class EnemyShotting : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _target = PlayerReferences.Instance.Player.transform;
-        _canvas = transform.GetChild(0).gameObject;
-        animator = GetComponent<Animator>();
-        _enemyStats = GetComponent<EnemyStats>();
-        _playerStat = _target.GetComponent<PlayerStat>();
-        PlayerAnimate = _target.transform.GetChild(0).GetComponent<CharacterAnimation>();
+        controller = transform.parent.GetComponent<EnemyController>();
+        LoadPoints();
     }
-    //private void LoadNav()
-    //{
-    //    GetComponent<NavMeshAgent>().stoppingDistance = 2.2f;
-    //}
+
+    private void LoadPoints()
+    {
+        foreach (Transform point in pointHolder)
+        {
+            points.Add(point);
+        }
+    }
+
     void Update()
     {
-        if (_enemyStats.currentHealth <= 0)
-        {
-            _canvas.SetActive(false);
-            BoxCollider.enabled = false;
-            return;
-        }
         playerInAttack = Physics.CheckSphere(transform.position, attackRange, IsPlayer);
         playerInSight = Physics.CheckSphere(transform.position, sightRange, IsPlayer);
 
@@ -67,42 +54,41 @@ public class EnemyShotting : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        nextMove();
+        NextMove();
     }
     void PatrolPlayer()
     {
-
         UnderGround = true;
-        animator.Play("GroundDiveIn");
+        controller.Animator.Play("GroundDiveIn");
         attackCount = 0;
     }
     private void SearchWalkPoint()
     {
-        animator.Play("GroundDiveIn");
-        StartCoroutine(enumerator());
+        controller.Animator.Play("GroundDiveIn");
+        StartCoroutine(GotoNextPoint());
         //  transform.position = Vector3.Lerp(transform.position, currPoint.position, 0.5f);
 
     }
     void ChasePlayer()
     {
-        FaceTarget();
+        controller.FaceTarget();
         if (UnderGround)
         {
-            animator.Play("GroundBreakThrough");
+            controller.Animator.Play("GroundBreakThrough");
             UnderGround = false;
         }
     }
     void Attack()
     {
         if (UnderGround) return;
-        FaceTarget();
+        controller.FaceTarget();
         if (!alreadyAttacked)
         {
-            animator.SetTrigger("attack");
+            controller.Animator.SetTrigger("attack");
             GameObject newBullet = Instantiate(BulletPrefab, FirePoint.transform.position, FirePoint.transform.rotation);
             if (newBullet.TryGetComponent<BulletInit>(out var bltd))
             {
-                bltd.InitDamage(_enemyStats.Damage.BaseValue);
+                bltd.InitDamage(controller.EnemyStats.Damage.BaseValue);
             }
             alreadyAttacked = true;
             attackCount++;
@@ -117,35 +103,21 @@ public class EnemyShotting : MonoBehaviour
     {
         alreadyAttacked = false;
     }
-    void FaceTarget()
+    void NextMove()
     {
-        Vector3 fdir = (_target.position - transform.position).normalized;
-        Quaternion faceOff = Quaternion.LookRotation(new Vector3(fdir.x, 0, fdir.z));
-        transform.rotation = Quaternion.Lerp(transform.rotation, faceOff, Time.deltaTime * 10f);
-    }
-    void nextMove()
-    {
-        Pdistance = Vector3.Distance(transform.position, currPoint.position);
+        Pdistance = Vector3.Distance(transform.position, CurrentPoint().position);
         if (Pdistance <= 0) pointIndex++;
         if (pointIndex >= points.Count) pointIndex = 0;
-        currPoint = points[pointIndex];
-
     }
-    IEnumerator enumerator()
+    Transform CurrentPoint()
+    {
+        return points[pointIndex];
+    }
+    IEnumerator GotoNextPoint()
     {
         yield return new WaitForSeconds(1);
-        transform.position = Vector3.Lerp(transform.position, currPoint.position, 10 * Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position, CurrentPoint().position, 10 * Time.deltaTime);
 
-    }
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("weapon") && PlayerAnimate.IsAttacking)
-        {
-            _textDamePopup.text = (_playerStat.Damage.BaseValue * -1).ToString();
-            Instantiate(PopUpDame, transform.position + new Vector3(0, 2.5f, 0), Quaternion.Euler(50, -45, 0));
-            _enemyStats.TakeDamage(_playerStat.Damage.BaseValue);
-            Debug.Log("cai :" + other.name);
-        }
     }
     private void OnDrawGizmosSelected()
     {
