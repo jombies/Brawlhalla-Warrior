@@ -4,8 +4,7 @@ public class CharacterStat : MonoBehaviour
 {
     [SerializeField] int MaxHealth = 100;
     public int currentHealth { get; private set; }
-    [SerializeField]
-    protected HealthBar heathBar;
+    [SerializeField] protected HealthBar heathBar;
 
     public Stat Damage;
     public Stat Armor;
@@ -18,11 +17,11 @@ public class CharacterStat : MonoBehaviour
     public void TakeDamage(int dmg)
     {
         dmg -= Armor.GetValue();
-        Debug.Log("dame: " + dmg);
+        Debug.Log(gameObject.name + "dame: " + dmg);
         dmg = Mathf.Clamp(dmg, 0, int.MaxValue);
 
         currentHealth -= dmg;
-        Debug.Log(transform.name + " takes " + dmg + " damage");
+        // Debug.Log(transform.name + " takes " + dmg + " damage");
         heathBar.SetHealth(currentHealth);
         if (currentHealth <= 0)
         {

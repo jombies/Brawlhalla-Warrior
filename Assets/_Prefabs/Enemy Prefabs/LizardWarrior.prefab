@@ -1117,6 +1117,7 @@ MonoBehaviour:
     m_Bits: 512
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 0
+  direction: {x: 0, y: 0, z: 0}
   timeBetweenAttacks: 3
   attackRange: 0
   sightRange: 0
@@ -2084,7 +2085,7 @@ GameObject:
   - component: {fileID: 3007655098379920436}
   - component: {fileID: 8405758780638267808}
   - component: {fileID: 7899557924419317448}
-  - component: {fileID: 4093424077123337242}
+  - component: {fileID: 3298944667628550534}
   m_Layer: 0
   m_Name: LizardWarrior
   m_TagString: BossEnemy
@@ -2196,10 +2197,10 @@ MonoBehaviour:
   MaxHealth: 100
   heathBar: {fileID: 3550358345221210327}
   Damage:
-    BaseValue: 6
+    BaseValue: 10
   Armor:
     BaseValue: 1
---- !u!114 &4093424077123337242
+--- !u!114 &3298944667628550534
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2208,13 +2209,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 6645992168473926569}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90421544528a1ce4fbfd48cfe9e2c6f2, type: 3}
+  m_Script: {fileID: 11500000, guid: 43ef0c98f3c9f914d8582f10a7c3737f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _canvas: {fileID: 0}
   Animator: {fileID: 0}
   PopUpDame: {fileID: 1777670533413786944, guid: 6499eb2b91667324b935d45f6b08cbab, type: 3}
   _textDamePopup: {fileID: 5172696930340621978, guid: 6499eb2b91667324b935d45f6b08cbab, type: 3}
   IsAttack: 0
+  IsDead: 0
   _capsuleCollider: {fileID: 8592537538190923072}
 --- !u!1 &6649580265221420168
 GameObject:
