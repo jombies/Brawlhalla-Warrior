@@ -1,8 +1,6 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class EnemyShotting : MonoBehaviour
 {
@@ -15,8 +13,7 @@ public class EnemyShotting : MonoBehaviour
     int pointIndex;
     float Pdistance;
     [SerializeField] Transform pointHolder;
-    public List<Transform> points;
-
+    [SerializeField] List<Transform> points = new();
 
     //attack
     public float timeBetweenAttacks;
@@ -42,7 +39,6 @@ public class EnemyShotting : MonoBehaviour
             points.Add(point);
         }
     }
-
     void Update()
     {
         playerInAttack = Physics.CheckSphere(transform.position, attackRange, IsPlayer);
@@ -59,15 +55,10 @@ public class EnemyShotting : MonoBehaviour
     void PatrolPlayer()
     {
         UnderGround = true;
+        // controller._capsuleCollider.enabled = false;
+        controller._canvas.gameObject.SetActive(false);
         controller.Animator.Play("GroundDiveIn");
         attackCount = 0;
-    }
-    private void SearchWalkPoint()
-    {
-        controller.Animator.Play("GroundDiveIn");
-        StartCoroutine(GotoNextPoint());
-        //  transform.position = Vector3.Lerp(transform.position, currPoint.position, 0.5f);
-
     }
     void ChasePlayer()
     {
@@ -75,6 +66,8 @@ public class EnemyShotting : MonoBehaviour
         if (UnderGround)
         {
             controller.Animator.Play("GroundBreakThrough");
+            //controller._capsuleCollider.enabled = true;
+            controller._canvas.gameObject.SetActive(true);
             UnderGround = false;
         }
     }
@@ -99,6 +92,15 @@ public class EnemyShotting : MonoBehaviour
             SearchWalkPoint();
         }
     }
+    private void SearchWalkPoint()
+    {
+        controller.Animator.Play("GroundDiveIn");
+        attackCount = 0;
+        controller._canvas.gameObject.SetActive(false);
+        StartCoroutine(GotoNextPoint());
+        //  transform.position = Vector3.Lerp(transform.position, currPoint.position, 0.5f);
+
+    }
     void ResetAttack()
     {
         alreadyAttacked = false;
@@ -107,7 +109,7 @@ public class EnemyShotting : MonoBehaviour
     {
         Pdistance = Vector3.Distance(transform.position, CurrentPoint().position);
         if (Pdistance <= 0) pointIndex++;
-        if (pointIndex >= points.Count) pointIndex = 0;
+        if (pointIndex > points.Count) pointIndex = 0;
     }
     Transform CurrentPoint()
     {
@@ -116,14 +118,15 @@ public class EnemyShotting : MonoBehaviour
     IEnumerator GotoNextPoint()
     {
         yield return new WaitForSeconds(1);
-        transform.position = Vector3.Lerp(transform.position, CurrentPoint().position, 10 * Time.deltaTime);
+        Transform currPoint = CurrentPoint();
+        transform.parent.position = Vector3.MoveTowards(transform.parent.position, currPoint.position, 10 * Time.deltaTime);
 
     }
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, sightRange);
-    }
+    //private void OnDrawGizmosSelected()
+    //{
+    //    Gizmos.color = Color.red;
+    //    Gizmos.DrawWireSphere(transform.position, attackRange);
+    //    Gizmos.color = Color.yellow;
+    //    Gizmos.DrawWireSphere(transform.position, sightRange);
+    //}
 }

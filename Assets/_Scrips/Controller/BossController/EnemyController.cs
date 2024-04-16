@@ -1,3 +1,5 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -13,11 +15,12 @@ public class EnemyController : MonoBehaviour
     CharacterAnimation _playerAnimte;
     public Canvas _canvas;
     public Animator Animator;
-
+    public Collider[] col;
     // Damage Popup
     [SerializeField] GameObject PopUpDame;
-    [SerializeField] TextMesh _textDamePopup;
+    [SerializeField] TextMeshPro _textDamePopup;
     //react
+    [SerializeField] float speedRotate = 5;
     public bool IsAttack;
     public bool IsDead = false;
     public CapsuleCollider _capsuleCollider;
@@ -53,26 +56,37 @@ public class EnemyController : MonoBehaviour
     {
         Vector3 fdir = (_target.transform.position - transform.position).normalized;
         Quaternion faceOff = Quaternion.LookRotation(new Vector3(fdir.x, 0, fdir.z));
-        transform.rotation = Quaternion.Lerp(transform.rotation, faceOff, Time.deltaTime * 5);
+        transform.rotation = Quaternion.Lerp(transform.rotation, faceOff, speedRotate * Time.deltaTime);
     }
-    #region attacking event   
+    #region attacking event on editer of GameObj
     void IsAttacking() => IsAttack = true;
     void NonAttacking() => IsAttack = false;
     #endregion
-
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("weapon") && _playerAnimte.IsAttacking)
         {
-            _textDamePopup.text = (_playerStat.Damage.BaseValue * -1).ToString();
-            Instantiate(PopUpDame, transform.position + new Vector3(0, 2.5f, 0), Quaternion.Euler(50, -45, 0));
-            _enemyStats.TakeDamage(_playerStat.Damage.BaseValue);
+            Collider[] colliders = this.GetComponentsInChildren<Collider>(); col = colliders;
+            foreach (Collider collider in colliders)
+            {
+                // Check if the collider is a hitbox or appropriate target for damage
+                if (collider.CompareTag("EnemyHitbox"))
+                {
+                    _textDamePopup.text = (_playerStat.Damage.BaseValue * -1).ToString();
+                    Instantiate(PopUpDame, transform.position + new Vector3(0, 2.5f, 0), Quaternion.Euler(50, -45, 0));
+                    _enemyStats.TakeDamage(_playerStat.Damage.BaseValue);
+                    colliders = null;
+                }
+            }
         }
+        IEnumerator DisableAnimation()
+        {
+            yield return new WaitForSeconds(1);
+        }
+        //private void OnDrawGizmosSelected()
+        //{
+        //    Gizmos.color = Color.red;
+        //    Gizmos.DrawWireSphere(transform.position, 3);
+        //}
     }
-
-    //private void OnDrawGizmosSelected()
-    //{
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawWireSphere(transform.position, 3);
-    //}
 }

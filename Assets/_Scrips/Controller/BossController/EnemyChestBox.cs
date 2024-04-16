@@ -6,6 +6,7 @@ public class EnemyChestBox : MonoBehaviour
     //layer
     public LayerMask IsPlayer, IsGround;
     //attack
+    bool isAttack = false;
     public float timeBetweenAttacks;
     bool alreadyAttacked;
     //State
@@ -22,7 +23,7 @@ public class EnemyChestBox : MonoBehaviour
         playerInAttack = Physics.CheckSphere(transform.position, attackRange, IsPlayer);
 
         WakeUp();
-        if (!playerInAttack && IsAwake) ChasePlayer();
+        if (!playerInAttack && IsAwake && !controller.IsAttack) ChasePlayer();
         if (controller.AlreadyFoundPlayer() && IsAwake) Attack();
         if (controller.IsDead) Dead();
     }
@@ -56,8 +57,22 @@ public class EnemyChestBox : MonoBehaviour
 
     private void Attack()
     {
-        controller.Agent.SetDestination(transform.position);
         controller.Animator.SetBool("walk", false);
+        controller.Agent.SetDestination(transform.position);
+        if (controller.IsAttack == false)
+        {
+            controller.FaceTarget();
+        }
+        if (!alreadyAttacked)
+        {
+            alreadyAttacked = true;
+            controller.Animator.SetTrigger("attack1");
+            Invoke(nameof(ResetAttack), timeBetweenAttacks);
+        }
+    }
+    void ResetAttack()
+    {
+        alreadyAttacked = false;
     }
     private void OnDrawGizmosSelected()
     {

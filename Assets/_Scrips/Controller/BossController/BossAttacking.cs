@@ -9,10 +9,6 @@ public class BossAttacking : MonoBehaviour
 
     //patrol
     bool isFirst = true;
-    public Vector3 walkPoint;
-    bool walkPointSet;
-    public float walkPointRange;
-    public Vector3 direction; // Hướng của raycast
 
     //attack
     public float timeBetweenAttacks;
@@ -41,10 +37,6 @@ public class BossAttacking : MonoBehaviour
                 Attacking();
             }
         }
-    }
-
-    private void LateUpdate()
-    {
         if (controller.AlreadyFoundPlayer())
         {
             if (!PlayerInSight() && !controller.IsAttack)

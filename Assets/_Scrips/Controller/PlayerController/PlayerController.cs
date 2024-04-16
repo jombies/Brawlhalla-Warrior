@@ -28,11 +28,7 @@ public class PlayerController : MonoBehaviour
     void Moving()
     {
         if (Animater.IsAttacking) return;
-        if (direction != Vector3.zero)
-        {
-            Quaternion toRotation = Quaternion.LookRotation(direction, Vector3.up);
-            transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, _speedRotation * Time.deltaTime);
-        }
+        HandlRotation();
         if (direction.magnitude > 0.1f)
         {
             if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
@@ -48,15 +44,34 @@ public class PlayerController : MonoBehaviour
         _gravity.y -= _gra * Time.deltaTime;
         Controller.Move(_gravity * Time.deltaTime);
     }
+    void HandlRotation()
+    {
+        if (direction != Vector3.zero)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(direction, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, _speedRotation * Time.deltaTime);
+        }
+        else
+        {
+            // Ray ray = Camera.main.ScreenPointToRay(aim);
+        }
+    }
+
     //Damage nhan vao Player
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy weapon"))
         {
-            if (other.transform.root.TryGetComponent<EnemyStats>(out var dame))
+            Transform[] ParentTrans = other.gameObject.GetComponentsInParent<Transform>();
+            foreach (Transform t in ParentTrans)
             {
-                PlayerStat.TakeDamage(dame.Damage.BaseValue);
+                if (t.TryGetComponent<EnemyStats>(out var dame))
+                {
+                    PlayerStat.TakeDamage(dame.Damage.BaseValue);
+                    return;
+                }
             }
+
         }
         if (other.CompareTag("Enemy bullet"))
         {
