@@ -600,7 +600,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8803804132943934359}
   - component: {fileID: 4137753757963885726}
-  - component: {fileID: 3381177004018922835}
   m_Layer: 0
   m_Name: RatAssasinMesh
   m_TagString: Untagged
@@ -745,28 +744,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.21903825, y: -0.07018897, z: 0.004979521}
     m_Extent: {x: 1.2797472, y: 0.74495935, z: 0.92175996}
   m_DirtyAABB: 0
---- !u!64 &3381177004018922835
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2323618713940031860}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!1 &2500636652374879830
 GameObject:
   m_ObjectHideFlags: 0
@@ -1856,6 +1833,61 @@ Transform:
   - {fileID: 5310072631583978630}
   m_Father: {fileID: 2115655206721374142}
   m_LocalEulerAnglesHint: {x: 21.940733, y: 118.290115, z: -3.7179592}
+--- !u!1 &6177017923401293478
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1020538841385876347}
+  - component: {fileID: 5478169201786622421}
+  m_Layer: 0
+  m_Name: Scrips
+  m_TagString: EnemyHitbox
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1020538841385876347
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6177017923401293478}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.913, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1376900500881309556}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &5478169201786622421
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6177017923401293478}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.44138163
+  m_Height: 1.4045603
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.20228018, z: 0.24416655}
 --- !u!1 &6206544396947751451
 GameObject:
   m_ObjectHideFlags: 0
@@ -2394,6 +2426,7 @@ GameObject:
   - component: {fileID: 4167591455586850787}
   - component: {fileID: 3566396361962669669}
   - component: {fileID: 8090866085097446451}
+  - component: {fileID: 1151786302947725842}
   m_Layer: 0
   m_Name: RatAssassinMaskTint
   m_TagString: Enemy
@@ -2417,6 +2450,7 @@ Transform:
   - {fileID: 8999966814823598345}
   - {fileID: 2037054445178824798}
   - {fileID: 8803804132943934359}
+  - {fileID: 1020538841385876347}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &8605564349604783903
@@ -2465,7 +2499,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 32
   m_CollisionDetection: 0
 --- !u!195 &4167591455586850787
 NavMeshAgent:
@@ -2476,16 +2510,16 @@ NavMeshAgent:
   m_GameObject: {fileID: 8213164073109174468}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.6
+  m_Radius: 0.1
   m_Speed: 3
   m_Acceleration: 6
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 1.42
+  m_Height: 1.5
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 2
@@ -2501,9 +2535,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98790cba3abbfbb4ab80d0b61aa9c915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PopUpDame: {fileID: 1777670533413786944, guid: 6499eb2b91667324b935d45f6b08cbab, type: 3}
-  _textDamePopup: {fileID: 5172696930340621978, guid: 6499eb2b91667324b935d45f6b08cbab, type: 3}
-  _capsuleCollider: {fileID: 7621303368996731931}
   IsPlayer:
     serializedVersion: 2
     m_Bits: 256
@@ -2532,6 +2563,27 @@ MonoBehaviour:
     BaseValue: 6
   Armor:
     BaseValue: 1
+--- !u!114 &1151786302947725842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8213164073109174468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43ef0c98f3c9f914d8582f10a7c3737f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _canvas: {fileID: 0}
+  Animator: {fileID: 0}
+  col: []
+  PopUpDame: {fileID: 1777670533413786944, guid: 6499eb2b91667324b935d45f6b08cbab, type: 3}
+  _textDamePopup: {fileID: 5819233755296593968, guid: 6499eb2b91667324b935d45f6b08cbab, type: 3}
+  speedRotate: 5
+  IsAttack: 0
+  IsDead: 0
+  _capsuleCollider: {fileID: 0}
 --- !u!1 &8308433317616577057
 GameObject:
   m_ObjectHideFlags: 0
@@ -2640,7 +2692,7 @@ GameObject:
   - component: {fileID: 7621303368996731931}
   m_Layer: 0
   m_Name: Neck
-  m_TagString: Enemy
+  m_TagString: EnemyHitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2678,7 +2730,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.42
   m_Height: 1.52
@@ -2799,6 +2851,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 102548058669735611, guid: c6b0062491b65c24598e9de45d80ce48, type: 3}
+      propertyPath: m_Color.r
+      value: 0.3521433
+      objectReference: {fileID: 0}
     - target: {fileID: 2289205065298187385, guid: c6b0062491b65c24598e9de45d80ce48, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2806,6 +2862,14 @@ PrefabInstance:
     - target: {fileID: 5075528932177862939, guid: c6b0062491b65c24598e9de45d80ce48, type: 3}
       propertyPath: m_Name
       value: HeathBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 8108470468427940060, guid: c6b0062491b65c24598e9de45d80ce48, type: 3}
+      propertyPath: m_Value
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8108470468427940060, guid: c6b0062491b65c24598e9de45d80ce48, type: 3}
+      propertyPath: m_MaxValue
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8661378969027004408, guid: c6b0062491b65c24598e9de45d80ce48, type: 3}
       propertyPath: m_Pivot.x

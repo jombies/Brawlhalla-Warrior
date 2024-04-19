@@ -20,7 +20,7 @@ public class AutoAimForPlayer : MonoBehaviour
 
         foreach (var hitCollider in hitColliders)
         {
-            if (hitCollider.CompareTag("Enemy") || hitCollider.CompareTag("BossEnemy"))
+            if (hitCollider.CompareTag("EnemyHitbox") || hitCollider.CompareTag("BossEnemy"))
             {
                 float distance = (hitCollider.transform.position - transform.position).sqrMagnitude;
                 if (distance < closestDistance)

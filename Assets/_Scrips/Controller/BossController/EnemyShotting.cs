@@ -41,6 +41,7 @@ public class EnemyShotting : MonoBehaviour
     }
     void Update()
     {
+        if (controller.IsDead) return;
         playerInAttack = Physics.CheckSphere(transform.position, attackRange, IsPlayer);
         playerInSight = Physics.CheckSphere(transform.position, sightRange, IsPlayer);
 
@@ -95,7 +96,6 @@ public class EnemyShotting : MonoBehaviour
     private void SearchWalkPoint()
     {
         controller.Animator.Play("GroundDiveIn");
-        attackCount = 0;
         controller._canvas.gameObject.SetActive(false);
         StartCoroutine(GotoNextPoint());
         //  transform.position = Vector3.Lerp(transform.position, currPoint.position, 0.5f);
@@ -122,11 +122,11 @@ public class EnemyShotting : MonoBehaviour
         transform.parent.position = Vector3.MoveTowards(transform.parent.position, currPoint.position, 10 * Time.deltaTime);
 
     }
-    //private void OnDrawGizmosSelected()
-    //{
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawWireSphere(transform.position, attackRange);
-    //    Gizmos.color = Color.yellow;
-    //    Gizmos.DrawWireSphere(transform.position, sightRange);
-    //}
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, sightRange);
+    }
 }

@@ -29,6 +29,7 @@ public class BossAttacking : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (controller.IsDead) return;
         //SeeFirstTime();
         if (controller.AlreadyFoundPlayer())
         {

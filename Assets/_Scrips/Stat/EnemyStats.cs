@@ -1,6 +1,10 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
+[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(EnemyController))]
 public class EnemyStats : CharacterStat
 {
     Animator animator;
@@ -20,15 +24,17 @@ public class EnemyStats : CharacterStat
     void PlayDead()
     {
         animator.SetTrigger("Dead");
-        AnimatorStateInfo State = this.animator.GetCurrentAnimatorStateInfo(0);
-        float animationTime = State.normalizedTime * State.length;
-        Debug.Log(animationTime);
-        this.StartCoroutine(WaitToDie(animationTime + 1));
+        //AnimatorStateInfo State = this.animator.GetCurrentAnimatorStateInfo(0);
+        //float animationTime = State.normalizedTime * State.length;
+        //Debug.Log(animationTime);
+        //this.StartCoroutine(WaitToDie(animationTime + 1));
+        this.StartCoroutine(WaitToDie(1.5f));
     }
     IEnumerator WaitToDie(float s)
     {
         //Debug.Log($"{s}");
         yield return new WaitForSeconds(s);
-        Destroy(gameObject);
+        gameObject.SetActive(false);
+        //Destroy(gameObject);
     }
 }

@@ -1,4 +1,3 @@
-using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
@@ -78,10 +77,6 @@ public class EnemyController : MonoBehaviour
                     colliders = null;
                 }
             }
-        }
-        IEnumerator DisableAnimation()
-        {
-            yield return new WaitForSeconds(1);
         }
         //private void OnDrawGizmosSelected()
         //{

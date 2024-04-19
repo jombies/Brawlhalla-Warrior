@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     CharacterAnimation Animater;
 
     readonly float _speedMax = 5;
-    readonly float _speedRotation = 10;
+    readonly float _speedRotation = 15;
     readonly float _gra = 8f;
     float speed = 2.8f;
     Vector3 direction;
@@ -51,10 +51,6 @@ public class PlayerController : MonoBehaviour
             Quaternion toRotation = Quaternion.LookRotation(direction, Vector3.up);
             transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, _speedRotation * Time.deltaTime);
         }
-        else
-        {
-            // Ray ray = Camera.main.ScreenPointToRay(aim);
-        }
     }
 
     //Damage nhan vao Player
@@ -65,7 +61,7 @@ public class PlayerController : MonoBehaviour
             Transform[] ParentTrans = other.gameObject.GetComponentsInParent<Transform>();
             foreach (Transform t in ParentTrans)
             {
-                if (t.TryGetComponent<EnemyStats>(out var dame))
+                if (t.TryGetComponent<EnemyStats>(out var dame) /*&& t.GetComponent<EnemyController>().IsAttack*/)
                 {
                     PlayerStat.TakeDamage(dame.Damage.BaseValue);
                     return;

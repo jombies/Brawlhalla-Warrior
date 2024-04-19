@@ -44,20 +44,17 @@ public class CharacterAnimation : MonoBehaviour
             //play animate
             _animator.SetTrigger("Attack" + CurrentAttack);
             TimeSinceAttack = 0;
-            IsAttacking = true;
         }
         if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             _animator.SetTrigger("power");
-            IsAttacking = true;
         }
-
-
     }
     public void GetDie()
     {
         _animator.Play("death_idle");
     }
     //triger is attacking at animation character
+    void isAttack() => IsAttacking = true;
     void NonAttack() => IsAttacking = false;
 }
