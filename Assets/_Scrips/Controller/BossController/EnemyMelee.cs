@@ -35,6 +35,7 @@ public class EnemyMelee : MonoBehaviour
     }
     void PatrolPlayer()
     {
+        controller.Agent.isStopped = false;
         if (!walkPointSet)
         {
             controller.EnemyStats.Animator.SetBool("walking", false);
