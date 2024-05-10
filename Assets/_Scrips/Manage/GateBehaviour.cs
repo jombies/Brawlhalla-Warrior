@@ -4,40 +4,36 @@ using UnityEngine;
 
 public class GateBehaviour : MonoBehaviour
 {
-    [SerializeField] BossMoving bossMoving;
     public List<GameObject> gameObjects;
+    [SerializeField] float move;
+    [SerializeField] GameObject GameObject;
 
-    void ActionGate()
+    private void Update()
     {
-        foreach (var go in gameObjects)
+        if (Input.GetKey(KeyCode.Delete))
         {
-            go.TryGetComponent<BoxCollider>(out BoxCollider box);
-            {
-                box.isTrigger = false;
-            }
-            go.SetActive(false);
+            GateOpen(GameObject);
         }
-
     }
-    public void GateClose(GameObject go)
+    void ActionGate(GameObject ParObj)
     {
-        go.GetComponent<BoxCollider>().isTrigger = false;
-        go.transform.DOMoveY(-3, 1);
-        bossMoving.PlayerOnGr = true;
+        ParObj.transform.DOMoveY(move, 1);
+    }
+    public void GateClose(GameObject obj)
+    {
+        ActionGate(obj.transform.parent.gameObject);
+        GameObject = obj;
     }
     public void GateOpen(GameObject go)
     {
-        go.GetComponent<BoxCollider>().enabled = false;
-        go.transform.DOMoveY(3, 1);
-
+        go.transform.parent.DOMoveY(-2, 1);
     }
     private void Reset()
     {
-        bossMoving = GameObject.FindGameObjectWithTag("BossEnemy").transform.GetChild(3).GetComponent<BossMoving>();
+        // bossMoving = GameObject.FindGameObjectWithTag("BossEnemy").transform.GetChild(3).GetComponent<BossMoving>();
         foreach (Transform go in transform)
         {
             gameObjects.Add(go.gameObject);
         }
     }
-
 }
