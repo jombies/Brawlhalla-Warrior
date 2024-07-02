@@ -6,7 +6,7 @@ public class InputSingleton : MonoBehaviour
     public static InputSingleton instance { get => _mInstance; }
     protected float SHorizon; public float horizon { get => SHorizon; }
     protected float SVertical; public float vertical { get => SVertical; }
-    [SerializeField] TopDownCamera TopDownCamera;
+    //[SerializeField] TopDownCamera TopDownCamera;
     protected Vector3 Direction;
     public Vector3 direction { get { return Direction; } }
     private void Awake()
@@ -16,7 +16,7 @@ public class InputSingleton : MonoBehaviour
     }
     private void Update()
     {
-        transform.eulerAngles = new Vector3(0, TopDownCamera._angle, 0);
+        //transform.eulerAngles = new Vector3(0, TopDownCamera._angle, 0);
         Getdirection();
         SetDirection();
     }
