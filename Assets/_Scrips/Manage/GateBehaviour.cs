@@ -4,36 +4,32 @@ using UnityEngine;
 
 public class GateBehaviour : MonoBehaviour
 {
-    public List<GameObject> gameObjects;
-    [SerializeField] float move;
-    [SerializeField] GameObject GameObject;
+    public List<GameObject> Gates;
+    [SerializeField] float HieghtOfGate;
 
     private void Update()
     {
         if (Input.GetKey(KeyCode.Delete))
         {
-            GateOpen(GameObject);
+            GateOpen();
         }
     }
-    void ActionGate(GameObject ParObj)
+    public void GateOpen()
     {
-        ParObj.transform.DOMoveY(move, 1);
+        transform.DOMoveY(-2, 1);
     }
-    public void GateClose(GameObject obj)
+    public void GateClose()
     {
-        ActionGate(obj.transform.parent.gameObject);
-        GameObject = obj;
+        transform.DOMoveY(HieghtOfGate, 1);
+        transform.parent.GetComponent<EnemySpawns>().ExecuteSpawn();
     }
-    public void GateOpen(GameObject go)
-    {
-        go.transform.parent.DOMoveY(-2, 1);
-    }
+
     private void Reset()
     {
         // bossMoving = GameObject.FindGameObjectWithTag("BossEnemy").transform.GetChild(3).GetComponent<BossMoving>();
         foreach (Transform go in transform)
         {
-            gameObjects.Add(go.gameObject);
+            Gates.Add(go.gameObject);
         }
     }
 }

@@ -78,13 +78,13 @@ public class PlayerController : MonoBehaviour
         }
     }
     //Ktra Player di qua cua
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("GateWay"))
-        {
-            other.transform.parent.GetComponent<GateBehaviour>().GateClose(other.gameObject);
-        }
-    }
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.CompareTag("GateWay"))
+    //    {
+    //        other.transform.parent.GetComponent<GateBehaviour>().GateClose(other.gameObject);
+    //    }
+    //}
 
     IEnumerator delayMethod(float speed, Vector3 dir)
     {
