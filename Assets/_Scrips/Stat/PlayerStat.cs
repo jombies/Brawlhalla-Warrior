@@ -26,7 +26,7 @@ public class PlayerStat : CharacterStat
 
     public override void Die()
     {
-        base.Die();
+        // base.Die();
         Animator.GetDie();
     }
 }

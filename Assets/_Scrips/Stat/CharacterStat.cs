@@ -5,6 +5,7 @@ public class CharacterStat : MonoBehaviour
     [SerializeField] int MaxHealth = 100;
     public int currentHealth { get; private set; }
     [SerializeField] protected HealthBar heathBar;
+    bool isDead = false;
 
     public Stat Damage;
     public Stat Armor;
@@ -23,9 +24,10 @@ public class CharacterStat : MonoBehaviour
         currentHealth -= dmg;
         // Debug.Log(transform.name + " takes " + dmg + " damage");
         heathBar.SetHealth(currentHealth);
-        if (currentHealth <= 0)
+        if (currentHealth <= 1 && !isDead)
         {
             Die();
+            isDead = true;
         }
     }
     public void Healing(int value)

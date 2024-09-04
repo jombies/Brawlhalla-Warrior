@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -7,23 +8,24 @@ using UnityEngine.AI;
 [RequireComponent(typeof(EnemyController))]
 public class EnemyStats : CharacterStat
 {
-    Animator animator;
-    public Animator Animator => animator;
+    EnemyController controller;
+    public event Action OnDeath;
     void Start()
     {
-        animator = GetComponent<Animator>();
+        controller = GetComponent<EnemyController>();
         heathBar = GetComponentInChildren<HealthBar>();
     }
     public override void Die()
     {
-        base.Die();
+        // base.Die();
+        OnDeath?.Invoke();
         Debug.Log(this.gameObject.name + " Died");
         PlayDead();
     }
 
     void PlayDead()
     {
-        animator.SetTrigger("Dead");
+        controller.Animator.SetTrigger("Dead");
         //AnimatorStateInfo State = this.animator.GetCurrentAnimatorStateInfo(0);
         //float animationTime = State.normalizedTime * State.length;
         //Debug.Log(animationTime);

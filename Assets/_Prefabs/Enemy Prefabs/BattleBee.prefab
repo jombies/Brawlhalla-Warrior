@@ -559,7 +559,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ea8f516ae5206a42a00a749cbb8a5a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 100
+  MaxHealth: 50
   heathBar: {fileID: 9065251616776640287}
   Damage:
     BaseValue: 0
@@ -1137,7 +1137,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9119579788833845538}
   - component: {fileID: 9084688364934994385}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: attack point
   m_TagString: Enemy weapon
   m_Icon: {fileID: 0}

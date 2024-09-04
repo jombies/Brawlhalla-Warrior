@@ -2286,7 +2286,7 @@ GameObject:
   - component: {fileID: 9115155663067613385}
   - component: {fileID: 1769898442880023718}
   - component: {fileID: 3085688860128844664}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: DaggerMesh
   m_TagString: Enemy weapon
   m_Icon: {fileID: 0}
@@ -2557,7 +2557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ea8f516ae5206a42a00a749cbb8a5a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 100
+  MaxHealth: 60
   heathBar: {fileID: 3025580480535149912}
   Damage:
     BaseValue: 6
@@ -2583,7 +2583,7 @@ MonoBehaviour:
   speedRotate: 5
   IsAttack: 0
   IsDead: 0
-  _capsuleCollider: {fileID: 0}
+  _capsuleCollider: {fileID: 5478169201786622421}
 --- !u!1 &8308433317616577057
 GameObject:
   m_ObjectHideFlags: 0

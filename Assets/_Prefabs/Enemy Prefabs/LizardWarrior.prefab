@@ -1115,9 +1115,6 @@ MonoBehaviour:
   IsGround:
     serializedVersion: 2
     m_Bits: 512
-  walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 0
-  direction: {x: 0, y: 0, z: 0}
   timeBetweenAttacks: 3
   attackRange: 0
   sightRange: 0
@@ -1915,7 +1912,7 @@ GameObject:
   - component: {fileID: 4717562967617134596}
   - component: {fileID: 348855436816437842}
   - component: {fileID: 7324001363201754015}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BladeMesh
   m_TagString: Enemy weapon
   m_Icon: {fileID: 0}
@@ -2214,8 +2211,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvas: {fileID: 0}
   Animator: {fileID: 0}
+  col: []
   PopUpDame: {fileID: 1777670533413786944, guid: 6499eb2b91667324b935d45f6b08cbab, type: 3}
   _textDamePopup: {fileID: 5172696930340621978, guid: 6499eb2b91667324b935d45f6b08cbab, type: 3}
+  speedRotate: 5
   IsAttack: 0
   IsDead: 0
   _capsuleCollider: {fileID: 8592537538190923072}

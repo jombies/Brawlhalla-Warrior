@@ -1,4 +1,5 @@
 using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -31,5 +32,10 @@ public class GateBehaviour : MonoBehaviour
         {
             Gates.Add(go.gameObject);
         }
+    }
+    public IEnumerator DisableGates()
+    {
+        yield return new WaitForSeconds(1.5f);
+        gameObject.SetActive(false);
     }
 }
