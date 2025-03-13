@@ -565,7 +565,7 @@ GameObject:
   - component: {fileID: 6255607836066769183}
   - component: {fileID: 5726207222957267572}
   m_Layer: 0
-  m_Name: Scripts
+  m_Name: Hitbox
   m_TagString: EnemyHitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1285,6 +1285,7 @@ GameObject:
   - component: {fileID: 1277143530848883379}
   - component: {fileID: 3051749353639077246}
   - component: {fileID: 3851706308579085845}
+  - component: {fileID: 7899769978418429011}
   m_Layer: 0
   m_Name: Skeleton LowPoly
   m_TagString: Untagged
@@ -1395,7 +1396,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvas: {fileID: 0}
   Animator: {fileID: 0}
-  col: []
   PopUpDame: {fileID: 1777670533413786944, guid: 6499eb2b91667324b935d45f6b08cbab, type: 3}
   _textDamePopup: {fileID: 5819233755296593968, guid: 6499eb2b91667324b935d45f6b08cbab, type: 3}
   speedRotate: 5
@@ -1438,10 +1438,33 @@ MonoBehaviour:
   IsGround:
     serializedVersion: 2
     m_Bits: 512
-  walkPointRange: 5
+  range: 10
   timeBetweenAttacks: 1.5
-  attackRange: 1.5
+  alreadyAttacked: 0
+  attackRange: 2
   sightRange: 5
+--- !u!114 &7899769978418429011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5768138118824868344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 282fe4d573a4d9949bb87ba9cb561e94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 10
+  angle: 80
+  Player: {fileID: 0}
+  TargetMask:
+    serializedVersion: 2
+    m_Bits: 256
+  obstructionMask:
+    serializedVersion: 2
+    m_Bits: 6784
+  canSeePlayer: 0
 --- !u!1 &5954509820678494539
 GameObject:
   m_ObjectHideFlags: 0

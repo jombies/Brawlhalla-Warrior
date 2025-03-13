@@ -2427,6 +2427,7 @@ GameObject:
   - component: {fileID: 3566396361962669669}
   - component: {fileID: 8090866085097446451}
   - component: {fileID: 1151786302947725842}
+  - component: {fileID: 5960651038995027236}
   m_Layer: 0
   m_Name: RatAssassin
   m_TagString: Enemy
@@ -2541,8 +2542,9 @@ MonoBehaviour:
   IsGround:
     serializedVersion: 2
     m_Bits: 512
-  walkPointRange: 5
+  range: 0
   timeBetweenAttacks: 1.5
+  alreadyAttacked: 0
   attackRange: 1.5
   sightRange: 5
 --- !u!114 &8090866085097446451
@@ -2577,13 +2579,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvas: {fileID: 0}
   Animator: {fileID: 0}
-  col: []
   PopUpDame: {fileID: 1777670533413786944, guid: 6499eb2b91667324b935d45f6b08cbab, type: 3}
   _textDamePopup: {fileID: 5819233755296593968, guid: 6499eb2b91667324b935d45f6b08cbab, type: 3}
   speedRotate: 5
   IsAttack: 0
   IsDead: 0
   _capsuleCollider: {fileID: 5478169201786622421}
+--- !u!114 &5960651038995027236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8213164073109174468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 282fe4d573a4d9949bb87ba9cb561e94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 10
+  angle: 0
+  Player: {fileID: 0}
+  TargetMask:
+    serializedVersion: 2
+    m_Bits: 0
+  obstructionMask:
+    serializedVersion: 2
+    m_Bits: 0
+  canSeePlayer: 0
 --- !u!1 &8308433317616577057
 GameObject:
   m_ObjectHideFlags: 0

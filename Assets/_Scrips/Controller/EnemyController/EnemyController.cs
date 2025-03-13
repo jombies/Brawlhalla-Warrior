@@ -6,16 +6,21 @@ public class EnemyController : MonoBehaviour
 {
     GameObject _target;
     public GameObject Target => _target;
+
     NavMeshAgent _agent;
     public NavMeshAgent Agent => _agent;
+
     EnemyStats _enemyStats;
     public EnemyStats EnemyStats => _enemyStats;
+
+    FieldOfView _fov;
+    public FieldOfView fov => _fov;
+
     PlayerStat _playerStat;
     CharacterAnimation _playerAnimte;
     public Canvas _canvas;
     public Animator Animator;
-    GameObject _camera;
-    Collider[] col;
+
     // Damage Popup
     [SerializeField] GameObject PopUpDame;
     [SerializeField] TextMeshPro _textDamePopup;
@@ -24,6 +29,8 @@ public class EnemyController : MonoBehaviour
     public bool IsAttack;
     public bool IsDead = false;
     public CapsuleCollider _capsuleCollider;
+    GameObject _camera;
+    Collider[] col;
 
     void Start()
     {
@@ -35,8 +42,9 @@ public class EnemyController : MonoBehaviour
         _enemyStats = GetComponent<EnemyStats>();
         _canvas = transform.GetChild(0).GetComponent<Canvas>();
         _camera = GameObject.FindGameObjectWithTag("MainCamera");
+        _fov = GetComponent<FieldOfView>();
     }
-    private void FixUpdate()
+    private void FixedUpdate()
     {
         if (_enemyStats.currentHealth == 0)
         {
@@ -74,7 +82,7 @@ public class EnemyController : MonoBehaviour
                     _textDamePopup.text = (_playerStat.Damage.BaseValue * -1).ToString();
                     Instantiate(PopUpDame, transform.position + new Vector3(0, 2.5f, 0), Quaternion.identity);
                     _enemyStats.TakeDamage(_playerStat.Damage.BaseValue);
-                    Debug.LogError(this.gameObject.name);
+                    Debug.LogWarning(this.gameObject.name);
                     //colliders = null;
                 }
             }

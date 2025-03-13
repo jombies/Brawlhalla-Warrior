@@ -5,13 +5,12 @@ using UnityEngine.AI;
 
 public class Shoting : MonoBehaviour
 {
-    FieldOfView fov;
     EnemyController enemyController;
     [SerializeField] float range;//radius of sphere
     [SerializeField] Transform centrePoint; //centre of the area the agent wants to move around
     //bullet
     [SerializeField] GameObject bulletPrefabs;
-    [SerializeField] GameObject pointShooting;
+    [SerializeField] GameObject firePoint;
     //attack time
     public float timeBetweenAttacks;
     bool alreadyAttacked;
@@ -19,21 +18,21 @@ public class Shoting : MonoBehaviour
     void Start()
     {
         enemyController = GetComponent<EnemyController>();
-        fov = GetComponent<FieldOfView>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (enemyController.Agent.hasPath)
-        {
-            enemyController.Animator.SetFloat("Speed", enemyController.Agent.velocity.magnitude);
-        }
-        else enemyController.Animator.SetFloat("Speed", 0);
+        //if (enemyController.Agent.hasPath)
+        //{
+        //    enemyController.Animator.SetFloat("Speed", enemyController.Agent.velocity.magnitude);
+        //}
+        //else enemyController.Animator.SetFloat("Speed", 0);
+        enemyController.Animator.SetFloat("Speed", enemyController.Agent.velocity.magnitude / enemyController.Agent.speed);
 
-        if (!fov.canSeePlayer) PatrolPlayer();
-        if (fov.canSeePlayer) ChasePlayer();
-        if (fov.canSeePlayer && enemyController.Agent.remainingDistance <= 7.2f) AttackPlayer();
+        if (!enemyController.fov.canSeePlayer) PatrolPlayer();
+        if (enemyController.fov.canSeePlayer) ChasePlayer();
+        if (enemyController.fov.canSeePlayer && enemyController.Agent.remainingDistance <= 7.2f) AttackPlayer();
     }
     void PatrolPlayer()
     {
@@ -41,7 +40,7 @@ public class Shoting : MonoBehaviour
         if (enemyController.Agent.remainingDistance <= enemyController.Agent.stoppingDistance) //done with path
         {
             //enemyController.Animator.SetFloat("Speed", enemyController.Agent.velocity.magnitude);
-            if (RandomPoint(centrePoint.position, range, out Vector3 point)) //pass in our centre point and radius of area
+            if (RandomPoint(centrePoint.position, enemyController.fov.radius, out Vector3 point)) //pass in our centre point and radius of area
             {
                 // enemyController.Animator.SetFloat("Speed", enemyController.Agent.velocity.magnitude);
                 enemyController.Agent.SetDestination(point);
@@ -64,7 +63,7 @@ public class Shoting : MonoBehaviour
     }
     void ChasePlayer()
     {
-        enemyController.Agent.stoppingDistance = 0;
+        enemyController.fov.angle = 360;
         // enemyController.Animator.SetFloat("Speed", enemyController.Agent.velocity.magnitude);
         enemyController.FaceTarget();
         enemyController.Agent.SetDestination(enemyController.Target.transform.position);
@@ -76,13 +75,18 @@ public class Shoting : MonoBehaviour
         if (!alreadyAttacked)
         {
             enemyController.Animator.SetTrigger("attack");
-
-
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
     }
-
+    void SpawnBllut()
+    {
+        GameObject newBullet = Instantiate(bulletPrefabs, firePoint.transform.position, firePoint.transform.rotation);
+        if (newBullet.TryGetComponent<BulletInit>(out var bltd))
+        {
+            bltd.InitDamage(enemyController.EnemyStats.Damage.BaseValue);
+        }
+    }
     void ResetAttack()
     {
         alreadyAttacked = false;
