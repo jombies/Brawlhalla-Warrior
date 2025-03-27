@@ -15,6 +15,7 @@ public class FieldOfView : MonoBehaviour
     [SerializeField] LayerMask obstructionMask;
 
     public bool canSeePlayer;
+    private Collider[] rangeChecks = new Collider[10];
     // Start is called before the first frame update
     void Start()
     {
@@ -31,21 +32,40 @@ public class FieldOfView : MonoBehaviour
         }
     }
 
+    //private void FieldOfViewCheck()
+    //{
+    //    Collider[] rangeChecks = Physics.OverlapSphere(transform.position, radius, TargetMask);
+    //    if (rangeChecks.Length != 0)
+    //    {
+    //        Transform target = rangeChecks[0].transform;
+    //        Vector3 dirToTarget = (target.position - transform.position).normalized;
+    //        if (Vector3.Angle(transform.forward, dirToTarget) < angle / 2)
+    //        {
+    //            float disToTarget = Vector3.Distance(transform.position, dirToTarget);
+    //            if (!Physics.Raycast(transform.position, dirToTarget, disToTarget, obstructionMask)) canSeePlayer = true;
+    //            else canSeePlayer = false;
+    //        }
+    //        else canSeePlayer = false;
+    //    }
+    //    else if (canSeePlayer) canSeePlayer = false;
+    //}
     private void FieldOfViewCheck()
     {
-        Collider[] rangeChecks = Physics.OverlapSphere(transform.position, radius, TargetMask);
-        if (rangeChecks.Length != 0)
+        int count = Physics.OverlapSphereNonAlloc(transform.position, radius, rangeChecks, TargetMask);
+        if (count != 0)
         {
             Transform target = rangeChecks[0].transform;
             Vector3 dirToTarget = (target.position - transform.position).normalized;
             if (Vector3.Angle(transform.forward, dirToTarget) < angle / 2)
             {
-                float disToTarget = Vector3.Distance(transform.position, dirToTarget);
-                if (!Physics.Raycast(transform.position, dirToTarget, disToTarget, obstructionMask)) canSeePlayer = true;
-                else canSeePlayer = false;
+                float disToTarget = Vector3.Distance(transform.position, target.position);
+                if (!Physics.Raycast(transform.position, dirToTarget, disToTarget, obstructionMask))
+                {
+                    canSeePlayer = true;
+                    return;
+                }
             }
-            else canSeePlayer = false;
         }
-        else if (canSeePlayer) canSeePlayer = false;
+        canSeePlayer = false;
     }
 }
