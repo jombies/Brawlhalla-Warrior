@@ -1,10 +1,10 @@
-using DG.Tweening;
+﻿using DG.Tweening;
 using System.Collections;
 using UnityEngine;
 
 public class ChestBehaviour : MonoBehaviour
 {
-    GameObject TheLid;
+    GameObject chestLid;
     bool isOpen = false;
     [SerializeField] int Mincoin, Maxcoin;
     [SerializeField] float x;
@@ -15,7 +15,7 @@ public class ChestBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        TheLid = transform.GetChild(0).gameObject;
+        InitializeChest();
     }
     private void Update()
     {
@@ -24,14 +24,26 @@ public class ChestBehaviour : MonoBehaviour
             OpenChest();
         }
     }
+    private void InitializeChest()
+    {
+        // Lấy reference đến nắp rương
+        chestLid = transform.GetChild(0).gameObject;
+
+        if (chestLid == null)
+        {
+            Debug.LogError("Không tìm thấy nắp rương!");
+        }
+    }
     void OpenChest()
     {
-        TheLid.transform.DOLocalRotate(new Vector3(x, 0, 0), 1, RotateMode.Fast);
+        if (isOpen) return;
+        chestLid.transform.DOLocalRotate(new Vector3(x, 0, 0), 1, RotateMode.Fast);
         StartCoroutine(PopUpCoin());
+        isOpen = true;
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !isOpen)
         {
             OpenChest();
         }
@@ -41,7 +53,6 @@ public class ChestBehaviour : MonoBehaviour
     {
         if (!isOpen)
         {
-            isOpen = true;
             yield return new WaitForSeconds(.2f);
             numberOfCoin = Random.Range(Mincoin, Maxcoin);
             for (int i = 0; i < numberOfCoin; i++)
