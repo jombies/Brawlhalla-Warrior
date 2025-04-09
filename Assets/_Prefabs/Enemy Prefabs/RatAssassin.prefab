@@ -2424,8 +2424,8 @@ GameObject:
   - component: {fileID: 8605564349604783903}
   - component: {fileID: 5475710873546627539}
   - component: {fileID: 4167591455586850787}
-  - component: {fileID: 3566396361962669669}
   - component: {fileID: 8090866085097446451}
+  - component: {fileID: 3566396361962669669}
   - component: {fileID: 1151786302947725842}
   - component: {fileID: 5960651038995027236}
   m_Layer: 0
@@ -2524,6 +2524,24 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 2
+--- !u!114 &8090866085097446451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8213164073109174468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ea8f516ae5206a42a00a749cbb8a5a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxHealth: 60
+  heathBar: {fileID: 3025580480535149912}
+  Damage:
+    BaseValue: 6
+  Armor:
+    BaseValue: 1
 --- !u!114 &3566396361962669669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2547,24 +2565,6 @@ MonoBehaviour:
   alreadyAttacked: 0
   attackRange: 1.5
   sightRange: 5
---- !u!114 &8090866085097446451
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8213164073109174468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ea8f516ae5206a42a00a749cbb8a5a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxHealth: 60
-  heathBar: {fileID: 3025580480535149912}
-  Damage:
-    BaseValue: 6
-  Armor:
-    BaseValue: 1
 --- !u!114 &1151786302947725842
 MonoBehaviour:
   m_ObjectHideFlags: 0
