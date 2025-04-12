@@ -1668,6 +1668,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f142602506661fd4fbd858e72eb5ceac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _walkSpeed: 2.8
+  _speedMax: 5
+  _speedRotation: 15
+  _gra: 8
 --- !u!114 &613550904008144741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7587,7 +7591,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5417081245497876066
 Transform:
   m_ObjectHideFlags: 0
@@ -8722,7 +8726,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 768e4065d5de85840a82b8acf2c90f9f, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 

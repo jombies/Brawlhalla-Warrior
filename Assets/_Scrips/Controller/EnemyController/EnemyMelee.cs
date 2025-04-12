@@ -3,66 +3,77 @@ using UnityEngine.AI;
 
 public class EnemyMelee : MonoBehaviour
 {
+    [Header("Components")]
     EnemyController enemyController;
     //layer
+    [Header("Detection Settings")]
     public LayerMask IsPlayer, IsGround;
-    //patrol    
-    [SerializeField] float range;//radius of sphere
-    Transform centrePoint; //centre of the area the agent wants to move around
-    //Vector3 walkPoint;
-    //bool walkPointSet;
-    //public float walkPointRange;
-    //attack
+    public float attackRange, sightRange;
+
+    [Header("Attack Settings")]
     public float timeBetweenAttacks;
-    [SerializeField] bool alreadyAttacked;
+    bool canAttack = true;
 
     //State
-    public float attackRange, sightRange;
     bool playerInSight, playerInAttack;
+    bool hasSetFovAngle;
+
+    NavMeshAgent Agent => enemyController.Agent;
+    Animator Animator => enemyController.Animator;
+    FieldOfView Fov => enemyController.Fov;
 
     // Start is called before the first frame update
     void Start()
     {
         enemyController = GetComponent<EnemyController>();
-        centrePoint = this.transform;
     }
     void Update()
     {
+        UpdateAnimatorSpeed();
         playerInAttack = Physics.CheckSphere(transform.position, attackRange, IsPlayer);
-        //playerInSight = Physics.CheckSphere(transform.position, sightRange, IsPlayer);
 
-        //if (enemyController.IsDead && enemyController.IsAttack) return;
-        //if (!playerInSight && !playerInAttack) PatrolPlayer();
-        //if (playerInSight && !playerInAttack) ChasePlayer();
-        //if (playerInSight && playerInAttack) Attack();
 
-        if (!enemyController.fov.canSeePlayer) PatrolPlayer();
-        if (enemyController.fov.canSeePlayer) ChasePlayer();
-        //if (enemyController.fov.canSeePlayer && enemyController.Agent.remainingDistance <= 2) AttackPlayer();
-        if (enemyController.fov.canSeePlayer && playerInAttack) AttackPlayer();
+        //if (!Fov.canSeePlayer) {
+        //    PatrolPlayer();
+        //}
+        //else if (!playerInAttack) {
+        //    ChasePlayer();
+        //}
+        //else {
+        //    AttackPlayer();
+        //}
+        if (!Fov.canSeePlayer) {
+            PatrolPlayer();
+        }
+        else {
+            ChaseOrAttackPlayer();
+        }
+    }
+
+    void UpdateAnimatorSpeed()
+    {
+        float normalizedSpeed = Agent.velocity.magnitude / Agent.speed;
+        Animator.SetFloat("Speed", normalizedSpeed);
     }
 
     void PatrolPlayer()
     {
-        var agent = enemyController.Agent;
-        agent.stoppingDistance = 0;
-        agent.isStopped = false;
-        if (agent.remainingDistance <= agent.stoppingDistance) //done with path
+        Agent.stoppingDistance = 0;
+        Agent.isStopped = false;
+        if (Agent.remainingDistance <= Agent.stoppingDistance) //done with path
         {
-            //enemyController.Animator.SetFloat("Speed", enemyController.Agent.velocity.magnitude);
-            if (RandomPoint(centrePoint.position, enemyController.fov.radius, out Vector3 point)) //pass in our centre point and radius of area
+            if (RandomPoint(transform.position, enemyController.Fov.radius, out Vector3 point)) //pass in our centre point and radius of area
             {
                 // enemyController.Animator.SetFloat("Speed", enemyController.Agent.velocity.magnitude);
-                agent.SetDestination(point);
+                Agent.SetDestination(point);
             }
         }
     }
     bool RandomPoint(Vector3 center, float range, out Vector3 result)
     {
         Vector3 randomPoint = center + Random.insideUnitSphere * range; //random point in a sphere 
-        
-        if (NavMesh.SamplePosition(randomPoint, out NavMeshHit hit, 1.0f, 1 << NavMesh.GetAreaFromName("Walkable")))
-        {
+
+        if (NavMesh.SamplePosition(randomPoint, out NavMeshHit hit, 3.0f, 1 << NavMesh.GetAreaFromName("Walkable"))) {
             //the 1.0f is the max distance from the random point to a point on the navmesh, might want to increase if range is big
             //or add a for loop like in the documentation
             result = hit.position;
@@ -71,75 +82,46 @@ public class EnemyMelee : MonoBehaviour
         result = Vector3.zero;
         return false;
     }
-    //void PatrolPlayer()
-    //{
-    //    controller.Agent.isStopped = false;
-    //    if (!walkPointSet)
-    //    {
-    //        controller.Animator.SetBool("walking", false);
-    //        Invoke(nameof(SearchWalkPoint), 1);
-    //    }
-    //    if (walkPointSet)
-    //    {
-    //        controller.Animator.SetBool("walking", true);
-    //        controller.Agent.SetDestination(walkPoint);
-    //    }
-    //    Vector3 distanceToWalkPoint = transform.position - walkPoint;
 
-    //    //Walk point reached
-    //    if (distanceToWalkPoint.magnitude < 3f)
-    //        walkPointSet = false;
-    //}
-    //private void SearchWalkPoint()
-    //{
-    //    //Calculate random point in range
-    //    float randomZ = Random.Range(-walkPointRange, walkPointRange);
-    //    float randomX = Random.Range(-walkPointRange, walkPointRange);
+    void ChaseOrAttackPlayer()
+    {
+        if (!hasSetFovAngle) {
+            Fov.angle = 360;
+            hasSetFovAngle = true; // Mark as set
+        }
+        enemyController.FaceTarget();
 
-    //    walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
-    //    NavMeshHit hit;
-    //    if (NavMesh.SamplePosition(walkPoint, out hit, 0.1f, 1 << NavMesh.GetAreaFromName("Walkable")))
-    //    {
-    //        walkPointSet = true;
-    //    }
-    //    CancelInvoke();
-    //    //if (Physics.Raycast(walkPoint, -transform.up, 2f, IsGround))
-    //    //    walkPointSet = true;
-    //}
+        if (Agent.remainingDistance > attackRange) {
+            ChasePlayer();
+        }
+        else {
+            AttackPlayer();
+        }
+    }
     void ChasePlayer()
     {
         if (enemyController.IsAttack) return;
-        enemyController.fov.angle = 360;
+        if (!hasSetFovAngle) {
+            Fov.angle = 360;
+            hasSetFovAngle = true; // Mark as set
+        }
         enemyController.FaceTarget();
-        enemyController.Agent.isStopped = false;
-        enemyController.Animator.SetBool("walking", true);
-        enemyController.Agent.SetDestination(enemyController.Target.transform.position);
+        Agent.SetDestination(enemyController.Target.transform.position);
     }
     void AttackPlayer()
     {
-        enemyController.Agent.stoppingDistance = 2.5f;
-        enemyController.FaceTarget();
-        if (!enemyController.Animator.GetCurrentAnimatorStateInfo(0).IsName("attack"))
-        {
-            enemyController.Animator.SetBool("walking", false);
-            enemyController.Agent.SetDestination(enemyController.Target.transform.position);
-            enemyController.Agent.isStopped = true;
-            // animator.SetTrigger("attack");
-        }
+        Agent.stoppingDistance = attackRange;
+        enemyController.FaceTarget(); Agent.SetDestination(enemyController.Target.transform.position);
+        if (canAttack) {
 
-        if (!alreadyAttacked)
-        {
-            enemyController.Animator.SetTrigger("attack");
-            //animator.SetBool("walking", false);
-
-            alreadyAttacked = true;
+            Animator.SetTrigger("attack");
+            canAttack = false;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
-
     }
     void ResetAttack()
     {
-        alreadyAttacked = false;
+        canAttack = true;
     }
 
     private void OnDrawGizmosSelected()

@@ -6,7 +6,7 @@ public class InputSingleton : MonoBehaviour
     public static InputSingleton instance => _mInstance;
     float SHorizon; public float horizon { get => SHorizon; }
     float SVertical; public float vertical { get => SVertical; }
-    GameObject _camera;
+    [SerializeField] GameObject _camera;
     Vector3 Direction;
     public Vector3 direction { get { return Direction; } }
 
@@ -37,7 +37,7 @@ public class InputSingleton : MonoBehaviour
             Getdirection();
             SetDirection();
         }
-        if (transform.eulerAngles.y != _camera.transform.eulerAngles.y) {
+        if (transform.eulerAngles != _camera.transform.eulerAngles) {
             UpdateNormalizei();
             UpdateAngleDirection();
         }
@@ -47,7 +47,7 @@ public class InputSingleton : MonoBehaviour
     {
         if (_camera == null) return;
         Vector3 currentEulerAngles = this.gameObject.transform.eulerAngles;
-        currentEulerAngles.y = _camera.transform.eulerAngles.y;
+        currentEulerAngles = _camera.transform.eulerAngles;
         this.gameObject.transform.eulerAngles = currentEulerAngles;
     }
     void UpdateNormalizei()

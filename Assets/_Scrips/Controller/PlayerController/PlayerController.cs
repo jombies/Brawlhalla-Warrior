@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     CharacterAnimation Animater;
 
     [Header("Movement Settings")]
+    [SerializeField] float _walkSpeed = 2.8f;
     [SerializeField] float _speedMax = 5;
     [SerializeField] float _speedRotation = 15;
     [SerializeField] float _gra = 8f;
@@ -33,7 +34,7 @@ public class PlayerController : MonoBehaviour
         RotatePlayer();
 
         bool isRunning = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
-        speed = isRunning ? _speedMax : 2.8f;
+        speed = isRunning ? _speedMax : _walkSpeed;
 
         if (direction.magnitude > 0.1f) {
             Controller.Move(direction * Time.deltaTime * speed);

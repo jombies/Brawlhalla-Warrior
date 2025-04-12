@@ -254,7 +254,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6952177697851423994}
   - component: {fileID: 6952177697842090802}
-  - component: {fileID: 6952177697851549264}
   - component: {fileID: 3981871449984888101}
   - component: {fileID: 8446105485000227774}
   - component: {fileID: 3175660006660556869}
@@ -308,29 +307,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!136 &6952177697851549264
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6952177697851449498}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.36
-  m_Height: 1.19
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!195 &3981871449984888101
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -434,6 +410,8 @@ MonoBehaviour:
   centrePoint: {fileID: 6952177697851423994}
   bulletPrefabs: {fileID: 1979403604311268, guid: bc0b77b5d64c11e48b0a22fadb7489ce, type: 3}
   firePoint: {fileID: 3425448901642706039}
+  attackRange: 7.2
+  stoppingDistance: 7
   timeBetweenAttacks: 3
 --- !u!114 &6060704685885114926
 MonoBehaviour:

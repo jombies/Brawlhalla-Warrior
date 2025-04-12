@@ -9,7 +9,6 @@ public class Shooting : MonoBehaviour
 
     [Header("Patrol Settings")]
     [SerializeField] float range;//radius of sphere
-    [SerializeField] Transform centrePoint; //centre of the area the agent wants to move around
 
     [Header("Attack Settings")]
     [SerializeField] GameObject bulletPrefabs;
@@ -21,6 +20,10 @@ public class Shooting : MonoBehaviour
     bool alreadyAttacked;
     bool hasSetFovAngle;
 
+    NavMeshAgent Agent => enemyController.Agent;
+    Animator Animator => enemyController.Animator;
+    FieldOfView Fov => enemyController.Fov;
+
     void Start()
     {
         enemyController = GetComponent<EnemyController>();
@@ -31,39 +34,34 @@ public class Shooting : MonoBehaviour
     {
         UpdateAnimatorSpeed();
 
-        if (!enemyController.fov.canSeePlayer)
-        {
+        if (!Fov.canSeePlayer) {
             PatrolPlayer();
         }
-        else
-        {
+        else {
             ChaseOrAttackPlayer();
         }
     }
 
     void UpdateAnimatorSpeed()
     {
-        float normalizedSpeed = enemyController.Agent.velocity.magnitude / enemyController.Agent.speed;
-        enemyController.Animator.SetFloat("Speed", normalizedSpeed);
+        float normalizedSpeed = Agent.velocity.magnitude / Agent.speed;
+        Animator.SetFloat("Speed", normalizedSpeed);
     }
     void PatrolPlayer()
     {
-        enemyController.Agent.stoppingDistance = 0;
-        if (enemyController.Agent.remainingDistance <= enemyController.Agent.stoppingDistance)
-        {
+        Agent.stoppingDistance = 0;
+        if (Agent.remainingDistance <= Agent.stoppingDistance) {
             //enemyController.Animator.SetFloat("Speed", enemyController.Agent.velocity.magnitude);
-            if (RandomPoint(centrePoint.position, enemyController.fov.radius, out Vector3 point))
-            {
+            if (RandomPoint(this.transform.position, Fov.radius, out Vector3 point)) {
                 // enemyController.Animator.SetFloat("Speed", enemyController.Agent.velocity.magnitude);
-                enemyController.Agent.SetDestination(point);
+                Agent.SetDestination(point);
             }
         }
     }
     bool RandomPoint(Vector3 center, float range, out Vector3 result)
     {
         Vector3 randomPoint = center + Random.insideUnitSphere * range; //random point in a sphere 
-        if (NavMesh.SamplePosition(randomPoint, out NavMeshHit hit, 1.0f, 1 << NavMesh.GetAreaFromName("Walkable")))
-        {
+        if (NavMesh.SamplePosition(randomPoint, out NavMeshHit hit, 1.0f, 1 << NavMesh.GetAreaFromName("Walkable"))) {
             //the 1.0f is the max distance from the random point to a point on the navmesh, might want to increase if range is big
             //or add a for loop like in the documentation
             result = hit.position;
@@ -74,36 +72,32 @@ public class Shooting : MonoBehaviour
     }
     void ChaseOrAttackPlayer()
     {
-        if (!hasSetFovAngle)
-        {
-            enemyController.fov.angle = 360;
+        if (!hasSetFovAngle) {
+            Fov.angle = 360;
             hasSetFovAngle = true; // Mark as set
         }
         enemyController.FaceTarget();
 
-        if (enemyController.Agent.remainingDistance > attackRange)
-        {
+        if (Agent.remainingDistance > attackRange) {
             ChasePlayer();
         }
-        else
-        {
+        else {
             AttackPlayer();
         }
     }
 
     void ChasePlayer()
     {
-        enemyController.Agent.stoppingDistance = 0;
-        enemyController.Agent.SetDestination(enemyController.Target.transform.position);
+        Agent.stoppingDistance = 0;
+        Agent.SetDestination(enemyController.Target.transform.position);
     }
 
     void AttackPlayer()
     {
-        enemyController.Agent.stoppingDistance = stoppingDistance;
-        enemyController.Agent.SetDestination(enemyController.Target.transform.position);
-        if (!alreadyAttacked)
-        {
-            enemyController.Animator.SetTrigger("attack");
+        Agent.stoppingDistance = stoppingDistance;
+        Agent.SetDestination(PlayerReferences.Instance.Player.transform.position);
+        if (!alreadyAttacked) {
+            Animator.SetTrigger("attack");
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
@@ -111,8 +105,7 @@ public class Shooting : MonoBehaviour
     void SpawnBullet()
     {
         GameObject newBullet = Instantiate(bulletPrefabs, firePoint.transform.position, firePoint.transform.rotation);
-        if (newBullet.TryGetComponent<BulletInit>(out var bltd))
-        {
+        if (newBullet.TryGetComponent<BulletInit>(out var bltd)) {
             bltd.InitDamage(enemyController.EnemyStats.Damage.BaseValue);
         }
     }
