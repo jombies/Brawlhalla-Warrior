@@ -42723,7 +42723,6 @@ GameObject:
   - component: {fileID: 1208658078}
   - component: {fileID: 1208658079}
   - component: {fileID: 1208658080}
-  - component: {fileID: 1208658081}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -42803,18 +42802,6 @@ MonoBehaviour:
   _ivenBtn: {fileID: 1435805234}
   _invetoryui: {fileID: 550729001}
   ItemParrent: {fileID: 1609371969}
---- !u!114 &1208658081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1208658075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16e9a8299816ba947b842d03750faadf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1208994869
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -82663,6 +82650,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ===Player===
       objectReference: {fileID: 0}
+    - target: {fileID: 7377077291017827858, guid: b23b2976729a8714d8e092bc1873ea87, type: 3}
+      propertyPath: m_Height
+      value: 2.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 8032707971962530760, guid: b23b2976729a8714d8e092bc1873ea87, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 5ba8cfbb11f3c084492d7c403603fa2c, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
