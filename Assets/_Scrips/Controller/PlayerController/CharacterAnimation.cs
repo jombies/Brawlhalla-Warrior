@@ -23,7 +23,7 @@ public class CharacterAnimation : MonoBehaviour
     }
     private void Update()
     {
-        TimeSinceAttack += Time.deltaTime;
+        if (TimeSinceAttack < 2) TimeSinceAttack += Time.deltaTime;
 
         if (IsAttacking) return;
         Attack();
@@ -43,6 +43,7 @@ public class CharacterAnimation : MonoBehaviour
     void Attack()
     {
         if (Input.GetKeyDown(KeyCode.Mouse0) && TimeSinceAttack > .9f) {
+            if (TimeSinceAttack > 1.5f) CurrentAttack = 0;
             PerformAttack();
         }
         if (Input.GetKeyDown(KeyCode.Mouse1)) {

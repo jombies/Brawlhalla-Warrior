@@ -48,7 +48,7 @@ public class EnemyController : MonoBehaviour
     {
         InitializeComponents();
     }
-    private void InitializeComponents()
+    void InitializeComponents()
     {
         _animator = GetComponent<Animator>();
         _agent = GetComponent<NavMeshAgent>();
@@ -69,16 +69,21 @@ public class EnemyController : MonoBehaviour
 
     private void HandleDeathState()
     {
-        if (_enemyStats.currentHealth == 0) {
+        if (_enemyStats.currentHealth <= 0) {
             IsDead = true;
             if (_capsuleCollider != null) _capsuleCollider.enabled = false;
             if (_canvas != null) _canvas.enabled = false;
+            Agent.enabled = false;
         }
     }
 
     public bool AlreadyFoundPlayer()
     {
-        return _agent.stoppingDistance >= _agent.remainingDistance;
+        //return _agent.stoppingDistance >= _agent.remainingDistance;
+        float distance = Vector3.Distance(_target.transform.position, transform.position);
+        if (distance <= _agent.stoppingDistance) return true;
+        else return false;
+
     }
 
     public void FaceTarget()
@@ -99,9 +104,9 @@ public class EnemyController : MonoBehaviour
                 // Check if the collider is a hitbox or appropriate target for damage
                 if (collider.CompareTag("EnemyHitbox")) {
 
-                    _textDamePopup.text = (_playerStat.Damage.BaseValue * -1).ToString();
+                    _textDamePopup.text = (_playerStat.Damage.Value * -1).ToString();
                     Instantiate(PopUpDame, transform.position + PopupOffset, Quaternion.identity);
-                    _enemyStats.TakeDamage(_playerStat.Damage.BaseValue);
+                    _enemyStats.TakeDamage(_playerStat.Damage.Value);
                     Debug.LogWarning(this.gameObject.name);
                     break;
                     //colliders = null;

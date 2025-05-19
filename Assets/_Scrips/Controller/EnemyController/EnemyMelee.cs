@@ -1,10 +1,10 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyMelee : MonoBehaviour
 {
     [Header("Components")]
-    EnemyController enemyController;
+    EnemyController controller;
     //layer
     [Header("Detection Settings")]
     public LayerMask IsPlayer, IsGround;
@@ -18,36 +18,43 @@ public class EnemyMelee : MonoBehaviour
     bool playerInSight, playerInAttack;
     bool hasSetFovAngle;
 
-    NavMeshAgent Agent => enemyController.Agent;
-    Animator Animator => enemyController.Animator;
-    FieldOfView Fov => enemyController.Fov;
+    NavMeshAgent Agent => controller.Agent;
+    Animator Animator => controller.Animator;
+    FieldOfView Fov => controller.Fov;
 
     // Start is called before the first frame update
     void Start()
     {
-        enemyController = GetComponent<EnemyController>();
+        controller = GetComponent<EnemyController>();
     }
     void Update()
     {
+        if (controller.IsDead) return;
         UpdateAnimatorSpeed();
         playerInAttack = Physics.CheckSphere(transform.position, attackRange, IsPlayer);
 
 
-        //if (!Fov.canSeePlayer) {
-        //    PatrolPlayer();
-        //}
-        //else if (!playerInAttack) {
-        //    ChasePlayer();
-        //}
-        //else {
-        //    AttackPlayer();
-        //}
         if (!Fov.canSeePlayer) {
             PatrolPlayer();
         }
         else {
-            ChaseOrAttackPlayer();
+            ChasePlayer();
         }
+        if (Fov.canSeePlayer && playerInAttack) {
+            AttackPlayer();
+        }
+        if (controller.IsAttack) {
+            Agent.isStopped = true;
+        }
+        else {
+            Agent.isStopped = false;
+        }
+        //if (!Fov.canSeePlayer) {
+        //    PatrolPlayer();
+        //}
+        //else {
+        //    ChaseOrAttackPlayer();
+        //}
     }
 
     void UpdateAnimatorSpeed()
@@ -62,9 +69,9 @@ public class EnemyMelee : MonoBehaviour
         Agent.isStopped = false;
         if (Agent.remainingDistance <= Agent.stoppingDistance) //done with path
         {
-            if (RandomPoint(transform.position, enemyController.Fov.radius, out Vector3 point)) //pass in our centre point and radius of area
+            if (RandomPoint(transform.position, controller.Fov.radius, out Vector3 point)) //pass in our centre point and radius of area
             {
-                // enemyController.Animator.SetFloat("Speed", enemyController.Agent.velocity.magnitude);
+                // controller.Animator.SetFloat("Speed", controller.Agent.velocity.magnitude);
                 Agent.SetDestination(point);
             }
         }
@@ -87,31 +94,34 @@ public class EnemyMelee : MonoBehaviour
     {
         if (!hasSetFovAngle) {
             Fov.angle = 360;
-            hasSetFovAngle = true; // Mark as set
+            hasSetFovAngle = true;
         }
-        enemyController.FaceTarget();
 
-        if (Agent.remainingDistance > attackRange) {
-            ChasePlayer();
-        }
-        else {
-            AttackPlayer();
-        }
+        //if (Agent.remainingDistance > attackRange) {
+        //    ChasePlayer();
+        //}
+        //if (playerInAttack) {
+        //    AttackPlayer();
+        //}
+        if (Fov.canSeePlayer && !controller.IsAttack) ChasePlayer();
+        if (playerInAttack) AttackPlayer();
     }
     void ChasePlayer()
     {
-        if (enemyController.IsAttack) return;
         if (!hasSetFovAngle) {
             Fov.angle = 360;
-            hasSetFovAngle = true; // Mark as set
+            hasSetFovAngle = true;
         }
-        enemyController.FaceTarget();
-        Agent.SetDestination(enemyController.Target.transform.position);
+        // if (controller.IsAttack) return;
+        Agent.stoppingDistance = attackRange;
+        controller.FaceTarget();
+        Agent.SetDestination(controller.Target.transform.position);
     }
     void AttackPlayer()
     {
-        Agent.stoppingDistance = attackRange;
-        enemyController.FaceTarget(); Agent.SetDestination(enemyController.Target.transform.position);
+        controller.FaceTarget();
+        //Agent.isStopped = true;
+        Agent.SetDestination(controller.Target.transform.position);
         if (canAttack) {
 
             Animator.SetTrigger("attack");
@@ -122,6 +132,19 @@ public class EnemyMelee : MonoBehaviour
     void ResetAttack()
     {
         canAttack = true;
+        //Agent.isStopped = false;
+    }
+
+    public void ApplyDamage()
+    {
+        float range = attackRange;
+        if (Vector3.Distance(transform.position, controller.Target.transform.position) <= range) {
+            var PlayerStat = controller.Target.transform.GetComponent<PlayerStat>();
+            if (PlayerStat != null) {
+                PlayerStat.TakeDamage(1);
+                Debug.Log("Damage!");
+            }
+        }
     }
 
     private void OnDrawGizmosSelected()

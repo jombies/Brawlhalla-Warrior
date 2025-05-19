@@ -2,43 +2,31 @@ using UnityEngine;
 
 public class CharacterStat : MonoBehaviour
 {
-    [SerializeField] int MaxHealth = 100;
-    public int currentHealth { get; private set; }
-    [SerializeField] protected HealthBar heathBar;
-    bool isDead = false;
-
+    [Header("Stat")]
+    public int MaxHealth;
     public Stat Damage;
     public Stat Armor;
+
+    //[Header("RumTime")]
+    public int currentHealth { get; protected set; }
+    protected bool isDead = false;
+
     //bool check;
-    void Awake()
+    protected virtual void Awake()
     {
         currentHealth = MaxHealth;
-        heathBar.SetMaxHeathBar(MaxHealth);
     }
-    public void TakeDamage(int dmg)
-    {
-        dmg -= Armor.GetValue();
-        Debug.Log(gameObject.name + "dame: " + dmg);
-        dmg = Mathf.Clamp(dmg, 0, int.MaxValue);
 
-        currentHealth -= dmg;
-        // Debug.Log(transform.name + " takes " + dmg + " damage");
-        heathBar.SetHealth(currentHealth);
-        if (currentHealth <= 1 && !isDead)
-        {
-            Die();
-            isDead = true;
-        }
-    }
-    public void Healing(int value)
+    public virtual void TakeDamage(int dmg)
     {
-        currentHealth += value;
-        currentHealth = Mathf.Clamp(currentHealth, 0, MaxHealth);
-        heathBar.SetHealth(currentHealth);
+        if (isDead) return;
+        dmg = Mathf.Clamp(dmg, 0, int.MaxValue);
+        Debug.Log(gameObject.name + "dame: " + dmg);
+        OnTakeDamage(dmg);
     }
-    public virtual void Die()
+    protected virtual void OnTakeDamage(int Finaldmg) { }
+    protected virtual void Die()
     {
-        //die someway
-        //over
+        Debug.Log($"{gameObject.name} Die!");
     }
 }

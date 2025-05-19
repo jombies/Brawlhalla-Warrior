@@ -34,8 +34,7 @@ public class EnemyShotting : MonoBehaviour
 
     private void LoadPoints()
     {
-        foreach (Transform point in pointHolder)
-        {
+        foreach (Transform point in pointHolder) {
             points.Add(point);
         }
     }
@@ -64,8 +63,7 @@ public class EnemyShotting : MonoBehaviour
     void ChasePlayer()
     {
         controller.FaceTarget();
-        if (UnderGround)
-        {
+        if (UnderGround) {
             controller.Animator.Play("GroundBreakThrough");
             //controller._capsuleCollider.enabled = true;
             controller._canvas.gameObject.SetActive(true);
@@ -76,20 +74,17 @@ public class EnemyShotting : MonoBehaviour
     {
         if (UnderGround) return;
         controller.FaceTarget();
-        if (!alreadyAttacked)
-        {
+        if (!alreadyAttacked) {
             controller.Animator.SetTrigger("attack");
             GameObject newBullet = Instantiate(BulletPrefab, FirePoint.transform.position, FirePoint.transform.rotation);
-            if (newBullet.TryGetComponent<BulletInit>(out var bltd))
-            {
-                bltd.InitDamage(controller.EnemyStats.Damage.BaseValue);
+            if (newBullet.TryGetComponent<BulletInit>(out var bltd)) {
+                bltd.InitDamage(controller.EnemyStats.Damage.Value);
             }
             alreadyAttacked = true;
             attackCount++;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
-        if (attackCount == 6)
-        {
+        if (attackCount == 6) {
             SearchWalkPoint();
         }
     }

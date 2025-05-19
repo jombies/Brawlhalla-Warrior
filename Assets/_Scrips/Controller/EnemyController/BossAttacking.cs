@@ -31,25 +31,21 @@ public class BossAttacking : MonoBehaviour
     {
         if (controller.IsDead) return;
         //SeeFirstTime();
-        if (controller.AlreadyFoundPlayer())
-        {
-            if (PlayerInSight())
-            {
+        if (controller.AlreadyFoundPlayer()) {
+            if (PlayerInSight()) {
                 Attacking();
             }
         }
-        if (controller.AlreadyFoundPlayer())
-        {
-            if (!PlayerInSight() && !controller.IsAttack)
-            {
+        if (controller.AlreadyFoundPlayer()) {
+            if (!PlayerInSight() && !controller.IsAttack) {
                 controller.FaceTarget();
             }
         }
     }
     void Attacking()
     {
-        if (!alreadyAttacked)
-        {
+        if (!alreadyAttacked) {
+            if (!PlayerInSight()) controller.FaceTarget();
             controller.Animator.SetTrigger("attack1");
             //animator.SetBool("walking", false);
 
@@ -68,14 +64,12 @@ public class BossAttacking : MonoBehaviour
         Ray ray = new(transform.position, transform.parent.TransformDirection(Vector3.forward));
         RaycastHit hit;
         // Kiểm tra xem ray có va chạm với bất kỳ đối tượng nào không
-        if (Physics.Raycast(ray, out hit, 3, IsPlayer))
-        {
+        if (Physics.Raycast(ray, out hit, 3, IsPlayer)) {
             // Nếu ray va chạm với một đối tượng, vẽ đường từ điểm bắt đầu đến điểm va chạm
             Debug.DrawLine(transform.position, hit.point, Color.red);
             return true;
         }
-        else
-        {
+        else {
             // Nếu ray không va chạm với bất kỳ đối tượng nào, vẽ đường từ điểm bắt đầu theo hướng đã cho
             Debug.DrawRay(transform.position, transform.parent.TransformDirection(Vector3.forward) * 3, Color.green);
             return false;

@@ -6,23 +6,19 @@ public class Stat
     public int BaseValue;
 
     private List<int> _modifiers = new List<int>();
-    public int GetValue()
-    {
-        return BaseValue;
-    }
+
+    public int Value => CalculateFinalValue();
 
     public void AddModifier(int value)
     {
-        if (value != 0)
-        {
+        if (value != 0) {
             _modifiers.Add(value);
         }
-        //totalValue();
+        //TotalValue();
     }
     public void RemoveModifier(int value)
     {
-        if (value != 0)
-        {
+        if (value != 0) {
             _modifiers.Remove(value);
         }
         //totalValue();
@@ -30,10 +26,17 @@ public class Stat
     public void TotalValue()
     {
         int newValue = 0;
-        foreach (int modifier in _modifiers)
-        {
-            newValue += modifier;
+        foreach (int modifier in _modifiers) {
+            newValue = modifier;
         }
-        BaseValue = newValue;
+        BaseValue = +newValue;
+    }
+    private int CalculateFinalValue()
+    {
+        int finalValue = BaseValue;
+        foreach (int mod in _modifiers) {
+            finalValue += mod;
+        }
+        return finalValue;
     }
 }

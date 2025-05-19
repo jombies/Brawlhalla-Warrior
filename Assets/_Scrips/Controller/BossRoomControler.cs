@@ -1,0 +1,40 @@
+﻿using DG.Tweening;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BossRoomControler : MonoBehaviour
+{
+    public GameObject boss;
+    public GameObject rewardChest;
+    public List<GameObject> gates;
+
+    private bool isStarted = false;
+    private bool isCleared = false;
+
+    public void GateClose()
+    {
+
+        isStarted = true;
+
+        foreach (var gate in gates)
+            gate.transform.DOMoveY(1, 1f); // đóng cửa
+        boss.GetComponent<BossAI>().PlayerOnGr = true; // cho boss di chuyển
+        boss.SetActive(true); // hiện boss nếu ẩn
+                              //BossHealth bossHealth = boss.GetComponent<BossHealth>();
+                              // bossHealth.OnBossDead += OnBossDefeated;
+    }
+}
+
+//void OnBossDefeated()
+//{
+//    if (isCleared) return;
+//    isCleared = true;
+
+//    foreach (var gate in gates)
+//        gate.transform.DOMoveY(-2, 1f); // mở cửa
+
+//    rewardChest.SetActive(true);
+//    Debug.Log("🎉 Boss defeated!");
+//}
+//}

@@ -32,6 +32,7 @@ public class Shooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (enemyController.IsDead) return;
         UpdateAnimatorSpeed();
 
         if (!Fov.canSeePlayer) {
@@ -51,9 +52,8 @@ public class Shooting : MonoBehaviour
     {
         Agent.stoppingDistance = 0;
         if (Agent.remainingDistance <= Agent.stoppingDistance) {
-            //enemyController.Animator.SetFloat("Speed", enemyController.Agent.velocity.magnitude);
             if (RandomPoint(this.transform.position, Fov.radius, out Vector3 point)) {
-                // enemyController.Animator.SetFloat("Speed", enemyController.Agent.velocity.magnitude);
+
                 Agent.SetDestination(point);
             }
         }
@@ -88,6 +88,7 @@ public class Shooting : MonoBehaviour
 
     void ChasePlayer()
     {
+        if (enemyController.IsAttack) return;
         Agent.stoppingDistance = 0;
         Agent.SetDestination(enemyController.Target.transform.position);
     }
@@ -106,7 +107,7 @@ public class Shooting : MonoBehaviour
     {
         GameObject newBullet = Instantiate(bulletPrefabs, firePoint.transform.position, firePoint.transform.rotation);
         if (newBullet.TryGetComponent<BulletInit>(out var bltd)) {
-            bltd.InitDamage(enemyController.EnemyStats.Damage.BaseValue);
+            bltd.InitDamage(enemyController.EnemyStats.Damage.Value);
         }
     }
     void ResetAttack()

@@ -5,7 +5,7 @@ public class Billboard : MonoBehaviour
     public GameObject Camera;
     private void Start()
     {
-        Camera = GameObject.FindGameObjectWithTag("MainCamera");
+        Camera = UnityEngine.Camera.main.gameObject;
     }
     private void LateUpdate()
     {

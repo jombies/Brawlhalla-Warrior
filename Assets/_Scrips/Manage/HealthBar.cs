@@ -7,12 +7,11 @@ public class HealthBar : MonoBehaviour
     public Gradient gradient;
     public Image image;
     // Start is called before the first frame update
-    void Awake()
+    private void Start()
     {
         Slider = GetComponent<Slider>();
         image = GetComponentInChildren<Image>();
     }
-
     public void SetMaxHeathBar(int health)
     {
         Slider.maxValue = health;

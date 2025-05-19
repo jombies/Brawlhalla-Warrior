@@ -39,7 +39,7 @@ public class InputSingleton : MonoBehaviour
         }
         if (transform.eulerAngles != _camera.transform.eulerAngles) {
             UpdateNormalizei();
-            UpdateAngleDirection();
+            // UpdateAngleDirection();
         }
     }
 

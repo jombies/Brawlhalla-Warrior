@@ -3,15 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GateBehaviour : MonoBehaviour
+public class RoomController : MonoBehaviour
 {
     public List<GameObject> Gates;
     [SerializeField] float HieghtOfGate;
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Delete))
-        {
+        if (Input.GetKey(KeyCode.Delete)) {
             GateOpen();
         }
     }
@@ -28,8 +27,7 @@ public class GateBehaviour : MonoBehaviour
     private void Reset()
     {
         // bossMoving = GameObject.FindGameObjectWithTag("BossEnemy").transform.GetChild(3).GetComponent<BossMoving>();
-        foreach (Transform go in transform)
-        {
+        foreach (Transform go in transform) {
             Gates.Add(go.gameObject);
         }
     }

@@ -10,27 +10,45 @@ public class EnemyStats : CharacterStat
 {
     EnemyController controller;
     public event Action OnDeath;
+    [SerializeField] HealthBar healthBar;
+
     void Start()
     {
         controller = GetComponent<EnemyController>();
-        heathBar = GetComponentInChildren<HealthBar>();
+        healthBar = GetComponentInChildren<HealthBar>();
+        if (controller == null) {
+            Debug.LogError("EnemyController is missing on " + gameObject.name);
+        }
+        if (healthBar != null) {
+            Debug.LogError("HealthBar is missing on " + gameObject.name);
+            healthBar.SetMaxHeathBar(MaxHealth);
+        }
     }
-    public override void Die()
+    protected override void OnTakeDamage(int dmg)
     {
-        // base.Die();
+        if (dmg > 0) {
+            currentHealth -= dmg;
+            healthBar?.SetHealth(currentHealth);
+            if (currentHealth <= 0 && !isDead) {
+                Die();
+                isDead = true;
+            }
+        }
+    }
+
+    protected override void Die()
+    {
+        base.Die();
         OnDeath?.Invoke();
-        Debug.Log(this.gameObject.name + " Died");
         PlayDead();
     }
 
     void PlayDead()
     {
         controller.Animator.SetTrigger("Dead");
-        //AnimatorStateInfo State = this.animator.GetCurrentAnimatorStateInfo(0);
-        //float animationTime = State.normalizedTime * State.length;
-        //Debug.Log(animationTime);
+
         //this.StartCoroutine(WaitToDie(animationTime + 1));
-        this.StartCoroutine(WaitToDie(1.5f));
+        StartCoroutine(WaitToDie(3));
     }
     IEnumerator WaitToDie(float s)
     {

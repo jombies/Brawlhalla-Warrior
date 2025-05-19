@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     {
         direction = InputSingleton.instance.direction;
         Moving();
+        Dash();
     }
     void Moving()
     {
@@ -48,6 +49,20 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, _speedRotation * Time.deltaTime);
         }
     }
+    void Dash()
+    {
+        if (Input.GetKeyDown(KeyCode.Z)) {
+            StartCoroutine(doDash());
+        }
+        IEnumerator doDash()
+        {
+            float startTime = Time.time;
+            while (Time.time < startTime + 0.2f) {
+                Controller.Move(direction * 10 * Time.deltaTime);
+                yield return null;
+            }
+        }
+    }
     void ApplyGravity()
     {
         if (Controller.isGrounded && _gravity.y < 0)
@@ -63,8 +78,8 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Enemy weapon")) {
             Transform[] ParentTrans = other.gameObject.GetComponentsInParent<Transform>();
             foreach (Transform t in ParentTrans) {
-                if (t.TryGetComponent<EnemyStats>(out var dame) /*&& t.GetComponent<EnemyController>().IsAttack*/) {
-                    PlayerStat.TakeDamage(dame.Damage.BaseValue);
+                if (t.TryGetComponent<EnemyStats>(out var dame) && t.GetComponent<EnemyController>().IsAttack) {
+                    PlayerStat.TakeDamage(dame.Damage.Value);
                     return;
                 }
             }

@@ -8,6 +8,7 @@ public class BossMoving : MonoBehaviour
     //react
     public bool isfirst = true;
     public bool PlayerOnGr = false;
+    float StopDistance = 3.3f;
 
     // Start is called before the first frame update
     private void Start()
@@ -17,14 +18,12 @@ public class BossMoving : MonoBehaviour
     void Update()
     {
         if (controller.IsDead) return;
-        if (PlayerOnGr)
-        {
-            if (!controller.AlreadyFoundPlayer() && !controller.IsAttack)
-            {
+        if (PlayerOnGr) {
+
+            if (!controller.AlreadyFoundPlayer() && !controller.IsAttack) {
                 GetMoving();
             }
-            if (controller.AlreadyFoundPlayer())
-            {
+            if (controller.AlreadyFoundPlayer()) {
                 StopWalking();
             }
         }
@@ -39,8 +38,7 @@ public class BossMoving : MonoBehaviour
     {
         controller.Animator.SetBool("walk", false);
         controller.Agent.SetDestination(transform.position);
-        if (isfirst)
-        {
+        if (isfirst) {
             controller.Animator.Play("Taunting");
             isfirst = false;
             //controller.EnemyStats.Animator.SetTrigger("taunting");

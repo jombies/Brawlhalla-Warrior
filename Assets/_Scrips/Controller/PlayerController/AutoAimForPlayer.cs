@@ -18,13 +18,10 @@ public class AutoAimForPlayer : MonoBehaviour
         float closestDistance = Mathf.Infinity;
         Transform closestEnemy = null;
 
-        foreach (var hitCollider in hitColliders)
-        {
-            if (hitCollider.CompareTag("EnemyHitbox") || hitCollider.CompareTag("BossEnemy"))
-            {
+        foreach (var hitCollider in hitColliders) {
+            if (hitCollider.CompareTag("EnemyHitbox") || hitCollider.CompareTag("BossEnemy")) {
                 float distance = (hitCollider.transform.position - transform.position).sqrMagnitude;
-                if (distance < closestDistance)
-                {
+                if (distance < closestDistance) {
                     closestDistance = distance;
                     closestEnemy = hitCollider.transform;
                 }
@@ -35,12 +32,11 @@ public class AutoAimForPlayer : MonoBehaviour
 
     public void AimAndAttack()
     {
-        if (target != null)
-        {
+        if (target != null) {
             // Aim at the target
             Vector3 direction = (target.position - transform.position).normalized;
             direction.y = 0f;
-            transform.forward = Vector3.Lerp(transform.forward, direction, Time.deltaTime * 50);
+            transform.forward = Vector3.Lerp(transform.forward, direction, Time.deltaTime * 80);
         }
     }
     //private void OnDrawGizmos()

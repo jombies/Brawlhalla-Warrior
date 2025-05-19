@@ -105,6 +105,7 @@
     <Compile Include="Assets\GabrielAguiarProductions\Unique_Projectiles_Volume_1\Scripts\ParticleSystemController\Serializables.cs" />
     <Compile Include="Assets\_Scrips\changeEquip\ChangeWeapon.cs" />
     <Compile Include="Assets\ExplosiveLLC\Warrior\Code\WarriorInputSytemController.cs" />
+    <Compile Include="Assets\_Scrips\Manage\RoomController.cs" />
     <Compile Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Scripts\BlurOptimized.cs" />
     <Compile Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Scripts\Vortex.cs" />
     <Compile Include="Assets\Hovl Studio\Toon Projectiles 2\Demo scene\DemoShooting.cs" />
@@ -114,12 +115,12 @@
     <Compile Include="Assets\IndieMarc\EnemyVision\Scripts\Enemy\EnemyDemo.cs" />
     <Compile Include="Assets\GabrielAguiarProductions\Unique_Projectiles_Volume_1\Scripts\CameraShakeSimpleScript.cs" />
     <Compile Include="Assets\GabrielAguiarProductions\Unique_Projectiles_Volume_1\Scripts\UniqueProjectiles\ProjectileMoveScript.cs" />
-    <Compile Include="Assets\_Scrips\Manage\GateBehaviour.cs" />
     <Compile Include="Assets\_Scrips\Manage\Gameobject.cs" />
     <Compile Include="Assets\_Scrips\Manage\EnemySpawns.cs" />
     <Compile Include="Assets\_Scrips\Stat\EnemyStats.cs" />
     <Compile Include="Assets\Multistory Dungeons 2\Scripts\FpsCounter.cs" />
     <Compile Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Scripts\ScreenSpaceAmbientOcclusion.cs" />
+    <Compile Include="Assets\_Scrips\Manage\StatPlayerUI.cs" />
     <Compile Include="Assets\ExplosiveLLC\Warrior\Code\WarriorInputController.cs" />
     <Compile Include="Assets\Unity-Logs-Viewer\Reporter\MultiKeyDictionary.cs" />
     <Compile Include="Assets\Unity-Logs-Viewer\Reporter\Test\TestReporter.cs" />
@@ -163,6 +164,7 @@
     <Compile Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Scripts\PostEffectsBase.cs" />
     <Compile Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Scripts\ContrastEnhance.cs" />
     <Compile Include="Assets\_Scrips\Controller\EnemyController\EnemyShotting.cs" />
+    <Compile Include="Assets\_Scrips\Controller\BossRoomControler.cs" />
     <Compile Include="Assets\_Scrips\Controller\EnemyController\EnemyMelee.cs" />
     <Compile Include="Assets\IndieMarc\EnemyVision\Scripts\Character\VisionTarget.cs" />
     <Compile Include="Assets\_Scrips\Controller\PlayerController\inventorySlot.cs" />
@@ -217,6 +219,7 @@
     <Compile Include="Assets\_Scrips\Manage\Billbroad.cs" />
     <Compile Include="Assets\ExplosiveLLC\Warrior\Code\WarriorIKHands.cs" />
     <Compile Include="Assets\ExplosiveLLC\Warrior\Demo Elements\Code\CameraController.cs" />
+    <Compile Include="Assets\_Scrips\Controller\EnemyController\BossAI.cs" />
     <Compile Include="Assets\IndieMarc\EnemyVision\Scripts\Other\Invisible.cs" />
     <Compile Include="Assets\IndieMarc\EnemyVision\Scripts\Other\NoiseZone2D.cs" />
   </ItemGroup>
