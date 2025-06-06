@@ -7,7 +7,7 @@ public class PlayerStat : CharacterStat
     [SerializeField] StatPlayerUI StatPlayerUI;
 
     [Header("Shield")]
-    [SerializeField] int MaxShield;
+    int MaxShield = 100;
     public int currentShield { get; private set; }
     private Coroutine shieldRegenCoroutine;
     private float shieldRegenDelay = 10f;
@@ -43,8 +43,6 @@ public class PlayerStat : CharacterStat
 
         if (shieldRegenCoroutine != null)
             StopCoroutine(shieldRegenCoroutine);
-
-
         shieldRegenCoroutine = StartCoroutine(RegenerateShield());
 
         if (currentShield > 0) {

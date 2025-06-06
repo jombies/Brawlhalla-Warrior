@@ -8,14 +8,14 @@ public class Shooting : MonoBehaviour
     EnemyController enemyController;
 
     [Header("Patrol Settings")]
-    [SerializeField] float range;//radius of sphere
+    [SerializeField] float range;
 
     [Header("Attack Settings")]
     [SerializeField] GameObject bulletPrefabs;
     [SerializeField] GameObject firePoint;
-    [SerializeField] float attackRange = 7.2f; // Distance to start attacking
-    [SerializeField] float stoppingDistance = 7f; // Distance to stop moving while attacking
-    [SerializeField] float timeBetweenAttacks = 1f; // Time between attacks
+    [SerializeField] float attackRange = 7.2f;
+    [SerializeField] float stoppingDistance = 7f;
+    [SerializeField] float timeBetweenAttacks = 1f;
 
     bool alreadyAttacked;
     bool hasSetFovAngle;
@@ -105,10 +105,10 @@ public class Shooting : MonoBehaviour
     }
     void SpawnBullet()
     {
-        GameObject newBullet = Instantiate(bulletPrefabs, firePoint.transform.position, firePoint.transform.rotation);
-        if (newBullet.TryGetComponent<BulletInit>(out var bltd)) {
-            bltd.InitDamage(enemyController.EnemyStats.Damage.Value);
-        }
+        var newBullet = ObjectPoolManager.Instance.InstantiateFromPool(bulletPrefabs, firePoint.transform.position, firePoint.transform.rotation);
+        newBullet.GetComponent<bulletMove>().speed = 15;
+        newBullet.GetComponent<bulletMove>().damage = enemyController.EnemyStats.Damage.Value;
+        AudioManager.Instance.PlaySFX("enemy shot");
     }
     void ResetAttack()
     {

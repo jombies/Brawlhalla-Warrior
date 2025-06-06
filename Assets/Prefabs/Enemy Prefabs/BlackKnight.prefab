@@ -353,7 +353,7 @@ GameObject:
   - component: {fileID: 2804909293452540611}
   m_Layer: 12
   m_Name: AxeMesh
-  m_TagString: Untagged
+  m_TagString: Enemy weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -617,8 +617,9 @@ GameObject:
   - component: {fileID: 1220483892588551403}
   - component: {fileID: 122621738404301762}
   - component: {fileID: 6887440568190320058}
-  - component: {fileID: 155568287047479636}
-  - component: {fileID: 4578923734473445612}
+  - component: {fileID: 8552722598138919672}
+  - component: {fileID: 4217823748711982048}
+  - component: {fileID: 5160330369781538384}
   m_Layer: 0
   m_Name: BlackKnight
   m_TagString: Enemy
@@ -658,7 +659,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 804cb9b6ca156ca4db7bdcf24bf2e403, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -703,11 +704,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 3
+  m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -728,13 +729,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canvas: {fileID: 0}
-  Animator: {fileID: 0}
   PopUpDame: {fileID: 1777670533413786944, guid: 6499eb2b91667324b935d45f6b08cbab, type: 3}
   _textDamePopup: {fileID: 5819233755296593968, guid: 6499eb2b91667324b935d45f6b08cbab, type: 3}
   speedRotate: 5
+  _capsuleCollider: {fileID: 0}
   IsAttack: 0
   IsDead: 0
-  _capsuleCollider: {fileID: 0}
 --- !u!114 &6887440568190320058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -748,12 +748,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 100
-  heathBar: {fileID: 5082164163296785834}
   Damage:
     BaseValue: 8
   Armor:
     BaseValue: 0
---- !u!114 &155568287047479636
+  healthBar: {fileID: 0}
+--- !u!114 &8552722598138919672
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -762,21 +762,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 2870049023826225295}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98790cba3abbfbb4ab80d0b61aa9c915, type: 3}
+  m_Script: {fileID: 11500000, guid: a034e8d8501eef34ba38bc8638497d61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isStateExecuting: 0
+  Sign: {fileID: 972751935794410485}
+  MidPos: {fileID: 0}
   IsPlayer:
     serializedVersion: 2
     m_Bits: 256
-  IsGround:
-    serializedVersion: 2
-    m_Bits: 512
-  range: 0
-  timeBetweenAttacks: 1.5
-  alreadyAttacked: 0
-  attackRange: 1.5
-  sightRange: 6
---- !u!114 &4578923734473445612
+  attacksExecuted: 0
+  timeBetweenAttacks: 2.5
+  projectileCount: 10
+  projectilePrefab: {fileID: 5295586122231405360, guid: 76ff8ef44a10b794bb0f8ff177b9ca27, type: 3}
+  skillCooldown: 50
+  attackRange: 3.5
+  sightRange: 20
+  PlayerOnGr: 0
+--- !u!114 &4217823748711982048
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -785,19 +788,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 2870049023826225295}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 282fe4d573a4d9949bb87ba9cb561e94, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d9a24988c8955d44892cfaf572ec391, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 0
-  angle: 0
-  Player: {fileID: 0}
-  TargetMask:
-    serializedVersion: 2
-    m_Bits: 0
-  obstructionMask:
-    serializedVersion: 2
-    m_Bits: 0
-  canSeePlayer: 0
+  skillChargeVFX: {fileID: 4963677592299535018, guid: d15a9740e0e913a47a52cf79d046eee7, type: 3}
+  recoveryVFX: {fileID: 899650332246417272, guid: a01c623643be4da4a899ba124e2dad5a, type: 3}
+  enrageVFX: {fileID: 0}
+  deathVFX: {fileID: 0}
+--- !u!114 &5160330369781538384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2870049023826225295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17922abee0935004a9c3495c29f8ee4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyRenderer: {fileID: 0}
+  flashColor: {r: 1, g: 1, b: 1, a: 1}
+  flashDuration: 0.5
 --- !u!1 &2938944968145395709
 GameObject:
   m_ObjectHideFlags: 0
@@ -1032,9 +1044,10 @@ GameObject:
   - component: {fileID: 6618712500013343394}
   - component: {fileID: 3876066308968543424}
   - component: {fileID: 549680176617408465}
-  m_Layer: 0
+  - component: {fileID: 437288085727444791}
+  m_Layer: 12
   m_Name: ShieldMesh
-  m_TagString: Untagged
+  m_TagString: Enemy weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1104,6 +1117,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &437288085727444791
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4292189533452046942}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300002, guid: 3f2f858992969dc42839040fa1c0e538, type: 3}
 --- !u!1 &4337569693674259428
 GameObject:
   m_ObjectHideFlags: 0
@@ -2379,17 +2414,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f54aadfec552fe499366761fc8131ae, type: 3}
---- !u!114 &5082164163296785834 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6800559986768426175, guid: 2f54aadfec552fe499366761fc8131ae, type: 3}
-  m_PrefabInstance: {fileID: 1794411942922109205}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f08a27f247c850d429ec991a33ab6cf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &6009475157306567190 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5441186140199430915, guid: 2f54aadfec552fe499366761fc8131ae, type: 3}

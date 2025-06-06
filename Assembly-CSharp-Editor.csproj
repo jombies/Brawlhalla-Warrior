@@ -880,6 +880,14 @@
       <Project>{20B0A764-128A-0323-DAEE-A161852D46E3}</Project>
       <Name>Assembly-CSharp-Editor-firstpass</Name>
     </ProjectReference>
+    <ProjectReference Include="AllIn1VfxTexDemoAssembly.csproj">
+      <Project>{9D993726-66E1-E231-EC0F-52C7A25DE79B}</Project>
+      <Name>AllIn1VfxTexDemoAssembly</Name>
+    </ProjectReference>
+    <ProjectReference Include="AllIn1VfxAssmebly.csproj">
+      <Project>{300DEADE-2037-EC82-B717-49E9C791AFFB}</Project>
+      <Name>AllIn1VfxAssmebly</Name>
+    </ProjectReference>
     <ProjectReference Include="UltimateEditorEnhancer-Editor.csproj">
       <Project>{234AE0FC-244A-D98B-8EB9-DE5E8C7449C7}</Project>
       <Name>UltimateEditorEnhancer-Editor</Name>
@@ -887,6 +895,10 @@
     <ProjectReference Include="UltimateEditorEnhancer.csproj">
       <Project>{0964E75A-8AF8-787B-846D-B6FED3F39FED}</Project>
       <Name>UltimateEditorEnhancer</Name>
+    </ProjectReference>
+    <ProjectReference Include="AllIn1VfxDemoScriptAssemblies.csproj">
+      <Project>{E2CEC556-3A02-7822-3E3B-D9518F38837B}</Project>
+      <Name>AllIn1VfxDemoScriptAssemblies</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

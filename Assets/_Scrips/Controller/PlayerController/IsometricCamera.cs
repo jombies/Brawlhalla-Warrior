@@ -17,11 +17,10 @@ public class IsometricCamera : MonoBehaviour
 
     private void Start()
     {
-        if (target == null && PlayerReferences.Instance != null)
-        {
+        if (target == null && PlayerReferences.Instance != null) {
             target = PlayerReferences.Instance.Player.transform;
         }
-
+        AudioManager.Instance.PlayMusic("music indie");
 
     }
 

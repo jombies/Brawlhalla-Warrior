@@ -8,7 +8,7 @@ public class BossAttacking : MonoBehaviour
     public LayerMask IsPlayer, IsGround;
 
     //patrol
-    bool isFirst = true;
+    //    bool isFirst = true;
 
     //attack
     public float timeBetweenAttacks;

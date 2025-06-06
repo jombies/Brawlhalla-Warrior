@@ -85,11 +85,11 @@ public class PlayerController : MonoBehaviour
             }
 
         }
-        if (other.CompareTag("Enemy bullet")) {
-            if (other.TryGetComponent<BulletInit>(out var bulletInit)) {
-                PlayerStat.TakeDamage(bulletInit.Damage);
-            }
-        }
+        //if (other.CompareTag("Enemy bullet")) {
+        //    if (other.TryGetComponent<BulletInit>(out var bulletInit)) {
+        //        PlayerStat.TakeDamage(bulletInit.Damage);
+        //    }
+        //}
     }
     //Ktra Player di qua cua
     //private void OnTriggerExit(Collider other)

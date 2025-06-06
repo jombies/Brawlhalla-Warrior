@@ -13,6 +13,7 @@ public class TopDownCamera : MonoBehaviour
     {
         _target = PlayerReferences.Instance.Player.transform;
         HandelCamera();
+        AudioManager.Instance.PlayMusic("music1");
     }
 
     // Update is called once per frame

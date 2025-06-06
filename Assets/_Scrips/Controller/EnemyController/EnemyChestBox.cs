@@ -6,7 +6,7 @@ public class EnemyChestBox : MonoBehaviour
     //layer
     public LayerMask IsPlayer, IsGround;
     //attack
-    bool isAttack = false;
+    //   bool isAttack = false;
     public float timeBetweenAttacks;
     bool alreadyAttacked;
     //State
@@ -35,14 +35,12 @@ public class EnemyChestBox : MonoBehaviour
 
     public void WakeUp()
     {
-        if (playerInAttack && !hasRun)
-        {
+        if (playerInAttack && !hasRun) {
             controller.Animator.SetBool("WakeUp", true);
             IsAwake = true;
             hasRun = false;
         }
-        if (IsAwake)
-        {
+        if (IsAwake) {
             controller._canvas.gameObject.SetActive(true);
         }
         else controller._canvas.gameObject.SetActive(false);
@@ -59,12 +57,10 @@ public class EnemyChestBox : MonoBehaviour
     {
         controller.Animator.SetBool("walk", false);
         controller.Agent.SetDestination(transform.position);
-        if (controller.IsAttack == false)
-        {
+        if (controller.IsAttack == false) {
             controller.FaceTarget();
         }
-        if (!alreadyAttacked)
-        {
+        if (!alreadyAttacked) {
             alreadyAttacked = true;
             controller.Animator.SetTrigger("attack1");
             Invoke(nameof(ResetAttack), timeBetweenAttacks);

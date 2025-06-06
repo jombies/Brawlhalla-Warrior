@@ -43,18 +43,7 @@ public class EnemyMelee : MonoBehaviour
         if (Fov.canSeePlayer && playerInAttack) {
             AttackPlayer();
         }
-        if (controller.IsAttack) {
-            Agent.isStopped = true;
-        }
-        else {
-            Agent.isStopped = false;
-        }
-        //if (!Fov.canSeePlayer) {
-        //    PatrolPlayer();
-        //}
-        //else {
-        //    ChaseOrAttackPlayer();
-        //}
+        Agent.isStopped = controller.IsAttack;
     }
 
     void UpdateAnimatorSpeed()
@@ -67,11 +56,8 @@ public class EnemyMelee : MonoBehaviour
     {
         Agent.stoppingDistance = 0;
         Agent.isStopped = false;
-        if (Agent.remainingDistance <= Agent.stoppingDistance) //done with path
-        {
-            if (RandomPoint(transform.position, controller.Fov.radius, out Vector3 point)) //pass in our centre point and radius of area
-            {
-                // controller.Animator.SetFloat("Speed", controller.Agent.velocity.magnitude);
+        if (Agent.remainingDistance <= Agent.stoppingDistance) {
+            if (RandomPoint(transform.position, controller.Fov.radius, out Vector3 point)) {
                 Agent.SetDestination(point);
             }
         }
@@ -88,23 +74,6 @@ public class EnemyMelee : MonoBehaviour
         }
         result = Vector3.zero;
         return false;
-    }
-
-    void ChaseOrAttackPlayer()
-    {
-        if (!hasSetFovAngle) {
-            Fov.angle = 360;
-            hasSetFovAngle = true;
-        }
-
-        //if (Agent.remainingDistance > attackRange) {
-        //    ChasePlayer();
-        //}
-        //if (playerInAttack) {
-        //    AttackPlayer();
-        //}
-        if (Fov.canSeePlayer && !controller.IsAttack) ChasePlayer();
-        if (playerInAttack) AttackPlayer();
     }
     void ChasePlayer()
     {

@@ -5,7 +5,6 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(EnemyStats))]
 [RequireComponent(typeof(Animator))]
-[RequireComponent(typeof(FieldOfView))]
 public class EnemyController : MonoBehaviour
 {
     #region Component References

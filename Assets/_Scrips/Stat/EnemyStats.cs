@@ -6,21 +6,23 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(EnemyController))]
+[RequireComponent(typeof(EnemyHitFlasht))]
 public class EnemyStats : CharacterStat
 {
     EnemyController controller;
+    EnemyHitFlasht flasht;
     public event Action OnDeath;
     [SerializeField] HealthBar healthBar;
 
     void Start()
     {
+        flasht = GetComponent<EnemyHitFlasht>();
         controller = GetComponent<EnemyController>();
         healthBar = GetComponentInChildren<HealthBar>();
         if (controller == null) {
             Debug.LogError("EnemyController is missing on " + gameObject.name);
         }
         if (healthBar != null) {
-            Debug.LogError("HealthBar is missing on " + gameObject.name);
             healthBar.SetMaxHeathBar(MaxHealth);
         }
     }
@@ -33,6 +35,7 @@ public class EnemyStats : CharacterStat
                 Die();
                 isDead = true;
             }
+            flasht.Flash();
         }
     }
 
@@ -56,5 +59,11 @@ public class EnemyStats : CharacterStat
         yield return new WaitForSeconds(s);
         gameObject.SetActive(false);
         //Destroy(gameObject);
+    }
+    public void Heal(int amount)
+    {
+        if (isDead) return;
+        currentHealth = Mathf.Min(currentHealth + amount, MaxHealth);
+        healthBar?.SetHealth(currentHealth);
     }
 }

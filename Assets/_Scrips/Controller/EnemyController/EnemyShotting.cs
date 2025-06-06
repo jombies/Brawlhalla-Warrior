@@ -77,9 +77,7 @@ public class EnemyShotting : MonoBehaviour
         if (!alreadyAttacked) {
             controller.Animator.SetTrigger("attack");
             GameObject newBullet = Instantiate(BulletPrefab, FirePoint.transform.position, FirePoint.transform.rotation);
-            if (newBullet.TryGetComponent<BulletInit>(out var bltd)) {
-                bltd.InitDamage(controller.EnemyStats.Damage.Value);
-            }
+            newBullet.GetComponent<bulletMove>().damage = controller.EnemyStats.Damage.Value;
             alreadyAttacked = true;
             attackCount++;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
