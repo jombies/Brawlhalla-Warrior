@@ -112,6 +112,7 @@ GameObject:
   - component: {fileID: 4702331882168696439}
   - component: {fileID: 2601098728978702682}
   - component: {fileID: 3800269636023598471}
+  - component: {fileID: 2794362346052489920}
   m_Layer: 0
   m_Name: Knight
   m_TagString: Untagged
@@ -244,9 +245,9 @@ MonoBehaviour:
   IsGround:
     serializedVersion: 2
     m_Bits: 512
-  attackRange: 2
-  sightRange: 5
-  timeBetweenAttacks: 2.5
+  attackRange: 2.2
+  sightRange: 4
+  timeBetweenAttacks: 4
 --- !u!114 &2601098728978702682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,11 +261,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 50
-  heathBar: {fileID: 3014637973532366445}
   Damage:
     BaseValue: 5
   Armor:
     BaseValue: 0
+  healthBar: {fileID: 0}
 --- !u!114 &3800269636023598471
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,6 +288,21 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 6784
   canSeePlayer: 0
+--- !u!114 &2794362346052489920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667011782849340492}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17922abee0935004a9c3495c29f8ee4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyRenderer: {fileID: 0}
+  flashColor: {r: 1, g: 1, b: 1, a: 1}
+  flashDuration: 0.1
 --- !u!1 &1481211172245516421
 GameObject:
   m_ObjectHideFlags: 0
@@ -1244,17 +1260,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f54aadfec552fe499366761fc8131ae, type: 3}
---- !u!114 &3014637973532366445 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6800559986768426175, guid: 2f54aadfec552fe499366761fc8131ae, type: 3}
-  m_PrefabInstance: {fileID: 8626174517529404114}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f08a27f247c850d429ec991a33ab6cf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &4338283597778667985 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5441186140199430915, guid: 2f54aadfec552fe499366761fc8131ae, type: 3}

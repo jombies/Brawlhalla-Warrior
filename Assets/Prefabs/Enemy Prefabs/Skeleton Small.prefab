@@ -1286,6 +1286,7 @@ GameObject:
   - component: {fileID: 3051749353639077246}
   - component: {fileID: 3851706308579085845}
   - component: {fileID: 7899769978418429011}
+  - component: {fileID: 83892738279934780}
   m_Layer: 0
   m_Name: Skeleton Small
   m_TagString: Untagged
@@ -1325,7 +1326,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: b944050466ca43dc83648f27a6defdb9, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
@@ -1370,7 +1371,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -1395,13 +1396,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canvas: {fileID: 0}
-  Animator: {fileID: 0}
   PopUpDame: {fileID: 1777670533413786944, guid: 6499eb2b91667324b935d45f6b08cbab, type: 3}
   _textDamePopup: {fileID: 5819233755296593968, guid: 6499eb2b91667324b935d45f6b08cbab, type: 3}
   speedRotate: 5
+  _capsuleCollider: {fileID: 5726207222957267572}
   IsAttack: 0
   IsDead: 0
-  _capsuleCollider: {fileID: 5726207222957267572}
 --- !u!114 &3051749353639077246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1415,11 +1415,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 60
-  heathBar: {fileID: 3012627965474884133}
   Damage:
-    BaseValue: 0
+    BaseValue: 5
   Armor:
     BaseValue: 0
+  healthBar: {fileID: 0}
 --- !u!114 &3851706308579085845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1438,11 +1438,9 @@ MonoBehaviour:
   IsGround:
     serializedVersion: 2
     m_Bits: 512
-  range: 10
-  timeBetweenAttacks: 1.5
-  alreadyAttacked: 0
-  attackRange: 2
+  attackRange: 2.5
   sightRange: 5
+  timeBetweenAttacks: 2.5
 --- !u!114 &7899769978418429011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1463,8 +1461,23 @@ MonoBehaviour:
     m_Bits: 256
   obstructionMask:
     serializedVersion: 2
-    m_Bits: 6784
+    m_Bits: 8192
   canSeePlayer: 0
+--- !u!114 &83892738279934780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5768138118824868344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17922abee0935004a9c3495c29f8ee4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyRenderer: {fileID: 0}
+  flashColor: {r: 1, g: 1, b: 1, a: 1}
+  flashDuration: 0.1
 --- !u!1 &5954509820678494539
 GameObject:
   m_ObjectHideFlags: 0
@@ -2379,17 +2392,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f54aadfec552fe499366761fc8131ae, type: 3}
---- !u!114 &3012627965474884133 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6800559986768426175, guid: 2f54aadfec552fe499366761fc8131ae, type: 3}
-  m_PrefabInstance: {fileID: 8624235414818455194}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f08a27f247c850d429ec991a33ab6cf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &4336273327468664217 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5441186140199430915, guid: 2f54aadfec552fe499366761fc8131ae, type: 3}

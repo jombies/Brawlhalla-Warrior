@@ -642,7 +642,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 579963ae21f89754bac08b8becc3ddc0, type: 2}
+  - {fileID: 2100000, guid: cce105f52f5504843a9896a9e1aeccd6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2428,6 +2428,7 @@ GameObject:
   - component: {fileID: 3566396361962669669}
   - component: {fileID: 1151786302947725842}
   - component: {fileID: 5960651038995027236}
+  - component: {fileID: 2935557757480351250}
   m_Layer: 0
   m_Name: RatAssassin
   m_TagString: Enemy
@@ -2537,11 +2538,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 60
-  heathBar: {fileID: 3025580480535149912}
   Damage:
     BaseValue: 6
   Armor:
     BaseValue: 1
+  healthBar: {fileID: 0}
 --- !u!114 &3566396361962669669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2560,11 +2561,9 @@ MonoBehaviour:
   IsGround:
     serializedVersion: 2
     m_Bits: 512
-  range: 0
-  timeBetweenAttacks: 1.5
-  alreadyAttacked: 0
   attackRange: 1.5
   sightRange: 5
+  timeBetweenAttacks: 1.5
 --- !u!114 &1151786302947725842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2578,13 +2577,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canvas: {fileID: 0}
-  Animator: {fileID: 0}
   PopUpDame: {fileID: 1777670533413786944, guid: 6499eb2b91667324b935d45f6b08cbab, type: 3}
   _textDamePopup: {fileID: 5819233755296593968, guid: 6499eb2b91667324b935d45f6b08cbab, type: 3}
   speedRotate: 5
+  _capsuleCollider: {fileID: 5478169201786622421}
   IsAttack: 0
   IsDead: 0
-  _capsuleCollider: {fileID: 5478169201786622421}
 --- !u!114 &5960651038995027236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2607,6 +2605,21 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 6784
   canSeePlayer: 0
+--- !u!114 &2935557757480351250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8213164073109174468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17922abee0935004a9c3495c29f8ee4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyRenderer: {fileID: 0}
+  flashColor: {r: 1, g: 1, b: 1, a: 1}
+  flashDuration: 0.1
 --- !u!1 &8308433317616577057
 GameObject:
   m_ObjectHideFlags: 0
@@ -2984,14 +2997,3 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8661378969027004408, guid: c6b0062491b65c24598e9de45d80ce48, type: 3}
   m_PrefabInstance: {fileID: 9005972288064277113}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3025580480535149912 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6126761906606864161, guid: c6b0062491b65c24598e9de45d80ce48, type: 3}
-  m_PrefabInstance: {fileID: 9005972288064277113}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f08a27f247c850d429ec991a33ab6cf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
