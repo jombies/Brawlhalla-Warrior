@@ -5,7 +5,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(EnemyStats))]
 [RequireComponent(typeof(Animator))]
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour, IPoolable
 {
     #region Component References
     GameObject _target;
@@ -38,7 +38,6 @@ public class EnemyController : MonoBehaviour
 
     private static readonly Vector3 PopupOffset = new Vector3(0, 2.5f, 0);
     public bool IsAttack;
-    public bool IsDead = false;
 
     Collider[] col;
 
@@ -69,13 +68,20 @@ public class EnemyController : MonoBehaviour
     private void HandleDeathState()
     {
         if (_enemyStats.currentHealth <= 0) {
-            IsDead = true;
             if (_capsuleCollider != null) _capsuleCollider.enabled = false;
             if (_canvas != null) _canvas.enabled = false;
             Agent.enabled = false;
         }
     }
+    public void HandleReliveState()
+    {
+        _enemyStats.ResetStat();
+        if (_capsuleCollider != null) _capsuleCollider.enabled = true;
+        if (_canvas != null) _canvas.enabled = true;
+        Agent.enabled = true;
+        Animator.Rebind();
 
+    }
     public bool AlreadyFoundPlayer()
     {
         //return _agent.stoppingDistance >= _agent.remainingDistance;
@@ -114,5 +120,15 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    public void OnSpawnFromPool()
+    {
 
+    }
+
+    public void OnReturnToPool()
+    {
+        this.HandleReliveState();
+    }
+
+    private int field;
 }

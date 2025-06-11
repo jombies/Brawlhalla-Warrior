@@ -10,8 +10,8 @@ public class Equipment : Item
 
     public override void Use()
     {
+        AudioManager.Instance.PlaySFX("item pickup");
         EquipmentManager.Instance.Equip(this);
-
         RemoveItem();
     }
 }

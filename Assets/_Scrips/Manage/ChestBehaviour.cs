@@ -5,7 +5,7 @@ using UnityEngine;
 public class ChestBehaviour : MonoBehaviour
 {
     GameObject chestLid;
-    bool isOpen = false;
+    [SerializeField] bool isOpen = false;
     [SerializeField] int Mincoin, Maxcoin;
     [SerializeField] float x;
     [SerializeField] GameObject CoinPrefabs;

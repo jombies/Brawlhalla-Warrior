@@ -6,6 +6,8 @@ public class HealthBar : MonoBehaviour
     [SerializeField] Slider Slider;
     public Gradient gradient;
     public Image image;
+    private int field;
+
     // Start is called before the first frame update
     private void Start()
     {

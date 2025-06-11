@@ -23,6 +23,8 @@ public class BossRoomControler : MonoBehaviour
             bossAI.PlayerOnGr = true; // thông báo boss đã sẵn sàng chiến đấu
         if (boss.TryGetComponent<BossAI01>(out var bossAI01))
             bossAI01.PlayerOnGr = true; // thông báo boss đã sẵn sàng chiến đấu
+        if (boss.TryGetComponent<BossAISpawner>(out var bossAIps))
+            bossAIps.PlayerOnGr = true; // thông báo boss đã sẵn sàng chiến đấu
         boss.SetActive(true); // hiện boss nếu ẩn
                               //BossHealth bossHealth = boss.GetComponent<BossHealth>();
                               // bossHealth.OnBossDead += OnBossDefeated;

@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class FieldOfView : MonoBehaviour
 {
-    public float radius;
+    public float radius = 10;
     [Range(0f, 360)]
-    public float angle;
+    public float angle = 80;
 
     public GameObject Player;
 
@@ -25,8 +25,7 @@ public class FieldOfView : MonoBehaviour
     IEnumerator FovRoutine()
     {
         WaitForSeconds wait = new WaitForSeconds(0.2f);
-        while (true)
-        {
+        while (true) {
             yield return wait;
             FieldOfViewCheck();
         }
@@ -52,15 +51,12 @@ public class FieldOfView : MonoBehaviour
     private void FieldOfViewCheck()
     {
         int count = Physics.OverlapSphereNonAlloc(transform.position, radius, rangeChecks, TargetMask);
-        if (count != 0)
-        {
+        if (count != 0) {
             Transform target = rangeChecks[0].transform;
             Vector3 dirToTarget = (target.position - transform.position).normalized;
-            if (Vector3.Angle(transform.forward, dirToTarget) < angle / 2)
-            {
+            if (Vector3.Angle(transform.forward, dirToTarget) < angle / 2) {
                 float disToTarget = Vector3.Distance(transform.position, target.position);
-                if (!Physics.Raycast(transform.position, dirToTarget, disToTarget, obstructionMask))
-                {
+                if (!Physics.Raycast(transform.position, dirToTarget, disToTarget, obstructionMask)) {
                     canSeePlayer = true;
                     return;
                 }

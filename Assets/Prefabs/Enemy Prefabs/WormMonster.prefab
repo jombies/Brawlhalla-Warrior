@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 6286781951954689267}
   - component: {fileID: 4175811325607042991}
   - component: {fileID: 2036672170585276709}
+  - component: {fileID: 349189198138940205}
   m_Layer: 0
   m_Name: WormMonster
   m_TagString: Untagged
@@ -125,8 +126,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1040284748016021401}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0.86602545, z: 0, w: 0.49999994}
-  m_LocalPosition: {x: -6.1322017, y: 0, z: 15.57777}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -134,7 +135,7 @@ Transform:
   - {fileID: 2992577104152387331}
   - {fileID: 5571417054255910334}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 120, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &4404490526638143569
 Animator:
   serializedVersion: 5
@@ -218,14 +219,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canvas: {fileID: 6673845328083790388}
-  Animator: {fileID: 4404490526638143569}
-  col: []
   PopUpDame: {fileID: 1777670533413786944, guid: 6499eb2b91667324b935d45f6b08cbab, type: 3}
   _textDamePopup: {fileID: 5172696930340621978, guid: 6499eb2b91667324b935d45f6b08cbab, type: 3}
   speedRotate: 0
+  _capsuleCollider: {fileID: 5271041040178114634}
   IsAttack: 0
   IsDead: 0
-  _capsuleCollider: {fileID: 5271041040178114634}
 --- !u!114 &2036672170585276709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,11 +238,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 55
-  heathBar: {fileID: 7668785911325632796}
   Damage:
     BaseValue: 8
   Armor:
     BaseValue: 0
+  healthBar: {fileID: 0}
+--- !u!114 &349189198138940205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040284748016021401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17922abee0935004a9c3495c29f8ee4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyRenderer: {fileID: 0}
+  flashColor: {r: 1, g: 1, b: 1, a: 1}
+  flashDuration: 0.1
 --- !u!1 &1142239806255364615
 GameObject:
   m_ObjectHideFlags: 0
@@ -1545,17 +1559,6 @@ Canvas:
   m_CorrespondingSourceObject: {fileID: 7535423322072364951, guid: 2f54aadfec552fe499366761fc8131ae, type: 3}
   m_PrefabInstance: {fileID: 3750778726800203171}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7668785911325632796 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6800559986768426175, guid: 2f54aadfec552fe499366761fc8131ae, type: 3}
-  m_PrefabInstance: {fileID: 3750778726800203171}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f08a27f247c850d429ec991a33ab6cf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &9191715544080397984 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5441186140199430915, guid: 2f54aadfec552fe499366761fc8131ae, type: 3}

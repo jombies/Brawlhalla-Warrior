@@ -17,7 +17,7 @@ public class BossMoving : MonoBehaviour
     }
     void Update()
     {
-        if (controller.IsDead) return;
+        if (controller.EnemyStats.isDead) return;
         if (PlayerOnGr) {
 
             if (!controller.AlreadyFoundPlayer() && !controller.IsAttack) {

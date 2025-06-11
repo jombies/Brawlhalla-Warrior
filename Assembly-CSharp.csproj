@@ -66,7 +66,6 @@
     <Compile Include="Assets\_Scrips\Controller\PlayerController\TopDownCamera.cs" />
     <Compile Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Scripts\Blur.cs" />
     <Compile Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Scripts\Triangles.cs" />
-    <Compile Include="Assets\_Scrips\Controller\EnemyController\FieldOfViewEditor.cs" />
     <Compile Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Scripts\BloomOptimized.cs" />
     <Compile Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Scripts\ScreenSpaceAmbientObscurance.cs" />
     <Compile Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Scripts\VignetteAndChromaticAberration.cs" />
@@ -103,10 +102,12 @@
     <Compile Include="Assets\_Scrips\Controller\PlayerController\EquipmentManager.cs" />
     <Compile Include="Assets\IndieMarc\EnemyVision\Scripts\Enemy\EnemyVision.cs" />
     <Compile Include="Assets\IndieMarc\EnemyVision\Scripts\Other\Billboard.cs" />
+    <Compile Include="Assets\_Scrips\PlaySoundEnter.cs" />
     <Compile Include="Assets\GabrielAguiarProductions\Unique_Projectiles_Volume_1\Scripts\ParticleSystemController\Serializables.cs" />
     <Compile Include="Assets\_Scrips\changeEquip\ChangeWeapon.cs" />
     <Compile Include="Assets\ExplosiveLLC\Warrior\Code\WarriorInputSytemController.cs" />
     <Compile Include="Assets\_Scrips\Manage\RoomController.cs" />
+    <Compile Include="Assets\_Scrips\Controller\EnemyController\Bossbullet.cs" />
     <Compile Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Scripts\BlurOptimized.cs" />
     <Compile Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Scripts\Vortex.cs" />
     <Compile Include="Assets\Hovl Studio\Toon Projectiles 2\Demo scene\DemoShooting.cs" />
@@ -160,6 +161,7 @@
     <Compile Include="Assets\Hovl Studio\Toon Projectiles 2\Scripts\AutoDestroyPS.cs" />
     <Compile Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Scripts\EdgeDetection.cs" />
     <Compile Include="Assets\_Scrips\Controller\PlayerController\AutoAimForPlayer.cs" />
+    <Compile Include="Assets\_Scrips\Controller\EnemyController\BossAISpawner.cs" />
     <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\SuperCharacterController\DebugDraw.cs" />
     <Compile Include="Assets\_Scrips\Controller\PlayerController\AudioDatabase.cs" />
     <Compile Include="Assets\_Scrips\Controller\PlayerController\SupllyEquipment.cs" />
@@ -204,7 +206,6 @@
     <Compile Include="Assets\_Scrips\Controller\PlayerController\SmoothCamera.cs" />
     <Compile Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Scripts\GlobalFog.cs" />
     <Compile Include="Assets\_Scrips\Controller\PlayerController\NEWCAMERA.cs" />
-    <Compile Include="Assets\_Scrips\Controller\EnemyController\BossProjectileMove.cs" />
     <Compile Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Scripts\ContrastStretch.cs" />
     <Compile Include="Assets\_Scrips\Manage\AudioManager.cs" />
     <Compile Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Scripts\DepthOfFieldDeprecated.cs" />

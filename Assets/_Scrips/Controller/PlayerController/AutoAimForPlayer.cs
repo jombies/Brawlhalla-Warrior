@@ -36,7 +36,7 @@ public class AutoAimForPlayer : MonoBehaviour
             // Aim at the target
             Vector3 direction = (target.position - transform.position).normalized;
             direction.y = 0f;
-            transform.forward = Vector3.Lerp(transform.forward, direction, Time.deltaTime * 80);
+            transform.forward = Vector3.Lerp(transform.forward, direction, Time.deltaTime * 100);
         }
     }
     //private void OnDrawGizmos()

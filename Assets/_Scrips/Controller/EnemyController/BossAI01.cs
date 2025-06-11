@@ -42,14 +42,14 @@ public class BossAI01 : MonoBehaviour
 
     void Start()
     {
-        ObjectPoolManager.Instance.PreloadPool(projectilePrefab, projectileCount);
+        ObjectPoolManager.Instance.PreloadPool(projectilePrefab, 30);
         vfxHandler = GetComponent<BossVFXHandler>();
         controller = GetComponent<EnemyController>();
         StartCoroutine(BossStateMachine());
     }
     void Update()
     {
-        if (controller.IsDead) return;
+        if (controller.EnemyStats.isDead) return;
         // Look at player when in combat states
         if (currentState == BossState.Chase && !isRotating && !isStateExecuting && !controller.IsAttack) {
             // Đặt điểm đến cho NavMeshAgent
@@ -70,7 +70,7 @@ public class BossAI01 : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
 
         while (true) {
-            if (controller.IsDead) { yield return null; continue; }
+            if (controller.EnemyStats.isDead) { yield return null; continue; }
             switch (currentState) {
                 case BossState.Idle:
                     if (PlayerOnGr && !isStateExecuting) {
@@ -189,7 +189,24 @@ public class BossAI01 : MonoBehaviour
         }
 
     }
+    public void ApplyDamage()
+    {
+        Vector3 toTarget = (controller.Target.transform.position - transform.position);
+        float distance = toTarget.magnitude;
 
+        if (distance <= attackRange) {
+            float angle = Vector3.Angle(transform.forward, toTarget);
+
+            if (angle <= 30f) // ✅ chỉ tấn công trong 60 độ trước mặt
+            {
+                var playerStat = controller.Target.GetComponent<PlayerStat>();
+                if (playerStat != null) {
+                    playerStat.TakeDamage(controller.EnemyStats.Damage.Value);
+                    Debug.Log("Boss dealt damage in front cone!");
+                }
+            }
+        }
+    }
     IEnumerator RotateTowardsPlayer()
     {
         if (controller.IsAttack) yield break;
@@ -246,7 +263,7 @@ public class BossAI01 : MonoBehaviour
         int angleOffset = 0;
         vfxHandler.PlaySkillCharge();
         while (elapsed < skillDuration) {
-            applydamage(angleOffset);
+            Skill(angleOffset);
             float spinTime = 0f;
             while (spinTime < timeBetweenBursts) {
                 transform.Rotate(0f, rotationTime * Time.deltaTime, 0f);
@@ -260,6 +277,7 @@ public class BossAI01 : MonoBehaviour
         attacksExecuted = 0;
         controller.IsAttack = false;
         isStateExecuting = false;
+        skillOnCooldown = true;
         StartCoroutine(SkillCooldownTimer());
         ChangeState(BossState.Chase);
     }
@@ -270,19 +288,16 @@ public class BossAI01 : MonoBehaviour
         Debug.Log("Skill cooldown hoàn thành");
     }
 
-    void applydamage(int offset)
+    void Skill(int offset)
     {
         float angleStep = 360f / projectileCount;
         for (int i = 0; i < projectileCount; i++) {
             float angle = i * angleStep + offset;
             Vector3 dir = Quaternion.Euler(0, angle, 0) * Vector3.forward;
+            GameObject bullet = ObjectPoolManager.Instance.Spawn(projectilePrefab, transform.position + dir.normalized * 3f + Vector3.up * 1f, Quaternion.LookRotation(dir));
+            bullet.GetComponent<Bossbullet>().damage = controller.EnemyStats.Damage.Value;
 
-            GameObject bullet = ObjectPoolManager.Instance.InstantiateFromPool(projectilePrefab, transform.position + dir.normalized * 3f + Vector3.up * 1f, Quaternion.LookRotation(dir));
-            //bullet.AddComponent<PooledObject>();
-            // GameObject bullet = InstantiateFromPool(projectilePrefab, transform.position + dir.normalized * 1f + Vector3.up * 1f, Quaternion.LookRotation(dir));
-            bullet.GetComponent<BossProjectileMove>().speed = 15;
         }
-
     }
 
     IEnumerator ExecuteRecoveryState()

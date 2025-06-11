@@ -32,7 +32,7 @@ public class Shooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (enemyController.IsDead) return;
+        if (enemyController.EnemyStats.isDead) return;
         UpdateAnimatorSpeed();
 
         if (!Fov.canSeePlayer) {
@@ -105,7 +105,7 @@ public class Shooting : MonoBehaviour
     }
     void SpawnBullet()
     {
-        var newBullet = ObjectPoolManager.Instance.InstantiateFromPool(bulletPrefabs, firePoint.transform.position, firePoint.transform.rotation);
+        var newBullet = ObjectPoolManager.Instance.Spawn(bulletPrefabs, firePoint.transform.position, firePoint.transform.rotation);
         newBullet.GetComponent<bulletMove>().speed = 15;
         newBullet.GetComponent<bulletMove>().damage = enemyController.EnemyStats.Damage.Value;
         AudioManager.Instance.PlaySFX("enemy shot");

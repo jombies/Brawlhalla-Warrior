@@ -15,23 +15,24 @@ public class EnemySpawns : MonoBehaviour
     int Spawned;
     int AliveMonster;
     bool onChest = false;
+    private int field;
 
     private void Start()
     {
-        Gates = transform.GetChild(0).GetComponent<RoomController>();
+        Gates = GetComponentInChildren<RoomController>();
     }
-    private void Update()
-    {
-        // Kiểm tra điều kiện để mở cổng và sinh rương
-        if (Spawned == TotalEnemy && AliveMonster == 0) {
-            Gates.GateOpen();
-            Gates.DisableGates();
-            Destroy(SpawnPos);
-            if (!onChest) {
-                SpawnChest();
-            }
-        }
-    }
+    //private void Update()
+    //{
+    //    // Kiểm tra điều kiện để mở cổng và sinh rương
+    //    if (Spawned == TotalEnemy && AliveMonster == 0) {
+    //        Gates.GateOpen();
+    //        Gates.DisableGates();
+    //        Destroy(SpawnPos);
+    //        if (!onChest) {
+    //            SpawnChest();
+    //        }
+    //    }
+    //}
     //Thuc hien 
     public void ExecuteSpawn()
     {
@@ -56,16 +57,25 @@ public class EnemySpawns : MonoBehaviour
             yield return new WaitUntil(() => AliveMonster == 0);
             yield return new WaitForSeconds(1);
         }
+        yield return new WaitForSeconds(0.5f);
+        Gates.GateOpen();
+        Gates.DisableGates();
+        if (SpawnPos != null) {
+            Destroy(SpawnPos.gameObject);
+        }
+
+        if (!onChest) {
+            SpawnChest();
+        }
     }
     public void SpawnEnemy()
     {
         if (enemyPrefabs == null || enemyPrefabs.Count == 0) {
             Debug.LogError("Chưa gán prefab quái vào danh sách!");
             return;
-        }
-
-        GameObject newEnemy = Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)], SpawnPos);
-        newEnemy.transform.localPosition = new Vector3(Random.Range(-13, 13), 1, Random.Range(-12, 12));
+        }//GameObject newEnemy = Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)], SpawnPos);
+        Vector3 randomPos = SpawnPos.position + new Vector3(Random.Range(-13f, 13f), 0, Random.Range(-12f, 12f));
+        GameObject newEnemy = ObjectPoolManager.Instance.Spawn(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)], randomPos);
 
         // Gán sự kiện xử lý khi quái chết
         EnemyStats stats = newEnemy.GetComponent<EnemyStats>();
@@ -79,8 +89,9 @@ public class EnemySpawns : MonoBehaviour
     public void SpawnChest()
     {
         onChest = true;
-        GameObject newChest = Instantiate(Chest, transform);
-        newChest.transform.localPosition = new Vector3(0, yPosOfChest, 0);
+        Vector3 pos = SpawnPos.position + new Vector3(0, yPosOfChest, 0);
+        GameObject newChest = ObjectPoolManager.Instance.Spawn(Chest, pos);
+        // newChest.transform.localPosition = new Vector3(0, yPosOfChest, 0);
     }
     void HandleMonsterDeath()
     {

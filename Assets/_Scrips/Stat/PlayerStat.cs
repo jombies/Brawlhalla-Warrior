@@ -58,13 +58,14 @@ public class PlayerStat : CharacterStat
                 Die();
                 isDead = true;
             }
+            AudioManager.Instance.PlaySFX("player hit");
         }
 
     }
 
     public void Healing(int value)
     {
-        currentHealth += value;
+        currentHealth += MaxHealth;
         currentHealth = Mathf.Clamp(currentHealth, 0, MaxHealth);
         StatPlayerUI.setHealth(currentHealth);
     }

@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     float speed = 2.8f;
     Vector3 direction;
     Vector3 _gravity;
+    private int field;
+
     private void Awake()
     {
         PlayerStat = GetComponent<PlayerStat>();

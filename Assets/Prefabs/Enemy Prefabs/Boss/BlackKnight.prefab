@@ -144,7 +144,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -350,7 +350,6 @@ GameObject:
   - component: {fileID: 9101672259259206427}
   - component: {fileID: 663784029621233521}
   - component: {fileID: 6809394626585716818}
-  - component: {fileID: 2804909293452540611}
   m_Layer: 12
   m_Name: AxeMesh
   m_TagString: Enemy weapon
@@ -423,28 +422,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2804909293452540611
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1616107999954237079}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300004, guid: 3f2f858992969dc42839040fa1c0e538, type: 3}
 --- !u!1 &1720731037638331072
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,7 +711,6 @@ MonoBehaviour:
   speedRotate: 5
   _capsuleCollider: {fileID: 0}
   IsAttack: 0
-  IsDead: 0
 --- !u!114 &6887440568190320058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -752,6 +728,7 @@ MonoBehaviour:
     BaseValue: 8
   Armor:
     BaseValue: 0
+  isDead: 0
   healthBar: {fileID: 0}
 --- !u!114 &8552722598138919672
 MonoBehaviour:
@@ -1044,7 +1021,6 @@ GameObject:
   - component: {fileID: 6618712500013343394}
   - component: {fileID: 3876066308968543424}
   - component: {fileID: 549680176617408465}
-  - component: {fileID: 437288085727444791}
   m_Layer: 12
   m_Name: ShieldMesh
   m_TagString: Enemy weapon
@@ -1117,28 +1093,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &437288085727444791
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4292189533452046942}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300002, guid: 3f2f858992969dc42839040fa1c0e538, type: 3}
 --- !u!1 &4337569693674259428
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(FieldOfView))]
 public class EnemyMelee : MonoBehaviour
 {
     public enum EnemyState { Patrol, Chase, Attack }
@@ -15,7 +16,7 @@ public class EnemyMelee : MonoBehaviour
     public float sightRange = 4f;
 
     [Header("Attack Settings")]
-    public float timeBetweenAttacks = 1.5f;
+    public float timeBetweenAttacks = 3.5f;
     bool canAttack = true;
 
     bool hasSetFovAngle;
@@ -32,7 +33,7 @@ public class EnemyMelee : MonoBehaviour
 
     void Update()
     {
-        if (controller.IsDead) return;
+        if (controller.EnemyStats.isDead) return;
 
         UpdateAnimatorSpeed();
         HandleStateLogic();
@@ -119,6 +120,7 @@ public class EnemyMelee : MonoBehaviour
 
         Animator.SetTrigger("attack");
         canAttack = false;
+        //AudioManager.Instance.PlaySFX("enemy slash");
         Invoke(nameof(ResetAttack), timeBetweenAttacks);
     }
 
@@ -134,7 +136,7 @@ public class EnemyMelee : MonoBehaviour
         if (Vector3.Distance(transform.position, controller.Target.transform.position) <= attackRange) {
             var playerStat = controller.Target.GetComponent<PlayerStat>();
             if (playerStat != null) {
-                playerStat.TakeDamage(1);
+                playerStat.TakeDamage(controller.EnemyStats.Damage.Value);
                 Debug.Log("Damage!");
             }
         }

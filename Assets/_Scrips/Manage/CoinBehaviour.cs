@@ -8,6 +8,8 @@ public class CoinBehaviour : MonoBehaviour
     [SerializeField] Vector3 min;
     [SerializeField] Vector3 targetP;
     [SerializeField] float value;
+    private int field;
+
     //void Start()
     //{
     //    min = new Vector3(transform.position.x, transform.position.y - value, transform.position.z);

@@ -67,4 +67,9 @@ public class EquipmentManager : MonoBehaviour
     {
         PlayerReferences.Instance.Player.GetComponent<PlayerStat>().Healing(s.HP);
     }
+
+    public void Method()
+    {
+        throw new System.NotImplementedException();
+    }
 }

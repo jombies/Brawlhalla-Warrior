@@ -25,7 +25,7 @@ public class EnemyChestBox : MonoBehaviour
         WakeUp();
         if (!playerInAttack && IsAwake && !controller.IsAttack) ChasePlayer();
         if (controller.AlreadyFoundPlayer() && IsAwake) Attack();
-        if (controller.IsDead) Dead();
+        if (controller.EnemyStats.isDead) Dead();
     }
 
     private void Dead()

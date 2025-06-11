@@ -57,7 +57,14 @@ public class EnemyStats : CharacterStat
     {
         //Debug.Log($"{s}");
         yield return new WaitForSeconds(s);
-        gameObject.SetActive(false);
+        var pooled = GetComponent<PooledObject>();
+        if (pooled != null) {
+            pooled.ReturnToPool();
+        }
+        else {
+            gameObject.SetActive(false);
+        }
+
         //Destroy(gameObject);
     }
     public void Heal(int amount)
@@ -65,5 +72,11 @@ public class EnemyStats : CharacterStat
         if (isDead) return;
         currentHealth = Mathf.Min(currentHealth + amount, MaxHealth);
         healthBar?.SetHealth(currentHealth);
+    }
+    public void ResetStat()
+    {
+        currentHealth = MaxHealth;
+        isDead = false;
+        healthBar?.SetMaxHeathBar(MaxHealth);
     }
 }

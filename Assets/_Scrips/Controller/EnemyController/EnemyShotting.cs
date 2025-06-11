@@ -40,7 +40,7 @@ public class EnemyShotting : MonoBehaviour
     }
     void Update()
     {
-        if (controller.IsDead) return;
+        if (controller.EnemyStats.isDead) return;
         playerInAttack = Physics.CheckSphere(transform.position, attackRange, IsPlayer);
         playerInSight = Physics.CheckSphere(transform.position, sightRange, IsPlayer);
 

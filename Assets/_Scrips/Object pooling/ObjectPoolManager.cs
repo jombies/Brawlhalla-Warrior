@@ -1,190 +1,454 @@
-﻿// Optimized Object Pooling System - Fixed Orientation Issues
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-
-public class ObjectPoolManager : MonoBehaviour
+using System.Collections;
+public interface IPoolable
 {
-    public static ObjectPoolManager Instance { get; private set; }
-    private Dictionary<int, ObjectPool> pools = new Dictionary<int, ObjectPool>();
-
-    private void Awake()
-    {
-        if (Instance == null) {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else {
-            Destroy(gameObject);
-        }
-    }
-
-    public void PreloadPool(GameObject prefab, int amount)
-    {
-        int id = prefab.GetInstanceID();
-        if (!pools.ContainsKey(id))
-            pools[id] = new ObjectPool(prefab);
-        pools[id].Preload(amount);
-    }
-
-    public GameObject InstantiateFromPool(GameObject prefab, Vector3 position, Quaternion rotation)
-    {
-        int id = prefab.GetInstanceID();
-        if (!pools.ContainsKey(id)) {
-            pools[id] = new ObjectPool(prefab);
-            pools[id].Preload(1); // ✅ Auto preload ít nhất 1 object
-            Debug.LogWarning($"[ObjectPool] Auto-created pool for {prefab.name}. Consider preloading.");
-        }
-
-        return pools[id].Get(position, rotation);
-    }
-
-    void Return(GameObject obj, int prefabId)
-    {
-        if (pools.ContainsKey(prefabId))
-            pools[prefabId].Return(obj);
-        else
-            Destroy(obj);
-    }
-    public void ReturnToPool(GameObject obj)
-    {
-        if (obj == null) return;
-        var pooled = obj.GetComponent<PooledObject>();
-        if (pooled != null) {
-            Return(obj, pooled.PrefabId);
-        }
-        else {
-            Destroy(obj); // If not pooled, destroy the object
-        }
-    }
-}
-
-public class ObjectPool
-{
-    private readonly GameObject prefab;
-    private readonly int prefabId;
-    private readonly Queue<GameObject> pool = new Queue<GameObject>();
-    private readonly Transform root;
-
-    // Store original prefab rotation for reset
-    private readonly Quaternion originalRotation;
-    private readonly Vector3 originalScale;
-
-    public ObjectPool(GameObject prefab)
-    {
-        this.prefab = prefab;
-        prefabId = prefab.GetInstanceID();
-
-        // Store original transform values
-        originalRotation = prefab.transform.rotation;
-        originalScale = prefab.transform.localScale;
-
-        GameObject rootObj = new GameObject(prefab.name + "_Pool");
-        root = rootObj.transform;
-        root.SetParent(ObjectPoolManager.Instance.transform);
-    }
-
-    public void Preload(int count)
-    {
-        for (int i = 0; i < count; i++) {
-            var obj = Create();
-            obj.SetActive(false);
-            pool.Enqueue(obj);
-        }
-    }
-
-    public GameObject Get(Vector3 position, Quaternion rotation)
-    {
-        GameObject obj = (pool.Count > 0) ? pool.Dequeue() : Create();
-
-        // Reset parent to null first to avoid transform issues
-        // obj.transform.SetParent(null);
-
-        // Reset transform to original state
-        obj.transform.position = position;
-        obj.transform.rotation = rotation;
-        obj.transform.localScale = originalScale;
-        obj.SetActive(true);
-
-        var pooled = obj.GetComponent<PooledObject>();
-        pooled?.OnGet();
-
-        //obj.SetActive(true);
-
-        return obj;
-    }
-
-    public void Return(GameObject obj)
-    {
-        obj.SetActive(false);
-
-        var pooled = obj.GetComponent<PooledObject>();
-        pooled?.OnReturn();
-
-        // Reset transform before returning to pool
-        obj.transform.rotation = originalRotation;
-        obj.transform.localScale = originalScale;
-        obj.transform.SetParent(root);
-        obj.transform.localPosition = Vector3.zero;
-
-        pool.Enqueue(obj);
-    }
-
-    private GameObject Create()
-    {
-        var obj = GameObject.Instantiate(prefab);
-        var pooled = obj.AddComponent<PooledObject>();
-        pooled.PrefabId = prefabId;
-
-        obj.AddComponent<PooledObject>().PrefabId = prefabId;
-        obj.transform.SetParent(root);
-        obj.transform.localPosition = Vector3.zero;
-        obj.transform.localRotation = Quaternion.identity;
-        obj.transform.localScale = originalScale;
-        // obj.SetActive(false);
-        return obj;
-    }
+    void OnSpawnFromPool();
+    void OnReturnToPool();
 }
 
 public class PooledObject : MonoBehaviour
 {
-    public int PrefabId;
-    public float AutoReturnTime = 0f;
-    private float timer;
+    [Header("Auto Return Settings")]
+    [SerializeField] private bool useAutoReturn = false;
+    [SerializeField] private float autoReturnTime = 5f;
 
-    public void OnGet()
+    private ObjectPool pool;
+    private Coroutine autoReturnCoroutine;
+
+    /// <summary>
+    /// Thiết lập pool cho object này
+    /// </summary>
+    public void SetPool(ObjectPool pool)
     {
-        timer = AutoReturnTime;
-        var poolables = GetComponents<IPoolableObject>();
-        foreach (var poolable in poolables) {
-            poolable.OnGet();
+        this.pool = pool;
+    }
+
+    /// <summary>
+    /// Bắt đầu auto return timer
+    /// </summary>
+    public void StartAutoReturn()
+    {
+        if (useAutoReturn && autoReturnTime > 0 && gameObject.activeInHierarchy) {
+            StopAutoReturn(); // Dừng timer cũ nếu có
+            autoReturnCoroutine = StartCoroutine(AutoReturnCoroutine());
         }
     }
 
-    public void OnReturn()
+    /// <summary>
+    /// Bắt đầu auto return với time tùy chỉnh
+    /// </summary>
+    public void StartAutoReturn(float customTime)
     {
-        var poolables = GetComponents<IPoolableObject>();
-        foreach (var poolable in poolables) {
-            poolable.OnReturn();
+        if (customTime > 0 && gameObject.activeInHierarchy) {
+            StopAutoReturn();
+            autoReturnCoroutine = StartCoroutine(AutoReturnCoroutine(customTime));
         }
     }
 
-    private void Update()
+    /// <summary>
+    /// Dừng auto return timer
+    /// </summary>
+    public void StopAutoReturn()
     {
-        if (AutoReturnTime <= 0f) return;
-        timer -= Time.deltaTime;
-        if (timer <= 0f) {
-            ObjectPoolManager.Instance.ReturnToPool(gameObject);
+        if (autoReturnCoroutine != null) {
+            StopCoroutine(autoReturnCoroutine);
+            autoReturnCoroutine = null;
         }
     }
-    public void ReturnToPool(GameObject obj)
+
+    /// <summary>
+    /// Trả object về pool
+    /// </summary>
+    public void ReturnToPool()
     {
-        ObjectPoolManager.Instance.ReturnToPool(obj);
+        if (pool != null) {
+            pool.ReturnObject(gameObject);
+        }
     }
 
+    /// <summary>
+    /// Thiết lập auto return time runtime và bắt đầu timer ngay
+    /// </summary>
+    public void SetAutoReturnTime(float time)
+    {
+        autoReturnTime = time;
+        useAutoReturn = time > 0;
+
+        // Bắt đầu timer ngay nếu object đang active
+        if (useAutoReturn && gameObject.activeInHierarchy) {
+            StartAutoReturn();
+        }
+    }
+
+    /// <summary>
+    /// Thiết lập auto return time mà không bắt đầu timer
+    /// </summary>
+    public void SetAutoReturnTimeOnly(float time)
+    {
+        autoReturnTime = time;
+        useAutoReturn = time > 0;
+    }
+
+    private IEnumerator AutoReturnCoroutine()
+    {
+        yield return new WaitForSeconds(autoReturnTime);
+        ReturnToPool();
+    }
+
+    private IEnumerator AutoReturnCoroutine(float customTime)
+    {
+        yield return new WaitForSeconds(customTime);
+        ReturnToPool();
+    }
+
+    private void OnDestroy()
+    {
+        StopAutoReturn();
+    }
 }
 
-public interface IPoolableObject
+public class ObjectPool : MonoBehaviour
 {
-    void OnGet();
-    void OnReturn();
+    [Header("Pool Settings")]
+    [SerializeField] private GameObject prefab;
+    [SerializeField] private int initialSize = 10;
+    [SerializeField] private int maxSize = 50;
+    [SerializeField] private bool autoExpand = true;
+
+    [Header("Transform Settings")]
+    [SerializeField] private Transform poolParent;
+    [SerializeField] private bool resetTransformOnReturn = true;
+
+    private Queue<GameObject> availableObjects = new Queue<GameObject>();
+    private HashSet<GameObject> activeObjects = new HashSet<GameObject>();
+    private Vector3 originalPosition;
+    private Quaternion originalRotation;
+    private Vector3 originalScale;
+
+    private void Awake()
+    {
+        InitializePool();
+    }
+
+    private void InitializePool()
+    {
+        if (prefab == null) {
+            Debug.LogWarning("Prefab is null! Please assign a prefab to the pool.");
+            return;
+        }
+
+        originalPosition = prefab.transform.position;
+        originalRotation = prefab.transform.rotation;
+        originalScale = prefab.transform.localScale;
+
+        if (poolParent == null) {
+            poolParent = transform;
+        }
+
+        for (int i = 0; i < initialSize; i++) {
+            CreateNewObject();
+        }
+    }
+
+    public void SetupPool(GameObject prefab, int initialSize, int maxSize)
+    {
+        this.prefab = prefab;
+        this.initialSize = initialSize;
+        this.maxSize = maxSize;
+        InitializePool();
+    }
+
+    private GameObject CreateNewObject()
+    {
+        GameObject newObj = Instantiate(prefab);
+        newObj.transform.SetParent(poolParent, false);
+
+        var pooledComponent = newObj.GetComponent<PooledObject>() ?? newObj.AddComponent<PooledObject>();
+        pooledComponent.SetPool(this);
+
+        ResetTransform(newObj);
+        newObj.SetActive(false);
+        availableObjects.Enqueue(newObj);
+
+        return newObj;
+    }
+
+    public GameObject GetObject()
+    {
+        return GetObject(Vector3.zero, Quaternion.identity);
+    }
+
+    public GameObject GetObject(Vector3 position, Quaternion rotation)
+    {
+        GameObject obj = GetAvailableObject();
+
+        if (obj == null) {
+            Debug.LogWarning("ObjectPool is full and auto expansion is disabled or max size reached.");
+            return null;
+        }
+
+        obj.transform.SetPositionAndRotation(position, rotation);
+        obj.transform.localScale = originalScale;
+        activeObjects.Add(obj);
+
+        var poolable = obj.GetComponent<IPoolable>();
+        poolable?.OnSpawnFromPool();
+
+        obj.SetActive(true);
+
+        var pooled = obj.GetComponent<PooledObject>();
+        pooled?.StartAutoReturn();
+
+        return obj;
+    }
+
+    private GameObject GetAvailableObject()
+    {
+        if (availableObjects.Count > 0) {
+            return availableObjects.Dequeue();
+        }
+
+        if (autoExpand && GetTotalCount() < maxSize) {
+            return CreateNewObject();
+        }
+
+        return null;
+    }
+
+    public void ReturnObject(GameObject obj)
+    {
+        if (obj == null || !activeObjects.Contains(obj)) {
+            return;
+        }
+
+        var pooled = obj.GetComponent<PooledObject>();
+        pooled?.StopAutoReturn();
+
+        var poolable = obj.GetComponent<IPoolable>();
+        poolable?.OnReturnToPool();
+
+        if (resetTransformOnReturn) {
+            ResetTransform(obj);
+        }
+
+        obj.SetActive(false);
+        obj.transform.SetParent(poolParent, false);
+
+        activeObjects.Remove(obj);
+        availableObjects.Enqueue(obj);
+    }
+
+    private void ResetTransform(GameObject obj)
+    {
+        obj.transform.position = originalPosition;
+        obj.transform.rotation = originalRotation;
+        obj.transform.localScale = originalScale;
+    }
+
+    public void ReturnAllObjects()
+    {
+        foreach (var obj in new List<GameObject>(activeObjects)) {
+            ReturnObject(obj);
+        }
+    }
+
+    public int GetActiveCount() => activeObjects.Count;
+    public int GetAvailableCount() => availableObjects.Count;
+    public int GetTotalCount() => activeObjects.Count + availableObjects.Count;
+
+    public void PreloadObjects(int amount)
+    {
+        int currentTotal = GetTotalCount();
+        int targetTotal = currentTotal + amount;
+
+        if (targetTotal > maxSize) {
+            amount = maxSize - currentTotal;
+            if (amount <= 0) {
+                Debug.LogWarning($"Pool {prefab.name} is already at max capacity ({maxSize})");
+                return;
+            }
+        }
+
+        for (int i = 0; i < amount; i++) {
+            CreateNewObject();
+        }
+
+        Debug.Log($"Preloaded {amount} objects to pool {prefab.name}. Total: {GetTotalCount()}");
+    }
+}
+
+
+/// <summary>
+/// Object Pool Manager - Quản lý nhiều pools
+/// </summary>
+public class ObjectPoolManager : MonoBehaviour
+{
+    private static ObjectPoolManager instance;
+    public static ObjectPoolManager Instance
+    {
+        get
+        {
+            if (instance == null) {
+                instance = FindObjectOfType<ObjectPoolManager>();
+                if (instance == null) {
+                    GameObject go = new GameObject("ObjectPoolManager");
+                    instance = go.AddComponent<ObjectPoolManager>();
+                }
+            }
+            return instance;
+        }
+    }
+
+    private Dictionary<GameObject, ObjectPool> pools = new Dictionary<GameObject, ObjectPool>();
+
+    private void Awake()
+    {
+        if (instance == null) {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else if (instance != this) {
+            Destroy(gameObject);
+        }
+    }
+
+    /// <summary>
+    /// Tạo pool mới
+    /// </summary>
+    public ObjectPool CreatePool(GameObject prefab, int initialSize = 10, int maxSize = 50)
+    {
+        if (prefab == null) {
+            Debug.LogError("Prefab is null!");
+            return null;
+        }
+
+        if (pools.ContainsKey(prefab)) {
+            Debug.LogWarning($"Pool for prefab {prefab.name} already exists!");
+            return pools[prefab];
+        }
+
+        // Tạo pool dưới poolsContainer
+        GameObject poolObject = new GameObject($"Pool_{prefab.name}");
+        poolObject.transform.SetParent(transform);
+
+        ObjectPool pool = poolObject.AddComponent<ObjectPool>();
+        pool.SetupPool(prefab, initialSize, maxSize);
+
+        pools[prefab] = pool;
+        return pool;
+    }
+
+    /// <summary>
+    /// Preload pool - Tạo sẵn objects để sử dụng ngay lập tức
+    /// </summary>
+    public void PreloadPool(GameObject prefab, int amount)
+    {
+        if (prefab == null) {
+            Debug.LogError("Prefab is null!");
+            return;
+        }
+
+        ObjectPool pool = GetPool(prefab);
+        if (pool == null) {
+            // Tạo pool mới với amount làm initial size
+            pool = CreatePool(prefab, amount, Mathf.Max(amount * 2, 50));
+        }
+        else {
+            // Pool đã tồn tại, preload thêm objects
+            pool.PreloadObjects(amount);
+        }
+
+        Debug.Log($"Preloaded {amount} objects for {prefab.name}. Pool now has {pool.GetTotalCount()} objects.");
+    }
+
+    /// <summary>
+    /// Lấy pool theo prefab
+    /// </summary>
+    public ObjectPool GetPool(GameObject prefab)
+    {
+        if (prefab == null) return null;
+
+        pools.TryGetValue(prefab, out ObjectPool pool);
+        return pool;
+    }
+
+    /// <summary>
+    /// Spawn object từ pool (tự động tạo pool nếu chưa có)
+    /// </summary>
+    public GameObject Spawn(GameObject prefab, Vector3 position = default, Quaternion rotation = default)
+    {
+        if (prefab == null) {
+            Debug.LogError("Prefab is null!");
+            return null;
+        }
+
+        ObjectPool pool = GetPool(prefab);
+        if (pool == null) {
+            // Tự động tạo pool nếu chưa có
+            pool = CreatePool(prefab);
+        }
+
+        if (pool != null) {
+            return pool.GetObject(position, rotation);
+        }
+
+        Debug.LogError($"Failed to create pool for prefab {prefab.name}!");
+        return null;
+    }
+
+    /// <summary>
+    /// Spawn object từ pool với Transform
+    /// </summary>
+    public GameObject Spawn(GameObject prefab, Transform spawnTransform)
+    {
+        return Spawn(prefab, spawnTransform.position, spawnTransform.rotation);
+    }
+
+    /// <summary>
+    /// Despawn object về pool
+    /// </summary>
+    public void Despawn(GameObject obj)
+    {
+        if (obj == null) return;
+
+        PooledObject pooledComponent = obj.GetComponent<PooledObject>();
+        pooledComponent?.ReturnToPool();
+    }
+
+    /// <summary>
+    /// Kiểm tra pool có tồn tại không
+    /// </summary>
+    public bool HasPool(GameObject prefab)
+    {
+        return prefab != null && pools.ContainsKey(prefab);
+    }
+
+    /// <summary>
+    /// Xóa pool
+    /// </summary>
+    public void RemovePool(GameObject prefab)
+    {
+        if (prefab != null && pools.ContainsKey(prefab)) {
+            ObjectPool pool = pools[prefab];
+            pool.ReturnAllObjects();
+            pools.Remove(prefab);
+
+            if (pool != null) {
+                Destroy(pool.gameObject);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Lấy thông tin pool
+    /// </summary>
+    public string GetPoolInfo(GameObject prefab)
+    {
+        ObjectPool pool = GetPool(prefab);
+        if (pool != null) {
+            return $"Pool {prefab.name}: Active={pool.GetActiveCount()}, Available={pool.GetAvailableCount()}, Total={pool.GetTotalCount()}";
+        }
+        return $"Pool for {prefab.name} not found!";
+    }
 }

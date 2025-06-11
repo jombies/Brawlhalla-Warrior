@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 public class CharacterAnimation : MonoBehaviour
@@ -59,10 +60,12 @@ public class CharacterAnimation : MonoBehaviour
         _animator.SetTrigger(AttackHashes[CurrentAttack - 1]);
 
         TimeSinceAttack = 0;
+        AudioManager.Instance.PlaySFX("slash" + CurrentAttack);
     }
     public void GetDie()
     {
         _animator.Play("death_idle");
+        AudioManager.Instance.PlaySFX("playerDead");
     }
     //triger is attacking at animation character
     void isAttack() => IsAttacking = true;

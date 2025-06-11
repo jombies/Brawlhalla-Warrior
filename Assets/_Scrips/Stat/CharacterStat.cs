@@ -9,7 +9,7 @@ public class CharacterStat : MonoBehaviour
 
     //[Header("RumTime")]
     public int currentHealth { get; protected set; }
-    protected bool isDead = false;
+    public bool isDead = false;
 
     //bool check;
     protected virtual void Awake()

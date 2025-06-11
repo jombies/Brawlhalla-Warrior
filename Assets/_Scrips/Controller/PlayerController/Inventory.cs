@@ -23,7 +23,7 @@ public class Inventory : MonoBehaviour
     public void CoinCollected(GameObject coin)
     {
         this.coin++;
-        Destroy(coin);
+        ObjectPoolManager.Instance.Despawn(coin);
         _textCoin.text = this.coin.ToString();
     }
     public bool Add(Item item)
@@ -48,4 +48,6 @@ public class Inventory : MonoBehaviour
             OnItemChangedCallBack.Invoke();
 
     }
+
+    private int field;
 }

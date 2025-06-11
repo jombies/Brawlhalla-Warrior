@@ -1,0 +1,199 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f64d736595bb1c4fb03cb5b5c67961d, type: 3}
+  m_Name: MainAudioDB
+  m_EditorClassIdentifier: 
+  backgroundMusic:
+  - name: musicLobby
+    clip: {fileID: 8300000, guid: c6512030c4c16d44b9e124034bd71d2e, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+  - name: musicLobby1
+    clip: {fileID: 8300000, guid: 0d051b1c5d3a5934eb3fdd512fb6f677, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+  - name: musicRoom
+    clip: {fileID: 8300000, guid: 96fe4c63ae0c9884a918bccee5e14e31, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+  - name: music indie
+    clip: {fileID: 8300000, guid: 8f4adad6f5c8a694cbe80c94fce982a1, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+  combatSounds:
+  - name: bossDie
+    clip: {fileID: 8300000, guid: 5bca96a2e296b71458f7e5d25b566cce, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: eDie1
+    clip: {fileID: 8300000, guid: fffe14244e058824c9c66cd80f44e269, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: eDie2
+    clip: {fileID: 8300000, guid: b794c386fded2824f8dd8cfdac6dcb09, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: eDie3
+    clip: {fileID: 8300000, guid: b74b9f77d229c734b9770f423314f8ca, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: boss shot
+    clip: {fileID: 8300000, guid: ed2a7d8a389d35d42bce7a32e39b8246, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: enemy shot
+    clip: {fileID: 8300000, guid: 6b4028856f3a902488dcc5f233987e7f, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: enemy slash1
+    clip: {fileID: 8300000, guid: 92a15a37ba0629b42863ee15db135666, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: enemy slash2
+    clip: {fileID: 8300000, guid: 5e9209560701c8245b4ede056622ebc9, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  environmentSounds:
+  - name: chestOpen
+    clip: {fileID: 8300000, guid: ba0d45bca53dc6b478d9bc49eb41668f, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: coin
+    clip: {fileID: 8300000, guid: be2736cddcec31243b7e3a216c316676, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: door
+    clip: {fileID: 8300000, guid: 3212220e8da7cc343a692b909bee6770, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: energy
+    clip: {fileID: 8300000, guid: e3f5f9c20e69a0845899ac3d807ab4c9, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: buff
+    clip: {fileID: 8300000, guid: 8e9d4833fbaef544ab659df24aed70aa, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: health pot
+    clip: {fileID: 8300000, guid: fc72eec56c984cb4ea045917b1c14d4f, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: item pickup
+    clip: {fileID: 8300000, guid: a87a5daad8ef3ae40885802189915c3a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: message
+    clip: {fileID: 8300000, guid: 3913d1ddc6c6dbe41a9a6659df722811, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: warning
+    clip: {fileID: 8300000, guid: b370fb04d1b5e7e439fba7cb5ee52db9, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: portal
+    clip: {fileID: 8300000, guid: 65733c3058c8a8e4e88c625548786200, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: whistled
+    clip: {fileID: 8300000, guid: 1dab0ea7763e23b4792eb7e9ccff4a40, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  uiSounds:
+  - name: btn1
+    clip: {fileID: 8300000, guid: ec6e8051d108c774eafa253e06bb5396, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: btnlvl
+    clip: {fileID: 8300000, guid: 949359465f9873a48b369bfe55a2104b, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: btnStart
+    clip: {fileID: 8300000, guid: ec0732d9406c6c04f9ab1308dd4396eb, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: btnBuy
+    clip: {fileID: 8300000, guid: 84052b8fab4f6d2458c2ab1dbd7464ad, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: click
+    clip: {fileID: 8300000, guid: 28fea4dbd0dab4c40bf91fe6389877b1, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  playerSounds:
+  - name: playerDead
+    clip: {fileID: 8300000, guid: ebab0faa6aa461e4187a0b9b54df4317, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: player hit
+    clip: {fileID: 8300000, guid: 01ac4c53f7abd164ab12dce7e36c9941, type: 3}
+    volume: 0.5
+    pitch: 0.1
+    loop: 0
+  - name: show up
+    clip: {fileID: 8300000, guid: 4c4e1703895418b48ae3a9b88e5976d7, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: slash1
+    clip: {fileID: 8300000, guid: 8db8ca1b33e899a40a4d25386919a74b, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: slash2
+    clip: {fileID: 8300000, guid: 5c1826ffc1aed874c9598e51195b0e26, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: slash3
+    clip: {fileID: 8300000, guid: 1b8b70267c7427e4b91d5e86509cf5b3, type: 3}
+    volume: 0.583
+    pitch: 1
+    loop: 0
+  - name: dash
+    clip: {fileID: 8300000, guid: 612fdf18e32cd4440b873d51932bc8a0, type: 3}
+    volume: 0.583
+    pitch: 1
+    loop: 0
+  - name: healthPot
+    clip: {fileID: 8300000, guid: 2aa7893c437a1e74199f5ec0afcbc06b, type: 3}
+    volume: 0.583
+    pitch: 1
+    loop: 0

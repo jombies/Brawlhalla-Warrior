@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class bulletMove : MonoBehaviour, IPoolableObject
+public class bulletMove : MonoBehaviour
 {
     public float speed = 10f;
     public float lifetime = 2f;
@@ -11,7 +11,7 @@ public class bulletMove : MonoBehaviour, IPoolableObject
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<PooledObject>().AutoReturnTime = lifetime;
+        GetComponent<PooledObject>().SetAutoReturnTime(lifetime);
         rb = GetComponent<Rigidbody>();
     }
 
@@ -27,22 +27,12 @@ public class bulletMove : MonoBehaviour, IPoolableObject
     {
         if (other.CompareTag("Player")) {
             Debug.Log("Bullet hit the player!");
-            other.GetComponent<CharacterStat>().TakeDamage(damage); // Example damage value
-            GetComponent<PooledObject>().ReturnToPool(gameObject);
+            other.GetComponent<CharacterStat>().TakeDamage(damage);
+            GetComponent<PooledObject>().ReturnToPool();
         }
     }
     private void OnCollisionEnter(Collision collision)
     {
 
-    }
-    public void OnGet()
-    {
-
-    }
-
-    public void OnReturn()
-    {
-        transform.position = Vector3.zero;
-        transform.rotation = Quaternion.identity;
     }
 }

@@ -1401,7 +1401,6 @@ MonoBehaviour:
   speedRotate: 5
   _capsuleCollider: {fileID: 5726207222957267572}
   IsAttack: 0
-  IsDead: 0
 --- !u!114 &3051749353639077246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1414,11 +1413,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ea8f516ae5206a42a00a749cbb8a5a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 60
+  MaxHealth: 23
   Damage:
-    BaseValue: 5
+    BaseValue: 3
   Armor:
     BaseValue: 0
+  isDead: 0
   healthBar: {fileID: 0}
 --- !u!114 &3851706308579085845
 MonoBehaviour:

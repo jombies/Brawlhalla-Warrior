@@ -9,19 +9,23 @@ public class Interactable : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "coin")
-        {
-            Inventory.Instance.CoinCollected(other.gameObject);
+        if (other.gameObject.tag == "coin") {
             AudioManager.Instance.PlaySFX("coin");
+            Inventory.Instance.CoinCollected(other.gameObject);
         }
-        if (other.gameObject.tag == "Health" || other.gameObject.tag == "Weapon" || other.gameObject.tag == "Head" || other.gameObject.tag == "Helmet" || other.gameObject.tag == "Armor")
-        {
+        if (other.gameObject.tag == "Weapon" || other.gameObject.tag == "Head" || other.gameObject.tag == "Helmet" || other.gameObject.tag == "Armor") {
+            AudioManager.Instance.PlaySFX("item pickup");
             other.gameObject.GetComponent<ItemPickup>().PickUp();
         }
-        if (other.gameObject.tag == "HP")
-        {
+        if (other.gameObject.tag == "HP") {
+            AudioManager.Instance.PlaySFX("buff");
+            ObjectPoolManager.Instance.Despawn(other.gameObject);
             PlayerReferences.Instance.Player.GetComponent<PlayerStat>().Healing(100);
-            Destroy(other.gameObject);
+
+        }
+        if (other.gameObject.tag == "Health") {
+            AudioManager.Instance.PlaySFX("buff");
+            other.gameObject.GetComponent<ItemPickup>().PickUp();
         }
 
     }
