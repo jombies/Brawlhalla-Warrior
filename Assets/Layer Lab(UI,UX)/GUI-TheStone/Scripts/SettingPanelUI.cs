@@ -1,10 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace LayerLabT.heStone
 {
-    public class PanelTheStone : MonoBehaviour
+    public class SettingPanelUI : MonoBehaviour
     {
         [SerializeField] private GameObject[] otherPanels;
 

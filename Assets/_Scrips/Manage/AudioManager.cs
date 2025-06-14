@@ -30,15 +30,18 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
-        if (Instance == null) {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-            InitAllSounds();
-            ApplyVolume();
-        }
-        else {
+        if (Instance != null && Instance != this) {
             Destroy(gameObject);
+            return;
         }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        masterVolume = PlayerPrefs.GetFloat($"{EventID.MasterVolume}", 0.8f);
+        musicVolume = PlayerPrefs.GetFloat($"{EventID.MusicVolume}", 0.6f);
+        sfxVolume = PlayerPrefs.GetFloat($"{EventID.SfxVolume}", 0.6f);
+        InitAllSounds();
+        ApplyVolume();
     }
     void Update()
     {
