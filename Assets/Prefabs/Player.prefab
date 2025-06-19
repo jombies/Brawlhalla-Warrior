@@ -1606,6 +1606,7 @@ GameObject:
   - component: {fileID: 7102366049298526195}
   - component: {fileID: 613550904008144741}
   - component: {fileID: 417314846840116758}
+  - component: {fileID: 6540582065302047689}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -1685,11 +1686,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 100
-  heathBar: {fileID: 0}
   Damage:
-    BaseValue: 8
+    BaseValue: 5
   Armor:
-    BaseValue: 0
+    BaseValue: 6
+  isDead: 0
+  StatPlayerUI: {fileID: 0}
+  shieldRegenDelay: 10
 --- !u!114 &417314846840116758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1704,6 +1707,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   range: 3
+--- !u!114 &6540582065302047689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1380638933735548023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4dd70d4df5206149afe02a41c07aaa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  respawnPoint: {fileID: 0}
+  respawnValue: -3
 --- !u!1 &1408618860156706456
 GameObject:
   m_ObjectHideFlags: 0
@@ -7592,7 +7609,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5417081245497876066
 Transform:
   m_ObjectHideFlags: 0

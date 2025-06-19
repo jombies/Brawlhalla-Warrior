@@ -32,13 +32,16 @@ public class HomeUI : MonoBehaviour
     private void OnClickSetting()
     {
         AudioManager.Instance.PlaySFX("btn1");
-        this.PostEvent(EventID.ShowSettingPanel);
+        SettingUI.Instance.ShowSettingPanel();
+
+        // SettingUI.Instance.gameObject.SetActive(true); // Uncomment if you want to show the setting UI directly
     }
 
     private void OnClickPlay()
     {
         AudioManager.Instance.PlaySFX("btn1");
-        SceneLoader.i.loadScene("Information");
+        // SceneLoader.i.loadScene("Information");
+        SceneLoaderNew.i.loadScene("Information");
         transform.parent.gameObject.SetActive(false);
 
     }

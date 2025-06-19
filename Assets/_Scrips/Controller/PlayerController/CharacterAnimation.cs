@@ -33,7 +33,7 @@ public class CharacterAnimation : MonoBehaviour
 
     void MovingAnimte()
     {
-        Vector3 direction = new Vector3(InputSingleton.instance.horizon, 0, InputSingleton.instance.vertical).normalized;
+        Vector3 direction = new Vector3(InputSingleton.instance.Direction.x, 0, InputSingleton.instance.Direction.z).normalized;
         float MovementSpeed = Mathf.Clamp01(direction.magnitude) / 2;
 
         if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) {

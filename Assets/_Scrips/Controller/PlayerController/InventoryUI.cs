@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,7 +22,7 @@ public class InventoryUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        this.RegisterListener(EventID.OnUseItem, (e) => UpdateInfo(PlayerDataManager.Load()));
         Inventory.Instance.OnItemChangedCallBack += UpdateUi;
         _slots = ItemParrent.GetComponentsInChildren<InventorySlot>();
         _invetoryui.SetActive(false);
@@ -32,6 +33,7 @@ public class InventoryUI : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Tab)) {
             _invetoryui.SetActive(!_invetoryui.activeSelf);
+            Time.timeScale = _invetoryui.activeSelf ? 0 : 1;
             UpdateInfo(PlayerDataManager.Load());
         }
     }
@@ -49,18 +51,17 @@ public class InventoryUI : MonoBehaviour
     {
         levelText.text = $"Level.{data.level}";
         healthText.text = PlayerReferences.Instance.Player.GetComponent<PlayerStat>().currentHealth.ToString();
-        armorText.text = data.armor.ToString();
-        attackText.text = data.attack.ToString();
+        armorText.text = PlayerReferences.Instance.Player.GetComponent<PlayerStat>().Armor.Value.ToString();
+        attackText.text = PlayerReferences.Instance.Player.GetComponent<PlayerStat>().Damage.Value.ToString();
         CoinText.text = Inventory.Instance.coin.ToString();
+    }
+
+    private void OnDestroy()
+    {
+        this.RemoveListener(EventID.OnUseItem, (e) => UpdateInfo(PlayerDataManager.Load()));
     }
     private void Reset()
     {
         _ivenBtn = transform.GetChild(0).GetComponent<Button>();
-        _invetoryui = transform.GetChild(1).gameObject;
-        ItemParrent = _invetoryui.transform.GetChild(0);
-        healthText = _invetoryui.transform.GetChild(1).GetChild(0).GetComponent<TextMeshProUGUI>();
-        armorText = _invetoryui.transform.GetChild(1).GetChild(1).GetComponent<TextMeshProUGUI>();
-        attackText = _invetoryui.transform.GetChild(1).GetChild(2).GetComponent<TextMeshProUGUI>();
-        CoinText = _invetoryui.transform.GetChild(1).GetChild(3).GetComponent<TextMeshProUGUI>();
     }
 }

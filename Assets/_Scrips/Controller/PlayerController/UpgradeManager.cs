@@ -1,4 +1,5 @@
 ﻿using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour
@@ -7,6 +8,13 @@ public class UpgradeManager : MonoBehaviour
     private void Start()
     {
         this.RegisterListener(EventID.GetUpgradeData, OnGetUpgradeData);
+        UpdateUICost();
+    }
+
+    private void UpdateUICost()
+    {
+       var stat = upgradeData.GetStatsForLevel(PlayerDataManager.Load().level + 1);
+        this.PostEvent(EventID.UpgradeCostUpdate, stat.cost);
     }
 
     private void OnGetUpgradeData(object obj)
@@ -41,7 +49,11 @@ public class UpgradeManager : MonoBehaviour
             }
             Debug.Log("Không đủ tiền để nâng cấp.");
         }
-        var stats1 = upgradeData.GetStatsForLevel(player.level + 2);
+        var stats1 = upgradeData.GetStatsForLevel(player.level + 1);
         this.PostEvent(EventID.UpgradeCostUpdate, stats1.cost);
     }
+    //private void OnDestroy()
+    //{
+    //    this.RemoveListener(EventID.GetUpgradeData, OnGetUpgradeData);
+    //}
 }

@@ -723,9 +723,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ea8f516ae5206a42a00a749cbb8a5a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 100
+  MaxHealth: 120
   Damage:
-    BaseValue: 8
+    BaseValue: 7
   Armor:
     BaseValue: 0
   isDead: 0
@@ -770,8 +770,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillChargeVFX: {fileID: 4963677592299535018, guid: d15a9740e0e913a47a52cf79d046eee7, type: 3}
   recoveryVFX: {fileID: 899650332246417272, guid: a01c623643be4da4a899ba124e2dad5a, type: 3}
-  enrageVFX: {fileID: 0}
-  deathVFX: {fileID: 0}
 --- !u!114 &5160330369781538384
 MonoBehaviour:
   m_ObjectHideFlags: 0

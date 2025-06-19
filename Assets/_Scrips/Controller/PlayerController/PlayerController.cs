@@ -1,9 +1,10 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
+    static PlayerController Instance;
     PlayerStat PlayerStat;
     CharacterController Controller;
     CharacterAnimation Animater;
@@ -16,9 +17,19 @@ public class PlayerController : MonoBehaviour
     float speed = 2.8f;
     Vector3 direction;
     Vector3 _gravity;
-    private int field;
 
     private void Awake()
+    {
+        if (Instance != null && Instance != this) {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
+    private void Start()
     {
         PlayerStat = GetComponent<PlayerStat>();
         Controller = GetComponent<CharacterController>();
@@ -26,10 +37,30 @@ public class PlayerController : MonoBehaviour
     }
     private void Update()
     {
-        direction = InputSingleton.instance.direction;
+        UpdateAngleDirection();
+        //direction = InputSingleton.instance.Direction;
         Moving();
         Dash();
     }
+
+    void UpdateAngleDirection()
+    {
+        Camera _camera = Camera.current ?? CameraController.Instance.GetCamera();
+        Vector3 camForward = _camera.transform.forward;
+        Vector3 camRight = _camera.transform.right;
+
+        camForward.y = 0;
+        camRight.y = 0;
+
+        camForward.Normalize();
+        camRight.Normalize();
+
+        // Gộp hướng lại theo input
+        direction = camForward * InputSingleton.instance.Direction.z + camRight * InputSingleton.instance.Direction.x;
+        if (direction.magnitude > 0.1f)
+            direction.Normalize();
+    }
+
     void Moving()
     {
         if (Animater.IsAttacking) return;
@@ -44,6 +75,7 @@ public class PlayerController : MonoBehaviour
         }
         ApplyGravity();
     }
+
     void RotatePlayer()
     {
         if (direction != Vector3.zero) {

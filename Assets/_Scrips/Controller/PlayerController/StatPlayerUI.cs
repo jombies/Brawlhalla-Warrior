@@ -13,8 +13,8 @@ public class StatPlayerUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        this.RegisterListener(EventID.OnUseItem, (e) => UpdateMaxvalue());
         PlayerStat = PlayerReferences.Instance.Player.GetComponent<PlayerStat>();
-
         healthSlider.maxValue = PlayerStat.currentHealth;
         shieldSlider.maxValue = PlayerStat.currentShield;
         updatevalue();
@@ -41,5 +41,9 @@ public class StatPlayerUI : MonoBehaviour
     {
         healthSlider.maxValue = PlayerStat.MaxHealth;
         shieldSlider.maxValue = PlayerStat.Armor.Value;
+    }
+    private void OnDestroy()
+    {
+        this.RemoveListener(EventID.OnUseItem, (e) => UpdateMaxvalue());
     }
 }

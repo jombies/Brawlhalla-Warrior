@@ -1,48 +1,46 @@
 ﻿using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class StartLoader : MonoBehaviour
 {
     [SerializeField] Image _loadingBar;
-    [SerializeField] GameObject Home_UI; // The initial scene to load, e.g., "Home UI"
-    [SerializeField] float _loadDelay;
-    [SerializeField] float _delayPercentage = 0.75f;
+    [SerializeField] float _loadDelay = 3f; // Thời gian giả lập loading (giây)
+    [SerializeField] float _fakePauseAt = 0.75f; // Dừng tại 75% progress
     [SerializeField] TextMeshProUGUI _textLoading;
 
     private void Start()
     {
-        gameObject.SetActive(true);
-        StartCoroutine(LoadLevel("Home UI"));
+        StartCoroutine(FakeLoadProgress());
     }
 
-    IEnumerator LoadLevel(string targetLevel)
+    IEnumerator FakeLoadProgress()
     {
-        float timeSinceLoad = 0f;
-        float sceneLoadPercentage = 1f - _delayPercentage;
-        bool pausedAt90Percent = false;
-        while (timeSinceLoad < _loadDelay) {
-            float progress = Mathf.Clamp01(timeSinceLoad / _loadDelay)/* * _delayPercentage*/;
-            if (progress >= 0.9f * _delayPercentage && !pausedAt90Percent) {
-                pausedAt90Percent = true;
-                yield return new WaitForSeconds(1f);
+        float timer = 0f;
+        bool pausedAtFakePoint = false;
+        SceneLoaderNew.i.loadScene("Home UI");
+        while (timer < _loadDelay) {
+            // Tính toán progress (0 -> 1)
+            float progress = Mathf.Clamp01(timer / _loadDelay);
+
+            // Dừng giả lập tại mốc _fakePauseAt
+            if (progress >= _fakePauseAt && !pausedAtFakePoint) {
+                pausedAtFakePoint = true;
+                yield return new WaitForSeconds(1f); // Dừng 1 giây
             }
+
+            // Cập nhật UI
             _loadingBar.fillAmount = progress;
             if (_textLoading != null)
                 _textLoading.text = $"Loading... {Mathf.RoundToInt(progress * 100)}%";
-            timeSinceLoad += Time.deltaTime;
+
+            timer += Time.deltaTime;
             yield return null;
         }
-        //Start doing load
-        AsyncOperation loadSceen = SceneManager.LoadSceneAsync(targetLevel);
-        while (!loadSceen.isDone) {
-            _loadingBar.fillAmount = _delayPercentage + Mathf.Clamp01(loadSceen.progress / .9f) * sceneLoadPercentage;
-            yield return null;
-        }
-        yield return null;
-        gameObject.SetActive(false);
-        Home_UI.SetActive(true);
+
+        // Hoàn thành -> Gọi hàm chuyển scene thực sự
+
+        Destroy(gameObject); // Hủy loader
     }
 }

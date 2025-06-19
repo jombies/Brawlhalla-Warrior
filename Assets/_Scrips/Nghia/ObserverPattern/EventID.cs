@@ -4,11 +4,11 @@ using UnityEngine;
 
 public enum EventID
 {
-    ShowSettingPanel,
     MasterVolume,
     MusicVolume,
     SfxVolume,
     GetUpgradeData,
     UpdateFrameUIData,
     UpgradeCostUpdate,
+    OnUseItem,
 }

@@ -32,6 +32,11 @@ public class HomeStartUI : MonoBehaviour
         upgradeBtn.onClick.AddListener(OnClickUpgrade);
         InitializeInformationFrame(data);
     }
+    private void OnDestroy()
+    {
+        this.RemoveListener(EventID.UpdateFrameUIData, UpdateFrameUI);
+        this.RemoveListener(EventID.UpgradeCostUpdate, UpgradeCost);
+    }
 
     private void UpdateFrameUI(object obj)
     {
@@ -55,16 +60,25 @@ public class HomeStartUI : MonoBehaviour
     private void OnClickUpgrade()
     {
         this.PostEvent(EventID.GetUpgradeData);
+        Debug.Log("Upgrade button clicked.");
     }
     private void OnClickPlay()
     {
         AudioManager.Instance.PlaySFX("btnStart");
-        SceneLoader.i.loadScene("Testing");
+        GameManager.Instance.PrepareDataBeforePlay();
+        // SceneLoader.i.loadScene("Testing");
+        SceneLoaderNew.i.loadScene("Testing", () =>
+        {
+            GameObject player = PlayerReferences.Instance.Player;
+            Transform spawn = GameObject.Find("PlayerSpawnPoint")?.transform;
+            if (spawn != null) player.transform.position = spawn.position;
+            CameraController.Instance.UpdateMainCamera();
+        });
     }
     private void OnClickBack()
     {
         AudioManager.Instance.PlaySFX("btn1");
-        SceneLoader.i.loadScene("Home UI");
+        SceneLoaderNew.i.loadScene("Home UI");
     }
 
     private void Reset()

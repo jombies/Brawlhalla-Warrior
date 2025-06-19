@@ -17,6 +17,7 @@ public class RoomController : MonoBehaviour
     public void GateOpen()
     {
         transform.DOMoveY(-2, 1);
+        StartCoroutine(DisableGates());
     }
     public void GateClose()
     {

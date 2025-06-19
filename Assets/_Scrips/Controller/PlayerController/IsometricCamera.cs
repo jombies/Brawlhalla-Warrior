@@ -8,7 +8,7 @@ public class IsometricCamera : MonoBehaviour
     public Transform target;
 
     [Header("Camera Settings")]
-    public float angle = 50f;          // Góc nhìn camera
+    public float angle = 55f;          // Góc nhìn camera
     public float height = 15f;            // Chiều cao so với nhân vật
     public float distance = 10f;          // Độ xa lệch về sau
     public float smoothTime = 0.2f;       // Thời gian mượt khi theo sau
@@ -20,15 +20,20 @@ public class IsometricCamera : MonoBehaviour
         if (target == null && PlayerReferences.Instance != null) {
             target = PlayerReferences.Instance.Player.transform;
         }
-        AudioManager.Instance.PlayMusic("music indie");
+        //AudioManager.Instance.PlayMusic("music indie");
 
     }
+    private void OnEnable()
+    {
+        target = PlayerReferences.Instance.Player.transform;
+    }
 
+    public float y, z;
     private void LateUpdate()
     {
         if (target == null) return;
         // Đặt góc nhìn nghiêng kiểu isometric
-        transform.rotation = Quaternion.Euler(angle, 0f, 0f);
+        transform.rotation = Quaternion.Euler(angle, y, z);
 
         // Vị trí camera lệch sau và trên nhân vật
         Vector3 offset = new Vector3(0f, height, -distance);

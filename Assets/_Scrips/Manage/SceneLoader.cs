@@ -12,6 +12,7 @@ public class SceneLoader : MonoBehaviour
     [SerializeField] GameObject Panel;
     [SerializeField] Image _loadingBar;
     [SerializeField] TextMeshProUGUI _percentText;
+
     private void Awake()
     {
         if (i == null) {
@@ -22,18 +23,17 @@ public class SceneLoader : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    private void Start()
-    {
 
-    }
     public void loadScene(string sceneName, Action onSceneloaded = null)
     {
         OnSceneLoadedCallback = onSceneloaded;
         Panel.SetActive(true);
         StartCoroutine(LoadScene(sceneName));
     }
+
     private bool _isPausedAt50Percent = false;
     float _fakeProgress = 0f;
+
     IEnumerator LoadScene(string sceneName)
     {
 
@@ -67,9 +67,18 @@ public class SceneLoader : MonoBehaviour
 
     }
 
+    public void unloadScene(string sceneName)
+    {
+        if (SceneManager.GetSceneByName(sceneName).isLoaded) {
+            SceneManager.UnloadSceneAsync(sceneName);
+        }
+    }
+
     private void resetOnDone()
     {
         _loadingBar.fillAmount = 0f;
+        _isPausedAt50Percent = false;
+        _fakeProgress = 0f;
     }
 
     private void Reset()

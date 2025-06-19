@@ -20,7 +20,7 @@ public class Interactable : MonoBehaviour
         if (other.gameObject.tag == "HP") {
             AudioManager.Instance.PlaySFX("buff");
             ObjectPoolManager.Instance.Despawn(other.gameObject);
-            PlayerReferences.Instance.Player.GetComponent<PlayerStat>().Healing(100);
+            PlayerReferences.Instance.Player.GetComponent<PlayerStat>().Healing(999);
 
         }
         if (other.gameObject.tag == "Health") {

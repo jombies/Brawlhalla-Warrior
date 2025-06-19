@@ -6,14 +6,23 @@ using UnityEngine.UI;
 
 public class SettingUI : MonoBehaviour
 {
+    public static SettingUI Instance { get; private set; }
     [SerializeField] private Transform settingPanel;
     [SerializeField] private Button btnClose;
     [SerializeField] private Slider masterVolSlider;
     [SerializeField] private Slider MusicVolSlider;
     [SerializeField] private Slider SfxVolSlider;
+    private void Awake()
+    {
+        if (Instance != null && Instance != this) {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
     private void Start()
     {
-        this.RegisterListener(EventID.ShowSettingPanel, ShowSettingPanel);
         btnClose.onClick.AddListener(OnClickClose);
         masterVolSlider.onValueChanged.AddListener(OnChangeMasterVolume);
         MusicVolSlider.onValueChanged.AddListener(OnChangeMusicVolume);
@@ -43,7 +52,7 @@ public class SettingUI : MonoBehaviour
         }
     }
 
-    private void ShowSettingPanel(object e)
+    public void ShowSettingPanel()
     {
         settingPanel.gameObject.SetActive(true);
     }

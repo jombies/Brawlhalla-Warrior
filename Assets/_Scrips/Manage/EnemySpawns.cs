@@ -5,17 +5,22 @@ using UnityEngine;
 
 public class EnemySpawns : MonoBehaviour
 {
+    RoomController Gates;
+    [Header("Enemy Spawn Settings")]
     [SerializeField] int TotalEnemy;
     [SerializeField] int spawnCount;
     [SerializeField] List<GameObject> enemyPrefabs = new List<GameObject>();
-    [SerializeField] GameObject Chest;
-    [SerializeField] Transform SpawnPos;
-    [SerializeField] float yPosOfChest;
-    RoomController Gates;
+    [SerializeField] float XPos, ZPos;
     int Spawned;
     int AliveMonster;
     bool onChest = false;
-    private int field;
+
+    [Header("Chest Settings")]
+    [SerializeField] GameObject Chest;
+    [SerializeField] Transform SpawnPos;
+
+
+
 
     private void Start()
     {
@@ -59,9 +64,8 @@ public class EnemySpawns : MonoBehaviour
         }
         yield return new WaitForSeconds(0.5f);
         Gates.GateOpen();
-        Gates.DisableGates();
         if (SpawnPos != null) {
-            Destroy(SpawnPos.gameObject);
+            SpawnPos.gameObject.SetActive(false);
         }
 
         if (!onChest) {
@@ -89,7 +93,7 @@ public class EnemySpawns : MonoBehaviour
     public void SpawnChest()
     {
         onChest = true;
-        Vector3 pos = SpawnPos.position + new Vector3(0, yPosOfChest, 0);
+        Vector3 pos = SpawnPos.position;
         GameObject newChest = ObjectPoolManager.Instance.Spawn(Chest, pos);
         // newChest.transform.localPosition = new Vector3(0, yPosOfChest, 0);
     }

@@ -35,6 +35,7 @@ public class InventorySlot : MonoBehaviour
     {
         if (_item != null) {
             _item.Use();
+            this.PostEvent(EventID.OnUseItem);
         }
     }
     public void OnRemove()

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -7,19 +8,20 @@ public class PlayerStat : CharacterStat
     [SerializeField] StatPlayerUI StatPlayerUI;
 
     [Header("Shield")]
-    int MaxShield = 100;
-    public int currentShield { get; private set; }
     private Coroutine shieldRegenCoroutine;
-    private float shieldRegenDelay = 10f;
-
+    public float shieldRegenDelay = 10f;
+    public int currentShield { get; private set; }
 
     // Start is called before the first frame update
     void Start()
     {
         Animator = GetComponentInChildren<CharacterAnimation>();
         EquipmentManager.Instance.onEquipchanged += OnEquipmentChanged;
-        MaxShield = Armor.Value;
-        currentShield = MaxShield;
+        MaxHealth = GameManager.Instance.LoadedData.maxHP;
+        Damage.BaseValue = GameManager.Instance.LoadedData.attack;
+        Armor.BaseValue = GameManager.Instance.LoadedData.armor;
+        currentShield = Armor.Value;
+        currentHealth = MaxHealth;
     }
 
     void OnEquipmentChanged(Equipment newitem, Equipment oldItem)
@@ -36,6 +38,7 @@ public class PlayerStat : CharacterStat
         //Damage.TotalValue();
         Debug.Log("Armor: " + Armor.Value);
         Debug.Log("Damage: " + Damage.Value);
+        GameManager.Instance.LoadedData.armor = Armor.Value;
     }
 
     protected override void OnTakeDamage(int dmg)
@@ -78,7 +81,7 @@ public class PlayerStat : CharacterStat
     {
         yield return new WaitForSeconds(shieldRegenDelay);
 
-        while (currentShield < MaxShield) {
+        while (currentShield < GameManager.Instance.LoadedData.armor) {
             yield return new WaitForSeconds(1f);
             currentShield += 1;
             StatPlayerUI?.setShield(currentShield);
@@ -86,4 +89,5 @@ public class PlayerStat : CharacterStat
         StatPlayerUI?.setShield(currentShield);
         Debug.Log("RegenerateShield");
     }
+
 }

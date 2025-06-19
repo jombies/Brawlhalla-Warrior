@@ -78,9 +78,9 @@ public class chestpopup : MonoBehaviour
     }
     void SpawnAndLaunchCoin()
     {
-        GameObject coin = ObjectPoolManager.Instance.Spawn(CoinPrefabs, transform);
+        GameObject coin = ObjectPoolManager.Instance.Spawn(CoinPrefabs, transform.position);
         // Đặt vị trí ban đầu
-        coin.transform.localPosition = new Vector3(
+        coin.transform.position += new Vector3(
             Random.Range(-0.5f, 0.5f),
             0.5f,
             Random.Range(-0.5f, 0.5f)

@@ -7,7 +7,12 @@ public class PlayerReferences : MonoBehaviour
     public static PlayerReferences Instance;
     private void Awake()
     {
+        if (Instance != null && Instance != this) {
+            Destroy(gameObject);
+            return;
+        }
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
     #endregion
     public GameObject Player;

@@ -9,7 +9,12 @@ public class Inventory : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null && Instance != this) {
+            Destroy(gameObject);
+        }
+
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
     #endregion
 
@@ -28,10 +33,8 @@ public class Inventory : MonoBehaviour
     }
     public bool Add(Item item)
     {
-        if (!item.DefaultItem)
-        {
-            if (Items.Count >= _space)
-            {
+        if (!item.DefaultItem) {
+            if (Items.Count >= _space) {
                 Debug.Log("Inventory is full");
                 return false;
             }
