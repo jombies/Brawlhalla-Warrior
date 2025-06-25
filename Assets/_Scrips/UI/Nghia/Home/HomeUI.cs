@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -22,7 +22,7 @@ public class HomeUI : MonoBehaviour
         NotiPanel notiPanel = NotiPanel.Instance;
         AudioManager.Instance.PlaySFX("btn1");
         if (notiPanel != null) {
-            notiPanel.ShowNotify("Exit Game", "Are you sure you want to exit the game?", Application.Quit, () => { });
+            notiPanel.ShowNotify("Thoát Game", "Bạn muốn thoát trò chơi chứ?", Application.Quit, () => { });
         }
         else {
             Debug.LogWarning("NotiPanel instance is null. Cannot show exit notification.");
@@ -33,8 +33,6 @@ public class HomeUI : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX("btn1");
         SettingUI.Instance.ShowSettingPanel();
-
-        // SettingUI.Instance.gameObject.SetActive(true); // Uncomment if you want to show the setting UI directly
     }
 
     private void OnClickPlay()

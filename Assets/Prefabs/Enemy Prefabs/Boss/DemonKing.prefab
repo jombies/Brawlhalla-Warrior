@@ -331,13 +331,14 @@ GameObject:
   - component: {fileID: 7245743754849814640}
   - component: {fileID: 1473972348692091868}
   - component: {fileID: 5486399014503634159}
+  - component: {fileID: 7444885736057140874}
   m_Layer: 0
   m_Name: DemonKing
   m_TagString: BossEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2915383083482998332
 Transform:
   m_ObjectHideFlags: 0
@@ -505,6 +506,20 @@ MonoBehaviour:
   attackRange: 4
   sightRange: 20
   PlayerOnGr: 0
+--- !u!114 &7444885736057140874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1026062055757470215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d9a24988c8955d44892cfaf572ec391, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillChargeVFX: {fileID: 0}
+  recoveryVFX: {fileID: 0}
 --- !u!1 &1162008984318250895
 GameObject:
   m_ObjectHideFlags: 0
@@ -2433,11 +2448,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 833603667670493688, guid: 2f54aadfec552fe499366761fc8131ae, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 833603667670493688, guid: 2f54aadfec552fe499366761fc8131ae, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5441186140199430915, guid: 2f54aadfec552fe499366761fc8131ae, type: 3}
       propertyPath: m_Pivot.x

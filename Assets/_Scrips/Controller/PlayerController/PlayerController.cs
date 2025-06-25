@@ -13,7 +13,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _walkSpeed = 2.8f;
     [SerializeField] float _speedMax = 5;
     [SerializeField] float _speedRotation = 15;
-    [SerializeField] float _gra = 8f;
     float speed = 2.8f;
     Vector3 direction;
     Vector3 _gravity;
@@ -24,7 +23,6 @@ public class PlayerController : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
@@ -38,9 +36,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         UpdateAngleDirection();
-        //direction = InputSingleton.instance.Direction;
         Moving();
-        Dash();
     }
 
     void UpdateAngleDirection()
@@ -83,26 +79,12 @@ public class PlayerController : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, toRotation, _speedRotation * Time.deltaTime);
         }
     }
-    void Dash()
-    {
-        if (Input.GetKeyDown(KeyCode.Z)) {
-            StartCoroutine(doDash());
-        }
-        IEnumerator doDash()
-        {
-            float startTime = Time.time;
-            while (Time.time < startTime + 0.2f) {
-                Controller.Move(direction * 10 * Time.deltaTime);
-                yield return null;
-            }
-        }
-    }
     void ApplyGravity()
     {
         if (Controller.isGrounded && _gravity.y < 0)
             _gravity.y = -9.8f;
 
-        _gravity.y -= _gra * Time.deltaTime;
+        _gravity.y -= 8 * Time.deltaTime;
         Controller.Move(_gravity * Time.deltaTime);
     }
 

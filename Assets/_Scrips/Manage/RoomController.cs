@@ -6,7 +6,7 @@ using UnityEngine;
 public class RoomController : MonoBehaviour
 {
     public List<GameObject> Gates;
-    [SerializeField] float HieghtOfGate;
+    [SerializeField] float HieghtOfGate = 2;
 
     private void Update()
     {
@@ -21,7 +21,7 @@ public class RoomController : MonoBehaviour
     }
     public void GateClose()
     {
-        transform.DOMoveY(HieghtOfGate, 1);
+        transform.DOMoveY(transform.position.y + HieghtOfGate, 1);
         transform.parent.GetComponent<EnemySpawns>().ExecuteSpawn();
     }
 

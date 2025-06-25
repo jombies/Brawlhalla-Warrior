@@ -1,5 +1,4 @@
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,18 +16,30 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI armorText;
     [SerializeField] TextMeshProUGUI attackText;
     [SerializeField] TextMeshProUGUI CoinText;
+    [SerializeField] TextMeshProUGUI _textCoin;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        this.RegisterListener(EventID.OnUseItem, (e) => UpdateInfo(PlayerDataManager.Load()));
-        Inventory.Instance.OnItemChangedCallBack += UpdateUi;
+        //Inventory.Instance.OnItemChangedCallBack += UpdateUi;
         _slots = ItemParrent.GetComponentsInChildren<InventorySlot>();
         _invetoryui.SetActive(false);
         _ivenBtn.onClick.AddListener(() => _invetoryui.SetActive(!_invetoryui.activeSelf));
     }
+    private void OnEnable()
+    {
+        this.RegisterListener(EventID.OnUseItem, (e) => UpdateInfo(PlayerDataManager.Load()));
+        this.RegisterListener(EventID.OnCoinCollected, UpdateCointext);
+        Inventory.Instance.OnItemChangedCallBack += UpdateUi;
+    }
 
+    private void OnDisable()
+    {
+        if (Inventory.Instance != null)
+            Inventory.Instance.OnItemChangedCallBack -= UpdateUi;
+        this.RemoveListener(EventID.OnCoinCollected, UpdateCointext);
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab)) {
@@ -46,6 +57,10 @@ public class InventoryUI : MonoBehaviour
             }
             else _slots[i].RemoveItem();
         }
+    }
+    public void UpdateCointext(object obj)
+    {
+        _textCoin.text = obj.ToString();
     }
     public void UpdateInfo(PlayerData data)
     {

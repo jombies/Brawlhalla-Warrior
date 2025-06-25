@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class HomeStartUI : MonoBehaviour
 {
+    [SerializeField] LevelUpgradeData upgradeStats;
     [Header("Buttons")]
     [SerializeField] Button playBtn;
     [SerializeField] Button backBtn;
@@ -20,6 +21,7 @@ public class HomeStartUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI healthText;
     [SerializeField] TextMeshProUGUI armorText;
     [SerializeField] TextMeshProUGUI UpgradeCostText;
+    [SerializeField] GameObject UnlockSkill;
 
     void Start()
     {
@@ -48,25 +50,33 @@ public class HomeStartUI : MonoBehaviour
     }
     void InitializeInformationFrame(PlayerData data)
     {
-
+        if (data.level >= 2) UnlockSkill.SetActive(false);
+        else UnlockSkill.SetActive(true);
         coinText.text = $"{data.coins}";
         healthSlider.value = data.maxHP;
         armorSlider.value = data.armor;
         attackSlider.value = data.attack;
         healthText.text = $"{data.maxHP}";
         armorText.text = $"{data.armor}";
+
+        if (data.level >= 6) {
+            UpgradeCostText.text = "Max Level";
+            upgradeBtn.interactable = false;
+            return;
+        }
+        else
+            UpgradeCostText.text = $"{upgradeStats.GetStatsForLevel(data.level + 1).cost}";
     }
 
     private void OnClickUpgrade()
     {
         this.PostEvent(EventID.GetUpgradeData);
-        Debug.Log("Upgrade button clicked.");
     }
     private void OnClickPlay()
     {
         AudioManager.Instance.PlaySFX("btnStart");
         GameManager.Instance.PrepareDataBeforePlay();
-        // SceneLoader.i.loadScene("Testing");
+        //  SceneManager.LoadScene("GamePlayUI", LoadSceneMode.Additive);
         SceneLoaderNew.i.loadScene("Testing", () =>
         {
             GameObject player = PlayerReferences.Instance.Player;

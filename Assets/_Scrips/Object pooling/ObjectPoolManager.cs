@@ -112,7 +112,7 @@ public class ObjectPool : MonoBehaviour
 {
     [Header("Pool Settings")]
     [SerializeField] private GameObject prefab;
-    [SerializeField] private int initialSize = 10;
+    [SerializeField] private int initialSize = 5;
     [SerializeField] private int maxSize = 50;
     [SerializeField] private bool autoExpand = true;
 

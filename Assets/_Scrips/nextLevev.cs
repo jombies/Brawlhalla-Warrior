@@ -7,10 +7,7 @@ public class nextLevev : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player")) {
-            SceneLoaderNew.i.loadScene(nextLevelName, () =>
-            {
-                GameManager.Instance.SpawnAfterSceneLoaded();
-            });
+            SceneLoaderNew.i.loadScene(nextLevelName/*, () => { GameManager.Instance.SpawnAfterSceneLoaded(); }*/);
         }
     }
 }

@@ -130,5 +130,4 @@ public class EnemyController : MonoBehaviour, IPoolable
         this.HandleReliveState();
     }
 
-    private int field;
 }

@@ -60,7 +60,6 @@
   <ItemGroup>
     <Compile Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Scripts\Grayscale.cs" />
     <Compile Include="Assets\IndieMarc\EnemyVision\Scripts\Enemy\VisionCone2D.cs" />
-    <Compile Include="Assets\_Scrips\Manage\GamePlayUI.cs" />
     <Compile Include="Assets\IndieMarc\EnemyVision\Scripts\Enemy\EnemyDemo2D.cs" />
     <Compile Include="Assets\Dynamic Sword Animset\Scripts\Blue_CameraControll.cs" />
     <Compile Include="Assets\_Scrips\Controller\PlayerController\InventoryUI.cs" />
@@ -68,7 +67,6 @@
     <Compile Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Scripts\Blur.cs" />
     <Compile Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Scripts\Triangles.cs" />
     <Compile Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Scripts\BloomOptimized.cs" />
-    <Compile Include="Assets\_Scrips\Manage\StartLoader.cs" />
     <Compile Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Scripts\ScreenSpaceAmbientObscurance.cs" />
     <Compile Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Scripts\VignetteAndChromaticAberration.cs" />
     <Compile Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Scripts\SunShafts.cs" />
@@ -88,11 +86,11 @@
     <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\SuperCharacterController\Core\CollisionSphere.cs" />
     <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\SuperCharacterController\Math3d.cs" />
     <Compile Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Scripts\TiltShift.cs" />
-    <Compile Include="Assets\_Scrips\Manage\HealthBar.cs" />
     <Compile Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Scripts\CreaseShading.cs" />
     <Compile Include="Assets\_Scrips\Camera\IsometricAiming.cs" />
     <Compile Include="Assets\_Scrips\changeEquip\ChangeHelmet.cs" />
     <Compile Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Scripts\MotionBlur.cs" />
+    <Compile Include="Assets\_Scrips\ChestLootPopper.cs" />
     <Compile Include="Assets\ExplosiveLLC\Warrior\Code\WarriorAnimatorEvents.cs" />
     <Compile Include="Assets\_Scrips\FpsShow.cs" />
     <Compile Include="Assets\IndieMarc\EnemyVision\Scripts\Character\CharacterControls2D.cs" />
@@ -112,14 +110,17 @@
     <Compile Include="Assets\_Scrips\Camera\TopDownCamera.cs" />
     <Compile Include="Assets\GabrielAguiarProductions\Unique_Projectiles_Volume_1\Scripts\ParticleSystemController\Serializables.cs" />
     <Compile Include="Assets\_Scrips\changeEquip\ChangeWeapon.cs" />
+    <Compile Include="Assets\_Scrips\UI\HealthBar.cs" />
     <Compile Include="Assets\ExplosiveLLC\Warrior\Code\WarriorInputSytemController.cs" />
     <Compile Include="Assets\_Scrips\Manage\RoomController.cs" />
     <Compile Include="Assets\_Scrips\Camera\CameraFollow.cs" />
     <Compile Include="Assets\_Scrips\Nghia\ObserverPattern\EventID.cs" />
+    <Compile Include="Assets\_Scrips\UI\LoseUI.cs" />
     <Compile Include="Assets\_Scrips\Controller\EnemyController\Bossbullet.cs" />
     <Compile Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Scripts\BlurOptimized.cs" />
     <Compile Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Scripts\Vortex.cs" />
     <Compile Include="Assets\Hovl Studio\Toon Projectiles 2\Demo scene\DemoShooting.cs" />
+    <Compile Include="Assets\_Scrips\UI\CompleteUI.cs" />
     <Compile Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Scripts\BloomAndFlares.cs" />
     <Compile Include="Assets\_Scrips\Controller\PlayerController\PlayerData\PlayerDataManager.cs" />
     <Compile Include="Assets\_Scrips\Controller\EnemyController\Shooting.cs" />
@@ -128,7 +129,6 @@
     <Compile Include="Assets\IndieMarc\EnemyVision\Scripts\Enemy\EnemyDemo.cs" />
     <Compile Include="Assets\GabrielAguiarProductions\Unique_Projectiles_Volume_1\Scripts\CameraShakeSimpleScript.cs" />
     <Compile Include="Assets\GabrielAguiarProductions\Unique_Projectiles_Volume_1\Scripts\UniqueProjectiles\ProjectileMoveScript.cs" />
-    <Compile Include="Assets\_Scrips\Manage\Gameobject.cs" />
     <Compile Include="Assets\_Scrips\Manage\EnemySpawns.cs" />
     <Compile Include="Assets\_Scrips\Stat\EnemyStats.cs" />
     <Compile Include="Assets\Multistory Dungeons 2\Scripts\FpsCounter.cs" />
@@ -137,12 +137,14 @@
     <Compile Include="Assets\Unity-Logs-Viewer\Reporter\MultiKeyDictionary.cs" />
     <Compile Include="Assets\Unity-Logs-Viewer\Reporter\Test\TestReporter.cs" />
     <Compile Include="Assets\_Scrips\Manage\ChestBehaviour.cs" />
+    <Compile Include="Assets\_Scrips\Controller\PlayerController\CombatController.cs" />
     <Compile Include="Assets\_Scrips\Manage\SceneLoaderNew.cs" />
     <Compile Include="Assets\_Scrips\Manage\GateSenso.cs" />
     <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\SuperCharacterController\Core\SuperCollider.cs" />
     <Compile Include="Assets\Multistory Dungeons 2\Scripts\DisableMeshAtRuntime.cs" />
     <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\Code\PlayerMachine.cs" />
     <Compile Include="Assets\_Scrips\Stat\Stat.cs" />
+    <Compile Include="Assets\_Scrips\UI\SkillCooldownUI.cs" />
     <Compile Include="Assets\IndieMarc\EnemyVision\Scripts\Other\SpawnFX.cs" />
     <Compile Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Scripts\SepiaTone.cs" />
     <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\SuperCharacterController\Core\IgnoredCollider.cs" />
@@ -164,9 +166,11 @@
     <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\Code\Gravity.cs" />
     <Compile Include="Assets\_Scrips\Controller\PlayerController\Item.cs" />
     <Compile Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Scripts\NoiseAndGrain.cs" />
+    <Compile Include="Assets\_Scrips\Manage\TooltipUI.cs" />
     <Compile Include="Assets\ExplosiveLLC\Warrior\Code\WarriorMovementController.cs" />
     <Compile Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Scripts\Twirl.cs" />
     <Compile Include="Assets\Unity-Logs-Viewer\Reporter\ReporterMessageReceiver.cs" />
+    <Compile Include="Assets\_Scrips\UI\Billbroad.cs" />
     <Compile Include="Assets\Hovl Studio\Toon Projectiles 2\Scripts\AutoDestroyPS.cs" />
     <Compile Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Scripts\EdgeDetection.cs" />
     <Compile Include="Assets\_Scrips\Controller\PlayerController\AutoAimForPlayer.cs" />
@@ -174,6 +178,7 @@
     <Compile Include="Assets\_Scrips\UI\HomeStartUI.cs" />
     <Compile Include="Assets\_Scrips\Controller\EnemyController\BossAISpawner.cs" />
     <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\SuperCharacterController\DebugDraw.cs" />
+    <Compile Include="Assets\_Scrips\UI\PopupAnimator.cs" />
     <Compile Include="Assets\_Scrips\Controller\PlayerController\AudioDatabase.cs" />
     <Compile Include="Assets\_Scrips\Controller\PlayerController\SupllyEquipment.cs" />
     <Compile Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Scripts\ColorCorrectionCurves.cs" />
@@ -187,6 +192,8 @@
     <Compile Include="Assets\IndieMarc\EnemyVision\Scripts\Character\VisionTarget.cs" />
     <Compile Include="Assets\_Scrips\Controller\PlayerController\inventorySlot.cs" />
     <Compile Include="Assets\_Scrips\Controller\EnemyController\FieldOfView.cs" />
+    <Compile Include="Assets\_Scrips\UI\UpgradePopup.cs" />
+    <Compile Include="Assets\_Scrips\UI\GamePlayUI.cs" />
     <Compile Include="Assets\GabrielAguiarProductions\Unique_Projectiles_Volume_1\Scripts\ParticleSystemController\SaveParticleSystemScript.cs" />
     <Compile Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Scripts\ImageEffectBase.cs" />
     <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\SuperCharacterController\Core\SuperMath.cs" />
@@ -196,12 +203,13 @@
     <Compile Include="Assets\_Scrips\Manage\ItemPickup.cs" />
     <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\SuperCharacterController\Core\SuperCharacterController.cs" />
     <Compile Include="Assets\IndieMarc\EnemyVision\Scripts\Enemy\Enemy2D.cs" />
+    <Compile Include="Assets\_Scrips\UI\StartLoader.cs" />
     <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\SuperCharacterController\Core\BSPTree.cs" />
     <Compile Include="Assets\ExplosiveLLC\SuperCharacterController\SuperCharacterController\Core\SuperGround.cs" />
     <Compile Include="Assets\ExplosiveLLC\Warrior\Code\WarriorAnimatorParentMove.cs" />
     <Compile Include="Assets\_Scrips\Controller\EnemyController\BossAttacking.cs" />
+    <Compile Include="Assets\_Scrips\Manage\GameSummaryManager.cs" />
     <Compile Include="Assets\_Scrips\Controller\EnemyController\BossVFXHandler.cs" />
-    <Compile Include="Assets\_Scrips\chestpopup.cs" />
     <Compile Include="Assets\_Scrips\Controller\PlayerController\StatPlayerUI.cs" />
     <Compile Include="Assets\Unity-Logs-Viewer\Reporter\Reporter.cs" />
     <Compile Include="Assets\Dynamic Sword Animset\Scripts\Animation_view.cs" />
@@ -239,9 +247,9 @@
     <Compile Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Scripts\NoiseAndScratches.cs" />
     <Compile Include="Assets\_Scrips\Controller\PlayerController\PlayerController.cs" />
     <Compile Include="Assets\_Scrips\UI\Nghia\Home\SettingUI.cs" />
-    <Compile Include="Assets\_Scrips\Manage\Billbroad.cs" />
     <Compile Include="Assets\ExplosiveLLC\Warrior\Code\WarriorIKHands.cs" />
     <Compile Include="Assets\ExplosiveLLC\Warrior\Demo Elements\Code\CameraController.cs" />
+    <Compile Include="Assets\_Scrips\Manage\ShopInteract.cs" />
     <Compile Include="Assets\_Scrips\Controller\EnemyController\BossAI.cs" />
     <Compile Include="Assets\_Scrips\Object pooling\ObjectPoolManager.cs" />
     <Compile Include="Assets\IndieMarc\EnemyVision\Scripts\Other\Invisible.cs" />
@@ -345,7 +353,9 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\Polygonal Fantasy Pack(Model Player)\Read Me.txt" />
     <None Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Shaders\EdgeDetectNormals.shader" />
+    <None Include="Assets\_Scrips\ClassDiagram1.cd" />
     <None Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Shaders\NoiseEffectShaderRGB.shader" />
+    <None Include="Assets\SkySeries Freebie\Hdri setup.txt" />
     <None Include="Assets\Hovl Studio\Toon Projectiles 2\Shaders\Add_CenterGlow.shader" />
     <None Include="Assets\Lowpoly_forest_ruins\Standard Assets\Effects\ImageEffects\Shaders\_Antialiasing\FXAA2.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />

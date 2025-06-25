@@ -284,6 +284,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -25.489048
       objectReference: {fileID: 0}
+    - target: {fileID: 4083031868565250775, guid: e6795c22ad904637bbe60283e1c0cd08, type: 3}
+      propertyPath: m_TagString
+      value: EnemyHitbox
+      objectReference: {fileID: 0}
     - target: {fileID: 4105840064615772404, guid: e6795c22ad904637bbe60283e1c0cd08, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 27.774784
@@ -857,7 +861,6 @@ MonoBehaviour:
   speedRotate: 5
   _capsuleCollider: {fileID: 304676623154430560}
   IsAttack: 0
-  IsDead: 0
 --- !u!114 &3166645621618330129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -875,6 +878,7 @@ MonoBehaviour:
     BaseValue: 3
   Armor:
     BaseValue: 0
+  isDead: 0
   healthBar: {fileID: 0}
 --- !u!114 &1581834688305855242
 MonoBehaviour:

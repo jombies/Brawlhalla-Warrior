@@ -220,8 +220,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.80260944, y: 0.48060653, z: 0.71019125}
-  m_Center: {x: -0.00000047683716, y: 0.23838057, z: -0.00000071525574}
+  m_Size: {x: 1.2039142, y: 0.59383035, z: 1.0652869}
+  m_Center: {x: -0.00000071525574, y: 0.29403114, z: -0.0000010728836}
 --- !u!114 &3624183531306959987
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,8 +237,11 @@ MonoBehaviour:
   isOpen: 0
   Mincoin: 10
   Maxcoin: 20
-  x: 70
   CoinPrefabs: {fileID: 655256218106974707, guid: dc8c97d5a9cb6564c8e94466f78df01e, type: 3}
+  dropItems:
+  - itemPrefab: {fileID: 4188827515958892197, guid: b71e81259de4f4c4c949e0e4e7334b1f, type: 3}
+    dropRate: 0.2
+  itemDropHeight: 0
   minForce: 1
-  maxForce: 2
-  upwardForce: 5
+  maxForce: 1.2
+  upwardForce: 2.5

@@ -1,5 +1,6 @@
-
+using UnityEngine.SceneManagement;
 using UnityEngine;
+using System;
 
 public class PlayerReferences : MonoBehaviour
 {
@@ -16,6 +17,20 @@ public class PlayerReferences : MonoBehaviour
     }
     #endregion
     public GameObject Player;
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        Player = GameObject.FindGameObjectWithTag("Player");
+    }
 
     private void Reset()
     {

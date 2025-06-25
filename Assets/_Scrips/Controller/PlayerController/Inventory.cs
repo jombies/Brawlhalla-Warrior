@@ -1,12 +1,15 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Inventory : MonoBehaviour
 {
-    #region Inventory
     public static Inventory Instance;
-
+    public List<Item> Items;
+    public int coin;
+    readonly int _space = 20;
+    public delegate void OnItemChanged();
+    public OnItemChanged OnItemChangedCallBack;
     private void Awake()
     {
         if (Instance != null && Instance != this) {
@@ -15,21 +18,19 @@ public class Inventory : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        Items = new List<Item>();
     }
-    #endregion
-
-    public List<Item> Items = new List<Item>();
-    public int coin { get; private set; }
-    [SerializeField] Text _textCoin;
-    readonly int _space = 20;
-
-    public delegate void OnItemChanged();
-    public OnItemChanged OnItemChangedCallBack;
-    public void CoinCollected(GameObject coin)
+    public void CoinCollected(GameObject coina)
     {
-        this.coin++;
-        ObjectPoolManager.Instance.Despawn(coin);
-        _textCoin.text = this.coin.ToString();
+        coin++;
+        this.PostEvent(EventID.OnCoinCollected, coin);
+        if (coina.TryGetComponent<PooledObject>(out PooledObject pooledObject)) {
+            pooledObject.ReturnToPool();
+        }
+        else {
+            Destroy(coina);
+        }
+
     }
     public bool Add(Item item)
     {
@@ -39,8 +40,12 @@ public class Inventory : MonoBehaviour
                 return false;
             }
             Items.Add(item);
+            Debug.Log($"[Inventory] Đã thêm item: {item.name}");
+
             if (OnItemChangedCallBack != null)
                 OnItemChangedCallBack.Invoke();
+            else
+                Debug.LogWarning("[Inventory] OnItemChangedCallBack bị null!");
         }
         return true;
     }
@@ -49,8 +54,5 @@ public class Inventory : MonoBehaviour
         Items.Remove(item);
         if (OnItemChangedCallBack != null)
             OnItemChangedCallBack.Invoke();
-
     }
-
-    private int field;
 }

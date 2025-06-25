@@ -11,4 +11,5 @@ public enum EventID
     UpdateFrameUIData,
     UpgradeCostUpdate,
     OnUseItem,
+    OnCoinCollected,
 }

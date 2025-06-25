@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public PlayerData LoadedData;
+    public GameObject victoryPopup;
+    public GameObject defeatPopup;
 
     private void Awake()
     {
@@ -21,6 +23,22 @@ public class GameManager : MonoBehaviour
         LoadedData = PlayerDataManager.Load();
     }
 
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("✅ Scene loaded: " + scene.name);
+        StartCoroutine(DelaySpawnPlayer());
+    }
+
     public void SpawnAfterSceneLoaded()
     {
         StartCoroutine(DelaySpawnPlayer());
@@ -28,8 +46,24 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator DelaySpawnPlayer()
     {
-        yield return null; // đợi 1 frame để scene load xong
-        SpawnPlayerAtSceneSpawnPoint();
+        GameObject playerObj = null;
+        GameObject spawnObj = null;
+
+        // Chờ cho tới khi Player và SpawnPoint đều đã tồn tại trong scene
+        while (playerObj == null || spawnObj == null) {
+            if (playerObj == null && PlayerReferences.Instance != null)
+                playerObj = PlayerReferences.Instance.Player;
+
+            if (spawnObj == null)
+                spawnObj = GameObject.FindWithTag("PlayerSpawnPoint");
+
+            yield return null;
+        }
+
+        playerObj.transform.position = spawnObj.transform.position;
+        playerObj.transform.rotation = spawnObj.transform.rotation;
+
+        Debug.Log("✅ Player đã được spawn chính xác.");
     }
 
     public void SpawnPlayerAtSceneSpawnPoint()
@@ -46,6 +80,21 @@ public class GameManager : MonoBehaviour
             Debug.LogWarning("Không tìm thấy PlayerSpawnPoint trong scene hiện tại.");
         }
     }
+
+
+    public void OnPlayerWin()
+    {
+        victoryPopup.SetActive(true);
+        victoryPopup.GetComponent<PopupAnimator>().ShowFromTop();
+        Time.timeScale = 0f; // Dừng thời gian khi thắng
+    }
+
+    public void OnPlayerLose()
+    {
+        defeatPopup.SetActive(true);
+        defeatPopup.GetComponent<PopupAnimator>().ShowFromBottom();
+        Time.timeScale = 0f; // Dừng thời gian khi thua
+    }
     void DestroyIfExists(string objectName)
     {
         GameObject obj = GameObject.Find(objectName);
@@ -54,7 +103,6 @@ public class GameManager : MonoBehaviour
             Debug.Log("Đã xoá object: " + objectName);
         }
     }
-
     public void CleanUpSystemsForHome()
     {
         DestroyIfExists("CanvasGameUI");
@@ -62,6 +110,7 @@ public class GameManager : MonoBehaviour
         DestroyIfExists("===Player===");
         DestroyIfExists("EquipmentManager");
         DestroyIfExists("ObjectPoolManager");
+        DestroyIfExists("InventoryMG");
         // thêm bất kỳ object nào khác bạn cần dọn
     }
 }

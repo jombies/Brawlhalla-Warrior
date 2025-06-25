@@ -5,12 +5,15 @@ using UnityEngine;
 
 public class BossRoomControler : MonoBehaviour
 {
-    public GameObject boss;
-    public GameObject rewardChest;
+    [SerializeField] GameObject boss;
+    [SerializeField] GameObject rewardChest;
+    [SerializeField] GameObject gate;
+
     public List<GameObject> gates;
 
     private bool isStarted = false;
     private bool isCleared = false;
+    private float offsetY = 2;
 
     public void GateClose()
     {
@@ -18,28 +21,35 @@ public class BossRoomControler : MonoBehaviour
         isStarted = true;
 
         foreach (var gate in gates)
-            gate.transform.DOMoveY(1, 1f); // đóng cửa
+            gate.transform.DOMoveY(gate.transform.position.y + offsetY, 1f);
         if (boss.TryGetComponent<BossAI>(out var bossAI))
-            bossAI.PlayerOnGr = true; // thông báo boss đã sẵn sàng chiến đấu
+            bossAI.PlayerOnGr = true;
         if (boss.TryGetComponent<BossAI01>(out var bossAI01))
-            bossAI01.PlayerOnGr = true; // thông báo boss đã sẵn sàng chiến đấu
+            bossAI01.PlayerOnGr = true;
         if (boss.TryGetComponent<BossAISpawner>(out var bossAIps))
-            bossAIps.PlayerOnGr = true; // thông báo boss đã sẵn sàng chiến đấu
-        boss.SetActive(true); // hiện boss nếu ẩn
-                              //BossHealth bossHealth = boss.GetComponent<BossHealth>();
-                              // bossHealth.OnBossDead += OnBossDefeated;
+            bossAIps.PlayerOnGr = true;
+        boss.SetActive(true);
+        EnemyStats bossHealth = boss.GetComponent<EnemyStats>();
+        bossHealth.OnDeath += OnBossDefeated;
+    }
+
+    private void Reset()
+    {
+        foreach (Transform go in transform) {
+            gates.Add(go.gameObject);
+        }
+    }
+    void OnBossDefeated()
+    {
+        if (isCleared) return;
+        isCleared = true;
+
+        foreach (var gate in gates)
+            gate.transform.DOMoveY(-2, 1f);
+
+        rewardChest.SetActive(true);
+        gate.SetActive(true);
     }
 }
 
-//void OnBossDefeated()
-//{
-//    if (isCleared) return;
-//    isCleared = true;
 
-//    foreach (var gate in gates)
-//        gate.transform.DOMoveY(-2, 1f); // mở cửa
-
-//    rewardChest.SetActive(true);
-//    Debug.Log("🎉 Boss defeated!");
-//}
-//}

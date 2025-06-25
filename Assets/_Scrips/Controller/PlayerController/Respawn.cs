@@ -1,6 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Respawn : MonoBehaviour
 {
@@ -16,10 +16,25 @@ public class Respawn : MonoBehaviour
     private void OnEnable()
     {
         player = GetComponent<PlayerController>().gameObject;
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
-    // Update is called once per frame
-    void Update()
+    private void OnDisable()
     {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        StartCoroutine(LoadElement());
+    }
+    private void Update()
+    {
+        StartCoroutine(LoadElement());
+    }
+    public IEnumerator LoadElement()
+    {
+        yield return null;
+        respawnPoint = GameObject.Find("PlayerSpawnPoint")?.transform;
         if (respawnPoint == null) {
             respawnPoint = GameObject.Find("PlayerSpawnPoint").transform;
         }

@@ -85,7 +85,6 @@ public class EnemyMelee : MonoBehaviour
         }
 
     }
-
     void DoPatrol()
     {
         Agent.stoppingDistance = 0;

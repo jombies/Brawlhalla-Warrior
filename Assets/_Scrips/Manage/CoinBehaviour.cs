@@ -2,13 +2,12 @@
 
 public class CoinBehaviour : MonoBehaviour
 {
-    float speed = 2;
+    float speed = 1.5f;
     [SerializeField] bool isMax;
     [SerializeField] Vector3 max;
     [SerializeField] Vector3 min;
     [SerializeField] Vector3 targetP;
     [SerializeField] float value;
-    private int field;
 
     //void Start()
     //{

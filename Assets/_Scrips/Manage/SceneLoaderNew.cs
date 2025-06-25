@@ -1,6 +1,5 @@
-using System;
+﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -16,8 +15,6 @@ public class SceneLoaderNew : MonoBehaviour
     [SerializeField] TextMeshProUGUI _percentText;
 
     private string currentSceneName;
-    private bool _isPausedAt50Percent = false;
-    private float _fakeProgress = 0f;
 
     private void Awake()
     {
@@ -29,71 +26,62 @@ public class SceneLoaderNew : MonoBehaviour
             Destroy(gameObject);
         }
     }
-    public void loadScene(string sceneName, Action onSceneloaded = null)
+
+    public void loadScene(string sceneName, Action onSceneLoaded = null)
     {
         Panel.SetActive(true);
-        StartCoroutine(LoadSceneAdditive(sceneName));
-        OnSceneLoadedCallback = onSceneloaded;
+        StartCoroutine(LoadSceneAdditive(sceneName, onSceneLoaded));
+        OnSceneLoadedCallback = onSceneLoaded;
     }
 
-    IEnumerator LoadSceneAdditive(string sceneName)
+    IEnumerator LoadSceneAdditive(string sceneName, Action onComplete)
     {
         string sceneToUnload = currentSceneName;
 
         AsyncOperation loadScene = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
         loadScene.allowSceneActivation = false;
 
-        while (true) {
-            float realProgress = loadScene.progress / 0.9f;
-            _fakeProgress = Mathf.MoveTowards(_fakeProgress, realProgress, Time.deltaTime * 0.5f);
-
-            float displayProgress = Mathf.Clamp01(_fakeProgress);
-            _progressBar.fillAmount = displayProgress;
-            _percentText.text = $"Loading... {Mathf.RoundToInt(displayProgress * 100)}%";
-
-            if (displayProgress >= 0.5f && !_isPausedAt50Percent) {
-                _isPausedAt50Percent = true;
-                yield return new WaitForSeconds(0);//thay doi nhen giay
-            }
-
-            if (realProgress >= 1f && _fakeProgress >= 1f) {
-                loadScene.allowSceneActivation = true;
-                yield return null;
-
-                Scene loadedScene = SceneManager.GetSceneByName(sceneName);
-                if (loadedScene.IsValid())
-                    SceneManager.SetActiveScene(loadedScene);
-
-                if (!string.IsNullOrEmpty(sceneToUnload) && sceneToUnload != sceneName) {
-                    if (SceneManager.GetSceneByName(sceneToUnload).isLoaded) {
-                        SceneManager.UnloadSceneAsync(sceneToUnload);
-                    }
-                }
-
-                currentSceneName = sceneName;
-
-                OnSceneLoadedCallback?.Invoke();
-                Panel.SetActive(false);
-                resetOnDone();
-                yield break;
-            }
-
+        while (loadScene.progress < 0.9f) {
+            _progressBar.fillAmount = loadScene.progress;
+            _percentText.text = $"Loading... {Mathf.RoundToInt(loadScene.progress * 100)}%";
             yield return null;
         }
+
+        // Scene load xong, cho phép activate
+        _progressBar.fillAmount = 1f;
+        _percentText.text = $"Loading... 100%";
+
+        loadScene.allowSceneActivation = true;
+
+        // Đợi scene thực sự active
+        while (!loadScene.isDone)
+            yield return null;
+
+        Scene loadedScene = SceneManager.GetSceneByName(sceneName);
+        if (loadedScene.IsValid())
+            SceneManager.SetActiveScene(loadedScene);
+
+        if (!string.IsNullOrEmpty(sceneToUnload) && sceneToUnload != sceneName) {
+            if (SceneManager.GetSceneByName(sceneToUnload).isLoaded)
+                SceneManager.UnloadSceneAsync(sceneToUnload);
+        }
+
+        currentSceneName = sceneName;
+        OnSceneLoadedCallback?.Invoke();
+        Panel.SetActive(false);
+        resetOnDone();
     }
 
     public void unloadScene(string sceneName)
     {
-        if (SceneManager.GetSceneByName(sceneName).isLoaded) {
+        if (SceneManager.GetSceneByName(sceneName).isLoaded)
             SceneManager.UnloadSceneAsync(sceneName);
-        }
     }
 
     private void resetOnDone()
     {
         _progressBar.fillAmount = 0f;
-        _isPausedAt50Percent = false;
-        _fakeProgress = 0f;
+        _percentText.text = "";
     }
 
     private void Reset()

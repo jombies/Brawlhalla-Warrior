@@ -6,6 +6,7 @@ public abstract class Item : ScriptableObject
     public string Name = "new Item";
     public Sprite Icon = null;
     public bool DefaultItem = false;
+    public string description = "No description";
 
     public abstract void Use();
 

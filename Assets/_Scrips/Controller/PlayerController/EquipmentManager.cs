@@ -1,5 +1,6 @@
+using System.Collections;
 using UnityEngine;
-using UnityEngine.Rendering;
+using UnityEngine.SceneManagement;
 
 public class EquipmentManager : MonoBehaviour
 {
@@ -7,7 +8,13 @@ public class EquipmentManager : MonoBehaviour
     public static EquipmentManager Instance;
     private void Awake()
     {
+        if (Instance != null && Instance != this) {
+            Destroy(this.gameObject);
+            return;
+        }
+
         Instance = this;
+        DontDestroyOnLoad(this.gameObject);
     }
     #endregion
     [SerializeField] ChangeWeapon _changeWeapon;
@@ -26,30 +33,42 @@ public class EquipmentManager : MonoBehaviour
         _currentEquipment = new Equipment[numSlot];
         //LoadEquip();
     }
-    //void LoadEquip()
-    //{
-    //    _changeWeapon = FindAnyObjectByType<ChangeWeapon>();
-    //    _changeArmor = FindAnyObjectByType<ChangeArmor>();
-    //    _changeHelmet = FindAnyObjectByType<ChangeHelmet>();
-    //}
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        StartCoroutine(LoadEquip());
+    }
+    IEnumerator LoadEquip()
+    {
+        yield return new WaitForSeconds(0.5f); // Wait for the scene to load completely
+        _changeWeapon = GameObject.FindWithTag(tag: "Change weapon").GetComponent<ChangeWeapon>();
+        _changeArmor = GameObject.FindWithTag(tag: "Change armor").GetComponent<ChangeArmor>();
+        _changeHelmet = GameObject.FindWithTag(tag: "Change helmet").GetComponent<ChangeHelmet>();
+    }
     public void Equip(Equipment newItem)
     {
         int slotIndex = (int)newItem.EquipSlot;
         Equipment oldItem = null;
 
-        if (_currentEquipment[slotIndex] != null)
-        {
+        if (_currentEquipment[slotIndex] != null) {
             oldItem = _currentEquipment[slotIndex];
             _inventory.Add(oldItem);
         }
-        if (onEquipchanged != null)
-        {
+        if (onEquipchanged != null) {
             onEquipchanged.Invoke(newItem, oldItem);
         }
 
         _currentEquipment[slotIndex] = newItem;
-        switch (slotIndex)
-        {
+        switch (slotIndex) {
             case 0:
                 _changeHelmet.changeHelmet(newItem.name);
                 break;
@@ -68,8 +87,8 @@ public class EquipmentManager : MonoBehaviour
         PlayerReferences.Instance.Player.GetComponent<PlayerStat>().Healing(s.HP);
     }
 
-    public void Method()
+    private void Reset()
     {
-        throw new System.NotImplementedException();
+        LoadEquip();
     }
 }

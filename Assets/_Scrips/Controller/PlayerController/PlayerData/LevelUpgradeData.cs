@@ -22,7 +22,7 @@ public class LevelUpgradeData : ScriptableObject
                 return stats;
         }
 
-        Debug.LogError("Không tìm thấy nâng cấp cho cấp độ: " + level);
+        Debug.Log("Không tìm thấy nâng cấp cho cấp độ: " + level);
         return null;
     }
 }

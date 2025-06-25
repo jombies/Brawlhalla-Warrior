@@ -111,7 +111,7 @@ public class AudioManager : MonoBehaviour
     // -----------------------------------
     // Music Methods with Fade
     // -----------------------------------
-    public void PlayMusic(string name, float fadeDuration = 1f)
+    public void PlayMusic(string name, float fadeDuration = 0.5f)
     {
         if (!allSounds.ContainsKey(name)) return;
 

@@ -78,7 +78,7 @@ public class EnemySpawns : MonoBehaviour
             Debug.LogError("Chưa gán prefab quái vào danh sách!");
             return;
         }//GameObject newEnemy = Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)], SpawnPos);
-        Vector3 randomPos = SpawnPos.position + new Vector3(Random.Range(-13f, 13f), 0, Random.Range(-12f, 12f));
+        Vector3 randomPos = SpawnPos.position + new Vector3(Random.Range(-10f, 10f), 0, Random.Range(-10f, 10f));
         GameObject newEnemy = ObjectPoolManager.Instance.Spawn(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)], randomPos);
 
         // Gán sự kiện xử lý khi quái chết
@@ -100,5 +100,6 @@ public class EnemySpawns : MonoBehaviour
     void HandleMonsterDeath()
     {
         AliveMonster--;
+        GameSummaryManager.Instance.AddEnemyKill();
     }
 }

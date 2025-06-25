@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class SettingUI : MonoBehaviour
 {
     public static SettingUI Instance { get; private set; }
-    [SerializeField] private Transform settingPanel;
+    [SerializeField] public Transform settingPanel;
     [SerializeField] private Button btnClose;
     [SerializeField] private Slider masterVolSlider;
     [SerializeField] private Slider MusicVolSlider;

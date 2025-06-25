@@ -337,7 +337,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce1cb6b2ecbdb924e99f10decfab080d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Camera: {fileID: 0}
 --- !u!1 &1048911815607292808
 GameObject:
   m_ObjectHideFlags: 0
@@ -1880,14 +1879,14 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.44138163
+  m_Radius: 0.5
   m_Height: 1.4045603
   m_Direction: 1
-  m_Center: {x: 0, y: -0.20228018, z: 0.24416655}
+  m_Center: {x: 0, y: -0.20228018, z: 0.42}
 --- !u!1 &6206544396947751451
 GameObject:
   m_ObjectHideFlags: 0
@@ -2519,6 +2518,7 @@ MonoBehaviour:
     BaseValue: 3
   Armor:
     BaseValue: 0
+  isDead: 0
   healthBar: {fileID: 0}
 --- !u!114 &3566396361962669669
 MonoBehaviour:
@@ -2559,7 +2559,6 @@ MonoBehaviour:
   speedRotate: 5
   _capsuleCollider: {fileID: 5478169201786622421}
   IsAttack: 0
-  IsDead: 0
 --- !u!114 &5960651038995027236
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ using UnityEngine;
 public class UpgradeManager : MonoBehaviour
 {
     public LevelUpgradeData upgradeData;
+    [SerializeField] UpgradePopup upgradePopup;
     private void Start()
     {
         this.RegisterListener(EventID.GetUpgradeData, OnGetUpgradeData);
@@ -13,13 +14,21 @@ public class UpgradeManager : MonoBehaviour
 
     private void UpdateUICost()
     {
-       var stat = upgradeData.GetStatsForLevel(PlayerDataManager.Load().level + 1);
-        this.PostEvent(EventID.UpgradeCostUpdate, stat.cost);
+        var stat = PlayerDataManager.Load();
+        if (stat.level == 6) {
+            Debug.Log("level is max");
+            return;
+        }
+        else {
+            var costText = upgradeData.GetStatsForLevel(PlayerDataManager.Load().level + 1);
+            this.PostEvent(EventID.UpgradeCostUpdate, costText.cost);
+        }
+
     }
 
     private void OnGetUpgradeData(object obj)
     {
-        Debug.LogError("Upgrade Data Loaded: " + upgradeData.name);
+        Debug.Log("Upgrade Data Loaded: " + upgradeData.name);
         UpgradePlayer(PlayerDataManager.Load());
     }
 
@@ -51,9 +60,10 @@ public class UpgradeManager : MonoBehaviour
         }
         var stats1 = upgradeData.GetStatsForLevel(player.level + 1);
         this.PostEvent(EventID.UpgradeCostUpdate, stats1.cost);
+        upgradePopup.ShowPopup();
     }
-    //private void OnDestroy()
-    //{
-    //    this.RemoveListener(EventID.GetUpgradeData, OnGetUpgradeData);
-    //}
+    private void OnDestroy()
+    {
+        this.RemoveListener(EventID.GetUpgradeData, OnGetUpgradeData);
+    }
 }

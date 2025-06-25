@@ -603,7 +603,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6906195343235591601
 Transform:
   m_ObjectHideFlags: 0
@@ -749,9 +749,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   attacksExecuted: 0
-  timeBetweenAttacks: 2.5
+  timeBetweenAttacks: 5
   projectileCount: 10
-  projectilePrefab: {fileID: 5295586122231405360, guid: 76ff8ef44a10b794bb0f8ff177b9ca27, type: 3}
+  projectilePrefab: {fileID: 7493796544200936264, guid: 625a5893477f7b94da52aa0c2e1eb1d8, type: 3}
   skillCooldown: 50
   attackRange: 3.5
   sightRange: 20
@@ -784,7 +784,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyRenderer: {fileID: 0}
   flashColor: {r: 1, g: 1, b: 1, a: 1}
-  flashDuration: 0.5
+  flashDuration: 0.1
 --- !u!1 &2938944968145395709
 GameObject:
   m_ObjectHideFlags: 0
@@ -2271,11 +2271,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 833603667670493688, guid: 2f54aadfec552fe499366761fc8131ae, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 833603667670493688, guid: 2f54aadfec552fe499366761fc8131ae, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5441186140199430915, guid: 2f54aadfec552fe499366761fc8131ae, type: 3}
       propertyPath: m_Pivot.x

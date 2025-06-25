@@ -24,35 +24,27 @@ public class CharacterAnimation : MonoBehaviour
     }
     private void Update()
     {
-        if (TimeSinceAttack < 2) TimeSinceAttack += Time.deltaTime;
+        if (TimeSinceAttack < 1.5) TimeSinceAttack += Time.deltaTime;
 
         if (IsAttacking) return;
-        Attack();
         MovingAnimte();
     }
 
     void MovingAnimte()
     {
-        Vector3 direction = new Vector3(InputSingleton.instance.Direction.x, 0, InputSingleton.instance.Direction.z).normalized;
-        float MovementSpeed = Mathf.Clamp01(direction.magnitude) / 2;
+        Vector3 direction = InputSingleton.instance.Direction;
+        float inputMagnitude = direction.magnitude;
 
-        if (Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) {
-            MovementSpeed += MovementSpeed;
-        }
-        _animator.SetFloat(VelocityHash, MovementSpeed, 0.1f, Time.deltaTime);
-    }
-    void Attack()
-    {
-        if (Input.GetKeyDown(KeyCode.Mouse0) && TimeSinceAttack > .9f) {
-            if (TimeSinceAttack > 1.5f) CurrentAttack = 0;
-            PerformAttack();
-        }
-        if (Input.GetKeyDown(KeyCode.Mouse1)) {
-            _animator.SetTrigger(PowerHash);
-        }
-    }
+        bool isRunning = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+        float movementSpeed = 0f;
 
-    void PerformAttack()
+        if (inputMagnitude > 0.1f) {
+            movementSpeed = isRunning ? 1f : 0.5f;
+        }
+
+        _animator.SetFloat(VelocityHash, movementSpeed, 0.1f, Time.deltaTime);
+    }
+    public void DoAttack()
     {
         _aim.AimAndAttack();
 
@@ -61,6 +53,16 @@ public class CharacterAnimation : MonoBehaviour
 
         TimeSinceAttack = 0;
         AudioManager.Instance.PlaySFX("slash" + CurrentAttack);
+    }
+    public void DoPowerAttack()
+    {
+        _animator.SetTrigger(PowerHash);
+        AudioManager.Instance.PlaySFX("power_attack");
+    }
+
+    public void DoDash()
+    {
+        _animator.SetTrigger("Dash");
     }
     public void GetDie()
     {
