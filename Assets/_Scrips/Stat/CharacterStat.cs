@@ -4,8 +4,8 @@ public class CharacterStat : MonoBehaviour
 {
     [Header("Stat")]
     public int MaxHealth;
-    public Stat Damage;
-    public Stat Armor;
+    public StatEquip Damage;
+    public StatEquip Armor;
 
     //[Header("RumTime")]
     public int currentHealth { get; protected set; }

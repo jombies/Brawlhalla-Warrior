@@ -12,6 +12,7 @@ public class SettingUI : MonoBehaviour
     [SerializeField] private Slider masterVolSlider;
     [SerializeField] private Slider MusicVolSlider;
     [SerializeField] private Slider SfxVolSlider;
+    public bool isSetting = false;
     private void Awake()
     {
         if (Instance != null && Instance != this) {
@@ -55,6 +56,7 @@ public class SettingUI : MonoBehaviour
     public void ShowSettingPanel()
     {
         settingPanel.gameObject.SetActive(true);
+        isSetting = true;
     }
     private void OnChangeMasterVolume(float arg0)
     {
@@ -79,6 +81,7 @@ public class SettingUI : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX("btn1");
         settingPanel.gameObject.SetActive(false);
+        isSetting = false;
     }
 
     private void Reset()

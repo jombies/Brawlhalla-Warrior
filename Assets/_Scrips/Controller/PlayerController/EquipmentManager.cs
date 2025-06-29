@@ -29,8 +29,8 @@ public class EquipmentManager : MonoBehaviour
     private void Start()
     {
         _inventory = Inventory.Instance;
-        int numSlot = System.Enum.GetNames(typeof(EquipmentSlot)).Length;
-        _currentEquipment = new Equipment[numSlot];
+        int numType = System.Enum.GetNames(typeof(EquipmentType)).Length;
+        _currentEquipment = new Equipment[numType];
         //LoadEquip();
     }
     private void OnEnable()
@@ -56,19 +56,19 @@ public class EquipmentManager : MonoBehaviour
     }
     public void Equip(Equipment newItem)
     {
-        int slotIndex = (int)newItem.EquipSlot;
+        int EquipIndex = (int)newItem.EquipType;
         Equipment oldItem = null;
 
-        if (_currentEquipment[slotIndex] != null) {
-            oldItem = _currentEquipment[slotIndex];
+        if (_currentEquipment[EquipIndex] != null) {
+            oldItem = _currentEquipment[EquipIndex];
             _inventory.Add(oldItem);
         }
         if (onEquipchanged != null) {
             onEquipchanged.Invoke(newItem, oldItem);
         }
 
-        _currentEquipment[slotIndex] = newItem;
-        switch (slotIndex) {
+        _currentEquipment[EquipIndex] = newItem;
+        switch (EquipIndex) {
             case 0:
                 _changeHelmet.changeHelmet(newItem.name);
                 break;

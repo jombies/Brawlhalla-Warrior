@@ -1,32 +1,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 [System.Serializable]
-public class Stat
+public class StatEquip
 {
     public int BaseValue;
 
-    private List<int> _modifiers = new List<int>();
+    private List<int> _equipment = new List<int>();
 
     public int Value => CalculateFinalValue();
 
-    public void AddModifier(int value)
+    public void AddEquip(int value)
     {
         if (value != 0) {
-            _modifiers.Add(value);
+            _equipment.Add(value);
         }
         //TotalValue();
     }
-    public void RemoveModifier(int value)
+    public void RemoveEquip(int value)
     {
         if (value != 0) {
-            _modifiers.Remove(value);
+            _equipment.Remove(value);
         }
         //totalValue();
     }
     public void TotalValue()
     {
         int newValue = 0;
-        foreach (int modifier in _modifiers) {
+        foreach (int modifier in _equipment) {
             newValue = modifier;
         }
         BaseValue = +newValue;
@@ -34,7 +34,7 @@ public class Stat
     private int CalculateFinalValue()
     {
         int finalValue = BaseValue;
-        foreach (int mod in _modifiers) {
+        foreach (int mod in _equipment) {
             finalValue += mod;
         }
         return finalValue;

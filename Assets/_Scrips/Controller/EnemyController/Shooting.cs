@@ -35,7 +35,9 @@ public class Shooting : MonoBehaviour
         if (enemyController.EnemyStats.isDead) return;
         UpdateAnimatorSpeed();
 
-        if (!Fov.canSeePlayer) {
+        bool playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, LayerMask.GetMask("Player"));
+
+        if (!Fov.canSeePlayer && !playerInAttackRange) {
             PatrolPlayer();
         }
         else {
@@ -53,8 +55,8 @@ public class Shooting : MonoBehaviour
         Agent.stoppingDistance = 0;
         if (Agent.remainingDistance <= Agent.stoppingDistance) {
             if (RandomPoint(this.transform.position, Fov.radius, out Vector3 point)) {
-
                 Agent.SetDestination(point);
+
             }
         }
     }
@@ -113,5 +115,9 @@ public class Shooting : MonoBehaviour
     void ResetAttack()
     {
         alreadyAttacked = false;
+    }
+    float GetDistanceToPlayer()
+    {
+        return Vector3.Distance(enemyController.Target.transform.position, transform.position);
     }
 }

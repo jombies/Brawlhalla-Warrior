@@ -18,11 +18,13 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] TextMeshProUGUI CoinText;
     [SerializeField] TextMeshProUGUI _textCoin;
 
+    GamePlayUI _gamePlayUI;
 
     // Start is called before the first frame update
     void Start()
     {
-        //Inventory.Instance.OnItemChangedCallBack += UpdateUi;
+        Inventory.Instance.OnItemChangedCallBack += UpdateUi;
+        _gamePlayUI = GetComponent<GamePlayUI>();
         _slots = ItemParrent.GetComponentsInChildren<InventorySlot>();
         _invetoryui.SetActive(false);
         _ivenBtn.onClick.AddListener(() => _invetoryui.SetActive(!_invetoryui.activeSelf));
@@ -42,7 +44,8 @@ public class InventoryUI : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Tab)) {
+        if (Input.GetKeyDown(KeyCode.Tab) && !_gamePlayUI.isPause) {
+            if (GameManager.Instance.victoryPopup.activeSelf || GameManager.Instance.defeatPopup.activeSelf) return;
             _invetoryui.SetActive(!_invetoryui.activeSelf);
             Time.timeScale = _invetoryui.activeSelf ? 0 : 1;
             UpdateInfo(PlayerDataManager.Load());

@@ -1,120 +1,93 @@
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 
 public class EnemyShotting : MonoBehaviour
 {
     EnemyController controller;
-    //Damage pop up
-    public LayerMask IsPlayer, IsGround;
-    [SerializeField] GameObject BulletPrefab;
-    //patrol
-    bool UnderGround = true;
-    int pointIndex;
-    float Pdistance;
-    [SerializeField] Transform pointHolder;
-    [SerializeField] List<Transform> points = new();
 
-    //attack
-    public float timeBetweenAttacks;
-    bool alreadyAttacked;
-    int attackCount = 0;
+    [Header("Bắn đạn")]
+    [SerializeField] GameObject BulletPrefab;
     [SerializeField] GameObject FirePoint;
 
-    //State
-    public float attackRange, sightRange;
-    bool playerInSight, playerInAttack;
+    [Header("Player Detection")]
+    public LayerMask IsPlayer;
+    public float attackRange;
+    public float sightRange;
 
-    // Start is called before the first frame update
+    [Header("Tấn công")]
+    public float timeBetweenAttacks = 2f;
+    bool alreadyAttacked = false;
+
+    // Trạng thái
+    bool playerInSight;
+    bool playerInAttack;
+    bool isUnderground = true;
+
     void Start()
     {
         controller = transform.parent.GetComponent<EnemyController>();
-        LoadPoints();
     }
 
-    private void LoadPoints()
-    {
-        foreach (Transform point in pointHolder) {
-            points.Add(point);
-        }
-    }
     void Update()
     {
         if (controller.EnemyStats.isDead) return;
-        playerInAttack = Physics.CheckSphere(transform.position, attackRange, IsPlayer);
-        playerInSight = Physics.CheckSphere(transform.position, sightRange, IsPlayer);
 
-        if (!playerInSight && !playerInAttack) PatrolPlayer();
-        if (playerInSight && !playerInAttack) ChasePlayer();
-        if (playerInSight && playerInAttack) Attack();
-    }
-    private void FixedUpdate()
-    {
-        NextMove();
-    }
-    void PatrolPlayer()
-    {
-        UnderGround = true;
-        // controller._capsuleCollider.enabled = false;
-        controller._canvas.gameObject.SetActive(false);
-        controller.Animator.Play("GroundDiveIn");
-        attackCount = 0;
-    }
-    void ChasePlayer()
-    {
-        controller.FaceTarget();
-        if (UnderGround) {
-            controller.Animator.Play("GroundBreakThrough");
-            //controller._capsuleCollider.enabled = true;
-            controller._canvas.gameObject.SetActive(true);
-            UnderGround = false;
+        // Kiểm tra vùng nhìn thấy và tấn công
+        playerInSight = Physics.CheckSphere(transform.position, sightRange, IsPlayer);
+        playerInAttack = Physics.CheckSphere(transform.position, attackRange, IsPlayer);
+
+        if (playerInSight) {
+            RiseFromGround(); // nổi lên nếu thấy người chơi
+
+            if (playerInAttack) {
+                Attack(); // bắn nếu đủ gần
+            }
+        }
+        else {
+            DiveIntoGround(); // không thấy player thì lặn xuống
+        }
+        if (playerInSight && !isUnderground) {
+            controller.FaceTarget();
         }
     }
+
+    void RiseFromGround()
+    {
+        if (isUnderground) {
+            controller.Animator.Play("GroundBreakThrough"); // animation trồi lên
+            controller._canvas.gameObject.SetActive(true);  // hiện UI máu nếu có
+            isUnderground = false;
+        }
+    }
+
+    void DiveIntoGround()
+    {
+        if (!isUnderground) {
+            controller.Animator.Play("GroundDiveIn"); // animation lặn xuống
+            controller._canvas.gameObject.SetActive(false); // ẩn UI máu nếu có
+            isUnderground = true;
+        }
+    }
+
     void Attack()
     {
-        if (UnderGround) return;
-        controller.FaceTarget();
-        if (!alreadyAttacked) {
-            controller.Animator.SetTrigger("attack");
-            GameObject newBullet = Instantiate(BulletPrefab, FirePoint.transform.position, FirePoint.transform.rotation);
-            newBullet.GetComponent<bulletMove>().damage = controller.EnemyStats.Damage.Value;
-            alreadyAttacked = true;
-            attackCount++;
-            Invoke(nameof(ResetAttack), timeBetweenAttacks);
-        }
-        if (attackCount == 6) {
-            SearchWalkPoint();
-        }
-    }
-    private void SearchWalkPoint()
-    {
-        controller.Animator.Play("GroundDiveIn");
-        controller._canvas.gameObject.SetActive(false);
-        StartCoroutine(GotoNextPoint());
-        //  transform.position = Vector3.Lerp(transform.position, currPoint.position, 0.5f);
+        if (isUnderground || alreadyAttacked) return;
 
+        controller.FaceTarget();
+        controller.Animator.SetTrigger("attack");
+
+        GameObject newBullet = Instantiate(BulletPrefab, FirePoint.transform.position, FirePoint.transform.rotation);
+        newBullet.GetComponent<bulletMove>().damage = controller.EnemyStats.Damage.Value;
+
+        alreadyAttacked = true;
+        Invoke(nameof(ResetAttack), timeBetweenAttacks);
     }
+
     void ResetAttack()
     {
         alreadyAttacked = false;
     }
-    void NextMove()
-    {
-        Pdistance = Vector3.Distance(transform.position, CurrentPoint().position);
-        if (Pdistance <= 0) pointIndex++;
-        if (pointIndex > points.Count) pointIndex = 0;
-    }
-    Transform CurrentPoint()
-    {
-        return points[pointIndex];
-    }
-    IEnumerator GotoNextPoint()
-    {
-        yield return new WaitForSeconds(1);
-        Transform currPoint = CurrentPoint();
-        transform.parent.position = Vector3.MoveTowards(transform.parent.position, currPoint.position, 10 * Time.deltaTime);
 
-    }
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

@@ -1,188 +1,517 @@
 fileFormatVersion: 2
 guid: f39817b28422bbb448c2463395dea790
-timeCreated: 1542013855
-licenseType: Store
 ModelImporter:
-  serializedVersion: 21
-  fileIDToRecycleName:
-    100000: 01 Head 01
-    100002: 02 Torso 01
-    100004: 03 Bottom 01
-    100006: 04 Feet 02
-    100008: 05 Hand 01
-    100010: //RootNode
-    100012: Rig
-    100014: RigHead
-    100016: RigHeadBone001
-    100018: RigLCalf
-    100020: RigLCollarbone
-    100022: RigLFinger11
-    100024: RigLFinger12
-    100026: RigLFinger13
-    100028: RigLFinger14
-    100030: RigLFinger21
-    100032: RigLFinger22
-    100034: RigLFinger23
-    100036: RigLFinger24
-    100038: RigLFinger31
-    100040: RigLFinger32
-    100042: RigLFinger33
-    100044: RigLFinger34
-    100046: RigLFinger41
-    100048: RigLFinger42
-    100050: RigLFinger43
-    100052: RigLFinger44
-    100054: RigLFinger51
-    100056: RigLFinger52
-    100058: RigLFinger53
-    100060: RigLFinger54
-    100062: RigLFoot
-    100064: RigLForearm
-    100066: RigLPalm
-    100068: RigLPlatform
-    100070: RigLThigh
-    100072: RigLToes1
-    100074: RigLToes2
-    100076: RigLUpperarm
-    100078: RigNeck
-    100080: RigPelvis
-    100082: RigRCalf
-    100084: RigRCollarbone
-    100086: RigRFinger11
-    100088: RigRFinger12
-    100090: RigRFinger13
-    100092: RigRFinger14
-    100094: RigRFinger21
-    100096: RigRFinger22
-    100098: RigRFinger23
-    100100: RigRFinger24
-    100102: RigRFinger31
-    100104: RigRFinger32
-    100106: RigRFinger33
-    100108: RigRFinger34
-    100110: RigRFinger41
-    100112: RigRFinger42
-    100114: RigRFinger43
-    100116: RigRFinger44
-    100118: RigRFinger51
-    100120: RigRFinger52
-    100122: RigRFinger53
-    100124: RigRFinger54
-    100126: RigRFoot
-    100128: RigRForearm
-    100130: RigRibcage
-    100132: RigRPalm
-    100134: RigRPlatform
-    100136: RigRThigh
-    100138: RigRToes1
-    100140: RigRToes2
-    100142: RigRUpperarm
-    100144: RigSpine1
-    100146: RigSpine2
-    100148: RigSpine3
-    400000: 01 Head 01
-    400002: 02 Torso 01
-    400004: 03 Bottom 01
-    400006: 04 Feet 02
-    400008: 05 Hand 01
-    400010: //RootNode
-    400012: Rig
-    400014: RigHead
-    400016: RigHeadBone001
-    400018: RigLCalf
-    400020: RigLCollarbone
-    400022: RigLFinger11
-    400024: RigLFinger12
-    400026: RigLFinger13
-    400028: RigLFinger14
-    400030: RigLFinger21
-    400032: RigLFinger22
-    400034: RigLFinger23
-    400036: RigLFinger24
-    400038: RigLFinger31
-    400040: RigLFinger32
-    400042: RigLFinger33
-    400044: RigLFinger34
-    400046: RigLFinger41
-    400048: RigLFinger42
-    400050: RigLFinger43
-    400052: RigLFinger44
-    400054: RigLFinger51
-    400056: RigLFinger52
-    400058: RigLFinger53
-    400060: RigLFinger54
-    400062: RigLFoot
-    400064: RigLForearm
-    400066: RigLPalm
-    400068: RigLPlatform
-    400070: RigLThigh
-    400072: RigLToes1
-    400074: RigLToes2
-    400076: RigLUpperarm
-    400078: RigNeck
-    400080: RigPelvis
-    400082: RigRCalf
-    400084: RigRCollarbone
-    400086: RigRFinger11
-    400088: RigRFinger12
-    400090: RigRFinger13
-    400092: RigRFinger14
-    400094: RigRFinger21
-    400096: RigRFinger22
-    400098: RigRFinger23
-    400100: RigRFinger24
-    400102: RigRFinger31
-    400104: RigRFinger32
-    400106: RigRFinger33
-    400108: RigRFinger34
-    400110: RigRFinger41
-    400112: RigRFinger42
-    400114: RigRFinger43
-    400116: RigRFinger44
-    400118: RigRFinger51
-    400120: RigRFinger52
-    400122: RigRFinger53
-    400124: RigRFinger54
-    400126: RigRFoot
-    400128: RigRForearm
-    400130: RigRibcage
-    400132: RigRPalm
-    400134: RigRPlatform
-    400136: RigRThigh
-    400138: RigRToes1
-    400140: RigRToes2
-    400142: RigRUpperarm
-    400144: RigSpine1
-    400146: RigSpine2
-    400148: RigSpine3
-    4300000: 01 Head 01
-    4300002: 02 Torso 01
-    4300004: 03 Bottom 01
-    4300006: 05 Hand 01
-    4300008: 04 Feet 02
-    7400000: Take 001
-    9500000: //RootNode
-    13700000: 01 Head 01
-    13700002: 02 Torso 01
-    13700004: 03 Bottom 01
-    13700006: 04 Feet 02
-    13700008: 05 Hand 01
+  serializedVersion: 22200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: 01 Head 01
+  - first:
+      1: 100002
+    second: 02 Torso 01
+  - first:
+      1: 100004
+    second: 03 Bottom 01
+  - first:
+      1: 100006
+    second: 04 Feet 02
+  - first:
+      1: 100008
+    second: 05 Hand 01
+  - first:
+      1: 100010
+    second: //RootNode
+  - first:
+      1: 100012
+    second: Rig
+  - first:
+      1: 100014
+    second: RigHead
+  - first:
+      1: 100016
+    second: RigHeadBone001
+  - first:
+      1: 100018
+    second: RigLCalf
+  - first:
+      1: 100020
+    second: RigLCollarbone
+  - first:
+      1: 100022
+    second: RigLFinger11
+  - first:
+      1: 100024
+    second: RigLFinger12
+  - first:
+      1: 100026
+    second: RigLFinger13
+  - first:
+      1: 100028
+    second: RigLFinger14
+  - first:
+      1: 100030
+    second: RigLFinger21
+  - first:
+      1: 100032
+    second: RigLFinger22
+  - first:
+      1: 100034
+    second: RigLFinger23
+  - first:
+      1: 100036
+    second: RigLFinger24
+  - first:
+      1: 100038
+    second: RigLFinger31
+  - first:
+      1: 100040
+    second: RigLFinger32
+  - first:
+      1: 100042
+    second: RigLFinger33
+  - first:
+      1: 100044
+    second: RigLFinger34
+  - first:
+      1: 100046
+    second: RigLFinger41
+  - first:
+      1: 100048
+    second: RigLFinger42
+  - first:
+      1: 100050
+    second: RigLFinger43
+  - first:
+      1: 100052
+    second: RigLFinger44
+  - first:
+      1: 100054
+    second: RigLFinger51
+  - first:
+      1: 100056
+    second: RigLFinger52
+  - first:
+      1: 100058
+    second: RigLFinger53
+  - first:
+      1: 100060
+    second: RigLFinger54
+  - first:
+      1: 100062
+    second: RigLFoot
+  - first:
+      1: 100064
+    second: RigLForearm
+  - first:
+      1: 100066
+    second: RigLPalm
+  - first:
+      1: 100068
+    second: RigLPlatform
+  - first:
+      1: 100070
+    second: RigLThigh
+  - first:
+      1: 100072
+    second: RigLToes1
+  - first:
+      1: 100074
+    second: RigLToes2
+  - first:
+      1: 100076
+    second: RigLUpperarm
+  - first:
+      1: 100078
+    second: RigNeck
+  - first:
+      1: 100080
+    second: RigPelvis
+  - first:
+      1: 100082
+    second: RigRCalf
+  - first:
+      1: 100084
+    second: RigRCollarbone
+  - first:
+      1: 100086
+    second: RigRFinger11
+  - first:
+      1: 100088
+    second: RigRFinger12
+  - first:
+      1: 100090
+    second: RigRFinger13
+  - first:
+      1: 100092
+    second: RigRFinger14
+  - first:
+      1: 100094
+    second: RigRFinger21
+  - first:
+      1: 100096
+    second: RigRFinger22
+  - first:
+      1: 100098
+    second: RigRFinger23
+  - first:
+      1: 100100
+    second: RigRFinger24
+  - first:
+      1: 100102
+    second: RigRFinger31
+  - first:
+      1: 100104
+    second: RigRFinger32
+  - first:
+      1: 100106
+    second: RigRFinger33
+  - first:
+      1: 100108
+    second: RigRFinger34
+  - first:
+      1: 100110
+    second: RigRFinger41
+  - first:
+      1: 100112
+    second: RigRFinger42
+  - first:
+      1: 100114
+    second: RigRFinger43
+  - first:
+      1: 100116
+    second: RigRFinger44
+  - first:
+      1: 100118
+    second: RigRFinger51
+  - first:
+      1: 100120
+    second: RigRFinger52
+  - first:
+      1: 100122
+    second: RigRFinger53
+  - first:
+      1: 100124
+    second: RigRFinger54
+  - first:
+      1: 100126
+    second: RigRFoot
+  - first:
+      1: 100128
+    second: RigRForearm
+  - first:
+      1: 100130
+    second: RigRibcage
+  - first:
+      1: 100132
+    second: RigRPalm
+  - first:
+      1: 100134
+    second: RigRPlatform
+  - first:
+      1: 100136
+    second: RigRThigh
+  - first:
+      1: 100138
+    second: RigRToes1
+  - first:
+      1: 100140
+    second: RigRToes2
+  - first:
+      1: 100142
+    second: RigRUpperarm
+  - first:
+      1: 100144
+    second: RigSpine1
+  - first:
+      1: 100146
+    second: RigSpine2
+  - first:
+      1: 100148
+    second: RigSpine3
+  - first:
+      4: 400000
+    second: 01 Head 01
+  - first:
+      4: 400002
+    second: 02 Torso 01
+  - first:
+      4: 400004
+    second: 03 Bottom 01
+  - first:
+      4: 400006
+    second: 04 Feet 02
+  - first:
+      4: 400008
+    second: 05 Hand 01
+  - first:
+      4: 400010
+    second: //RootNode
+  - first:
+      4: 400012
+    second: Rig
+  - first:
+      4: 400014
+    second: RigHead
+  - first:
+      4: 400016
+    second: RigHeadBone001
+  - first:
+      4: 400018
+    second: RigLCalf
+  - first:
+      4: 400020
+    second: RigLCollarbone
+  - first:
+      4: 400022
+    second: RigLFinger11
+  - first:
+      4: 400024
+    second: RigLFinger12
+  - first:
+      4: 400026
+    second: RigLFinger13
+  - first:
+      4: 400028
+    second: RigLFinger14
+  - first:
+      4: 400030
+    second: RigLFinger21
+  - first:
+      4: 400032
+    second: RigLFinger22
+  - first:
+      4: 400034
+    second: RigLFinger23
+  - first:
+      4: 400036
+    second: RigLFinger24
+  - first:
+      4: 400038
+    second: RigLFinger31
+  - first:
+      4: 400040
+    second: RigLFinger32
+  - first:
+      4: 400042
+    second: RigLFinger33
+  - first:
+      4: 400044
+    second: RigLFinger34
+  - first:
+      4: 400046
+    second: RigLFinger41
+  - first:
+      4: 400048
+    second: RigLFinger42
+  - first:
+      4: 400050
+    second: RigLFinger43
+  - first:
+      4: 400052
+    second: RigLFinger44
+  - first:
+      4: 400054
+    second: RigLFinger51
+  - first:
+      4: 400056
+    second: RigLFinger52
+  - first:
+      4: 400058
+    second: RigLFinger53
+  - first:
+      4: 400060
+    second: RigLFinger54
+  - first:
+      4: 400062
+    second: RigLFoot
+  - first:
+      4: 400064
+    second: RigLForearm
+  - first:
+      4: 400066
+    second: RigLPalm
+  - first:
+      4: 400068
+    second: RigLPlatform
+  - first:
+      4: 400070
+    second: RigLThigh
+  - first:
+      4: 400072
+    second: RigLToes1
+  - first:
+      4: 400074
+    second: RigLToes2
+  - first:
+      4: 400076
+    second: RigLUpperarm
+  - first:
+      4: 400078
+    second: RigNeck
+  - first:
+      4: 400080
+    second: RigPelvis
+  - first:
+      4: 400082
+    second: RigRCalf
+  - first:
+      4: 400084
+    second: RigRCollarbone
+  - first:
+      4: 400086
+    second: RigRFinger11
+  - first:
+      4: 400088
+    second: RigRFinger12
+  - first:
+      4: 400090
+    second: RigRFinger13
+  - first:
+      4: 400092
+    second: RigRFinger14
+  - first:
+      4: 400094
+    second: RigRFinger21
+  - first:
+      4: 400096
+    second: RigRFinger22
+  - first:
+      4: 400098
+    second: RigRFinger23
+  - first:
+      4: 400100
+    second: RigRFinger24
+  - first:
+      4: 400102
+    second: RigRFinger31
+  - first:
+      4: 400104
+    second: RigRFinger32
+  - first:
+      4: 400106
+    second: RigRFinger33
+  - first:
+      4: 400108
+    second: RigRFinger34
+  - first:
+      4: 400110
+    second: RigRFinger41
+  - first:
+      4: 400112
+    second: RigRFinger42
+  - first:
+      4: 400114
+    second: RigRFinger43
+  - first:
+      4: 400116
+    second: RigRFinger44
+  - first:
+      4: 400118
+    second: RigRFinger51
+  - first:
+      4: 400120
+    second: RigRFinger52
+  - first:
+      4: 400122
+    second: RigRFinger53
+  - first:
+      4: 400124
+    second: RigRFinger54
+  - first:
+      4: 400126
+    second: RigRFoot
+  - first:
+      4: 400128
+    second: RigRForearm
+  - first:
+      4: 400130
+    second: RigRibcage
+  - first:
+      4: 400132
+    second: RigRPalm
+  - first:
+      4: 400134
+    second: RigRPlatform
+  - first:
+      4: 400136
+    second: RigRThigh
+  - first:
+      4: 400138
+    second: RigRToes1
+  - first:
+      4: 400140
+    second: RigRToes2
+  - first:
+      4: 400142
+    second: RigRUpperarm
+  - first:
+      4: 400144
+    second: RigSpine1
+  - first:
+      4: 400146
+    second: RigSpine2
+  - first:
+      4: 400148
+    second: RigSpine3
+  - first:
+      43: 4300000
+    second: 01 Head 01
+  - first:
+      43: 4300002
+    second: 02 Torso 01
+  - first:
+      43: 4300004
+    second: 03 Bottom 01
+  - first:
+      43: 4300006
+    second: 05 Hand 01
+  - first:
+      43: 4300008
+    second: 04 Feet 02
+  - first:
+      74: 7400000
+    second: Take 001
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: 01 Head 01
+  - first:
+      137: 13700002
+    second: 02 Torso 01
+  - first:
+      137: 13700004
+    second: 03 Bottom 01
+  - first:
+      137: 13700006
+    second: 04 Feet 02
+  - first:
+      137: 13700008
+    second: 05 Hand 01
+  externalObjects: {}
   materials:
-    importMaterials: 0
+    materialImportMode: 0
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: 
     rigImportErrors: 
-    rigImportWarnings: 
+    rigImportWarnings: "Copied Avatar Rig Configuration mis-match. Inbetween bone
+      rotation in copied configuration does not match rotation in animation file:\n\t'RigRibcage'
+      : rotation error = 0.961264 deg\n"
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -197,30 +526,49 @@ ModelImporter:
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 0
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    nodeNameCollisionStrategy: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 1
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human:
     - boneName: RigPelvis
       humanName: Hips
@@ -947,8 +1295,7 @@ ModelImporter:
     - name: RigHeadBone001
       parentName: RigHead
       position: {x: -0.33518615, y: 0.11634362, z: 0.00000006018072}
-      rotation: {x: -0.000000119070336, y: 0.000000005753903, z: -0.00000004470347,
-        w: 1}
+      rotation: {x: -0.000000119070336, y: 0.000000005753903, z: -0.00000004470347, w: 1}
       scale: {x: 1.0000004, y: 0.9999999, z: 1.0000001}
     - name: RigRCollarbone
       parentName: RigRibcage
@@ -1082,15 +1429,19 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 4c1aaf79324fca041b5e7baa1edf6f10,
-    type: 3}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 4c1aaf79324fca041b5e7baa1edf6f10, type: 3}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1
+  avatarSetup: 2
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  importBlendShapeDeformPercent: 0
+  remapMaterialsIfMaterialImportModeIsNone: 1
   additionalBone: 0
   userData: 
   assetBundleName: 

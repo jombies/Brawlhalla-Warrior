@@ -605,8 +605,8 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.4
-  m_Height: 1.5
+  m_Radius: 0.5
+  m_Height: 1.87
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2463703305640563146
@@ -1440,7 +1440,7 @@ MonoBehaviour:
     m_Bits: 512
   attackRange: 2.2
   sightRange: 5
-  timeBetweenAttacks: 2.5
+  timeBetweenAttacks: 3.8
 --- !u!114 &7899769978418429011
 MonoBehaviour:
   m_ObjectHideFlags: 0

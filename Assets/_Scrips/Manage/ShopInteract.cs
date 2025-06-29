@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class ShopInteract : MonoBehaviour
@@ -40,6 +36,7 @@ public class ShopInteract : MonoBehaviour
                 Inventory.Instance.coin -= price;
                 Vector3 spawnPos = transform.position + new Vector3(xOffset, 0, 0);
                 Instantiate(shopItem, spawnPos, Quaternion.identity);
+                AudioManager.Instance.PlaySFX("btnlvl");
                 this.PostEvent(EventID.OnCoinCollected, Inventory.Instance.coin);
                 gameObject.SetActive(false);
             }

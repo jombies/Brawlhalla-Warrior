@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1080279615527587315}
   - component: {fileID: 1238385384780181490}
   - component: {fileID: 5819233755296593968}
+  - component: {fileID: 4323913713150192541}
   m_Layer: 0
   m_Name: DamageFloat
   m_TagString: Untagged
@@ -36,8 +37,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.03115, y: 3.76324}
-  m_SizeDelta: {x: 26.22971, y: 12.35285}
+  m_AnchoredPosition: {x: 0.2365, y: 3.864}
+  m_SizeDelta: {x: 67.3075, y: 32.5142}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7464380407807780511
 MonoBehaviour:
@@ -162,8 +163,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 250
-  m_fontSizeBase: 250
+  m_fontSize: 280
+  m_fontSizeBase: 280
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -198,7 +199,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: -11.916734, z: -32.112118, w: 0}
+  m_margin: {x: 0, y: -0.2749443, z: 0.34221077, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   _SortingLayer: 0
@@ -207,3 +208,15 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 1238385384780181490}
   m_maskType: 0
+--- !u!114 &4323913713150192541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1777670533413786944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce1cb6b2ecbdb924e99f10decfab080d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

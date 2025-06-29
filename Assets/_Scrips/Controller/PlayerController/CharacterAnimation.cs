@@ -6,7 +6,6 @@ public class CharacterAnimation : MonoBehaviour
     Animator _animator;
     AutoAimForPlayer _aim;
     public bool IsAttacking;
-    public float TimeSinceAttack;
     public int CurrentAttack;
 
     private static readonly int VelocityHash = Animator.StringToHash("Velocity");
@@ -24,8 +23,6 @@ public class CharacterAnimation : MonoBehaviour
     }
     private void Update()
     {
-        if (TimeSinceAttack < 1.5) TimeSinceAttack += Time.deltaTime;
-
         if (IsAttacking) return;
         MovingAnimte();
     }
@@ -50,8 +47,6 @@ public class CharacterAnimation : MonoBehaviour
 
         CurrentAttack = (CurrentAttack % 3) + 1;
         _animator.SetTrigger(AttackHashes[CurrentAttack - 1]);
-
-        TimeSinceAttack = 0;
         AudioManager.Instance.PlaySFX("slash" + CurrentAttack);
     }
     public void DoPowerAttack()

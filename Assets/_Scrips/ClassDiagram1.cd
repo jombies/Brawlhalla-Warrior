@@ -1,14 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Stat">
-    <Position X="18.75" Y="0.75" Width="1.5" />
+  <Class Name="PlayerStat">
+    <Position X="1.25" Y="0.5" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AIAAIAABAAIAAAAAAAAABEAAAAAAAAAAAAAgAAAAAAA=</HashCode>
-      <FileName>Assets\_Scrips\Stat\Stat.cs</FileName>
+      <HashCode>AAAAACAAACAAABAiAAAAAAAQQAEAAAAIgEAAIAQwCAA=</HashCode>
+      <FileName>Assets\_Scrips\Stat\PlayerStat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CharacterStat">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAACBAgAAAAAAAAABAEAAAAEAAAgAAAAEA=</HashCode>
+      <FileName>Assets\_Scrips\Stat\CharacterStat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyController">
+    <Position X="15.25" Y="1.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Properties" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>gICgCBAAAiwAEYgCAgEAQCAQYAAAAEIAYCBAAAYAAAI=</HashCode>
+      <FileName>Assets\_Scrips\Controller\EnemyController\EnemyController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="PlayerController">
+    <Position X="3.75" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>CAQFAAAAASAAIAAAAAABAAAAAAAAQQAASAAQEAACIMA=</HashCode>
+      <FileName>Assets\_Scrips\Controller\PlayerController\PlayerController.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EnemyStats">
-    <Position X="11" Y="3.5" Width="1.5" />
+    <Position X="12.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AoAAAAAAACQAABGgAAAAAIAAAAAAAAAAAAgAAAAQAAA=</HashCode>
       <FileName>Assets\_Scrips\Stat\EnemyStats.cs</FileName>
@@ -17,51 +45,74 @@
       <Field Name="controller" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="PlayerStat">
-    <Position X="6.5" Y="3.25" Width="1.5" />
+  <Class Name="EnemyMelee">
+    <Position X="17.75" Y="1.75" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="EnemyMelee.EnemyState" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\_Scrips\Controller\EnemyController\EnemyMelee.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAAAACAAACAAABAgAAAAAAAAQAAAAAAAkEAAIAQgAAA=</HashCode>
-      <FileName>Assets\_Scrips\Stat\PlayerStat.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="Animator" />
-    </ShowAsAssociation>
-  </Class>
-  <Class Name="CharacterStat">
-    <Position X="8.75" Y="0.5" Width="1.5" />
-    <Compartments>
-      <Compartment Name="Properties" Collapsed="true" />
-      <Compartment Name="Methods" Collapsed="true" />
-    </Compartments>
-    <TypeIdentifier>
-      <HashCode>AAAAAACAAAAACBAgAAAAAAAAABAEAAAAEAAAgAAAAEA=</HashCode>
-      <FileName>Assets\_Scrips\Stat\CharacterStat.cs</FileName>
+      <HashCode>AgQAIAAAACAAAAEkJAEAASQAoEAAAAAQAEEAIBQAAAA=</HashCode>
+      <FileName>Assets\_Scrips\Controller\EnemyController\EnemyMelee.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="EnemyController">
-    <Position X="13.75" Y="3.5" Width="1.5" />
-    <Compartments>
-      <Compartment Name="Properties" Collapsed="true" />
-      <Compartment Name="Methods" Collapsed="true" />
-    </Compartments>
+  <Class Name="BossAI">
+    <Position X="20" Y="1.75" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="BossAI.BossState" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\_Scrips\Controller\EnemyController\BossAI.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
     <TypeIdentifier>
-      <HashCode>gICgCBAAAiwAEYgAAgEAQSAQYAAAAEIAYABAAAYAAAI=</HashCode>
-      <FileName>Assets\_Scrips\Controller\EnemyController\EnemyController.cs</FileName>
+      <HashCode>DATAAACCACCAThUEJABAwgQIAGgIAAQAACkAABCAAAA=</HashCode>
+      <FileName>Assets\_Scrips\Controller\EnemyController\BossAI.cs</FileName>
     </TypeIdentifier>
-    <Lollipop Position="0.2" />
   </Class>
   <Class Name="CharacterAnimation">
-    <Position X="3.25" Y="3.25" Width="1.5" />
+    <Position X="3" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQQABABACgAAAAAAAEAAAggAIAACAAAIAAAAAAhQgA=</HashCode>
+      <HashCode>AgQAABABACgAABAAAAEAAAggAAAACAAAIAAAAAghQAA=</HashCode>
       <FileName>Assets\_Scrips\Controller\PlayerController\CharacterAnimation.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PlayerController">
-    <Position X="8.25" Y="4" Width="2" />
+  <Class Name="CombatController">
+    <Position X="4.75" Y="5.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>CAQFAAAAASAAIAAAAAABAAAAAAAAQQAgSAAQECACIMA=</HashCode>
-      <FileName>Assets\_Scrips\Controller\PlayerController\PlayerController.cs</FileName>
+      <HashCode>AAQAAAgAASAAAAkJEAAgABBAAAABQAAAAQAAAAggAAA=</HashCode>
+      <FileName>Assets\_Scrips\Controller\PlayerController\CombatController.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameManager">
+    <Position X="8" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAEKAAABQAgCAAAAAAAIQAAAEQAgGEA=</HashCode>
+      <FileName>Assets\_Scrips\Manage\GameManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameSummaryManager">
+    <Position X="9.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAEAAAABAAAACAAAAAAQAAAAgAAAEA=</HashCode>
+      <FileName>Assets\_Scrips\Manage\GameSummaryManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PlayerDataManager">
+    <Position X="9.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgIAgAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\_Scrips\Controller\PlayerController\PlayerData\PlayerDataManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemySpawns">
+    <Position X="11.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAgAQACAARCAAAAAAAAAAgBAIAAgAACAQAIEUAAA=</HashCode>
+      <FileName>Assets\_Scrips\Manage\EnemySpawns.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
@@ -38,9 +39,7 @@ public class EnemyController : MonoBehaviour, IPoolable
 
     private static readonly Vector3 PopupOffset = new Vector3(0, 2.5f, 0);
     public bool IsAttack;
-
-    Collider[] col;
-
+    bool isInvincible = false;
 
     private void Start()
     {
@@ -103,23 +102,26 @@ public class EnemyController : MonoBehaviour, IPoolable
     #endregion
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("weapon") && _playerAnimte.IsAttacking) {
-            Collider[] colliders = this.GetComponentsInChildren<Collider>(); col = colliders;
+        if (other.CompareTag("weapon") && _playerAnimte.IsAttacking && !isInvincible) {
+            Collider[] colliders = this.GetComponentsInChildren<Collider>();
             foreach (Collider collider in colliders) {
-                // Check if the collider is a hitbox or appropriate target for damage
                 if (collider.CompareTag("EnemyHitbox")) {
-
                     _textDamePopup.text = (_playerStat.Damage.Value * -1).ToString();
                     Instantiate(PopUpDame, transform.position + PopupOffset, Quaternion.identity);
                     _enemyStats.TakeDamage(_playerStat.Damage.Value);
-                    Debug.LogWarning(this.gameObject.name);
+                    Debug.Log($"damage " + gameObject.name);
+                    StartCoroutine(IFrame(0.3f));
                     break;
-                    //colliders = null;
                 }
             }
         }
     }
-
+    IEnumerator IFrame(float duration)
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(duration);
+        isInvincible = false;
+    }
     public void OnSpawnFromPool()
     {
 

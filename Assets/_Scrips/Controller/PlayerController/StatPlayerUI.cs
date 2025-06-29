@@ -16,7 +16,7 @@ public class StatPlayerUI : MonoBehaviour
         this.RegisterListener(EventID.OnUseItem, (e) => UpdateMaxvalue());
         PlayerStat = PlayerReferences.Instance.Player.GetComponent<PlayerStat>();
         healthSlider.maxValue = PlayerStat.currentHealth;
-        shieldSlider.maxValue = PlayerStat.currentShield;
+        shieldSlider.maxValue = PlayerStat.currentArmor;
         updatevalue();
     }
     public void setHealth(int health)
@@ -35,7 +35,7 @@ public class StatPlayerUI : MonoBehaviour
     public void updatevalue()
     {
         healthSlider.value = PlayerStat.currentHealth;
-        shieldSlider.value = PlayerStat.currentShield;
+        shieldSlider.value = PlayerStat.currentArmor;
     }
     public void UpdateMaxvalue()
     {

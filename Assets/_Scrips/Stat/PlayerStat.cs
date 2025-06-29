@@ -11,7 +11,7 @@ public class PlayerStat : CharacterStat
     [Header("Shield")]
     private Coroutine shieldRegenCoroutine;
     public float shieldRegenDelay = 10f;
-    public int currentShield { get; private set; }
+    public int currentArmor { get; private set; }
     public int level = 0;
 
     // Start is called before the first frame update
@@ -23,7 +23,7 @@ public class PlayerStat : CharacterStat
         MaxHealth = GameManager.Instance.LoadedData.maxHP;
         Damage.BaseValue = GameManager.Instance.LoadedData.attack;
         Armor.BaseValue = GameManager.Instance.LoadedData.armor;
-        currentShield = Armor.Value;
+        currentArmor = Armor.Value;
         currentHealth = MaxHealth;
     }
 
@@ -49,12 +49,12 @@ public class PlayerStat : CharacterStat
     void OnEquipmentChanged(Equipment newitem, Equipment oldItem)
     {
         if (newitem != null) {
-            Armor.AddModifier(newitem.Defend);
-            Damage.AddModifier(newitem.Damage);
+            Armor.AddEquip(newitem.Defend);
+            Damage.AddEquip(newitem.Damage);
         }
         if (oldItem != null) {
-            Armor.RemoveModifier(oldItem.Defend);
-            Damage.RemoveModifier(oldItem.Damage);
+            Armor.RemoveEquip(oldItem.Defend);
+            Damage.RemoveEquip(oldItem.Damage);
         }
         //Armor.TotalValue();
         //Damage.TotalValue();
@@ -70,11 +70,11 @@ public class PlayerStat : CharacterStat
             StopCoroutine(shieldRegenCoroutine);
         shieldRegenCoroutine = StartCoroutine(RegenerateShield());
 
-        if (currentShield > 0) {
-            int shieldDmg = Mathf.Min(currentShield, dmg);
-            currentShield -= shieldDmg;
+        if (currentArmor > 0) {
+            int shieldDmg = Mathf.Min(currentArmor, dmg);
+            currentArmor -= shieldDmg;
             dmg -= shieldDmg;
-            StatPlayerUI?.setShield(currentShield);
+            StatPlayerUI?.setShield(currentArmor);
         }
         if (dmg > 0) {
             currentHealth -= dmg;
@@ -104,12 +104,12 @@ public class PlayerStat : CharacterStat
     {
         yield return new WaitForSeconds(shieldRegenDelay);
 
-        while (currentShield < GameManager.Instance.LoadedData.armor) {
+        while (currentArmor < GameManager.Instance.LoadedData.armor) {
             yield return new WaitForSeconds(1f);
-            currentShield += 1;
-            StatPlayerUI?.setShield(currentShield);
+            currentArmor += 1;
+            StatPlayerUI?.setShield(currentArmor);
         }
-        StatPlayerUI?.setShield(currentShield);
+        StatPlayerUI?.setShield(currentArmor);
         Debug.Log("RegenerateShield");
     }
 

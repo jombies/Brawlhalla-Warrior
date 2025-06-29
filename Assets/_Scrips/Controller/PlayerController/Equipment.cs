@@ -4,7 +4,7 @@ using UnityEngine;
 public class Equipment : Item
 {
 
-    public EquipmentSlot EquipSlot;
+    public EquipmentType EquipType;
     public int Defend;
     public int Damage;
 
@@ -15,5 +15,5 @@ public class Equipment : Item
         RemoveItem();
     }
 }
-public enum EquipmentSlot { Head, Armor, Weapon }
+public enum EquipmentType { Head, Armor, Weapon }
 

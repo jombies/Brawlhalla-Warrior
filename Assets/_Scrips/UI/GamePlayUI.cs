@@ -17,9 +17,7 @@ public class GamePlayUI : MonoBehaviour
     [SerializeField] Button settingButton;
 
     [Header("conditions")]
-    [SerializeField] bool isGameOver = false;
-    [SerializeField] bool isGameWin = false;
-    [SerializeField] bool isPause = false;
+    public bool isPause = false;
     [SerializeField] bool isQuit = false;
     [SerializeField] bool isSetting = false;
 
@@ -44,7 +42,9 @@ public class GamePlayUI : MonoBehaviour
 
     private void Update()
     {
+        isSetting = SettingUI.Instance.isSetting;
         if (Input.GetKeyDown(KeyCode.Escape) && !GameManager.Instance.victoryPopup.activeSelf && !GameManager.Instance.defeatPopup.activeSelf) {
+            if (isSetting) return;
             if (pausePanel.activeSelf) {
                 OnResume();
             }
@@ -52,6 +52,7 @@ public class GamePlayUI : MonoBehaviour
                 OnPause();
             }
         }
+
     }
     private void OnEnable()
     {
@@ -77,14 +78,18 @@ public class GamePlayUI : MonoBehaviour
 
     void OnPause()
     {
+        isPause = true;
+        AudioManager.Instance.PlaySFX("btn1");
         GamePanel.SetActive(false);
         pausePanel.SetActive(true);
         Time.timeScale = 0;
     }
     void OnResume()
     {
+        AudioManager.Instance.PlaySFX("btn1");
         GamePanel.SetActive(true);
         pausePanel.SetActive(false);
+        isPause = false;
         Time.timeScale = 1;
     }
     void OnSetting()
@@ -94,12 +99,14 @@ public class GamePlayUI : MonoBehaviour
     }
     void OnQuit()
     {
+        AudioManager.Instance.PlaySFX("btn1");
         NotiPanel notiPanel = NotiPanel.Instance;
         notiPanel.ShowNotify("Thoát Game", "Bạn muốn thoát game?", () => { Application.Quit(); }, () => { });
     }
     void OnHome()
     {
         Time.timeScale = 1;
+        AudioManager.Instance.PlaySFX("btn1");
         SceneLoaderNew.i.loadScene("Home UI", () => GameManager.Instance.CleanUpSystemsForHome());
         pausePanel.SetActive(false);
         GamePanel.SetActive(true);

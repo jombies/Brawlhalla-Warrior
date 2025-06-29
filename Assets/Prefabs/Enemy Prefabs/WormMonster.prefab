@@ -179,7 +179,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 80
@@ -220,11 +220,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _canvas: {fileID: 6673845328083790388}
   PopUpDame: {fileID: 1777670533413786944, guid: 6499eb2b91667324b935d45f6b08cbab, type: 3}
-  _textDamePopup: {fileID: 5172696930340621978, guid: 6499eb2b91667324b935d45f6b08cbab, type: 3}
-  speedRotate: 0
+  _textDamePopup: {fileID: 5819233755296593968, guid: 6499eb2b91667324b935d45f6b08cbab, type: 3}
+  speedRotate: 6
   _capsuleCollider: {fileID: 5271041040178114634}
   IsAttack: 0
-  IsDead: 0
 --- !u!114 &2036672170585276709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,6 +241,7 @@ MonoBehaviour:
     BaseValue: 8
   Armor:
     BaseValue: 0
+  isDead: 0
   healthBar: {fileID: 0}
 --- !u!114 &349189198138940205
 MonoBehaviour:
@@ -368,19 +368,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 296d41bbfd960bc499b9fc19129c342f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  BulletPrefab: {fileID: 1658112780640456, guid: 5ae5c6fb282fd3c44bf0c2083393e142, type: 3}
+  FirePoint: {fileID: 4052784747305758990}
   IsPlayer:
     serializedVersion: 2
     m_Bits: 256
-  IsGround:
-    serializedVersion: 2
-    m_Bits: 512
-  BulletPrefab: {fileID: 1658112780640456, guid: 5ae5c6fb282fd3c44bf0c2083393e142, type: 3}
-  pointHolder: {fileID: 0}
-  points: []
-  timeBetweenAttacks: 2
-  FirePoint: {fileID: 4052784747305758990}
-  attackRange: 7.8
+  attackRange: 7.9
   sightRange: 8
+  timeBetweenAttacks: 2
 --- !u!1 &1808865786930774609
 GameObject:
   m_ObjectHideFlags: 0
@@ -486,7 +481,7 @@ GameObject:
   - component: {fileID: 5271041040178114634}
   m_Layer: 0
   m_Name: collider
-  m_TagString: Enemy
+  m_TagString: EnemyHitbox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -521,7 +516,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -807,7 +802,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 579963ae21f89754bac08b8becc3ddc0, type: 2}
+  - {fileID: 2100000, guid: cce105f52f5504843a9896a9e1aeccd6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

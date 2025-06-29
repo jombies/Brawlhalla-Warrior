@@ -45,6 +45,8 @@ public class UpgradeManager : MonoBehaviour
             player.level++;
 
             PlayerDataManager.Save(player);
+            AudioManager.Instance.PlaySFX("btnBuy");
+            upgradePopup.ShowPopup();
             Debug.Log("Nâng cấp thành công lên cấp " + player.level);
             this.PostEvent(EventID.UpdateFrameUIData);
         }
@@ -60,7 +62,6 @@ public class UpgradeManager : MonoBehaviour
         }
         var stats1 = upgradeData.GetStatsForLevel(player.level + 1);
         this.PostEvent(EventID.UpgradeCostUpdate, stats1.cost);
-        upgradePopup.ShowPopup();
     }
     private void OnDestroy()
     {

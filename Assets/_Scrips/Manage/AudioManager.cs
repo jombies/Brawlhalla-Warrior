@@ -26,7 +26,6 @@ public class AudioManager : MonoBehaviour
     private Dictionary<string, SoundData> allSounds = new Dictionary<string, SoundData>();
     private AudioSource currentMusicSource;
     private Coroutine fadeRoutine;
-    private int field;
 
     void Awake()
     {

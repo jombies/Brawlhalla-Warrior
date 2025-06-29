@@ -537,7 +537,6 @@ MonoBehaviour:
   speedRotate: 5
   _capsuleCollider: {fileID: 7649294724057583611}
   IsAttack: 0
-  IsDead: 0
 --- !u!114 &2307794873151129353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -555,6 +554,7 @@ MonoBehaviour:
     BaseValue: 3
   Armor:
     BaseValue: 0
+  isDead: 0
   healthBar: {fileID: 0}
 --- !u!114 &2364290895206589983
 MonoBehaviour:
@@ -638,7 +638,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.54
   m_Height: 2.3
   m_Direction: 2
   m_Center: {x: -0.21, y: 0, z: 0.63}
