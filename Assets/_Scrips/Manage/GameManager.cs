@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("✅ Scene loaded: " + scene.name);
+        Debug.Log("Scene loaded: " + scene.name);
         StartCoroutine(DelaySpawnPlayer());
     }
 
@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
         playerObj.transform.position = spawnObj.transform.position;
         playerObj.transform.rotation = spawnObj.transform.rotation;
 
-        Debug.Log("✅ Player đã được spawn chính xác.");
+        Debug.Log("Player đã được spawn chính xác.");
     }
 
     public void SpawnPlayerAtSceneSpawnPoint()
@@ -86,14 +86,14 @@ public class GameManager : MonoBehaviour
     {
         victoryPopup.SetActive(true);
         victoryPopup.GetComponent<PopupAnimator>().ShowFromTop();
-        Time.timeScale = 0f; // Dừng thời gian khi thắng
+        Time.timeScale = 0f; 
     }
 
     public void OnPlayerLose()
     {
         defeatPopup.SetActive(true);
         defeatPopup.GetComponent<PopupAnimator>().ShowFromBottom();
-        Time.timeScale = 0f; // Dừng thời gian khi thua
+        Time.timeScale = 0f;
     }
     void DestroyIfExists(string objectName)
     {

@@ -53,10 +53,9 @@ public class PlayerController : MonoBehaviour
 
         // Gộp hướng lại theo input
         direction = camForward * InputSingleton.instance.Direction.z + camRight * InputSingleton.instance.Direction.x;
-        if (direction.magnitude > 0.1f)
-            direction.Normalize();
+        if (direction.magnitude > 0.1f) direction.Normalize();
+        else direction = Vector3.zero;
     }
-
     void Moving()
     {
         if (Animater.IsAttacking) return;
@@ -82,9 +81,9 @@ public class PlayerController : MonoBehaviour
     void ApplyGravity()
     {
         if (Controller.isGrounded && _gravity.y < 0)
-            _gravity.y = -9.8f;
+            _gravity.y = -2f;
 
-        _gravity.y -= 8 * Time.deltaTime;
+        _gravity.y += Physics.gravity.y * Time.deltaTime;
         Controller.Move(_gravity * Time.deltaTime);
     }
 
@@ -99,26 +98,6 @@ public class PlayerController : MonoBehaviour
                     return;
                 }
             }
-
         }
-        //if (other.CompareTag("Enemy bullet")) {
-        //    if (other.TryGetComponent<BulletInit>(out var bulletInit)) {
-        //        PlayerStat.TakeDamage(bulletInit.Damage);
-        //    }
-        //}
-    }
-    //Ktra Player di qua cua
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.CompareTag("GateWay"))
-    //    {
-    //        other.transform.parent.GetComponent<GateBehaviour>().GateClose(other.gameObject);
-    //    }
-    //}
-
-    IEnumerator delayMethod(float speed, Vector3 dir)
-    {
-        yield return new WaitForSeconds(3);
-        Controller.Move(speed * Time.deltaTime * dir);
     }
 }

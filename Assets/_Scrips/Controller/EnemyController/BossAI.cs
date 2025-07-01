@@ -4,6 +4,7 @@ using UnityEngine;
 public class BossAI : MonoBehaviour
 {
     EnemyController controller;
+    BossVFXHandler vfx;
     enum BossState { Idle, Chase, MeleeAttack, Skill, Recovery, Staggered, Dead }
     BossState currentState = BossState.Idle;
     public bool isStateExecuting = false;
@@ -239,6 +240,7 @@ public class BossAI : MonoBehaviour
         controller.Animator.SetBool("walk", false);
         controller.Animator.SetTrigger("skill");
         controller.IsAttack = true;
+        vfx.PlaySkillCharge();
         float elapsed = 0f;
         int angleOffset = 0;
         while (elapsed < skillDuration) {
@@ -301,6 +303,7 @@ public class BossAI : MonoBehaviour
         int healPerTick = 5;
 
         while (elapsed < recoveryTime) {
+            vfx.PlayRecovery();
             controller.EnemyStats.Heal(healPerTick);
             elapsed += tick;
             yield return new WaitForSeconds(tick);

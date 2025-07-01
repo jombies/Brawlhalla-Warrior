@@ -338,7 +338,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2915383083482998332
 Transform:
   m_ObjectHideFlags: 0
@@ -518,8 +518,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d9a24988c8955d44892cfaf572ec391, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillChargeVFX: {fileID: 0}
-  recoveryVFX: {fileID: 0}
+  skillChargeVFX: {fileID: 4963677592299535018, guid: d15a9740e0e913a47a52cf79d046eee7, type: 3}
+  recoveryVFX: {fileID: 899650332246417272, guid: a01c623643be4da4a899ba124e2dad5a, type: 3}
 --- !u!1 &1162008984318250895
 GameObject:
   m_ObjectHideFlags: 0
@@ -2448,11 +2448,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 833603667670493688, guid: 2f54aadfec552fe499366761fc8131ae, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 833603667670493688, guid: 2f54aadfec552fe499366761fc8131ae, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5441186140199430915, guid: 2f54aadfec552fe499366761fc8131ae, type: 3}
       propertyPath: m_Pivot.x

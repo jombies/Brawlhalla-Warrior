@@ -240,7 +240,7 @@ public class BossAISpawner : MonoBehaviour, IPoolable
         controller.Agent.isStopped = true;
         controller.Animator.SetBool("walk", false);
         controller.Animator.SetTrigger("skill");
-
+        vfxHandler.PlaySkillCharge();
         StartCoroutine(RotateOnpot());
         yield return new WaitForSeconds(10f);
 
@@ -330,7 +330,7 @@ public class BossAISpawner : MonoBehaviour, IPoolable
         int healPerTick = 3;
 
         while (elapsed < recoveryTime) {
-            //  vfxHandler.PlayRecovery();
+            vfxHandler.PlayRecovery();
             controller.EnemyStats.Heal(healPerTick);
             elapsed += tick;
             yield return new WaitForSeconds(tick);
