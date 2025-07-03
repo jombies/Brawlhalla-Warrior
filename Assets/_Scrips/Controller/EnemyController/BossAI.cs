@@ -322,12 +322,11 @@ public class BossAI : MonoBehaviour
         if (distance <= attackRange) {
             float angle = Vector3.Angle(transform.forward, toTarget);
 
-            if (angle <= 30f) // ✅ chỉ tấn công trong 60 độ trước mặt
-            {
+            if (angle <= 50) {
                 var playerStat = controller.Target.GetComponent<PlayerStat>();
                 if (playerStat != null) {
                     playerStat.TakeDamage(controller.EnemyStats.Damage.Value);
-                    Debug.Log("Boss dealt damage in front cone!");
+                    AudioManager.Instance.PlaySFX("enemy slash2");
                 }
             }
         }

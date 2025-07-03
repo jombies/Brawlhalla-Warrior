@@ -9,6 +9,8 @@ public class PlayerStat : CharacterStat
     [SerializeField] StatPlayerUI StatPlayerUI;
 
     [Header("Shield")]
+    [SerializeField] Equipment defaultWeapon;
+    [SerializeField] Equipment defaultArmor;
     private Coroutine shieldRegenCoroutine;
     public float shieldRegenDelay = 10f;
     public int currentArmor { get; private set; }
@@ -19,12 +21,17 @@ public class PlayerStat : CharacterStat
     {
         Animator = GetComponentInChildren<CharacterAnimation>();
         EquipmentManager.Instance.onEquipchanged += OnEquipmentChanged;
+
         level = GameManager.Instance.LoadedData.level;
         MaxHealth = GameManager.Instance.LoadedData.maxHP;
         Damage.BaseValue = GameManager.Instance.LoadedData.attack;
         Armor.BaseValue = GameManager.Instance.LoadedData.armor;
         currentArmor = Armor.Value;
         currentHealth = MaxHealth;
+
+
+        StatPlayerUI?.UpdateMaxvalue();
+        StatPlayerUI?.Updatevalue();
     }
 
     private void OnEnable()
@@ -40,11 +47,23 @@ public class PlayerStat : CharacterStat
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         StartCoroutine(LoadElement());
+
     }
     IEnumerator LoadElement()
     {
-        yield return null;
+        yield return new WaitForSeconds(1);
         StatPlayerUI = FindAnyObjectByType<StatPlayerUI>();
+
+        if (defaultWeapon != null) {
+            EquipmentManager.Instance.Equip(defaultWeapon);
+        }
+        if (defaultArmor != null) {
+            EquipmentManager.Instance.Equip(defaultArmor);
+        }
+        StatPlayerUI?.UpdateMaxvalue();
+        StatPlayerUI?.SetHealth(currentHealth);
+        StatPlayerUI?.SetShield(currentArmor);
+
     }
     void OnEquipmentChanged(Equipment newitem, Equipment oldItem)
     {
@@ -56,8 +75,6 @@ public class PlayerStat : CharacterStat
             Armor.RemoveEquip(oldItem.Defend);
             Damage.RemoveEquip(oldItem.Damage);
         }
-        //Armor.TotalValue();
-        //Damage.TotalValue();
         Debug.Log("Armor: " + Armor.Value);
         Debug.Log("Damage: " + Damage.Value);
         GameManager.Instance.LoadedData.armor = Armor.Value;
@@ -74,11 +91,11 @@ public class PlayerStat : CharacterStat
             int shieldDmg = Mathf.Min(currentArmor, dmg);
             currentArmor -= shieldDmg;
             dmg -= shieldDmg;
-            StatPlayerUI?.setShield(currentArmor);
+            StatPlayerUI?.SetShield(currentArmor);
         }
         if (dmg > 0) {
             currentHealth -= dmg;
-            StatPlayerUI?.setHealth(currentHealth);
+            StatPlayerUI?.SetHealth(currentHealth);
             if (currentHealth <= 0 && !isDead) {
                 Die();
                 isDead = true;
@@ -93,7 +110,7 @@ public class PlayerStat : CharacterStat
     {
         currentHealth += value;
         currentHealth = Mathf.Clamp(currentHealth, 0, MaxHealth);
-        StatPlayerUI.setHealth(currentHealth);
+        StatPlayerUI.SetHealth(currentHealth);
     }
     protected override void Die()
     {
@@ -107,9 +124,9 @@ public class PlayerStat : CharacterStat
         while (currentArmor < GameManager.Instance.LoadedData.armor) {
             yield return new WaitForSeconds(1f);
             currentArmor += 1;
-            StatPlayerUI?.setShield(currentArmor);
+            StatPlayerUI?.SetShield(currentArmor);
         }
-        StatPlayerUI?.setShield(currentArmor);
+        StatPlayerUI?.SetShield(currentArmor);
         Debug.Log("RegenerateShield");
     }
 

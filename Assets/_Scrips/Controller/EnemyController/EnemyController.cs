@@ -37,7 +37,7 @@ public class EnemyController : MonoBehaviour, IPoolable
     public CapsuleCollider _capsuleCollider;
     #endregion
 
-    private static readonly Vector3 PopupOffset = new Vector3(0, 2.5f, 0);
+    private static readonly Vector3 PopupOffset = new(0, 2.5f, 0);
     public bool IsAttack;
     bool isInvincible = false;
 

@@ -15,24 +15,21 @@ public class StatPlayerUI : MonoBehaviour
     {
         this.RegisterListener(EventID.OnUseItem, (e) => UpdateMaxvalue());
         PlayerStat = PlayerReferences.Instance.Player.GetComponent<PlayerStat>();
-        healthSlider.maxValue = PlayerStat.currentHealth;
-        shieldSlider.maxValue = PlayerStat.currentArmor;
-        updatevalue();
     }
-    public void setHealth(int health)
+    public void SetHealth(int health)
     {
         healthSlider.value = health;
         healthSlider.gameObject.transform.GetComponentInChildren<Image>().color = gradient.Evaluate(healthSlider.normalizedValue);
         // image.color = gradient.Evaluate(healthSlider.normalizedValue);
     }
-    public void setShield(int shield)
+    public void SetShield(int shield)
     {
         shieldSlider.value = shield;
         shieldSlider.gameObject.transform.GetComponentInChildren<Image>().color = gradient.Evaluate(healthSlider.normalizedValue);
         //image.color = gradient.Evaluate(shieldSlider.normalizedValue);
     }
 
-    public void updatevalue()
+    public void Updatevalue()
     {
         healthSlider.value = PlayerStat.currentHealth;
         shieldSlider.value = PlayerStat.currentArmor;

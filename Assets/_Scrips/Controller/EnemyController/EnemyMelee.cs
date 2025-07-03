@@ -136,7 +136,7 @@ public class EnemyMelee : MonoBehaviour
             var playerStat = controller.Target.GetComponent<PlayerStat>();
             if (playerStat != null) {
                 playerStat.TakeDamage(controller.EnemyStats.Damage.Value);
-                Debug.Log("Damage!");
+                AudioManager.Instance.PlaySFX("enemy slash1");
             }
         }
     }

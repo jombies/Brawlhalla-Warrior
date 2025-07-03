@@ -25,14 +25,14 @@ public class CompleteUI : MonoBehaviour
 
     private void OnRestartClick()
     {
-        SceneLoaderNew.i.loadScene("Testing");
+        SceneLoaderNew.i.LoadScene("Testing");
         gameObject.SetActive(false);
     }
 
     private void OnHomeClick()
     {
         GameManager.Instance.CleanUpSystemsForHome();
-        SceneLoaderNew.i.loadScene("Home UI");
+        SceneLoaderNew.i.LoadScene("Home UI");
         Time.timeScale = 1f;
         gameObject.SetActive(false);
     }

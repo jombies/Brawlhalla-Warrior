@@ -20,7 +20,7 @@ public static class PlayerDataManager
         }
         else {
             Debug.Log("Không tìm thấy file lưu, tạo dữ liệu mặc định.");
-            PlayerData defaultData = new() { level = 0, maxHP = 100, armor = 6, attack = 6, coins = 100000 };
+            PlayerData defaultData = new() { level = 0, maxHP = 100, armor = 3, attack = 3, coins = 800 };
             Save(defaultData);
             return defaultData;
         }

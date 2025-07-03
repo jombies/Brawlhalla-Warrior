@@ -39,7 +39,7 @@ public class HomeUI : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX("btn1");
         // SceneLoader.i.loadScene("Information");
-        SceneLoaderNew.i.loadScene("Information");
+        SceneLoaderNew.i.LoadScene("Information");
         transform.parent.gameObject.SetActive(false);
 
     }

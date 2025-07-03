@@ -45,7 +45,7 @@ public class CombatController : MonoBehaviour
             lastPowerTime = Time.time;
             skillCooldownUI.StartPowerCooldown();
             anim.DoPowerAttack();
-            //UIManager.Instance?.StartCooldownUI("power", powerCooldown);
+            AudioManager.Instance.PlaySFX("skill");
         }
     }
 
@@ -56,33 +56,33 @@ public class CombatController : MonoBehaviour
             dashDirection = GetCurrentMoveDirection();
             skillCooldownUI.StartDashCooldown();
             StartCoroutine(DoDash());
-            //UIManager.Instance?.StartCooldownUI("dash", dashCooldown);
-        }
-    }
-
-    Vector3 GetCurrentMoveDirection()
-    {
-        Vector3 camForward = CameraController.Instance.GetCamera().transform.forward;
-        Vector3 camRight = CameraController.Instance.GetCamera().transform.right;
-
-        camForward.y = 0;
-        camRight.y = 0;
-
-        Vector3 dir = camForward * InputSingleton.instance.Direction.z + camRight * InputSingleton.instance.Direction.x;
-        return dir.normalized;
-    }
-
-    IEnumerator DoDash()
-    {
-        float dashDuration = 0.2f;
-        float startTime = Time.time;
-
-        while (Time.time < startTime + dashDuration) {
-            controller.Move(dashDirection * 20 * Time.deltaTime);
-            yield return null;
+            AudioManager.Instance.PlaySFX("dash");
         }
 
-        if (dashDirection.magnitude > 0.1f)
-            anim.DoDash();
+        Vector3 GetCurrentMoveDirection()
+        {
+            Vector3 camForward = CameraController.Instance.GetCamera().transform.forward;
+            Vector3 camRight = CameraController.Instance.GetCamera().transform.right;
+
+            camForward.y = 0;
+            camRight.y = 0;
+
+            Vector3 dir = camForward * InputSingleton.instance.Direction.z + camRight * InputSingleton.instance.Direction.x;
+            return dir.normalized;
+        }
+
+        IEnumerator DoDash()
+        {
+            float dashDuration = 0.2f;
+            float startTime = Time.time;
+
+            while (Time.time < startTime + dashDuration) {
+                controller.Move(20 * Time.deltaTime * dashDirection);
+                yield return null;
+            }
+
+            if (dashDirection.magnitude > 0.1f)
+                anim.DoDash();
+        }
     }
 }

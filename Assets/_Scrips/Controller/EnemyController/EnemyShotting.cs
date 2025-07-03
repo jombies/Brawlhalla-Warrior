@@ -78,6 +78,7 @@ public class EnemyShotting : MonoBehaviour
 
         GameObject newBullet = Instantiate(BulletPrefab, FirePoint.transform.position, FirePoint.transform.rotation);
         newBullet.GetComponent<bulletMove>().damage = controller.EnemyStats.Damage.Value;
+        AudioManager.Instance.PlaySFX("enemy shot");
 
         alreadyAttacked = true;
         Invoke(nameof(ResetAttack), timeBetweenAttacks);

@@ -107,7 +107,7 @@ public class GamePlayUI : MonoBehaviour
     {
         Time.timeScale = 1;
         AudioManager.Instance.PlaySFX("btn1");
-        SceneLoaderNew.i.loadScene("Home UI", () => GameManager.Instance.CleanUpSystemsForHome());
+        SceneLoaderNew.i.LoadScene("Home UI", () => GameManager.Instance.CleanUpSystemsForHome());
         pausePanel.SetActive(false);
         GamePanel.SetActive(true);
     }

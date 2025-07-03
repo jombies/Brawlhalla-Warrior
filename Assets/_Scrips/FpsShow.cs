@@ -39,9 +39,8 @@ public class FpsShow : MonoBehaviour
             float averageFps = totalFps / totalFrames;
 
             // Hiển thị FPS hiện tại và trung bình
-            string format = $"FPS: {accum / frames} | Avg FPS: {averageFps}";
+            string format = $"FPS: {Mathf.RoundToInt(accum / frames)} | Avg FPS: {Mathf.RoundToInt(averageFps)}";
             textFpsCounter.text = format;
-
             // Reset các giá trị cho khoảng thời gian tiếp theo
             timeleft = updateInterval;
             accum = 0.0F;

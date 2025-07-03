@@ -19,7 +19,7 @@ public class StartLoader : MonoBehaviour
     {
         float timer = 0f;
         bool pausedAtFakePoint = false;
-        SceneLoaderNew.i.loadScene("Home UI");
+
         while (timer < _loadDelay) {
             // Tính toán progress (0 -> 1)
             float progress = Mathf.Clamp01(timer / _loadDelay);
@@ -40,7 +40,7 @@ public class StartLoader : MonoBehaviour
         }
 
         // Hoàn thành -> Gọi hàm chuyển scene thực sự
-
+        SceneLoaderNew.i.LoadScene("Home UI");
         Destroy(gameObject); // Hủy loader
     }
 }

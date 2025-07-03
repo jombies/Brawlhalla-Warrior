@@ -13,6 +13,12 @@ public class SettingUI : MonoBehaviour
     [SerializeField] private Slider MusicVolSlider;
     [SerializeField] private Slider SfxVolSlider;
     public bool isSetting = false;
+
+    [Header("Graphic")]
+    [SerializeField] private Button btnLow;
+    [SerializeField] private Button btnMedium;
+    [SerializeField] private Button btnHigh;
+
     private void Awake()
     {
         if (Instance != null && Instance != this) {
@@ -25,6 +31,9 @@ public class SettingUI : MonoBehaviour
     private void Start()
     {
         btnClose.onClick.AddListener(OnClickClose);
+        btnLow.onClick.AddListener(() => { AudioManager.Instance.PlaySFX("btn1"); QualitySettings.SetQualityLevel(0); });
+        btnMedium.onClick.AddListener(() => { AudioManager.Instance.PlaySFX("btn1"); QualitySettings.SetQualityLevel(1); });
+        btnHigh.onClick.AddListener(() => { AudioManager.Instance.PlaySFX("btn1"); QualitySettings.SetQualityLevel(2); });
         masterVolSlider.onValueChanged.AddListener(OnChangeMasterVolume);
         MusicVolSlider.onValueChanged.AddListener(OnChangeMusicVolume);
         SfxVolSlider.onValueChanged.AddListener(OnChangeSfxVolume);

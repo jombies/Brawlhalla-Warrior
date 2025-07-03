@@ -13,6 +13,7 @@ public class SceneLoaderNew : MonoBehaviour
     [SerializeField] GameObject Panel;
     [SerializeField] Image _progressBar;
     [SerializeField] TextMeshProUGUI _percentText;
+    [SerializeField] float minLoadTime = 1.5f;
 
     private string currentSceneName;
 
@@ -27,7 +28,7 @@ public class SceneLoaderNew : MonoBehaviour
         }
     }
 
-    public void loadScene(string sceneName, Action onSceneLoaded = null)
+    public void LoadScene(string sceneName, Action onSceneLoaded = null)
     {
         Panel.SetActive(true);
         StartCoroutine(LoadSceneAdditive(sceneName, onSceneLoaded));
@@ -41,19 +42,32 @@ public class SceneLoaderNew : MonoBehaviour
         AsyncOperation loadScene = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
         loadScene.allowSceneActivation = false;
 
+        float timer = 0f;
+
         while (loadScene.progress < 0.9f) {
-            _progressBar.fillAmount = loadScene.progress;
-            _percentText.text = $"Loading... {Mathf.RoundToInt(loadScene.progress * 100)}%";
+            timer += Time.deltaTime;
+            float fakeProgress = Mathf.Clamp01(timer / minLoadTime);
+            float displayProgress = Mathf.Min(loadScene.progress, fakeProgress);
+
+            _progressBar.fillAmount = displayProgress;
+            _percentText.text = $"Loading... {Mathf.RoundToInt(displayProgress * 100)}%";
             yield return null;
         }
 
-        // Scene load xong, cho phép activate
+        // Bắt buộc chờ thêm nếu fake progress chưa đủ minLoadTime
+        while (timer < minLoadTime) {
+            timer += Time.deltaTime;
+            float fakeProgress = Mathf.Clamp01(timer / minLoadTime);
+            _progressBar.fillAmount = fakeProgress;
+            _percentText.text = $"Loading... {Mathf.RoundToInt(fakeProgress * 100)}%";
+            yield return null;
+        }
+
         _progressBar.fillAmount = 1f;
         _percentText.text = $"Loading... 100%";
 
         loadScene.allowSceneActivation = true;
 
-        // Đợi scene thực sự active
         while (!loadScene.isDone)
             yield return null;
 
@@ -71,6 +85,7 @@ public class SceneLoaderNew : MonoBehaviour
         Panel.SetActive(false);
         resetOnDone();
     }
+
 
     public void unloadScene(string sceneName)
     {

@@ -77,7 +77,7 @@ public class HomeStartUI : MonoBehaviour
         AudioManager.Instance.PlaySFX("btnStart");
         GameManager.Instance.PrepareDataBeforePlay();
         //  SceneManager.LoadScene("GamePlayUI", LoadSceneMode.Additive);
-        SceneLoaderNew.i.loadScene("Testing", () =>
+        SceneLoaderNew.i.LoadScene("Testing", () =>
         {
             GameObject player = PlayerReferences.Instance.Player;
             Transform spawn = GameObject.Find("PlayerSpawnPoint")?.transform;
@@ -88,7 +88,7 @@ public class HomeStartUI : MonoBehaviour
     private void OnClickBack()
     {
         AudioManager.Instance.PlaySFX("btn1");
-        SceneLoaderNew.i.loadScene("Home UI");
+        SceneLoaderNew.i.LoadScene("Home UI");
     }
 
     private void Reset()
