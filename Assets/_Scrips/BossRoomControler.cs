@@ -46,7 +46,8 @@ public class BossRoomControler : MonoBehaviour
 
         foreach (var gate in gates)
             gate.transform.DOMoveY(-2, 1f);
-
+        GameSummaryManager.Instance.AddBossKill();
+        boss.SetActive(false);
         rewardChest.SetActive(true);
         gate.SetActive(true);
     }

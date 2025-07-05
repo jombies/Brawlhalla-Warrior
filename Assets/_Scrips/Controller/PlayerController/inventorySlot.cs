@@ -37,6 +37,7 @@ public class InventorySlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         if (_item != null) {
             _item.Use();
             this.PostEvent(EventID.OnUseItem);
+            TooltipUI.Instance.Hide();
         }
     }
     public void OnRemove()

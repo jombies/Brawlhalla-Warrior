@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEditor;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ public class CharacterAnimation : MonoBehaviour
     AutoAimForPlayer _aim;
     public bool IsAttacking;
     public int CurrentAttack;
+    private Coroutine comboResetCoroutine;
+    public float comboResetDelay = 1.5f;
 
     private static readonly int VelocityHash = Animator.StringToHash("Velocity");
     private static readonly int PowerHash = Animator.StringToHash("power");
@@ -48,6 +51,15 @@ public class CharacterAnimation : MonoBehaviour
         CurrentAttack = (CurrentAttack % 3) + 1;
         _animator.SetTrigger(AttackHashes[CurrentAttack - 1]);
         AudioManager.Instance.PlaySFX("slash" + CurrentAttack);
+
+        if (comboResetCoroutine != null)
+            StopCoroutine(comboResetCoroutine);
+        comboResetCoroutine = StartCoroutine(ResetComboAfterDelay());
+    }
+    IEnumerator ResetComboAfterDelay()
+    {
+        yield return new WaitForSeconds(comboResetDelay);
+        CurrentAttack = 0;
     }
     public void DoPowerAttack()
     {

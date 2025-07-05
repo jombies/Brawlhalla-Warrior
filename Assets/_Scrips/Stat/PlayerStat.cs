@@ -29,9 +29,9 @@ public class PlayerStat : CharacterStat
         currentArmor = Armor.Value;
         currentHealth = MaxHealth;
 
-
         StatPlayerUI?.UpdateMaxvalue();
-        StatPlayerUI?.Updatevalue();
+        StatPlayerUI?.SetHealth(currentHealth);
+        StatPlayerUI?.SetShield(currentArmor);
     }
 
     private void OnEnable()
@@ -60,10 +60,6 @@ public class PlayerStat : CharacterStat
         if (defaultArmor != null) {
             EquipmentManager.Instance.Equip(defaultArmor);
         }
-        StatPlayerUI?.UpdateMaxvalue();
-        StatPlayerUI?.SetHealth(currentHealth);
-        StatPlayerUI?.SetShield(currentArmor);
-
     }
     void OnEquipmentChanged(Equipment newitem, Equipment oldItem)
     {
@@ -78,6 +74,15 @@ public class PlayerStat : CharacterStat
         Debug.Log("Armor: " + Armor.Value);
         Debug.Log("Damage: " + Damage.Value);
         GameManager.Instance.LoadedData.armor = Armor.Value;
+        currentArmor = Mathf.Clamp(currentArmor, 0, Armor.Value);
+
+        if (currentArmor < Armor.Value) {
+            if (shieldRegenCoroutine != null) StopCoroutine(shieldRegenCoroutine);
+            shieldRegenCoroutine = StartCoroutine(RegenerateShield());
+        }
+
+        StatPlayerUI?.UpdateMaxvalue();
+        StatPlayerUI?.SetShield(currentArmor);
     }
 
     protected override void OnTakeDamage(int dmg)

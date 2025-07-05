@@ -76,7 +76,6 @@ public class HomeStartUI : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX("btnStart");
         GameManager.Instance.PrepareDataBeforePlay();
-        //  SceneManager.LoadScene("GamePlayUI", LoadSceneMode.Additive);
         SceneLoaderNew.i.LoadScene("Testing", () =>
         {
             GameObject player = PlayerReferences.Instance.Player;

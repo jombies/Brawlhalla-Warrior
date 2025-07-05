@@ -1,4 +1,4 @@
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -49,6 +49,7 @@ public class InventoryUI : MonoBehaviour
             _invetoryui.SetActive(!_invetoryui.activeSelf);
             Time.timeScale = _invetoryui.activeSelf ? 0 : 1;
             UpdateInfo(PlayerDataManager.Load());
+            Cursor.lockState = _invetoryui.activeSelf ? CursorLockMode.None : CursorLockMode.Locked;
         }
     }
     void UpdateUi()

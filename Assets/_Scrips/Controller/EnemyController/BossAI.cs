@@ -46,6 +46,7 @@ public class BossAI : MonoBehaviour
         ObjectPoolManager.Instance.PreloadPool(projectilePrefab, 30);
         controller = GetComponent<EnemyController>();
         StartCoroutine(BossStateMachine());
+        vfx = GetComponent<BossVFXHandler>();
     }
     void Update()
     {
@@ -93,7 +94,7 @@ public class BossAI : MonoBehaviour
                             }
                         }
                         else if (canMelee && !isRotating) {
-                            if (attacksExecuted >= 3 && !skillOnCooldown) {
+                            if (attacksExecuted >= 6 && !skillOnCooldown) {
 
                                 ChangeState(BossState.Skill);
                             }

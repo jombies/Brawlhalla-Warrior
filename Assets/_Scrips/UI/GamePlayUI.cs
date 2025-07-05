@@ -33,6 +33,7 @@ public class GamePlayUI : MonoBehaviour
     }
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked; // Khóa con trỏ chuột khi bắt đầu
         pauseButton.onClick.AddListener(OnPause);
         resumeButton.onClick.AddListener(OnResume);
         settingButton.onClick.AddListener(OnSetting);
@@ -83,6 +84,7 @@ public class GamePlayUI : MonoBehaviour
         GamePanel.SetActive(false);
         pausePanel.SetActive(true);
         Time.timeScale = 0;
+        Cursor.lockState = CursorLockMode.None; // Mở khóa con trỏ chuột khi pause
     }
     void OnResume()
     {
@@ -91,6 +93,7 @@ public class GamePlayUI : MonoBehaviour
         pausePanel.SetActive(false);
         isPause = false;
         Time.timeScale = 1;
+        Cursor.lockState = CursorLockMode.Locked; // Khóa con trỏ chuột khi bắt đầu
     }
     void OnSetting()
     {
@@ -116,7 +119,7 @@ public class GamePlayUI : MonoBehaviour
     {
         GamePanel = GameObject.Find("GamePlay");
         pausePanel = GameObject.Find("PauseMenu");
-        pauseButton = GamePanel.transform.Find("PauseButton").GetComponent<Button>();
+        pauseButton = GamePanel.transform.GetChild(1).Find("PauseButton").GetComponent<Button>();
         resumeButton = pausePanel.transform.GetChild(1).Find("Button_Continue").GetComponent<Button>();
         homeButton = pausePanel.transform.GetChild(1).Find("Button_Home").GetComponent<Button>();
         quitButton = pausePanel.transform.GetChild(1).Find("Button_Quit").GetComponent<Button>();

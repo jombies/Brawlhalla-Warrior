@@ -6,7 +6,7 @@ public class BossAISpawner : MonoBehaviour, IPoolable
     EnemyController controller;
     BossVFXHandler vfxHandler;
     enum BossState { Idle, Chase, MeleeAttack, Skill, Recovery, Staggered, Dead }
-    [SerializeField] BossState currentState = BossState.Idle;
+    BossState currentState = BossState.Idle;
     public bool isStateExecuting = false;
 
     [Header("Detection")]
@@ -92,7 +92,7 @@ public class BossAISpawner : MonoBehaviour, IPoolable
                             }
                         }
                         else if (canMelee && !isRotating) {
-                            if (attacksExecuted >= 3 && !skillOnCooldown) {
+                            if (attacksExecuted >= 5 && !skillOnCooldown) {
 
                                 ChangeState(BossState.Skill);
                             }

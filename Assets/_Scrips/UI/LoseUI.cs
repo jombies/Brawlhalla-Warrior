@@ -18,6 +18,7 @@ public class LoseUI : MonoBehaviour
     int gold;
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.None;
         PlayerData = PlayerDataManager.Load();
         OnHome.onClick.AddListener(OnHomeClick);
         //OnRestart.onClick.AddListener(OnRestartClick);
