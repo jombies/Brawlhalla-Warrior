@@ -84,13 +84,15 @@ public class GameManager : MonoBehaviour
 
     public void OnPlayerWin()
     {
+        Cursor.lockState = CursorLockMode.None;
         victoryPopup.SetActive(true);
         victoryPopup.GetComponent<PopupAnimator>().ShowFromTop();
-        Time.timeScale = 0f; 
+        Time.timeScale = 0f;
     }
 
     public void OnPlayerLose()
     {
+        Cursor.lockState = CursorLockMode.None;
         defeatPopup.SetActive(true);
         defeatPopup.GetComponent<PopupAnimator>().ShowFromBottom();
         Time.timeScale = 0f;
